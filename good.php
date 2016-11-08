@@ -1,4 +1,4 @@
 <?php 
 
 
-echo "id good.php";
+echo "is yjx good.php";
