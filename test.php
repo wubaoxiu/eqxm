@@ -1,2 +1,2 @@
 <?php
-	echo "i am wbx";
+	echo "i am yjx";
