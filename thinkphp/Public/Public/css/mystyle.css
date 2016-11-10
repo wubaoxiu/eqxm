@@ -1,0 +1,91 @@
+ ---------------------------------------------------- */
+/*      Basic Elements
+/* ---------------------------------------------------- */
+
+body {
+    /*background: #ebe9e5 url(../img/top-shine.png) repeat-x;*/
+    color: #5e5c5c;
+    font: 11px/1.5 Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+a{
+    color: #b70e4f;
+    text-decoration: underline;
+}
+
+a:hover { color: #5e5c5c; }
+hr {
+    background: #fff;
+    color: #fff;
+    border: 0;
+    border-bottom: 1px solid #e3e1d9;
+    height: 2px;
+}
+    /* Webkit Fix */
+@media screen and (-webkit-min-device-pixel-ratio:0){hr {height: 1px;}}
+ul li{
+    list-style: none;
+}
+
+/*      Header
+/* ---------------------------------------------------- */
+
+#header-top {
+    border-bottom: 1px solid #e3e1d9;
+    color: #858278;
+    height: 41px;
+    line-height: 41px;
+    overflow: hidden;
+    background:white;
+}
+#header-top .rss-icon {
+    position: absolute;
+    right: 19px;
+    top: 0;
+}
+#header-top .left { float: left;margin-left: 100px; }
+
+#header-top .right {
+    float: right;
+    padding-right: 130px;
+}
+#header-top .left a { text-decoration: none; font-size:18px;margin-left: 15px;color:black;}
+#header-top .right a { text-decoration: none; font-size:14px;margin-left: 15px;color:#2D64B3;}
+#header-top a:hover { text-decoration: underline; }
+#header {
+    border-top: 1px solid #fff;
+    height: 110px;
+    overflow: hidden;
+}
+
+#logo {
+    float: left;
+    margin-left:110px;
+}
+
+/*
+=========================================================================
+ bar_recommend
+========================================================================
+*/
+.bar_rec{
+    width:320px;
+    height:140px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    margin-top: -5px;
+    float:left;
+}
+.rec_list{
+    width:160px;
+    height:100px;
+    float:left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.bar_rec .rec_img{
+    width:100px;
+    height:100px;
+    margin-top: 10px;
+    margin-left: 20px;
+    float:left;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>home user index</h1>
+    <table width="800"  border="1">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>sex</th>
+            <th>age</th>
+        </tr>
+        <foreach name="list" item="vo" key="k">
+        <tr>
+            <td><{$vo.id}></td>
+            <td><{$vo.name}></td>
+            <td>
+                <if condition="$vo.sex eq '0'">女
+                <elseif condition="$vo.sex eq '1'" />男
+                <else />保密
+                </if>
+            </td>
+            <td><{$vo.age}></td>
+        </tr>
+        </foreach>
+    </table>
+</body>
+</html>
