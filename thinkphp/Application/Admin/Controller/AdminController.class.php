@@ -1,6 +1,6 @@
 <?php
 namespace Admin\Controller;
-use Think\Controller;
+use \Think\Controller;
  /**
     *   控制器名称 AdminController
     *       控制器作用 初始化首页
@@ -10,5 +10,15 @@ use Think\Controller;
 
 class AdminController extends Controller 
 {
-    
+    // public function _initialize()
+    // {
+    //     //将没有登录的人，返回至登录页面
+    //     if(empty($_SESSION['adminInfo'])){
+    //         $this->redirect("Login/index");
+    //         exit;
+    //     }
+    // }
+
+    // $cname = CONTROLLER_NAME; //获取控制器名
+    // $aname = ACTION_NAME;     //获取方法名
 }

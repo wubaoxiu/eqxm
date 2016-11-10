@@ -66,25 +66,32 @@
 
 											<div class="space-6"></div>
 
-											<form>
+											<form action="<{:U('Login/doLogin')}>" method="post">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="手机/邮箱/用户名" />
+															<input type="text" name="name" class="form-control" placeholder="手机/邮箱/用户名" />
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" />
+															<input type="password" name="password" class="form-control" placeholder="密码" />
 															<i class="icon-lock"></i>
 														</span>
 													</label>
 
+													<label class="block ">
+														<span class="block input-icon-right" style="width:140px;float:left">
+															<input type="text" name="yzm" class="form-control" placeholder="验证码" />
+														</span>
+													</label>
+															<img src="<{:U('Login/yzm')}>" id="yz_img" title="点击刷新" style="float:right;cursor:pointer">
+
 													<div class="space"></div>
 
-													<div class="clearfix">
+													<!-- <div class="clearfix">
 														<label class="inline">
 															<input type="checkbox" class="ace" />
 															<span class="lbl"> 记住账号密码</span>
@@ -94,45 +101,31 @@
 															<i class="icon-key"></i>
 															登录
 														</button>
-													</div>
+													</div> -->
 
 													<div class="space-4"></div>
 												</fieldset>
-											</form>
-
-											<!-- <div class="social-or-login center">
-												<span class="bigger-110">选择以下方式登录</span>
-											</div> -->
-
-											<!-- <div class="social-login center">
-												<a class="btn btn-primary">
-													<i class="icon-facebook"></i>
-												</a>
-
-												<a class="btn btn-info">
-													<i class="icon-twitter"></i>
-												</a>
-
-												<a class="btn btn-danger">
-													<i class="icon-google-plus"></i>
-												</a>
-											</div> -->
+											
 										</div><!-- /widget-main -->
 
-										<div class="toolbar clearfix">
-											<div>
+										<div class="toolbar clearfix" style="height:80px;line-height:80px;text-align:center;">
+											<!-- <div>
 												<a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
 													<i class="icon-arrow-left"></i>
 													忘记密码
 												</a>
-											</div>
-
-											<div>
+											</div> -->
+											<button type="submit" class="width-35 btn btn-sm btn-primary" style="width:600px;height:70px;font-size:20px">
+												<i class="icon-key"></i>
+												登录
+											</button>
+											</form>
+											<!--<div>
 												<a href="#" onclick="show_box('signup-box'); return false;" class="user-signup-link">
 													切换账号
 													<i class="icon-arrow-right"></i>
 												</a>
-											</div>
+											</div> -->
 										</div>
 									</div><!-- /widget-body -->
 								</div><!-- /login-box -->
@@ -144,11 +137,13 @@
 			</div>
 		</div><!-- /.main-container -->
 
+
+
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<!--不能删 // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
 
 		<!-- <![endif]-->
 
@@ -159,7 +154,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='__PUBLIC__/Admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -171,7 +166,7 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/Admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
@@ -182,6 +177,14 @@
 			 jQuery('#'+id).addClass('visible');
 			}
 		</script>
-	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+	<div style="display:none"><script src='__PUBLIC__/Admin/assets/js/cnzz.js' language='JavaScript' charset='gb2312'></script></div>
+	<script src="__PUBLIC__/Myjs/js/jquery.min.js"></script>
+	<script>
+		var yz_img = $('#yz_img');
+		var src_img = yz_img.attr('src');
+		yz_img.click(function(){
+			$(this).attr('src',src_img+'?yzm='+Math.random());
+		});
+	</script>
 </body>
 </html>
