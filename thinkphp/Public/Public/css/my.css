@@ -14,26 +14,57 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .mt50{margin-top:50px;}
 .red{color:#f00;}
 
+.bar_head1{
+    width: 1102px;
+    height: 150px;
+    background: #fdfdfd;
+    /*margin-left:75px; */
+}
 .bar_head{
     width: 1102px;
     height: 100px;
-    background: #f3f5f8;
+    background: #fdfdfd;
     /*margin-left:75px; */
 }
 .bar_head .left{
-    padding: 10px;
-    width: 100px;
-    float: left;
+    /*padding: 10px;*/
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 40px;
+    top: 75px;
+    border: 5px solid white;
+    /*float: left;*/
+}
+.bar_head .n_left{
+    /*padding: 10px;*/
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    left: 80px;
+    top: 5px;
+    border: 5px solid white;
+    /*float: left;*/
+}
+.note_title{
+    width: 759px;
+    height: 60px;
+    border-bottom:3px solid #f7f7f7;
+    background: white;
+    line-height: 20px;
+    font-size: 20px;
+    padding: 20px;
 }
 .bar_head_center{
     /*border: 1px solid red;*/
     width: 500px;
     height: 50px;
+    margin-left: 200px;
     /*padding: 10px;*/
     margin-top:30px;
 }
 .bar_head_center .lione{
-    width: 70px;
+    /*width: 70px;*/
     height: 50px;
     font-size: 20px;
     margin-left: 20px;

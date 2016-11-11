@@ -3,8 +3,8 @@
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>1</title>
-        <meta name="keywords" content="PHP,网站前端,网站源码,网站模板" /> 
-        <meta name="description" content="素材火求助交流区,您可以在这里求助各种技术难题,如PHP,前端技术,都会有活跃技术高手为您解答" /> 
+        <meta name="keywords" content="贴吧" /> 
+        <meta name="description" content="寻找志趣相投的好友~" /> 
         <link rel="shortcut icon" href="__PUBLIC__/Public/images/favicon.ico" type="image/x-icon" /> 
         <link rel="stylesheet" href="__PUBLIC__/Public/css/style.css" type="text/css" /> 
         <link rel="stylesheet" href="__PUBLIC__/Public/topic/css/topic.css" type="text/css" />
@@ -63,10 +63,12 @@
     </div><!-- end .container -->
 </div><!-- end #header -->
 
-<div class="wenda clearfix"> 
+<div class="wenda clearfix">
+<block name="the_head">
+<div class="bar_head1"><img src="__PUBLIC__/public/img/3.jpg" alt="贴吧图片" width="100%" height="100%"></div> 
 <div class="bar_head">
     <div class="left">
-        <img src="__PUBLIC__/Public/img/1.png" alt="" width="80px" height="80px">
+        <img src="__PUBLIC__/Public/img/1.png" alt="" width="100%" height="100%">
     </div>
     <div class="bar_head_center fl">
         <ul>
@@ -77,70 +79,73 @@
         </ul>
     </div>
 </div>    
-
+</block>
     <div class="wenda-main" style="border: 3px solid #f7f7f7;padding: 10px;">
+    <block name="main_head">
         <div class="newpost clearfix" style="margin-top:0px">
             <a class="quealltab onactive" href="#">最新</a>
             <a class="quealltab " href="#">热门</a>
             <a class="quealltab " href="#">加精</a>
             <a class="quealltab " href="#">置顶</a>
         </div>
+    </block>
                     <!--左侧列表内容-->
         <div class="wenda-list">
-
-            <div class="wenda-listcon clearfix" style="border-bottom:2px solid #f7f7f7;">
-                    <div class="headslider">
-                        <a title="Geeker" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/773">
-                            <img width="40" height="40" src="other/avatar/dir/773.jpg" alt='Geeker'/>
-                        </a>
-                        <a class="wenda-nickname" title="Geeker" target="_blank" href="http://www.sucaihuo.com/space/uid/773">Geeker</a>
-                    </div>
-                    <div class="wendaslider">
-                        <a class="replynumber hasanswernum" target="_blank" href="http://www.sucaihuo.com/topic/21.html">
-                            <div class="ys">
-                                <div class="number">
-                                    <span>2</span>
-                                </div>
-                                <div>评论</div>
+            <block name="the_main">
+            <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
+                <div class="headslider">
+                    <a title="Geeker" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/773">
+                        <img width="40" height="40" src="other/avatar/dir/773.jpg" alt='Geeker'/>
+                    </a>
+                    <a class="wenda-nickname" title="Geeker" target="_blank" href="http://www.sucaihuo.com/space/uid/773">Geeker</a>
+                </div>
+                <div class="wendaslider">
+                    <a class="replynumber hasanswernum" target="_blank" href="http://www.sucaihuo.com/topic/21.html">
+                        <div class="ys">
+                            <div class="number">
+                                <span>2</span>
                             </div>
-                            <div class="browsenum">
-                                <div class="number">
-                                    <span>30</span>
-                                </div>
-                                <div>浏览</div>
-                            </div>
-                        </a>
-
-                        <h2 class="wendaquetitle">
-                                                               <i class="icon-ad"></i>                         
-                            <div class="wendatitlecon">
-                                <a class="wendatitle"  href="http://www.sucaihuo.com/topic/21.html">什么时间注册的搞不清楚了</a>
-                            </div>
-                        </h2>
-                       
-                        <div class="replycont clearfix">
-                                 <i class="icon-msg-revert"></i>
-                        
-                            <div class="l replydes">
-                                <span class="replysign praise">[最新回答]</span>
-                                <a class="replyuserhead" title="1979933952" target="_blank" href="http://www.sucaihuo.com/space/uid/1476"><img width="20" height="20" src="other/avatar/dir/1476.jpg" alt='1979933952'> </a>
-                                <a class="nickname" title="1979933952" target="_blank" href="http://www.sucaihuo.com/space/uid/1476">1979933952: </a>
-                                <span class="replydet">好东西肯定要积分啊！尊重人家的劳动成果吗！</span>
-                            </div>                        </div>
-                                
-                        <div class="replymegfooter clearfix">
-                            <div class="wenda-time l">
-                                <em>提问时间：10-01 22:14</em>
-                            </div>
-                          <div class="keyword-list l"></div>
-           
-
-                            <!--                        <a class="formcourse l" target="_blank" href="/video/4093">源自： Maya3D建模攻略&mdash;&mdash;...</a>
-                                                    <a class="formcourse l curCourse" target="_blank" href="/wenda/courseques?cid=158">此课问答</a>-->
+                            <div>评论</div>
                         </div>
+                        <div class="browsenum">
+                            <div class="number">
+                                <span>30</span>
+                            </div>
+                            <div>浏览</div>
+                        </div>
+                    </a>
+
+                    <h2 class="wendaquetitle">
+                                                           <i class="icon-ad"></i>                         
+                        <div class="wendatitlecon">
+                            <a class="wendatitle"  href="http://www.sucaihuo.com/topic/21.html">什么时间注册的搞不清楚了</a>
+                        </div>
+                    </h2>
+                   
+                    <div class="replycont clearfix">
+                             <i class="icon-msg-revert"></i>
+                    
+                        <div class="l replydes">
+                            <span class="replysign praise">[最新回答]</span>
+                            <a class="replyuserhead" title="1979933952" target="_blank" href="http://www.sucaihuo.com/space/uid/1476"><img width="20" height="20" src="other/avatar/dir/1476.jpg" alt='1979933952'> </a>
+                            <a class="nickname" title="1979933952" target="_blank" href="http://www.sucaihuo.com/space/uid/1476">1979933952: </a>
+                            <span class="replydet">好东西肯定要积分啊！尊重人家的劳动成果吗！</span>
+                        </div>                        </div>
+                            
+                    <div class="replymegfooter clearfix">
+                        <div class="wenda-time l">
+                            <em>提问时间：10-01 22:14</em>
+                        </div>
+                      <div class="keyword-list l"></div>
+       
+
+                        <!--                        <a class="formcourse l" target="_blank" href="/video/4093">源自： Maya3D建模攻略&mdash;&mdash;...</a>
+                                                <a class="formcourse l curCourse" target="_blank" href="/wenda/courseques?cid=158">此课问答</a>-->
+                    </div>
                     </div>
                 </div>
-                <div class="wenda-listcon clearfix" style="border-bottom:2px solid #f7f7f7;">
+                </block>
+                <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
                     <div class="headslider">
                         <a title="我是兴高采烈1" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/154">
                             <img width="40" height="40" src="other/avatar/dir/154.jpg" alt='我是兴高采烈1'/>
@@ -194,7 +199,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="wenda-listcon clearfix" style="border-bottom:2px solid #f7f7f7;">
+                <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
                     <div class="headslider">
                         <a title="相裕连" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/353">
                             <img width="40" height="40" src="Public/images/avatar.jpg" alt='相裕连'/>
@@ -248,117 +253,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="wenda-listcon clearfix" style="border-bottom:2px solid #f7f7f7;">
-                    <div class="headslider">
-                        <a title="mingge16888" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/693">
-                            <img width="40" height="40" src="other/avatar/dir/693.jpg" alt='mingge16888'/>
-                        </a>
-                        <a class="wenda-nickname" title="mingge16888" target="_blank" href="http://www.sucaihuo.com/space/uid/693">mingge16888</a>
-                    </div>
-                    <div class="wendaslider">
-                        <a class="replynumber hasanswernum" target="_blank" href="http://www.sucaihuo.com/topic/18.html">
-                            <div class="ys">
-                                <div class="number">
-                                    <span>2</span>
-                                </div>
-                                <div>评论</div>
-                            </div>
-                            <div class="browsenum">
-                                <div class="number">
-                                    <span>97</span>
-                                </div>
-                                <div>浏览</div>
-                            </div>
-                        </a>
-
-                        <h2 class="wendaquetitle">
-                            <i class="icon-ques-revert"></i>
-                                                         
-                            <div class="wendatitlecon">
-                                <a class="wendatitle"  href="http://www.sucaihuo.com/topic/18.html">shearphoto 2.0 HTML5切图来了，还带美图秀秀特效，shearphoto要做全互联网第一</a>
-                            </div>
-                        </h2>
-                       
-                        <div class="replycont clearfix">
-                                 <i class="icon-msg-revert"></i>
-                        
-                            <div class="l replydes">
-                                <span class="replysign praise">[最新回答]</span>
-                                <a class="replyuserhead" title="、冷子轩、" target="_blank" href="http://www.sucaihuo.com/space/uid/1939"><img width="20" height="20" src="Public/images/avatar.jpg" alt='、冷子轩、'> </a>
-                                <a class="nickname" title="、冷子轩、" target="_blank" href="http://www.sucaihuo.com/space/uid/1939">、冷子轩、: </a>
-                                <span class="replydet">碉堡，看好你哦</span>
-                            </div>                        </div>
-                                
-                        <div class="replymegfooter clearfix">
-                            <div class="wenda-time l">
-                                <em>提问时间：09-06 02:40</em>
-                            </div>
-                          <div class="keyword-list l">
-                                    <a target='_blank' class='list-tag'   href='http://www.sucaihuo.com/topic/tag-HTML5切图.html'>HTML5切图</a><a target='_blank' class='list-tag'   href='http://www.sucaihuo.com/topic/tag-JS插图.html'>JS插图</a><a target='_blank' class='list-tag'   href='http://www.sucaihuo.com/topic/tag-PHP截图.html'>PHP截图</a>                                </div>
-           
-
-                            <!--                        <a class="formcourse l" target="_blank" href="/video/4093">源自： Maya3D建模攻略&mdash;&mdash;...</a>
-                                                    <a class="formcourse l curCourse" target="_blank" href="/wenda/courseques?cid=158">此课问答</a>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="wenda-listcon clearfix" style="border-bottom:2px solid #f7f7f7;">
-                    <div class="headslider">
-                        <a title="yoyo" target="_blank" class="wenda-head" href="http://www.sucaihuo.com/space/uid/5">
-                            <img width="40" height="40" src="other/avatar/dir/5.jpg" alt='yoyo'/>
-                        </a>
-                        <a class="wenda-nickname" title="yoyo" target="_blank" href="http://www.sucaihuo.com/space/uid/5">yoyo</a>
-                    </div>
-                    <div class="wendaslider">
-                        <a class="replynumber hasanswernum" target="_blank" href="http://www.sucaihuo.com/topic/17.html">
-                            <div class="ys">
-                                <div class="number">
-                                    <span>7</span>
-                                </div>
-                                <div>评论</div>
-                            </div>
-                            <div class="browsenum">
-                                <div class="number">
-                                    <span>92</span>
-                                </div>
-                                <div>浏览</div>
-                            </div>
-                        </a>
-
-                        <h2 class="wendaquetitle">
-                                                               <i class="icon-ad"></i>                         
-                            <div class="wendatitlecon">
-                                <a class="wendatitle"  href="http://www.sucaihuo.com/topic/17.html">分享一款免费翻墙国外软件</a>
-                            </div>
-                        </h2>
-                       
-                        <div class="replycont clearfix">
-                                 <i class="icon-msg-revert"></i>
-                        
-                            <div class="l replydes">
-                                <span class="replysign praise">[最新回答]</span>
-                                <a class="replyuserhead" title="louxueming" target="_blank" href="http://www.sucaihuo.com/space/uid/2145"><img width="20" height="20" src="Public/images/avatar.jpg" alt='louxueming'> </a>
-                                <a class="nickname" title="louxueming" target="_blank" href="http://www.sucaihuo.com/space/uid/2145">louxueming: </a>
-                                <span class="replydet">下载下来测试一下</span>
-                            </div>                        </div>
-                                
-                        <div class="replymegfooter clearfix">
-                            <div class="wenda-time l">
-                                <em>提问时间：09-01 13:58</em>
-                            </div>
-                          <div class="keyword-list l">
-                                    <a target='_blank' class='list-tag'   href='http://www.sucaihuo.com/topic/tag-vpn.html'>vpn</a><a target='_blank' class='list-tag'   href='http://www.sucaihuo.com/topic/tag-翻墙.html'>翻墙</a>                                </div>
-           
-
-                            <!--                        <a class="formcourse l" target="_blank" href="/video/4093">源自： Maya3D建模攻略&mdash;&mdash;...</a>
-                                                    <a class="formcourse l curCourse" target="_blank" href="/wenda/courseques?cid=158">此课问答</a>-->
-                        </div>
-                    </div>
-                </div>            <div class="pager">共<span class="red"> 30 </span>个话题  <a class="prev" href="http://www.sucaihuo.com/topic/0-0-1">上一页</a> <a class="current">1</a><a class="num" href="http://www.sucaihuo.com/topic/0-0-2">2</a>  <a class="next" href="http://www.sucaihuo.com/topic/0-0-2">下一页</a></div>
+            <div class="pager">共<span class="red"> 30 </span>个话题  <a class="prev" href="http://www.sucaihuo.com/topic/0-0-1">上一页</a> <a class="current">1</a><a class="num" href="http://www.sucaihuo.com/topic/0-0-2">2</a>  <a class="next" href="http://www.sucaihuo.com/topic/0-0-2">下一页</a></div>
 
             <!--page-->
-        </div>
-    </div>
+    </div><!--wenda list-->
+    </div><!--wenda main-->
     <div class="wenda-slider" style="margin-top:20px">
 
         <div class="panel wenda-form clearfix mt">
