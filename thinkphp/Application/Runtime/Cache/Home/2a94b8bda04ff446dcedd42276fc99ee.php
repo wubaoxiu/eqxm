@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="cn">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,6 @@
 <body>
     <h1>CSW首页 </h1>
 
-    <{:date('Y-m-d H:i:s')}>
+    <?php echo date('Y-m-d H:i:s');?>
 </body>
 </html>

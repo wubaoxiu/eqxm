@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="cn">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title><{$title}></title>
+		<title><?php echo ($title); ?></title>
 		<!-- basic styles -->
 
-		<link href="__PUBLIC__/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/font-awesome.min.css" />
+		<link href="/thinkphp/Public/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -16,13 +16,13 @@
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/fontsgoogle.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/fontsgoogle.css" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -32,7 +32,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="__PUBLIC__/Admin/assets/js/ace-extra.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -215,7 +215,7 @@
 
 								<li>
 									<a href="#">
-										<img src="__PUBLIC__/Admin/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="/thinkphp/Public/Admin/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -232,7 +232,7 @@
 
 								<li>
 									<a href="#">
-										<img src="__PUBLIC__/Admin/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="/thinkphp/Public/Admin/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -249,7 +249,7 @@
 
 								<li>
 									<a href="#">
-										<img src="__PUBLIC__/Admin/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="/thinkphp/Public/Admin/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -276,10 +276,10 @@
 						<!-- 头部登录信息 -->
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="__PUBLIC__/Admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/thinkphp/Public/Admin/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 										<small>欢迎回来,</small>
-										<{$name}>
+										<?php echo ($name); ?>
 								</span>
 
 								<i class="icon-caret-down"></i>
@@ -303,7 +303,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="<{:U('Login/logout')}>">
+									<a href="#">
 										<i class="icon-off"></i>
 										退出登录
 									</a>
@@ -360,27 +360,27 @@
 						</div>
 					</div><!-- #sidebar-shortcuts -->
 <ul class="nav nav-list">
-						<block name="sy">
+						
 						<li>
-						</block>
-							<a href="<{:U('Index/index')}>">
+						
+							<a href="<?php echo U('Index/index');?>">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 首页 </span>
 							</a>
 						</li>
 
-						<block name="two">
+						
 						<li>
-						</block>
+						
 							<a href="typography.html">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 文字排版 </span>
 							</a>
 						</li>
 
-						<block name="user">
-						<li>
-						</block>
+						
+    <li class="active open">
+
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-desktop"></i>
 								<span class="menu-text"> 用户管理 </span>
@@ -388,31 +388,33 @@
 							</a>
 
 							<ul class="submenu">
-								<block name="ptuser">
+								
 									<li>
-								</block>
-									<a href="<{:U('User/index')}>">
+								
+									<a href="<?php echo U('User/index');?>">
 										<i class="icon-double-angle-right"></i>
 										普通用户
 									</a>
 								</li>
 
-								<block name="adminuser"><li></block>
-									<a href="<{:U('AdminUser/adminUser')}>">
+								<li>
+									<a href="<?php echo U('AdminUser/adminUser');?>">
 										<i class="icon-double-angle-right"></i>
 										后台管理用户
 									</a>
 								</li>
 
-								<block name="baruser"><li></block>
-									<a href="<{:U('BarUser/barUser')}>">
+								<li>
+									<a href="<?php echo U('BarUser/barUser');?>">
 										<i class="icon-double-angle-right"></i>
 										吧主吧管理
 									</a>
 								</li>
 
-								<block name="adduser"><li></block>
-									<a href="<{:U('User/add')}>">
+								
+    <li class="active">
+
+									<a href="<?php echo U('User/add');?>">
 										<i class="icon-double-angle-right"></i>
 										添加用户
 									</a>
@@ -423,7 +425,7 @@
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
-								<span class="menu-text"> 贴吧分类管理 </span>
+								<span class="menu-text"> 表格 </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
@@ -432,14 +434,14 @@
 								<li class="active">
 									<a href="tables.html">
 										<i class="icon-double-angle-right"></i>
-										分类列表
+										简单 &amp; 动态
 									</a>
 								</li>
 
 								<li>
 									<a href="jqgrid.html">
 										<i class="icon-double-angle-right"></i>
-										添加分类
+										jqGrid plugin
 									</a>
 								</li>
 							</ul>
@@ -664,7 +666,91 @@
 						</div><!-- /.page-header
 
 								<!--第二个表格-->
-								<block name="content"></block>
+								
+    <form class="form-horizontal" role="form">
+                            
+        <div class="form-group has-warning" style="height:50px">
+            <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 </label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="text" name="name" id="inputWarning" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+            <div class="help-block col-xs-12 col-sm-reset inline">
+                Warning tip help!
+            </div>
+        </div>
+
+        <div class="form-group has-error" style="height:50px">
+            <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 密　码 </label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="password" name="password" id="inputError" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+            <div class="help-block col-xs-12 col-sm-reset inline"> Error tip help! </div>
+        </div>
+
+        <div class="form-group has-error" style="height:50px">
+            <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 确认密码 </label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="password" name="repassword" id="inputError" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+            <div class="help-block col-xs-12 col-sm-reset inline"> Error tip help! </div>
+        </div>
+
+        <div class="form-group has-success" style="height:50px">
+            <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right"> email </label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="email" name="email" id="inputSuccess" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+            <div class="help-block col-xs-12 col-sm-reset inline">
+                Success tip help!
+            </div>
+        </div>
+
+        <div style="width:500px;text-align:center">
+            <label for="form-field-select-1" style="color:orange;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色</label>
+
+            <select class="form-control" id="form-field-select-1" style="width:490px;margin-left:305px;margin-top:-25px;">
+                <option value="">&nbsp;</option>
+                <option value="管理员">管理员</option>
+                <option value="吧主">吧主</option>                      
+                <option value="吧管理员">吧管理员</option>                      
+            </select>
+        </div>
+
+        <div class="clearfix form-actions" style="margin-top:100px;">
+            <div class="col-md-offset-3 col-md-9">
+                <button class="btn btn-info" type="button">
+                    <i class="icon-ok bigger-110"></i>
+                    确认添加
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="icon-undo bigger-110"></i>
+                    重新填写
+                </button>
+            </div>
+        </div>
+
+        <div class="hr hr-24"></div>
+
+    </form>
+
 								
 
 								
@@ -742,7 +828,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='__PUBLIC__/Admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='/thinkphp/Public/Admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -754,24 +840,24 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='__PUBLIC__/Admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='/thinkphp/Public/Admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="__PUBLIC__/Admin/assets/js/bootstrap.min.js"></script>
-		<script src="__PUBLIC__/Admin/assets/js/typeahead-bs2.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/bootstrap.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
-		<script src="__PUBLIC__/Admin/assets/js/jquery.dataTables.min.js"></script>
-		<script src="__PUBLIC__/Admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/jquery.dataTables.bootstrap.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="__PUBLIC__/Admin/assets/js/ace-elements.min.js"></script>
-		<script src="__PUBLIC__/Admin/assets/js/ace.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/ace-elements.min.js"></script>
+		<script src="/thinkphp/Public/Admin/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
         
-        <block name="tablejs"></block>
+        
 		
 	<!-- <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div> -->
 </body>

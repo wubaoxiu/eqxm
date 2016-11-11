@@ -9,10 +9,6 @@ class BarController extends Controller
     {
         $this->display();
     }
-    public function note()
-    {
-        $this->display();
-    }
 }
 
 

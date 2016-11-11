@@ -138,7 +138,7 @@ body{font:12px/1.5 "Hiragino Sans GB","Microsoft YaHei",simsun; font-size:13px; 
 #footer .stores .stores_icon{background:url("../images/s.png") no-repeat scroll 0 -45px}
 #footer .rebate .rebate_icon{background:url("../images/s.png") no-repeat scroll 0 -150px}
 #footer .guide strong,#footer .stores strong,#footer .rebate strong,#footer .follow strong{color:#404040; font-size:14px}
-#footer .friendly{clear:both; padding-top:20px; text-align:center}
+#footer .friendly{border-top:1px solid #dfdfdf; clear:both; padding-top:20px; text-align:center}
 .foot_menu{margin:15px 0 0}
 #footer .friendly a{margin:0 8px}
 #footer .friendly strong{font-weight:normal; color:#555}
@@ -388,7 +388,7 @@ ul.smileBox li a.smile84{background-position:-2822px 0}
 .merchant_cats .content .merchant_arrow_right{background-image:url("../images/classification_cion.png"); background-position:0 -309px; width:7px; height:10px}
 .merchant_cats .content .merchant_arrow_left{background:url("../images/classification_cion.png") no-repeat scroll 0 -330px; display:none; width:10px; height:19px; position:absolute; right:-1px; top:12px; z-index:9998}
 .index_left{width:782px}
-.sidebar_per{border:1px solid #DDD; border-top:6px solid lightblue; float:right; width:308px; background-color:#fff; height:445px; margin-bottom:12px}
+.sidebar_per{border:1px solid #DDD; border-top:6px solid #333; float:right; width:308px; background-color:#fff; height:445px; margin-bottom:12px}
 .sidebar .sidebar_per{width:275px; height:auto}
 .sidebar .sidebar_per dd.sidebar_articles a{width:185px}
 .sidebar .sidebar_per dt a.more{margin-right:9px}
@@ -409,7 +409,7 @@ span.more-sign{font-family:"SimSun"}
 .index_recommend .head{border-bottom:2px solid #bbb; height:40px; line-height:40px}
 .index_recommend .head strong{color:#333; font-size:18px; font-weight:normal; margin-left:17px; width:115px; display:block; float:left}
 .index_recommend .head ul{float:left; width:606px;}
-.index_recommend .head ul li{float:left; width:67px; height:40px; line-height:42px; font-size:13px; text-align:center; position:relative; cursor:pointer; color:#666}
+.index_recommend .head ul li{float:left; width:86px; height:40px; line-height:42px; font-size:13px; text-align:center; position:relative; cursor:pointer; color:#666}
 .index_recommend .head ul li:hover{color:#f63}
 .index_recommend .head ul li.current{border-bottom:2px solid #f63; color:#f63}
 .index_recommend .head ul li.current .arrow-up-menu{display:block; left:47%; top:35px}
@@ -421,9 +421,9 @@ span.more-sign{font-family:"SimSun"}
 .index_recommend .content ul li{float:left}
 .index_recommend .content .ul_pics{height:202px}
 .index_recommend .content .ul_pics li{height:190px; margin:12px 14px 0 0; width:235px; overflow:hidden}
-.index_recommend .content .ul_pics li a{color:#666;overflow:hidden}
+.index_recommend .content .ul_pics li a{color:#666; display:block; overflow:hidden}
 .index_recommend .content .ul_pics li a:hover,.index_recommend .content ul.ul_words li a:hover,.sidebar_per dd a:hover{color:#ff8400}
-.index_recommend .content .ul_pics li a img{margin:0 0 3px; width:110px; height:110px; border:1px solid #ddd}
+.index_recommend .content .ul_pics li a img{margin:0 0 3px; width:233px; height:160px; border:1px solid #ddd}
 .index_recommend .content .ul_pics li.three{margin-right:0}
 .index_recommend .content ul.ul_words li{background:url("../images/a.png") no-repeat scroll -182px -94px; display:inline; float:left; height:24px; line-height:24px; margin:3px 14px 6px 0; overflow:hidden; padding-left:16px; width:219px}
 .index_recommend .content ul.ul_words li a{color:#444; display:block; width:219px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}

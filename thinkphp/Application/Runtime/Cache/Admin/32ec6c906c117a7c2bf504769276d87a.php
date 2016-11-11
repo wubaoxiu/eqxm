@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="cn">
 	<head>
 		<meta charset="utf-8" />
@@ -6,8 +6,8 @@
 
 		<!-- basic styles -->
 
-		<link href="__PUBLIC__/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/font-awesome.min.css" />
+		<link href="/thinkphp/Public/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -17,12 +17,12 @@
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/fontsgoogle.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/fontsgoogle.css" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/thinkphp/Public/Admin/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -66,7 +66,7 @@
 
 											<div class="space-6"></div>
 
-											<form action="<{:U('Login/doLogin')}>" method="post">
+											<form action="<?php echo U('Login/doLogin');?>" method="post">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -87,7 +87,7 @@
 															<input type="text" name="yzm" class="form-control" placeholder="验证码" />
 														</span>
 													</label>
-															<img src="<{:U('Login/yzm')}>" id="yz_img" title="点击刷新" style="float:right;cursor:pointer">
+															<img src="<?php echo U('Login/yzm');?>" id="yz_img" title="点击刷新" style="float:right;cursor:pointer">
 
 													<div class="space"></div>
 
@@ -154,7 +154,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='__PUBLIC__/Admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='/thinkphp/Public/Admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -166,7 +166,7 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='__PUBLIC__/Admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='/thinkphp/Public/Admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
@@ -177,8 +177,8 @@
 			 jQuery('#'+id).addClass('visible');
 			}
 		</script>
-	<div style="display:none"><script src='__PUBLIC__/Admin/assets/js/cnzz.js' language='JavaScript' charset='gb2312'></script></div>
-	<script src="__PUBLIC__/Public/js/jquery.min.js"></script>
+	<div style="display:none"><script src='/thinkphp/Public/Admin/assets/js/cnzz.js' language='JavaScript' charset='gb2312'></script></div>
+	<script src="/thinkphp/Public/Public/js/jquery.min.js"></script>
 	<script>
 		var yz_img = $('#yz_img');
 		var src_img = yz_img.attr('src');
