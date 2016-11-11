@@ -1,9 +1,7 @@
 <extend name='Index/header' />
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-        <link rel="shortcut icon" href="__PUBLIC__/public/images/favicon.ico" type="image/x-icon" /> 
         <link rel="stylesheet" href="__PUBLIC__/public/css/style.css" type="text/css" /> 
         <block name="headstyle"></block>    
     </head> 
@@ -15,7 +13,7 @@
             <dl>
                 <dt>
                 <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                <strong>贴吧热议榜<span class="name-en">/HOT</span></strong>
+                <strong>热门话题<span class="name-en">/HOT</span></strong>
                 </dt>
                 <dd class="sidebar_articles">
                         <span>487</span>
@@ -40,12 +38,15 @@
                         <a target="_blank"  href="js.html?/438.html">投票任务平台手机版</a>
                     </dd>            </dl>
         </div>
+       
         <div class="index_left clearfix">
+        <img style = "width:180px;height:250px" src="__PUBLIC__/Public/image/1_left.jpg" alt="" />
             <div class="banner" id="banner">
-                <ul id="index_banner">        
+                <ul id="index_banner"> 
+
                     <li>
                         <a target="_blank" href="js.html?/0-0-52-0-0-0">
-                            <img alt="响应式模板" src="__PUBLIC__/Public/images/1.jpg">
+                            <img alt="响应式模板" src="__PUBLIC__/Public/image/1.jpg">
                         </a>
                     </li>
                     <li>
@@ -59,9 +60,9 @@
                         </a>
                     </li>
                 </ul>
-                <div class="banner_page" id="banner_page"></div>
-                <a class="banner_page_btn banner_page_left" id="banner_page_left"></a>
-                <a class="banner_page_btn banner_page_right" id="banner_page_right"></a>
+                <!-- <div class="banner_page" id="banner_page"></div> -->
+                <!-- <a class="banner_page_btn banner_page_left" id="banner_page_left"></a> -->
+                <!-- <a class="banner_page_btn banner_page_right" id="banner_page_right"></a> -->
             </div>
         </div>
     </div>
@@ -74,7 +75,7 @@
             </dt>
              </dl>
             <div class = "bar_rec">
-                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/images/luhan.jpg" alt="" /></a></div>
+                <div class = "rec_img"><a href="<{:U('Bar/index')}>"><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/luhan.jpg" alt="" /></a></div>
                 <div class = "rec_list">
                     <ul>
                         <li><a href=""><strong>鹿晗吧</strong></a></li>
@@ -85,7 +86,7 @@
                 </div>
             </div>
              <div class = "bar_rec">
-                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/images/happy.jpg" alt="" /></a></div>
+                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/happy.jpg" alt="" /></a></div>
                  <div class = "rec_list">
                     <ul>
                         <li><a href=""><strong>快乐大本营吧</strong></a></li>
@@ -96,7 +97,7 @@
                 </div>
             </div>
              <div class = "bar_rec">
-                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/images/h48.jpg" alt="" /></a></div>
+                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/h48.jpg" alt="" /></a></div>
                  <div class = "rec_list">
                     <ul>
                         <li><a href=""><strong>snH48吧</strong></a></li>
@@ -145,41 +146,40 @@
             <div class="content clearfix">
                 <div class="per current">
                     <ul class="ul_pics">
-                        <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/luhan.jpg" style = "height:150px;height:150px"alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">鹿晗吧 </b>                          
-                             </a>
+                        <li>
+                        <a target="_blank"  href="js.html?/440.html">
+                            <img src="__PUBLIC__/Public/image/luhan.jpg" style = "height:110px;"alt="鹿晗吧" class="lazy"  />
+                         </a> 
+                         <div class= "ul_info">     
+                            <b style="font-size:20px;">鹿晗吧 </b><br>
+                            <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
+                             </div>
                         </li>
                         <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/qi.jpg" style = "height:150px;height:150px" alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">邓紫棋吧 </b>                          
+                            <img src="__PUBLIC__/Public/image/qi.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
                              </a>
-                        </li>
+                             <div class= "ul_info">     
+                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
+                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
+                             </div>
+                        </li> 
                         <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/zhou.jpg" style = "height:150px;height:150px" alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">周杰伦吧 </b>                          
+                                    <img src="__PUBLIC__/Public/image/dog.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
                              </a>
-                        </li>
-                         
-                         </ul>         
-                         <ul class="ul_pics">
-                        <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/hanju.jpg" style = "height:150px;height:150px"alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">记得吧 </b>                          
+                             <div class= "ul_info">     
+                                 <b style="font-size:20px;font-color:#4FB8EB">邓紫棋吧 </b><br>
+                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
+                             </div>
+                        </li>  
+                         <li><a target="_blank"  href="js.html?/440.html">
+                                    <img src="__PUBLIC__/Public/image/wang.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
                              </a>
+                             <div class= "ul_info">     
+                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
+                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
+                             </div>
                         </li>
-                        <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/hanju.jpg" style = "height:150px;height:150px" alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">记得吧 </b>                          
-                             </a>
-                        </li>
-                        <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/images/dog.jpg"style = "height:150px;height:150px" alt="鹿晗吧" class="lazy"  />
-                                    <b style="font-size:20px;">萨摩耶吧 </b>                          
-                             </a>
-                        </li>
-                         
-                         </ul>
+                    </ul>
                 </div>
         </div>
         </div>
@@ -187,8 +187,48 @@
             <dl>
                 <dt>
                 <a href="js.html?/0-0-6-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                <strong>推荐特效 <span class="name-en">/jQuery</span></strong>
+                <strong>友情链接<span class="name-en">/Link</span></strong>
                 </dt>
+                <div class = "bar_link">
+                    <b><a href="">购物</a></b> 
+                     <ul>   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>
+                    </ul>
+                </div>
+                <div class = "bar_link">
+                    <b><a href="">游戏</a></b> 
+                     <ul>   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>
+                    </ul>
+                </div>
+                <div class = "bar_link">
+                    <b><a href="">小说</a></b> 
+                     <ul>   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>
+                    </ul>
+                </div>
+                <div class = "bar_link">
+                    <b><a href="">小说</a></b> 
+                     <ul>   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>                   
+                            <li><a href="">韩都衣舍</a></li>
+                    </ul>
+                </div>
                 </dl>
         </div>
 
@@ -205,9 +245,9 @@
                 <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
             </div>
             <div class = "content_img">
-                <img src="__PUBLIC__/public/images/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/images/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/images/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
             </div>
         </div>
     </div>  
@@ -220,70 +260,51 @@
                 <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
             </div>
             <div class = "content_img">
-                <img src="__PUBLIC__/public/images/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/images/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/images/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+            </div>
+        </div>
+    </div>     
+    <div class = "content_con">
+        <div class = "content_dt">
+            <div class = "content_top">
+               <span><a href="">赵丽颖吧</a></span>
+            </div>
+            <div class = "content_cen">
+                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
+            </div>
+            <div class = "content_img">
+                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+            </div>
+        </div>
+    </div>
+<div class = "content_con">
+        <div class = "content_dt">
+            <div class = "content_top">
+               <span><a href="">赵丽颖吧</a></span>
+            </div>
+            <div class = "content_cen">
+                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
+            </div>
+            <div class = "content_img">
+                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
             </div>
         </div>
     </div>
 
                 
  </div>
-<div class="footer" id="footer" data-url="http://www.sucaihuo.com/" data-logout="http://www.sucaihuo.com/Download/logout?r=" data-id="" data-mtype=""> 
+ <div class="footer" id="footer" data-url="http://www.sucaihuo.com/" data-logout="http://www.sucaihuo.com/Download/logout?r=" data-id="" data-mtype=""> 
     <div class="footer_main clearfix">
-        <div class="guide">
-            <span class="guide_icon"></span>
-            <ul class="ul_foot">
-                <li><strong>网站模板</strong></li>
-                <li><a href="js.html?/3-0-0-0-0-0">行业模板</a><a href="js.html?/7-0-0-0-0-0">专题模板</a></li>
-                <li><a href="js.html?/4-0-0-0-0-0">商城模板</a><a href="js.html?/8-0-0-0-0-0">后台模板</a></li>
-                <li><a href="js.html?/5-0-0-0-0-0">企业模板</a><a href="js.html?/9-0-0-0-0-0">其他模板</a></li>
-                <li><a href="js.html?/31-0-0-0-96-0">求职招聘</a><a href="js.html?/22-0-0-0-96-0">订餐外送</a></li>
-                <li><a href="js.html?/69-0-0-0-0-0">个人博客</a><a href="js.html?/0-0-0-0-96-0">中文模板</a></li>
-            </ul>
-        </div>
-        <div class="stores">
-            <span class="stores_icon"></span>
-            <ul class="ul_foot">
-                <li><strong>jquery特效</strong></li>
-                <li><a href="js.html?/7-0-0-0">图片代码</a><a href="js.html?/7-0-0-0">悬浮层/弹出层</a></li>
-                <li><a href="js.html?/8-0-0-0">导航菜单</a><a href="js.html?/14-0-0-0">其它特效</a></li>
-                <li><a href="js.html?/9-0-0-0">选项卡/滑动门</a><a href="js.html?/53-0-0-0">PHP+Ajax</a></li>
-                <li><a href="js.html?/11-0-0-0">表单代码</a><a href="js.html?/128-0-0-0">jQuery插件</a></li>
-            </ul>
-        </div>
-        <div class="rebate">
-            <span class="rebate_icon"></span>
-            <ul class="ul_foot">
-                <li><strong>推荐jQuery</strong></li>
-                <li><a href="js.html?/177.html">datepicker</a><a href="js.html?/44.html">flowplayer</a></li>
-                <li><a href="js.html?/1.html">jQuery购物车</a><a href="js.html?/85.html">jquery表单验证</a></li>
-                <li><a href="js.html?/200.html">lightbox</a><a href="js.html?/125.html">jquery滚动条</a></li>
-                <li><a href="js.html?/45.html">fancybox</a><a href="js.html?/268.html">WebUploader</a></li>
-                <li><a href="js.html?/107.html">fullcalendar</a><a href="js.html?/3.html">上传</a></li>
-            </ul>
-        </div>
-        <div class="follow">
-            <span class="follow_icon"></span>
-            <ul>
-                <li>
-                    <strong>联系我们</strong>
-                </li>
-                <li>
-                    <a  class="qq-chat" href="http://wpa.qq.com/msgrd?v=3&uin=416148489&site=qq&menu=yes" target="_blank">
-                        <img alt="QQ在线客服" src="Public/images/qq-chat.png">
-                    </a>
-                    
-                </li>
-                <li>qq群：35291327</li>
-                <li>邮箱：416148489@qq.com</li>
-                <li>手机：18502560773</li>
-            </ul>
-        </div>
         <div class="friendly">
-                        <div class="foot_menu">
-                <a href="help.html" target="_blank">扒模板</a>
-                <a href="help.html" target="_blank">联系我们</a>
+                <div class="foot_menu">
+                <a href="help.html" target="_blank">使用贴吧必读</a>
+                <a href="help.html" target="_blank">贴吧协议</a>
                 <a href="help.html" target="_blank">关于我们</a>
                 <a href="help.html" target="_blank">招纳贤士</a>
                 <a href="js.html?map.html" target="_blank">网站地图</a>
@@ -292,51 +313,6 @@
         </div>
     </div>
 </div>
-
-<div id="windown_box" class="modal fade">
-    <div class="pop_title">
-        <div class="pop_name">登录</div>
-        <i class="pop_close" onclick="$('#windown_box').modal('hide')"></i>
-    </div>
-    <div class="pop_content">
-        <div class="form_item">
-            <div class="item_tip">用户名/邮箱</div>
-            <input id="email" name="email"  class="form_input" type="text" autocomplete="off" tabindex="1" value="" onblur="blurInputLoginBox($(this))"  onfocus ="focusInputLoginBox($(this))"/>
-        </div>
-        <div class="form_item">
-            <div class="item_tip">密码</div>
-            <input name="pwd" id="pwd"class="form_input" type="password" tabindex="2" value="" onblur="blurInputLoginBox($(this))"  onfocus ="focusInputLoginBox($(this))" />
-        </div>
-        <div class="captchaBox">
-            <div class="two_weeks">
-                <input id="rememberme" class="ckeckBox" type="checkbox" name="rememberme">
-                <label for="rememberme">两周内免登录</label>
-                <a  href="http://www.sucaihuo.com/reg.html" target="_blank" class="loginbox_reg">免费注册</a>
-            </div>
-        </div>
-        <p class="notice_error"></p>
-        <input id="btn_login" class="btn" type="button" onclick="sublogin()" tabindex="4" value="登  录">
-        <a class="a_underline" href="http://www.sucaihuo.com/forget.html">忘记密码？</a>
-        <div class="co_login" style="margin:20px 0 0">
-                联合登录
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/qq.html">腾讯QQ</a>
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/sina.html">新浪微博</a>
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/renren.html">人人网</a>
-                绑定送<span class="red">200</span>积分
-            </div>
-    </div>
-</div>
-   
-<div class="mmsg-box mmsg-box-info" id='msg-box' style="margin-top: -23.5px; margin-left: -96.5px;">
-    <div class="mmsg-content">
-        <i class="mmsg-icon"></i>
-        <p id='msg-box-content'></p>
-    </div>
-    <div class="mmsg-background"></div>
-</div>
-<script  type="text/javascript">
-
-</script>
 <block name="bottomstyle">
      
 </block>

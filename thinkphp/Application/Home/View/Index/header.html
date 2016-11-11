@@ -2,6 +2,7 @@
     <block name="headstyle">
     <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/mycenter.css" type="text/css" />
       <!-- <link href="./dist/css/bootstrap.min.css" rel="stylesheet"> -->
     </block>
     <block name="content">
@@ -25,23 +26,21 @@
             </p>
 
             <p class="right">
-            <a href="#">登录</a>
-            <a href="#">注册</a>
+            <a href="<{:U('login')}>">登录</a>
+            <a href="<{:U('reg')}>">注册</a>
             <a href="#">会员官网</a>
-            <a href="#">百度首页</a>
+            <a href="www.baidu.com">百度首页</a>
+            <a href="<{:U('header')}>">贴吧首页</a>
             </p>
 
         </div><!-- end .container -->
 
 </div><!-- end #header-top -->
-
 <div id="header">
-
     <div class="container">
-
         <h1 id="logo">
             <a href="index.html">
-                <img src="__PUBLIC__/public/images/logo.gif" alt="">
+                <img src="__PUBLIC__/public/image/logo.gif" alt="">
             </a>
         </h1>        
         <div  style = "margin-top:30px;"class="row">
@@ -65,3 +64,4 @@
 <script src="__PUBLIC__/public/js/bootstrap.min.js"></script>
 </block>
 <!-- end scripts -->
+<block name='main'></block>
