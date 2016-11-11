@@ -1,0 +1,67 @@
+<extend name="Index/index" />
+    <block name="headstyle">
+    <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/mycenter.css" type="text/css" />
+      <!-- <link href="./dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    </block>
+    <block name="content">
+    <div id="header-top">
+
+        <div class="container">
+
+            <a href="#"><img src="" alt="" class="rss-icon" /></a>
+
+            <p class="left">
+            <a href="#">新闻</a>
+            <a href="#">网页</a>
+            <a href="#">贴吧</a>
+            <a href="#">知道</a>
+            <a href="#">音乐</a>
+            <a href="#">图片</a>
+            <a href="#">视频</a>
+            <a href="#">地图</a>
+            <a href="#">百科</a>
+            <a href="#">文库</a>
+            </p>
+
+            <p class="right">
+            <a href="<{:U('login')}>">登录</a>
+            <a href="<{:U('reg')}>">注册</a>
+            <a href="#">会员官网</a>
+            <a href="www.baidu.com">百度首页</a>
+            <a href="<{:U('header')}>">贴吧首页</a>
+            </p>
+
+        </div><!-- end .container -->
+
+</div><!-- end #header-top -->
+<div id="header">
+    <div class="container">
+        <h1 id="logo">
+            <a href="index.html">
+                <img src="__PUBLIC__/public/image/logo.gif" alt="">
+            </a>
+        </h1>        
+        <div  style = "margin-top:30px;"class="row">
+         <div class="col-lg-6">
+            <div class="input-group">
+              <input style = "height:40px;"type="text" class="form-control" aria-label="...">
+              <div class="input-group-btn">
+                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">进入贴吧</button><button style = "height:40px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </div><!--/.col-lg-6 -->
+        </div><!-- end row-->
+    </div><!-- end .container -->
+</div><!-- end #header -->
+
+</block>
+
+<!-- start scripts -->
+<block name="bottomstyle">
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>
+</block>
+<!-- end scripts -->
+<block name='main'></block>
