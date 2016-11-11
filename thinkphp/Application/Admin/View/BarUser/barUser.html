@@ -1,34 +1,16 @@
-<extend name="Index/index" />
+<extend name="Public/table" />
+
+<block name="user">
+    <li class="active open">
+</block>
+
+<block name="baruser">
+    <li class="active">
+</block>
 
 <block name="content">
     <div class="row">
-        <div class="page-header">
-                <h1>
-                    UserAdmin
-                    <small>
-                        <i class="icon-double-angle-right"></i>
-                        Common user
-                    </small>
-                </h1>
-        </div><!-- /.page-header -->
-
         <div class="col-xs-12">
-            <!-- <input type="text"><button><span class="glyphicon glyphicon-search"></span></button> -->
-            <form class="form-search">
-                <span class="input-icon" style="border:3px solid #307ECC;">
-                    <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                    <i class="icon-search nav-search-icon"></i>
-                </span>
-            </form>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-        <div class="col-xs-12">
-            
-
             <div class="table-header">
                 Results for "Latest Registered Domains"
             </div>
@@ -43,8 +25,8 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>Domain</th>
-                            <th>Price</th>
+                            <th>用户名</th>
+                            <th>email</th>
                             <th class="hidden-480">Clicks</th>
 
                             <th>
@@ -56,6 +38,7 @@
                             <th></th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr>
                             <td class="center">
@@ -64,8 +47,9 @@
                                     <span class="lbl"></span>
                                 </label>
                             </td>
+
                             <td>
-                                <a href="#">app.com</a>
+                                <a href="#">app.comapp.comapp.com</a>
                             </td>
                             <td>$45</td>
                             <td class="hidden-480">3,330</td>
@@ -74,6 +58,7 @@
                             <td class="hidden-480">
                                 <span class="label label-sm label-warning">Expiring</span>
                             </td>
+
                             <td>
                                 <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                     <a class="blue" href="#">
@@ -124,58 +109,91 @@
                                 </div>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
-            </div><!-- END table-responsive -->
-        </div><!-- END col-xs-12 -->
-    </div><!-- END row -->
-
+            </div>
+        </div>
+    </div>
     <div id="modal-table" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        用户列表
+                    </div>
+                </div>
 
+                <div class="modal-footer no-margin-top">
+                    <ul class="pagination pull-right no-margin">
+                        <li class="prev disabled">
+                            <a href="#">
+                                <i class="icon-double-angle-left"></i>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+
+                        <li class="next">
+                            <a href="#">
+                                <i class="icon-double-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- PAGE CONTENT ENDS -->
 </block>
 
-<block name="bottompage">
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.js"></script>
-</block>
-
-<block name="inline"></block>
-
-<block name="tablestyle">
+<block name="tablejs">
     <script type="text/javascript">
-    jQuery(function($) {
-        var oTable1 = $('#sample-table-2').dataTable( {
-        "aoColumns": [
-          { "bSortable": false },
-          null, null,null, null, null,
-          { "bSortable": false }
-        ] } );
-        
-        
-        $('table th input:checkbox').on('click' , function(){
-            var that = this;
-            $(this).closest('table').find('tr > td:first-child input:checkbox')
-            .each(function(){
-                this.checked = that.checked;
-                $(this).closest('tr').toggleClass('selected');
+        jQuery(function($) {
+            var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+              { "bSortable": false },
+              null, null,null, null, null,
+              { "bSortable": false }
+            ] } );
+            
+            
+            $('table th input:checkbox').on('click' , function(){
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+                    
             });
-                
-        });
-    
-    
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('table')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-    
-            var off2 = $source.offset();
-            var w2 = $source.width();
-    
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-    })
-</script>
+        
+        
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+        
+                var off2 = $source.offset();
+                var w2 = $source.width();
+        
+                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                return 'left';
+            }
+        })
+    </script>
 </block>
