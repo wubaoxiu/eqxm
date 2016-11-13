@@ -10,23 +10,15 @@ use \Think\Controller;
 
 class AdminController extends Controller 
 {
-    public function _initialize()
-    {
-        //将没有登录的人，返回至登录页面
-        if(empty($_SESSION['admin_info'])){
-            $this->redirect("Login/login");
-            exit;
-        }
-    }
+    // public function _initialize()
+    // {
+    //     //将没有登录的人，返回至登录页面
+    //     if(empty($_SESSION['adminInfo'])){
+    //         $this->redirect("Login/index");
+    //         exit;
+    //     }
+    // }
 
     // $cname = CONTROLLER_NAME; //获取控制器名
     // $aname = ACTION_NAME;     //获取方法名
-
-    // $nodelist = $_SESSION['admin_info']['nodelist']; //获取权限信息
-
-    // if($_SESSION['admin_info']['name'] !== 'admin'){
-    //     if(empty($_SESSION['admin_info']['cname']) || in_array($aname,$nodelist['cname'])){
-    //         $this->error("抱歉，你没有操作权限！");
-    //     }
-    // }
 }

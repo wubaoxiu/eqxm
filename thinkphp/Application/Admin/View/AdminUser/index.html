@@ -25,21 +25,23 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>用户名</th>
-                            <th>email</th>
-                            <th class="hidden-480">Clicks</th>
+                            <th>ID</th>
+                            <th>角色ID</th>
+                        
+                            <th class="hidden-480">用户名</th>
 
                             <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                Update
+                                性别
                             </th>
-                            <th class="hidden-480">Status</th>
+                            <th class="hidden-480">邮箱</th>
 
-                            <th></th>
+                            <th>操作</th>
                         </tr>
                     </thead>
 
                     <tbody>
+                    <foreach name = "Adminlist" item = "v">
                         <tr>
                             <td class="center">
                                 <label>
@@ -49,14 +51,21 @@
                             </td>
 
                             <td>
-                                <a href="#">app.com</a>
+                                <a href="#"><{$v.id}></a>
                             </td>
-                            <td>$45</td>
-                            <td class="hidden-480">3,330</td>
-                            <td>Feb 12</td>
+                            <td>
+                            <{$v.role}>
+                             </td>
+                            <td class="hidden-480"><{$v.name}></td>
+                            <td>
+                            <if condition = "$v.sex eq '1'">女
+                            <elseif condition = "$v.sex eq '2'" />男
+                            <else />保密
+                            </if>
+                            </td>
 
                             <td class="hidden-480">
-                                <span class="label label-sm label-warning">Expiring</span>
+                                <span class="label label-sm label-warning"><{$v.email}></span>
                             </td>
 
                             <td>
@@ -65,11 +74,11 @@
                                         <i class="icon-zoom-in bigger-130"></i>
                                     </a>
 
-                                    <a class="green" href="#">
+                                    <a class="green" href="<{:U('edit',array('id'=>$v['id']))}>">
                                         <i class="icon-pencil bigger-130"></i>
                                     </a>
 
-                                    <a class="red" href="#">
+                                    <a class="red" href="<{:U('del',array('id'=>$v['id']))}>">
                                         <i class="icon-trash bigger-130"></i>
                                     </a>
                                 </div>
@@ -109,7 +118,7 @@
                                 </div>
                             </td>
                         </tr>
-
+                     </foreach>
                     </tbody>
                 </table>
             </div>

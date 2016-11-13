@@ -23,6 +23,7 @@ a{
     height:32px;
     background: #5492DB;
     margin:0 auto;
+    margin-top: -20px;
 }
 .center_header ul li{
     float:left;
@@ -124,4 +125,20 @@ a{
 }
 .center_center .center_left .center_bottom ul li a{
     font-size: 20px;
+}
+.center_right{
+    width:750px;
+    height:400px;
+    /*border:1px solid #ccc;*/
+    float:left;
+    margin-top: 20px;
+    /*margin-left: 20px;*/
+}
+.center_right .center_right_c{
+    width:750px;
+    margin-left:20px;
+    margin-top: 10px;
+}
+.center_right .timg{
+    margin-top: -10px;
 }

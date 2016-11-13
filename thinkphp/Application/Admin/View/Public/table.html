@@ -359,16 +359,15 @@
 							<span class="btn btn-danger"></span>
 						</div>
 					</div><!-- #sidebar-shortcuts -->
-<ul class="nav nav-list">
+                       <ul class="nav nav-list">
 						<block name="sy">
 						<li>
-						</block>
 							<a href="<{:U('Index/index')}>">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 首页 </span>
 							</a>
 						</li>
-
+                     </block>
 						<block name="two">
 						<li>
 						</block>
@@ -398,7 +397,7 @@
 								</li>
 
 								<block name="adminuser"><li></block>
-									<a href="<{:U('AdminUser/adminUser')}>">
+									<a href="<{:U('AdminUser/index')}>">
 										<i class="icon-double-angle-right"></i>
 										后台管理用户
 									</a>
@@ -420,7 +419,7 @@
 							</ul>
 						</li>
 
-						<block name="categorys"><li></block>
+						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 贴吧分类管理 </span>
@@ -429,22 +428,15 @@
 							</a>
 
 							<ul class="submenu">
-								<block name="typelist"><li></block>
-									<a href="<{:U('Categorys/index')}>">
+								<li class="active">
+									<a href="tables.html">
 										<i class="icon-double-angle-right"></i>
 										分类列表
 									</a>
 								</li>
 
-								<block name="treelist"><li></block>
-									<a href="<{:U('Categorys/treeList')}>">
-										<i class="icon-double-angle-right"></i>
-										分类树列表
-									</a>
-								</li>
-
-								<block name="categorysadd"><li></block>
-									<a href="<{:U('Categorys/add')}>">
+								<li>
+									<a href="jqgrid.html">
 										<i class="icon-double-angle-right"></i>
 										添加分类
 									</a>
@@ -644,9 +636,9 @@
 							</li>
 
 							<li>
-								<a href="#">用户列表</a>
+								<a href="#">用户管理</a>
 							</li>
-							<li>普通用户</li>
+							<li class="active">普通用户</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -660,8 +652,15 @@
 					</div>
 
 					<div class="page-content">
-
-
+						<div class="page-header">
+							<h1>
+								Tables
+								<small>
+									<i class="icon-double-angle-right"></i>
+									Static &amp; Dynamic Tables
+								</small>
+							</h1>
+						</div><!-- /.page-header
 
 								<!--第二个表格-->
 								<block name="content"></block>
