@@ -3,6 +3,10 @@ namespace Admin\Controller;
 
 class UserController extends AdminController
 {
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     /*
         获取普通用户列表
     */
