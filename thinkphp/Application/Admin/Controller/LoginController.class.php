@@ -50,10 +50,10 @@ class LoginController extends Controller
             exit;
         }
         $_SESSION['admin_info'] = $data;
-        dump($_SESSION['admin_info']);
+        // dump($_SESSION['admin_info']);
         $list = M('node')->field('cname,aname')->where('id in'.M('role_node')->field('node_id')->where("role_id in ".M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$data['id'])))->buildSql())->buildSql())->select();
 
-        dump($list);
+        // dump($list);
 
         //控制器名转换为大写
         foreach($list as $k=>$v){
@@ -77,7 +77,7 @@ class LoginController extends Controller
 
         $_SESSION['admin_info']['nodelist'] = $nodelist;
 
-        dump($_SESSION);
+        // dump($_SESSION);
 
         $this->redirect('Index/index');
     }

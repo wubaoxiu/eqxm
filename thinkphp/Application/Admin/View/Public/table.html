@@ -420,7 +420,7 @@
 							</ul>
 						</li>
 
-						<li>
+						<block name="categorys"><li></block>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 贴吧分类管理 </span>
@@ -429,15 +429,22 @@
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
-									<a href="tables.html">
+								<block name="typelist"><li></block>
+									<a href="<{:U('Categorys/index')}>">
 										<i class="icon-double-angle-right"></i>
 										分类列表
 									</a>
 								</li>
 
-								<li>
-									<a href="jqgrid.html">
+								<block name="treelist"><li></block>
+									<a href="<{:U('Categorys/treeList')}>">
+										<i class="icon-double-angle-right"></i>
+										分类树列表
+									</a>
+								</li>
+
+								<block name="categorysadd"><li></block>
+									<a href="<{:U('Categorys/add')}>">
 										<i class="icon-double-angle-right"></i>
 										添加分类
 									</a>
@@ -637,9 +644,9 @@
 							</li>
 
 							<li>
-								<a href="#">用户管理</a>
+								<a href="#">用户列表</a>
 							</li>
-							<li class="active">普通用户</li>
+							<li>普通用户</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -653,15 +660,8 @@
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								Tables
-								<small>
-									<i class="icon-double-angle-right"></i>
-									Static &amp; Dynamic Tables
-								</small>
-							</h1>
-						</div><!-- /.page-header
+
+
 
 								<!--第二个表格-->
 								<block name="content"></block>
