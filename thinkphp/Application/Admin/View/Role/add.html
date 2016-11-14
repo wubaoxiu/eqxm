@@ -1,0 +1,52 @@
+<extend name="Public/table" />
+
+<block name="role">
+    <li class="active open">
+</block>
+
+<block name="roleadd">
+    <li class="active">
+</block>
+
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+<block name="content">
+    <form class="form-horizontal" action="<{:U('Role/doAdd')}>" method="post" style="margin-top:20px">
+    <div class="role_add">
+    <div class="role_role">
+    <p>角色名：
+      <input type="text" id="role" name="role" placeholder="角色名">
+    </p>
+  </div><!--role_role-->
+  <div class="role_role">
+    <p>说　明：
+      <input type="text" id="explain" name="explain" placeholder="角色的说明">
+    </p>
+  </div>
+  <div class="role_role">
+      <input type="radio" name="status" value="0" checked>启用
+      <input type="radio" name="status" value="1">禁用
+  </div>
+<!--   <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="form-group fl mt10">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success">添加</button>
+    </div>
+  </div>
+    </div>
+</form>
+</block>
