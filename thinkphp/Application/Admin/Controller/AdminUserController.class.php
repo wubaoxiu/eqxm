@@ -39,31 +39,31 @@ class AdminUserController extends AdminController
    /*
    添加页面
    */ 
-    public function add(){
-     $this->assign('title','后台用户添加');
-     $this->display('User/add');
-    }
+    // public function add(){
+    //  $this->assign('title','后台用户添加');
+    //  $this->display('User/add');
+    // }
 
     /*
     执行添加
     */ 
-    public function doAdd(){
-        //得到数据模型
-        $adminUser = M('admin');
-        //进行数据验证
-        if (!$adminUser->create()) {
-            //如果创建失败 则表示没有通过
-            //输出错误信息，并进行挑战
-            $this->error($adminUser->getError());
-        }else{
-            //验证通过，执行添加操作
-            if (D('admin')->add()>0) {
-                $this->success('恭喜您，添加成功！',U('index'));
-            }else{
-                $this->error('添加失败！');
-            }
-        }
-    }
+    // public function doAdd(){
+    //     //得到数据模型
+    //     $adminUser = M('admin');
+    //     //进行数据验证
+    //     if (!$adminUser->create()) {
+    //         //如果创建失败 则表示没有通过
+    //         //输出错误信息，并进行挑战
+    //         $this->error($adminUser->getError());
+    //     }else{
+    //         //验证通过，执行添加操作
+    //         if (D('admin')->add()>0) {
+    //             $this->success('恭喜您，添加成功！',U('index'));
+    //         }else{
+    //             $this->error('添加失败！');
+    //         }
+    //     }
+    // }
 
     /*
     编辑页面

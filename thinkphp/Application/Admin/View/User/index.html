@@ -9,17 +9,6 @@
 </block>
 
 <block name="content">
-
-    <div class="page-header">
-        <h1>
-            Tables
-            <small>
-                <i class="icon-double-angle-right"></i>
-                Static &amp; Dynamic Tables
-            </small>
-        </h1>
-    </div><!-- /.page-header -->
-
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
@@ -36,14 +25,13 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>用户名</th>
-                            <th>email</th>
-                            <th class="hidden-480">封号</th>
-                            <th class="hidden-480">禁言</th>
-
-                            <th>
+                            <th>ID</th>
+                            <th>角色ID</th>               
+                            <th class="hidden-480">用户名</th>
+                            <th class="hidden-480">性别</th>
+                             <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                最近一次登录
+                                email
                             </th>
 
                             <th>操作</th>
@@ -61,17 +49,19 @@
                                 </td>
 
                                 <td>
-                                    <a href="#"> <{$v.name}> </a>
+                                    <a href="#"> <{$v.id}> </a>
                                 </td>
-                                <td> <{$v.email}> </td>
-                                <td class="hidden-480">888</td>
-
-                                <td class="hidden-480">
-                                    哈哈哈
-                                    <!-- <span class="label label-sm label-warning">Expiring</span> -->
+                               <td>
+                                    <{$v.role}>
+                               </td>
+                                <td class="hidden-480"><{$v.name}></td>
+                                  <td class="hidden-480">
+                                  <if condition = "$v.sex eq '1'">女
+                                  <elseif condition = "$v.sex eq '2'" />男
+                                  <else />保密
+                                  </if>
                                 </td>
-                                <td>Feb 12</td>
-
+                                 <td><{$v.email}></td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                         <a class="blue" href="#">

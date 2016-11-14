@@ -17,16 +17,20 @@ class AdminController extends Controller
             $this->redirect("Login/login");
             exit;
         }
+    
+
+        //权限过滤
+        $cname = CONTROLLER_NAME; //获取控制器名
+        $aname = ACTION_NAME;     //获取方法名
+
+        // echo $cname.'||'.$aname;
+
+        $nodelist = $_SESSION['admin_info']['nodelist']; //获取权限信息
+
+        if($_SESSION['admin_info']['name'] !== 'admin'){
+            if(empty($_SESSION['admin_info']['cname']) || in_array($aname,$nodelist['cname'])){
+                $this->error("抱歉，你没有操作权限！");
+            }
+        }
     }
-
-    // $cname = CONTROLLER_NAME; //获取控制器名
-    // $aname = ACTION_NAME;     //获取方法名
-
-    // $nodelist = $_SESSION['admin_info']['nodelist']; //获取权限信息
-
-    // if($_SESSION['admin_info']['name'] !== 'admin'){
-    //     if(empty($_SESSION['admin_info']['cname']) || in_array($aname,$nodelist['cname'])){
-    //         $this->error("抱歉，你没有操作权限！");
-    //     }
-    // }
 }

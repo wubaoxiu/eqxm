@@ -10,7 +10,6 @@ class CategorysController extends AdminController
 
     public function index()
     {
-        dump($_SESSION);
         $this->display('Categorys/index');
     }
 }

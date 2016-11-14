@@ -10,23 +10,23 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-11-13 14:42:31
+Date: 2016-11-14 11:26:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `csw_adminuser`
+-- Table structure for `csw_admin`
 -- ----------------------------
-DROP TABLE IF EXISTS `csw_adminuser`;
-CREATE TABLE `csw_adminuser` (
+DROP TABLE IF EXISTS `csw_admin`;
+CREATE TABLE `csw_admin` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `sex` char(4) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `createtime` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `like` varchar(255) DEFAULT NULL,
   `introduction` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -34,12 +34,12 @@ CREATE TABLE `csw_adminuser` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of csw_adminuser
+-- Records of csw_admin
 -- ----------------------------
-INSERT INTO `csw_adminuser` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1', '1476002@qq.com', '1478750108', '0', '乒乓球', '这个人很懒...');
-INSERT INTO `csw_adminuser` VALUES ('2', 'wbx', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', '1478750108', '1', '篮球', '无');
-INSERT INTO `csw_adminuser` VALUES ('3', 'yjx', 'e10abc3949ba59abbe56e057f20f883e', '1', '232@qq.com', '1478750108', '1', '乒乓球', '这个人很懒');
-INSERT INTO `csw_adminuser` VALUES ('4', 'xdm', 'e10abc3949ba59abbe56e057f20f883e', '1', '234@qq.com', '1478750108', '1', 'haha', 'ehe');
+INSERT INTO `csw_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1', '1476002@qq.com', '1478750108', '1', '乒乓球', '这个人很懒...');
+INSERT INTO `csw_admin` VALUES ('2', 'wbx', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', '1478750108', '2', '篮球', '无');
+INSERT INTO `csw_admin` VALUES ('3', 'yjx', 'e10abc3949ba59abbe56e057f20f883e', '1', '232@qq.com', '1478750108', '2', '乒乓球', '这个人很懒');
+INSERT INTO `csw_admin` VALUES ('4', 'xdm', 'e10abc3949ba59abbe56e057f20f883e', '1', '234@qq.com', '1478750108', '2', 'haha', 'ehe');
 
 -- ----------------------------
 -- Table structure for `csw_baradmin`
@@ -168,11 +168,18 @@ CREATE TABLE `csw_node` (
   `cname` varchar(255) DEFAULT NULL,
   `aname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_node
 -- ----------------------------
+INSERT INTO `csw_node` VALUES ('1', '浏览普通用户列表', 'User', 'index');
+INSERT INTO `csw_node` VALUES ('2', '添加用户', 'User', 'add');
+INSERT INTO `csw_node` VALUES ('3', '删除普通用户', 'User', 'del');
+INSERT INTO `csw_node` VALUES ('4', '修改普通用户', 'User', 'save');
+INSERT INTO `csw_node` VALUES ('5', '浏览后台用户列表', 'AdminUser', 'index');
+INSERT INTO `csw_node` VALUES ('6', '删除后台用户', 'AdminUser', 'del');
+INSERT INTO `csw_node` VALUES ('7', '修改后台用户', 'AdminUser', 'save');
 
 -- ----------------------------
 -- Table structure for `csw_note`
@@ -225,12 +232,25 @@ INSERT INTO `csw_role` VALUES ('8', '游客');
 DROP TABLE IF EXISTS `csw_role_node`;
 CREATE TABLE `csw_role_node` (
   `role_id` int(11) NOT NULL,
-  `node_id` int(11) NOT NULL
+  `node_id` int(11) NOT NULL,
+  `dec` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_role_node
 -- ----------------------------
+INSERT INTO `csw_role_node` VALUES ('1', '1', '浏览普通用户列表');
+INSERT INTO `csw_role_node` VALUES ('1', '2', '添加用户');
+INSERT INTO `csw_role_node` VALUES ('1', '3', '删除普通用户');
+INSERT INTO `csw_role_node` VALUES ('1', '4', '修改普通用户');
+INSERT INTO `csw_role_node` VALUES ('1', '5', '浏览后台用户');
+INSERT INTO `csw_role_node` VALUES ('1', '6', '删除后台用户');
+INSERT INTO `csw_role_node` VALUES ('1', '7', '修改后台用户');
+INSERT INTO `csw_role_node` VALUES ('2', '1', '浏览普通用户列表');
+INSERT INTO `csw_role_node` VALUES ('2', '2', '添加用户');
+INSERT INTO `csw_role_node` VALUES ('2', '3', '删除普通用户');
+INSERT INTO `csw_role_node` VALUES ('2', '4', '修改普通用户');
+INSERT INTO `csw_role_node` VALUES ('2', '5', '浏览后台用户列表');
 
 -- ----------------------------
 -- Table structure for `csw_score`
@@ -277,11 +297,14 @@ CREATE TABLE `csw_type` (
   `pid` int(11) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_type
 -- ----------------------------
+INSERT INTO `csw_type` VALUES ('1', '娱乐明星', '0', '0,');
+INSERT INTO `csw_type` VALUES ('2', '爱综艺', '0', '0，');
+INSERT INTO `csw_type` VALUES ('3', '追剧狂', '0', '0，');
 
 -- ----------------------------
 -- Table structure for `csw_user`
@@ -294,7 +317,7 @@ CREATE TABLE `csw_user` (
   `sex` char(4) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `createtime` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `like` varchar(255) DEFAULT NULL,
   `introduction` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -304,9 +327,9 @@ CREATE TABLE `csw_user` (
 -- ----------------------------
 -- Records of csw_user
 -- ----------------------------
-INSERT INTO `csw_user` VALUES ('1', 'a', 'e10adc3949ba59abbe56e057f20f883e', '1', '1476002@qq.com', '1478750108', '0', '乒乓球', '这个人很懒...');
-INSERT INTO `csw_user` VALUES ('2', 'b', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', '1478750108', '0', '篮球', '无');
-INSERT INTO `csw_user` VALUES ('3', 'c', 'e10adc3949ba59abbe56e057f20f883e', '2', '11', '1478750280', '0', null, null);
+INSERT INTO `csw_user` VALUES ('1', 'a', 'e10adc3949ba59abbe56e057f20f883e', '1', '1476002@qq.com', '1478750108', '4', '乒乓球', '这个人很懒...');
+INSERT INTO `csw_user` VALUES ('2', 'b', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', '1478750108', '7', '篮球', '无');
+INSERT INTO `csw_user` VALUES ('3', 'c', 'e10adc3949ba59abbe56e057f20f883e', '2', '11', '1478750280', '6', null, null);
 
 -- ----------------------------
 -- Table structure for `csw_user_role`
@@ -314,13 +337,14 @@ INSERT INTO `csw_user` VALUES ('3', 'c', 'e10adc3949ba59abbe56e057f20f883e', '2'
 DROP TABLE IF EXISTS `csw_user_role`;
 CREATE TABLE `csw_user_role` (
   `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `dec` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_user_role
 -- ----------------------------
-INSERT INTO `csw_user_role` VALUES ('1', '1');
-INSERT INTO `csw_user_role` VALUES ('2', '2');
-INSERT INTO `csw_user_role` VALUES ('3', '2');
-INSERT INTO `csw_user_role` VALUES ('4', '2');
+INSERT INTO `csw_user_role` VALUES ('1', '1', 'root');
+INSERT INTO `csw_user_role` VALUES ('2', '2', '超管');
+INSERT INTO `csw_user_role` VALUES ('3', '2', '超管');
+INSERT INTO `csw_user_role` VALUES ('4', '2', '超管');
