@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-                Results for "Latest Registered Domains"
+               <{$title}>
             </div>
 
             <div class="table-responsive">
@@ -25,16 +25,14 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>ID</th>
-                            <th>角色ID</th>
-                        
+                           <th>ID</th>
+                            <th>角色</th>               
                             <th class="hidden-480">用户名</th>
-
-                            <th>
+                            <th class="hidden-480">性别</th>
+                             <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                性别
+                                email
                             </th>
-                            <th class="hidden-480">邮箱</th>
 
                             <th>操作</th>
                         </tr>
@@ -50,24 +48,20 @@
                                 </label>
                             </td>
 
-                            <td>
-                                <a href="#"><{$v.id}></a>
-                            </td>
-                            <td>
-                            <{$v.role}>
-                             </td>
-                            <td class="hidden-480"><{$v.name}></td>
-                            <td>
-                            <if condition = "$v.sex eq '1'">女
-                            <elseif condition = "$v.sex eq '2'" />男
-                            <else />保密
-                            </if>
-                            </td>
-
-                            <td class="hidden-480">
-                                <span class="label label-sm label-warning"><{$v.email}></span>
-                            </td>
-
+                              <td>
+                                    <a href="#"> <{$v.id}> </a>
+                                </td>
+                               <td>
+                                    <{$v.role}>
+                               </td>
+                                <td class="hidden-480"><{$v.name}></td>
+                                  <td class="hidden-480">
+                                  <if condition = "$v.sex eq '1'">女
+                                  <elseif condition = "$v.sex eq '2'" />男
+                                  <else />保密
+                                  </if>
+                                </td>
+                                 <td><{$v.email}></td>
                             <td>
                                 <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                     <a class="blue" href="#">
