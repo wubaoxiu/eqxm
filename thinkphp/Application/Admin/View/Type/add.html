@@ -1,0 +1,35 @@
+<extend name="Public/table" />
+
+<block name="categorys">
+    <li class="active open">
+</block>
+
+<block name="categorysadd">
+    <li class="active">
+</block>
+
+<block name="content">
+    <div class="page-header">
+        <h1>
+            添加分类
+            <small>
+                <i class="icon-double-angle-right"></i>
+                BarType &amp; Add
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <form action="<{:U('Type/doAdd')}>" method="post" class='col-md-4'>
+        <div class="form-group">
+        <label for="#" class=""><b>添加分类名称：</b></label>
+          <div class="input-group">
+             <input type="text" name="name" class="form-control" aria-label="Amount (to the nearest dollar)">
+             <input type="hidden" name="pid" value="<present name="Think.get.pid"><{$Think.get.pid}><else />0</present>">
+              
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-sm">添加</button>
+              </span>
+              
+          </div>
+        </div>
+    </form>
+</block>

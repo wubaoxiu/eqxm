@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-11-14 11:26:09
+Date: 2016-11-14 22:09:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -295,16 +295,23 @@ CREATE TABLE `csw_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `pid` int(11) DEFAULT NULL,
+  `createtime` int(11) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_type
 -- ----------------------------
-INSERT INTO `csw_type` VALUES ('1', '娱乐明星', '0', '0,');
-INSERT INTO `csw_type` VALUES ('2', '爱综艺', '0', '0，');
-INSERT INTO `csw_type` VALUES ('3', '追剧狂', '0', '0，');
+INSERT INTO `csw_type` VALUES ('1', '娱乐明星', '0', '1478750108', '0,');
+INSERT INTO `csw_type` VALUES ('2', '爱综艺', '0', '1478750108', '0，');
+INSERT INTO `csw_type` VALUES ('3', '追剧狂', '0', '1478750108', '0，');
+INSERT INTO `csw_type` VALUES ('4', '内地明星', '1', '1478750108', '0,1,');
+INSERT INTO `csw_type` VALUES ('5', '看电影', '0', '1479128633', '0,');
+INSERT INTO `csw_type` VALUES ('6', '香港电影', '5', '1479128669', '0,5,');
+INSERT INTO `csw_type` VALUES ('7', '体育', '0', '1479129049', '0,');
+INSERT INTO `csw_type` VALUES ('8', '足球', '7', '1479129061', '0,7,');
+INSERT INTO `csw_type` VALUES ('9', '世界杯', '8', '1479129078', '0,7,8,');
 
 -- ----------------------------
 -- Table structure for `csw_user`

@@ -11,10 +11,10 @@
 <block name="content">
     <div class="page-header">
         <h1>
-            Tables
+            贴吧分类
             <small>
                 <i class="icon-double-angle-right"></i>
-                Static &amp; Dynamic Tables
+                Bar &amp; type Tables
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-                Results for "Latest Registered Domains"
+                分类列表
             </div>
 
             <div class="table-responsive">
@@ -37,20 +37,20 @@
                             </th>
                             <th>ID</th>
                             <th>分类名</th>
-                            <th class="hidden-480">级别</th>
+                            <th class="hidden-480">父ID</th>
                             <th class="hidden-480">path</th>
 
-                            <!-- <th>
-                                <i class="icon-time bigger-110 hidden-480"></i>
-                                最近一次登录
-                            </th> -->
+                            <th>
+                                <i class="bigger-110 hidden-480"></i>
+                                添加时间
+                            </th>
 
                             <th>操作</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <foreach name="userlist" item="v">
+                        <foreach name="typelist" item="v">
                             <tr>
                                 <td class="center">
                                     <label>
@@ -60,30 +60,26 @@
                                 </td>
 
                                 <td>
-                                    <a href="#"> <{$v.name}> </a>
+                                    <a href="#"> <{$v.id}> </a>
                                 </td>
-                                <td> <{$v.email}> </td>
-                                <td class="hidden-480">888</td>
+                                <td> <{$v.name}> </td>
+                                <td class="hidden-480"><{$v.pid}></td>
 
                                 <td class="hidden-480">
-                                    哈哈哈
+                                    <{$v.path}>
                                     <!-- <span class="label label-sm label-warning">Expiring</span> -->
                                 </td>
-                                <td>Feb 12</td>
+                                <td><{$v.createtime|date="Y-m-d",###}></td>
 
                                 <td>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="blue" href="#">
-                                            <i class="icon-zoom-in bigger-130"></i>
-                                        </a>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons" style="text-align:center;">
+                                        <a href="<{:U('Type/index',array('id'=>$v['id']))}>" id="ajaxt" class="btn btn-success">查看子分类</a>
 
-                                        <a class="green" href="#">
-                                            <i class="icon-pencil bigger-130"></i>
-                                        </a>
+                                        <a href="<{:U('Type/edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改</a>
 
-                                        <a class="red" href="#">
-                                            <i class="icon-trash bigger-130"></i>
-                                        </a>
+                                        <a href="<{:U('Type/add',array('pid'=>$v['id']))}>" class="btn btn-warning">添加子分类</a>
+
+                                        <a href="<{:U('Type/del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
                                     </div>
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">

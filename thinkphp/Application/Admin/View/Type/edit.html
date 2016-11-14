@@ -1,0 +1,35 @@
+<extend name="Public/table" />
+
+<block name="categorys">
+    <li class="active open">
+</block>
+
+<block name="categorysadd">
+    <li class="active">
+</block>
+
+<block name="content">
+    <div class="page-header">
+        <h1>
+            修改分类
+            <small>
+                <i class="icon-double-angle-right"></i>
+                BarType &amp; Update
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <form action="<{:U('Type/save')}>" method="post" class='col-md-4'>
+        <div class="form-group">
+        <label for="#" class=""><b>修改分类名称：</b></label>
+          <div class="input-group">
+             <input type="text" name="name" class="form-control" aria-label="Amount (to the nearest dollar)" value="<{$list.name}>">
+             <input type="hidden" name="id" value="<{$list.id}>">
+              
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-sm">修改</button>
+              </span>
+              
+          </div>
+        </div>
+    </form>
+</block>
