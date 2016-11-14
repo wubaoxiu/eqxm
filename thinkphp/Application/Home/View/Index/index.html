@@ -1,320 +1,67 @@
-<extend name='Index/header' />
+<extend name="Index/main" />
+    <block name="headstyle">
+    <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/mycenter.css" type="text/css" />
+      <!-- <link href="./dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    </block>
+    <block name="content">
+    <div id="header-top">
 
-    <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-        <link rel="stylesheet" href="__PUBLIC__/public/css/style.css" type="text/css" /> 
-        <block name="headstyle"></block>    
-    </head> 
-    <body> 
-    <block name='content'></block>
-<div class="container">
-    <div class="index_per index_first clearfix">
-        <div class="sidebar_per sidebar_first">
-            <dl>
-                <dt>
-                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                <strong>热门话题<span class="name-en">/HOT</span></strong>
-                </dt>
-                <dd class="sidebar_articles">
-                        <span>487</span>
-                        <a target="_blank"  href="js.html?/712.html">美国大选川普逆袭</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-04</span>
-                        <a target="_blank"  href="js.html?/442.html">1111总攻节</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-04</span>
-                        <a target="_blank"  href="js.html?/441.html">基于ace的CRM项目管理系统后台</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-03</span>
-                        <a target="_blank"  href="js.html?/437.html">投票任务服务平台bootstrap响应式微信模板</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-03</span>
-                        <a target="_blank"  href="js.html?/440.html">联途旅游网全套bootstrap网站模板</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-03</span>
-                        <a target="_blank"  href="js.html?/439.html">eteams协同办公OA管理系统模板</a>
-                    </dd><dd class="sidebar_articles">
-                        <span>02-03</span>
-                        <a target="_blank"  href="js.html?/438.html">投票任务平台手机版</a>
-                    </dd>            </dl>
-        </div>
-       
-        <div class="index_left clearfix">
-        <img style = "width:180px;height:250px" src="__PUBLIC__/Public/image/1_left.jpg" alt="" />
-            <div class="banner" id="banner">
-                <ul id="index_banner"> 
+        <div class="container">
 
-                    <li>
-                        <a target="_blank" href="js.html?/0-0-52-0-0-0">
-                            <img alt="响应式模板" src="__PUBLIC__/Public/image/1.jpg">
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="js.html?/22-0-0-0-0-0">
-                            <img alt="商城,特卖模板" src="Public/images/other/mall.jpg">
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="js.html?/53-0-0-0-0-0">
-                            <img alt="404模板" src="Public/images/other/404.jpg">
-                        </a>
-                    </li>
-                </ul>
-                <!-- <div class="banner_page" id="banner_page"></div> -->
-                <!-- <a class="banner_page_btn banner_page_left" id="banner_page_left"></a> -->
-                <!-- <a class="banner_page_btn banner_page_right" id="banner_page_right"></a> -->
-            </div>
-        </div>
-    </div>
-    <div class="index_per clearfix">
-       <div class="sidebar_per sidebar_second">
-        <dl>
-            <dt>
-            <a href="js.html?/0-0-0-6-0-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
-            <strong>贴吧推荐 <span class="name-en">/Recommend</span></strong>
-            </dt>
-             </dl>
-            <div class = "bar_rec">
-                <div class = "rec_img"><a href="<{:U('Bar/index')}>"><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/luhan.jpg" alt="" /></a></div>
-                <div class = "rec_list">
-                    <ul>
-                        <li><a href=""><strong>鹿晗吧</strong></a></li>
-                        <li><a href="">32456</a></li>
-                        <li><a href="">4567</a></li>
-                        <li><a href="">全球最大的鹿粉聚集在此</a></li>
-                    </ul>
-                </div>
-            </div>
-             <div class = "bar_rec">
-                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/happy.jpg" alt="" /></a></div>
-                 <div class = "rec_list">
-                    <ul>
-                        <li><a href=""><strong>快乐大本营吧</strong></a></li>
-                        <li><a href="">32456</a></li>
-                        <li><a href="">4567</a></li>
-                        <li><a href="">快乐大本营，天天好心情</a></li>
-                    </ul>
-                </div>
-            </div>
-             <div class = "bar_rec">
-                <div class = "rec_img"><a href=""><img style = "width:100px;height:100px;"src="__PUBLIC__/public/image/h48.jpg" alt="" /></a></div>
-                 <div class = "rec_list">
-                    <ul>
-                        <li><a href=""><strong>snH48吧</strong></a></li>
-                        <li><a href="">32456</a></li>
-                        <li><a href="">4567</a></li>
-                        <li><a href="">真正可以见到的偶像</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="index_recommend" id='index_recommend_0'>
-            <div class="head clearfix">
-                <strong>贴吧分类</strong>
-                <a class="more" href="" target="_blank">更多&nbsp;<span class="more-sign"></span></a>
-                <ul class="clearfix index-coupon-menus">
-                    <li class="current index-coupon-menus-first">
-                        全部
-                        <span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                            娱乐明星 <span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            爱综艺  <span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            追矿剧<span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            看电影 <span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            体育<span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            小说 <span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            生活 <span class="arrow-up-menu arrow"></span>
-                        </li>
-                        <li>
-                            闲趣 <span class="arrow-up-menu arrow"></span>
-                        </li>                
-                        </ul>
-            </div>
-            <div class="content clearfix">
-                <div class="per current">
-                    <ul class="ul_pics">
-                        <li>
-                        <a target="_blank"  href="js.html?/440.html">
-                            <img src="__PUBLIC__/Public/image/luhan.jpg" style = "height:110px;"alt="鹿晗吧" class="lazy"  />
-                         </a> 
-                         <div class= "ul_info">     
-                            <b style="font-size:20px;">鹿晗吧 </b><br>
-                            <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
-                             </div>
-                        </li>
-                        <li><a target="_blank"  href="js.html?/440.html">
-                            <img src="__PUBLIC__/Public/image/qi.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
-                             </a>
-                             <div class= "ul_info">     
-                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
-                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
-                             </div>
-                        </li> 
-                        <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/image/dog.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
-                             </a>
-                             <div class= "ul_info">     
-                                 <b style="font-size:20px;font-color:#4FB8EB">邓紫棋吧 </b><br>
-                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
-                             </div>
-                        </li>  
-                         <li><a target="_blank"  href="js.html?/440.html">
-                                    <img src="__PUBLIC__/Public/image/wang.jpg" style = "height:110px" alt="鹿晗吧" class="lazy"  />
-                             </a>
-                             <div class= "ul_info">     
-                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
-                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
-                             </div>
-                        </li>
-                    </ul>
-                </div>
-        </div>
-        </div>
-        <div class="sidebar_per sidebar_second">
-            <dl>
-                <dt>
-                <a href="js.html?/0-0-6-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                <strong>友情链接<span class="name-en">/Link</span></strong>
-                </dt>
-                <div class = "bar_link">
-                    <b><a href="">购物</a></b> 
-                     <ul>   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>
-                    </ul>
-                </div>
-                <div class = "bar_link">
-                    <b><a href="">游戏</a></b> 
-                     <ul>   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>
-                    </ul>
-                </div>
-                <div class = "bar_link">
-                    <b><a href="">小说</a></b> 
-                     <ul>   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>
-                    </ul>
-                </div>
-                <div class = "bar_link">
-                    <b><a href="">小说</a></b> 
-                     <ul>   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>                   
-                            <li><a href="">韩都衣舍</a></li>
-                    </ul>
-                </div>
-                </dl>
-        </div>
+            <a href="#"><img src="" alt="" class="rss-icon" /></a>
 
- <div class = "content_d">
-    <div class="content_nav">
-        <span>热门动态</span>
-    </div>
-    <div class = "content_con">
-        <div class = "content_dt">
-            <div class = "content_top">
-               <span><a href="">赵丽颖吧</a></span>
-            </div>
-            <div class = "content_cen">
-                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-            </div>
-            <div class = "content_img">
-                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-            </div>
-        </div>
-    </div>  
-     <div class = "content_con">
-        <div class = "content_dt">
-            <div class = "content_top">
-               <span><a href="">赵丽颖吧</a></span>
-            </div>
-            <div class = "content_cen">
-                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-            </div>
-            <div class = "content_img">
-                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-            </div>
-        </div>
-    </div>     
-    <div class = "content_con">
-        <div class = "content_dt">
-            <div class = "content_top">
-               <span><a href="">赵丽颖吧</a></span>
-            </div>
-            <div class = "content_cen">
-                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-            </div>
-            <div class = "content_img">
-                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-            </div>
-        </div>
-    </div>
-<div class = "content_con">
-        <div class = "content_dt">
-            <div class = "content_top">
-               <span><a href="">赵丽颖吧</a></span>
-            </div>
-            <div class = "content_cen">
-                <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-            </div>
-            <div class = "content_img">
-                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-            </div>
-        </div>
-    </div>
+            <p class="left">
+            <a href="#">新闻</a>
+            <a href="#">网页</a>
+            <a href="#">贴吧</a>
+            <a href="#">知道</a>
+            <a href="#">音乐</a>
+            <a href="#">图片</a>
+            <a href="#">视频</a>
+            <a href="#">地图</a>
+            <a href="#">百科</a>
+            <a href="#">文库</a>
+            </p>
 
-                
- </div>
- <div class="footer" id="footer" data-url="http://www.sucaihuo.com/" data-logout="http://www.sucaihuo.com/Download/logout?r=" data-id="" data-mtype=""> 
-    <div class="footer_main clearfix">
-        <div class="friendly">
-                <div class="foot_menu">
-                <a href="help.html" target="_blank">使用贴吧必读</a>
-                <a href="help.html" target="_blank">贴吧协议</a>
-                <a href="help.html" target="_blank">关于我们</a>
-                <a href="help.html" target="_blank">招纳贤士</a>
-                <a href="js.html?map.html" target="_blank">网站地图</a>
-                <span class="address">Copyright&copy;2010-2015 All Rights Reserved. 苏ICP备15009298</span>
-            </div>
-        </div>
-    </div>
-</div>
-<block name="bottomstyle">
-     
+            <p class="right">
+            <a href="<{:U('login')}>">登录</a>
+            <a href="<{:U('reg')}>">注册</a>
+            <a href="#">会员官网</a>
+            <a href="www.baidu.com">百度首页</a>
+            <a href="<{:U('index')}>">贴吧首页</a>
+            </p>
+
+        </div><!-- end .container -->
+
+</div><!-- end #header-top -->
+<div id="header" style = "margin-top:-10px;">
+    <div class="container">
+        <h1 id="logo">
+            <a href="<{:U('index')}>">
+                <img src="__PUBLIC__/public/image/logo.gif" alt="">
+            </a>
+        </h1>        
+        <div  style = "margin-top:30px;"class="row">
+         <div class="col-lg-6">
+            <div class="input-group">
+              <input style = "height:40px;"type="text" class="form-control" aria-label="...">
+              <div class="input-group-btn">
+                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">进入贴吧</button><button style = "height:40px;margin-left:20px;border-radius:10%;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </div><!--/.col-lg-6 -->
+        </div><!-- end row-->
+    </div><!-- end .container -->
+</div><!-- end #header -->
+
 </block>
-</body>
-</html>
+
+<!-- start scripts -->
+<block name="bottomstyle">
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>
+</block>
+<!-- end scripts -->
+<block name='main'></block>
