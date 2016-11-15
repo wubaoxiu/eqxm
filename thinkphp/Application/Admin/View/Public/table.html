@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" /><!--自己的css-->
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -359,7 +360,7 @@
 							<span class="btn btn-danger"></span>
 						</div>
 					</div><!-- #sidebar-shortcuts -->
-<ul class="nav nav-list">
+					<ul class="nav nav-list">
 						<block name="sy">
 						<li>
 						</block>
@@ -405,9 +406,9 @@
 								</li>
 
 								<block name="baruser"><li></block>
-									<a href="<{:U('BarUser/barUser')}>">
+									<a href="<{:U('BarUser/index')}>">
 										<i class="icon-double-angle-right"></i>
-										吧主吧管理
+										吧主管理
 									</a>
 								</li>
 
@@ -419,6 +420,60 @@
 								</li>
 							</ul>
 						</li>
+
+						<block name="role">
+						<li>
+						</block>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 角色管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<block name="rolelist"><li></block>
+									<a href="<{:U('Role/index')}>">
+										<i class="icon-double-angle-right"></i>
+										角色列表
+									</a>
+								</li>
+
+								<block name="roleadd"><li></block>
+									<a href="<{:U('Role/add')}>">
+										<i class="icon-double-angle-right"></i>
+										角色添加
+									</a>
+								</li>								
+							</ul>
+						</li><!--role-->
+
+						<block name="node">
+						<li>
+						</block>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 节点管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<block name="nolelist"><li></block>
+									<a href="<{:U('Node/index')}>">
+										<i class="icon-double-angle-right"></i>
+										节点列表
+									</a>
+								</li>
+
+								<block name="noleadd"><li></block>
+									<a href="<{:U('Node/add')}>">
+										<i class="icon-double-angle-right"></i>
+										节点添加
+									</a>
+								</li>								
+							</ul>
+						</li><!--node-->
 
 						<block name="categorys"><li></block>
 							<a href="#" class="dropdown-toggle">
@@ -642,11 +697,12 @@
 								<i class="icon-home home-icon"></i>
 								<a href="#">首页</a>
 							</li>
-
+							<block name="where">
 							<li>
 								<a href="#">用户列表</a>
 							</li>
 							<li>普通用户</li>
+							</block>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">

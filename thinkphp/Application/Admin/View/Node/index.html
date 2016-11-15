@@ -1,18 +1,27 @@
 <extend name="Public/table" />
 
-<block name="user">
+<block name="node">
     <li class="active open">
 </block>
 
-<block name="ptuser">
+<block name="nolelist">
     <li class="active">
 </block>
 
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+
 <block name="content">
+    <!-- <{:dump($rolelist)}> -->
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-              <{$title}>
+                Results for "Latest Registered Domains"
             </div>
 
             <div class="table-responsive">
@@ -25,25 +34,17 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>ID</th>
-<<<<<<< HEAD
-                            <th>角色ID</th>               
-=======
-                            <th><span>角色</span></th>               
->>>>>>> xdm
-                            <th class="hidden-480">用户名</th>
-                            <th class="hidden-480">性别</th>
-                             <th>
-                                <i class="icon-time bigger-110 hidden-480"></i>
-                                email
-                            </th>
-
+                            <th>ID</th>          
+                            <th class="hidden-480">节点名</th>
+                            <th class="hidden-480">控制器</th>
+                            <th class="hidden-480">操作</th>
+                            <th class="hidden-480">状态</th>
                             <th>操作</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <foreach name="list" item="v">
+                        <foreach name="nodelist" item="v">
                             <tr>
                                 <td class="center">
                                     <label>
@@ -51,42 +52,31 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </td>
-                                  
+
                                 <td>
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
                                <td>
-<<<<<<< HEAD
-                                    <{$v.role}>
-=======
-                                <volist name="v.role" id="role">
-                                <span style="color:#999"><{$role}></span>
-                                &nbsp;
-                        </volist>
->>>>>>> xdm
+                                    <{$v.node}>
                                </td>
-                                <td class="hidden-480"><{$v.name}></td>
-                                  <td class="hidden-480">
-                                  <if condition = "$v.sex eq '1'">女
-                                  <elseif condition = "$v.sex eq '2'" />男
-                                  <else />保密
+                                <td class="hidden-480"><{$v.cname}></td>
+                                <td class="hidden-480"><{$v.aname}></td>
+                                <td class="hidden-480">
+                                  <if condition = "$v.status eq '0'">启用
+                                  <elseif condition = "$v.status eq '1'" />禁用
                                   </if>
                                 </td>
-                                 <td><{$v.email}></td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="blue" href="<{:U('User/select',array('id'=>$v['id']))}>">
+                                        <a class="blue" href="<{:U('Nole/nodelist',array('id'=>$v.id))}>">
                                             <i class="icon-zoom-in bigger-130"></i>
                                         </a>
 
-                                        <a class="green" href="<{:U('User/edit',array('id'=>$v['id']))}>">
+                                        <a class="green" href="<{:U('Nole/edit',array('id'=>$v['id']))}>">
                                             <i class="icon-pencil bigger-130"></i>
                                         </a>
 
-                                        <a class="lightgreen" href="<{:U('User/rolelist',array('id'=>$v['id']))}>">
-                                            <i class=" icon-edit bigger-130"></i>
-                                        </a>
-                                        <a class="red" href="<{:U('User/del',array('id'=>$v['id']))}>">
+                                        <a class="red" href="<{:U('Nole/del',array('id'=>$v['id']))}>">
                                             <i class="icon-trash bigger-130"></i>
                                         </a>
                                     </div>

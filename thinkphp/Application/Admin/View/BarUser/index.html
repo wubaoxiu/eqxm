@@ -4,7 +4,7 @@
     <li class="active open">
 </block>
 
-<block name="adminuser">
+<block name="ptuser">
     <li class="active">
 </block>
 
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-               <{$title}>
+              <{$title}>
             </div>
 
             <div class="table-responsive">
@@ -25,8 +25,8 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                           <th>ID</th>
-                            <th>角色</th>               
+                            <th>ID</th>
+                            <th><span>角色</span></th>               
                             <th class="hidden-480">用户名</th>
                             <th class="hidden-480">性别</th>
                              <th>
@@ -39,20 +39,23 @@
                     </thead>
 
                     <tbody>
-                    <foreach name = "Adminlist" item = "v">
-                        <tr>
-                            <td class="center">
-                                <label>
-                                    <input type="checkbox" class="ace" />
-                                    <span class="lbl"></span>
-                                </label>
-                            </td>
-
-                              <td>
+                        <foreach name="list" item="v">
+                            <tr>
+                                <td class="center">
+                                    <label>
+                                        <input type="checkbox" class="ace" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                  
+                                <td>
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
                                <td>
-                                    <{$v.role}>
+                                <volist name="v.role" id="role">
+                                <span style="color:#999"><{$role}></span>
+                                &nbsp;
+                        </volist>
                                </td>
                                 <td class="hidden-480"><{$v.name}></td>
                                   <td class="hidden-480">
@@ -62,57 +65,61 @@
                                   </if>
                                 </td>
                                  <td><{$v.email}></td>
-                            <td>
-                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                    <a class="blue" href="#">
-                                        <i class="icon-zoom-in bigger-130"></i>
-                                    </a>
+                                <td>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="<{:U('User/select',array('id'=>$v['id']))}>">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
 
-                                    <a class="green" href="<{:U('edit',array('id'=>$v['id']))}>">
-                                        <i class="icon-pencil bigger-130"></i>
-                                    </a>
+                                        <a class="green" href="<{:U('User/edit',array('id'=>$v['id']))}>">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
 
-                                    <a class="red" href="<{:U('del',array('id'=>$v['id']))}>">
-                                        <i class="icon-trash bigger-130"></i>
-                                    </a>
-                                </div>
-
-                                <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                    <div class="inline position-relative">
-                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                            <i class="icon-caret-down icon-only bigger-120"></i>
-                                        </button>
-
-                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                            <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                    <span class="blue">
-                                                        <i class="icon-zoom-in bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                    <span class="green">
-                                                        <i class="icon-edit bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                    <span class="red">
-                                                        <i class="icon-trash bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <a class="lightgreen" href="<{:U('User/rolelist',array('id'=>$v['id']))}>">
+                                            <i class=" icon-edit bigger-130"></i>
+                                        </a>
+                                        <a class="red" href="<{:U('User/del',array('id'=>$v['id']))}>">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                     </foreach>
+
+                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-caret-down icon-only bigger-120"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                <li>
+                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                        <span class="blue">
+                                                            <i class="icon-zoom-in bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                        <span class="green">
+                                                            <i class="icon-edit bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                        <span class="red">
+                                                            <i class="icon-trash bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+
                     </tbody>
                 </table>
             </div>
