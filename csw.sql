@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : admin
+Source Server         : yjx
 Source Server Version : 50711
 Source Host           : localhost:3306
 Source Database       : csw
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-11-14 22:09:30
+
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -165,21 +165,25 @@ DROP TABLE IF EXISTS `csw_node`;
 CREATE TABLE `csw_node` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `node` varchar(255) NOT NULL,
-  `cname` varchar(255) DEFAULT NULL,
-  `aname` varchar(255) DEFAULT NULL,
+  `cname` varchar(255) NOT NULL,
+  `aname` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_node
 -- ----------------------------
-INSERT INTO `csw_node` VALUES ('1', '浏览普通用户列表', 'User', 'index');
-INSERT INTO `csw_node` VALUES ('2', '添加用户', 'User', 'add');
-INSERT INTO `csw_node` VALUES ('3', '删除普通用户', 'User', 'del');
-INSERT INTO `csw_node` VALUES ('4', '修改普通用户', 'User', 'save');
-INSERT INTO `csw_node` VALUES ('5', '浏览后台用户列表', 'AdminUser', 'index');
-INSERT INTO `csw_node` VALUES ('6', '删除后台用户', 'AdminUser', 'del');
-INSERT INTO `csw_node` VALUES ('7', '修改后台用户', 'AdminUser', 'save');
+INSERT INTO `csw_node` VALUES ('1', '浏览普通用户列表', 'User', 'index', '0');
+INSERT INTO `csw_node` VALUES ('2', '添加用户', 'User', 'add', '0');
+INSERT INTO `csw_node` VALUES ('3', '删除普通用户', 'User', 'del', '0');
+INSERT INTO `csw_node` VALUES ('4', '修改普通用户', 'User', 'save', '0');
+INSERT INTO `csw_node` VALUES ('5', '浏览后台用户列表', 'AdminUser', 'index', '0');
+INSERT INTO `csw_node` VALUES ('6', '删除后台用户', 'AdminUser', 'del', '0');
+INSERT INTO `csw_node` VALUES ('7', '修改后台用户', 'AdminUser', 'save', '0');
+INSERT INTO `csw_node` VALUES ('8', '添加后天用户', 'AdminUser', 'add', '0');
+INSERT INTO `csw_node` VALUES ('9', '', '', '', '0');
+INSERT INTO `csw_node` VALUES ('10', '', '', '', '0');
 
 -- ----------------------------
 -- Table structure for `csw_note`
@@ -208,23 +212,29 @@ CREATE TABLE `csw_note` (
 -- ----------------------------
 DROP TABLE IF EXISTS `csw_role`;
 CREATE TABLE `csw_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `role` varchar(255) NOT NULL,
+  `explain` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_role
 -- ----------------------------
-INSERT INTO `csw_role` VALUES ('1', 'root');
-INSERT INTO `csw_role` VALUES ('2', '超级管理员');
-INSERT INTO `csw_role` VALUES ('3', '业务员');
-INSERT INTO `csw_role` VALUES ('4', '吧主');
-INSERT INTO `csw_role` VALUES ('5', '吧管理员');
-INSERT INTO `csw_role` VALUES ('6', 'VIP');
-INSERT INTO `csw_role` VALUES ('7', '会员');
-INSERT INTO `csw_role` VALUES ('8', '游客');
+INSERT INTO `csw_role` VALUES ('1', 'root', 'root', '0');
+INSERT INTO `csw_role` VALUES ('2', '超级管理员', '管理所有后台项目', '0');
+INSERT INTO `csw_role` VALUES ('3', '业务员', '管理后台基本业务', '0');
+INSERT INTO `csw_role` VALUES ('4', '吧主', '前台贴吧最高管理员', '0');
+INSERT INTO `csw_role` VALUES ('5', '吧管理员', '前台贴吧管理人员', '0');
+INSERT INTO `csw_role` VALUES ('6', 'VIP', '高级会员用户', '0');
+INSERT INTO `csw_role` VALUES ('7', '会员', '普通用户', '0');
+INSERT INTO `csw_role` VALUES ('11', '贴吧大神', '贴吧里的牛人', '0');
+INSERT INTO `csw_role` VALUES ('10', '贴吧小喽啰', '背黑锅的', '0');
+INSERT INTO `csw_role` VALUES ('13', '111', '1111', '1');
+INSERT INTO `csw_role` VALUES ('14', '222', '111', '0');
+INSERT INTO `csw_role` VALUES ('15', '肖代敏1', '洗厕所', '0');
 
 -- ----------------------------
 -- Table structure for `csw_role_node`
@@ -232,25 +242,24 @@ INSERT INTO `csw_role` VALUES ('8', '游客');
 DROP TABLE IF EXISTS `csw_role_node`;
 CREATE TABLE `csw_role_node` (
   `role_id` int(11) NOT NULL,
-  `node_id` int(11) NOT NULL,
-  `dec` varchar(255) DEFAULT NULL
+  `node_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_role_node
 -- ----------------------------
-INSERT INTO `csw_role_node` VALUES ('1', '1', '浏览普通用户列表');
-INSERT INTO `csw_role_node` VALUES ('1', '2', '添加用户');
-INSERT INTO `csw_role_node` VALUES ('1', '3', '删除普通用户');
-INSERT INTO `csw_role_node` VALUES ('1', '4', '修改普通用户');
-INSERT INTO `csw_role_node` VALUES ('1', '5', '浏览后台用户');
-INSERT INTO `csw_role_node` VALUES ('1', '6', '删除后台用户');
-INSERT INTO `csw_role_node` VALUES ('1', '7', '修改后台用户');
-INSERT INTO `csw_role_node` VALUES ('2', '1', '浏览普通用户列表');
-INSERT INTO `csw_role_node` VALUES ('2', '2', '添加用户');
-INSERT INTO `csw_role_node` VALUES ('2', '3', '删除普通用户');
-INSERT INTO `csw_role_node` VALUES ('2', '4', '修改普通用户');
-INSERT INTO `csw_role_node` VALUES ('2', '5', '浏览后台用户列表');
+INSERT INTO `csw_role_node` VALUES ('1', '1');
+INSERT INTO `csw_role_node` VALUES ('1', '2');
+INSERT INTO `csw_role_node` VALUES ('1', '3');
+INSERT INTO `csw_role_node` VALUES ('1', '4');
+INSERT INTO `csw_role_node` VALUES ('1', '5');
+INSERT INTO `csw_role_node` VALUES ('1', '6');
+INSERT INTO `csw_role_node` VALUES ('1', '7');
+INSERT INTO `csw_role_node` VALUES ('2', '1');
+INSERT INTO `csw_role_node` VALUES ('2', '2');
+INSERT INTO `csw_role_node` VALUES ('2', '3');
+INSERT INTO `csw_role_node` VALUES ('2', '4');
+INSERT INTO `csw_role_node` VALUES ('2', '5');
 
 -- ----------------------------
 -- Table structure for `csw_score`
@@ -344,14 +353,13 @@ INSERT INTO `csw_user` VALUES ('3', 'c', 'e10adc3949ba59abbe56e057f20f883e', '2'
 DROP TABLE IF EXISTS `csw_user_role`;
 CREATE TABLE `csw_user_role` (
   `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `dec` varchar(255) DEFAULT NULL
+  `role_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of csw_user_role
 -- ----------------------------
-INSERT INTO `csw_user_role` VALUES ('1', '1', 'root');
-INSERT INTO `csw_user_role` VALUES ('2', '2', '超管');
-INSERT INTO `csw_user_role` VALUES ('3', '2', '超管');
-INSERT INTO `csw_user_role` VALUES ('4', '2', '超管');
+INSERT INTO `csw_user_role` VALUES ('1', '1');
+INSERT INTO `csw_user_role` VALUES ('2', '2');
+INSERT INTO `csw_user_role` VALUES ('3', '2');
+INSERT INTO `csw_user_role` VALUES ('4', '2');

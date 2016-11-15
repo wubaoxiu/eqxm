@@ -7,6 +7,7 @@ class UserController extends AdminController
     /*
         获取普通用户列表
     */
+
     public function index(){
         //查询数据
         $list = M('user')->select();
@@ -66,11 +67,13 @@ class UserController extends AdminController
     /*
         获取添加用户页面
     */
+
     public function add(){
         $data = M('role')->select();
         // var_dump($data);
         $this->assign('title','添加普通用户列表');
         $this->assign('data',$data);
+
         $this->display('User/add');
     }
     /*
