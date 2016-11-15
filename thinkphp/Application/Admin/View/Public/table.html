@@ -452,42 +452,42 @@
 							</ul>
 						</li>
 
-						<li>
+						<block name="bar"><li></block>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
-								<span class="menu-text"> 表单 </span>
+								<span class="menu-text"> 贴吧管理 </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="form-elements.html">
+								<block name="barlist"><li></block>
+									<a href="<{:U('Barinfo/index')}>">
 										<i class="icon-double-angle-right"></i>
-										表单组件
+										贴吧列表
 									</a>
 								</li>
 
-								<li>
-									<a href="form-wizard.html">
+								<block name="baradd"><li></block>
+									<a href="<{:U('Barinfo/add')}>">
 										<i class="icon-double-angle-right"></i>
-										向导提示 &amp; 验证
+										新建贴吧
 									</a>
 								</li>
 
-								<li>
+								<!-- <li>
 									<a href="wysiwyg.html">
 										<i class="icon-double-angle-right"></i>
 										编辑器
 									</a>
-								</li>
+								</li> -->
 
-								<li>
+								<!-- <li>
 									<a href="dropzone.html">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 
