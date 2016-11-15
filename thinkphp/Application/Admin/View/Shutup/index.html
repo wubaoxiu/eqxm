@@ -1,20 +1,14 @@
 <extend name="Public/table" />
 
-<block name="node">
+<block name="shutup">
     <li class="active open">
-</block>
-
-<block name="nolelist">
-    <li class="active">
 </block>
 
 <block name="where">
     <li>
     <li><a href="#"><{$title}></a></li>
-    <li><{$stitle}></li>
     </li>
 </block>
-
 
 <block name="content">
     <!-- <{:dump($rolelist)}> -->
@@ -35,16 +29,17 @@
                                 </label>
                             </th>
                             <th>ID</th>          
-                            <th class="hidden-480">节点名</th>
-                            <th class="hidden-480">控制器</th>
-                            <th class="hidden-480">操作</th>
-                            <th class="hidden-480">状态</th>
+                            <th class="hidden-480">用户名</th>
+                            <th class="hidden-480">贴吧名</th>
+                            <th class="hidden-480">解除时间</th>
                             <th>操作</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <foreach name="nodelist" item="v">
+                    <!-- <{:dump($list)}> -->
+                        <foreach name="list" item="v" key="k">
+                        <!-- <{:dump($k)}> -->
                             <tr>
                                 <td class="center">
                                     <label>
@@ -53,30 +48,21 @@
                                     </label>
                                 </td>
 
-                                <td>
-                                    <a href="#"> <{$v.id}> </a>
-                                </td>
-                               <td>
-                                    <{$v.node}>
-                               </td>
-                                <td class="hidden-480"><{$v.cname}></td>
-                                <td class="hidden-480"><{$v.aname}></td>
-                                <td class="hidden-480">
-                                  <if condition = "$v.status eq '0'">启用
-                                  <elseif condition = "$v.status eq '1'" />禁用
-                                  </if>
-                                </td>
+                                <td><a href="#"><{$k}></a></td>
+                                <td><{$v.un.name}></td>
+                                <td class="hidden-480"><{$v.bn.name}></td>
+                                <td class="hidden-480"><{$v.relieve|date='Y-m-d H:i:s',###}></td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                       <!--  <a class="blue" href="<{:U('Node/nodelist',array('id'=>$v.id))}>">
+                                        <!-- <a class="blue" href="<{:U('Shutup/nodelist',array('id'=>$k))}>">
                                             <i class="icon-zoom-in bigger-130"></i>
-                                        </a> -->
-
-                                        <a class="green" href="<{:U('Node/edit',array('id'=>$v['id']))}>">
-                                            <i class="icon-pencil bigger-130"></i>
                                         </a>
 
-                                        <a class="red" href="<{:U('Node/del',array('id'=>$v['id']))}>">
+                                        <a class="green" href="<{:U('Shutup/edit',array('id'=>$k))}>">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a> -->
+
+                                        <a class="red" href="<{:U('Shutup/del',array('id'=>$k))}>">
                                             <i class="icon-trash bigger-130"></i>
                                         </a>
                                     </div>
@@ -173,7 +159,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,
+              null, null,null, null,
               { "bSortable": false }
             ] } );
             
