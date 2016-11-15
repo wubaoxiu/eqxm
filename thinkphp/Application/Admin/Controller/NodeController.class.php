@@ -51,6 +51,45 @@ class NodeController extends AdminController
             $this->success('节点添加失败',U('Node/add'));
         }
     }
+
+    // 删除节点
+    public function del()
+    {
+        $id = I('get.id/d');
+        // echo $id;
+        if($this->_node->delete($id))
+        {
+            $this->success('删除成功！',U('Node/index'));
+        } else {
+            $this->success('删除失败！',U('Node/index'));
+        }
+    }
+
+    // 跳转到编辑页面
+    public function edit()
+    {
+        $id = I('get.id/d');
+        $data = array();
+        $data = $this->_node->find($id);
+        $this->assign('title','节点管理');
+        $this->assign('stitle','节点修改');
+        $this->assign('list',$data);
+        $this->display('Node/edit');
+    }
+
+    // 执行修改
+    public function save()
+    {
+        if(!$this->_node->create()){
+            $this->error($this->_node->getError());
+            exit;
+        }
+        if($this->_node->save()){
+            $this->success('修改成功！',U('Node/index'));
+        } else {
+            $this->error('修改失败！');
+        }
+    }
 }
 
 

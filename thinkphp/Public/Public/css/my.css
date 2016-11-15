@@ -167,7 +167,7 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 /* 角色表添加页面样式 */
 
 .role_add{
-    width:300px;
+    width:400px;
     height: 300px;
     border: 2px solid #f7f7f7;
     padding: 20px;
@@ -176,10 +176,11 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 }
 .role_role{
     width: 100%;
+    margin-left: 50px;
     height: 60px;
 }
 .node_add{
-    width:300px;
+    width:400px;
     height: 350px;
     border: 2px solid #f7f7f7;
     padding: 20px;
@@ -189,5 +190,19 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .node_node{
     width: 100%;
     height: 60px;
+    margin-left: 50px;
+}
+
+.nodelist{
+    width:500px;
+/*    height: 350px;*/
+    border: 2px solid #f7f7f7;
+    padding: 20px;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+.the_box{
+    width: 200px;
+    margin-left: 25px;
 }
 
