@@ -51,8 +51,12 @@ class TypeController extends AdminController
     //获取修改页面
     public function edit()
     {
-        // $id = I(get.id);
-        $data = M('Type')->where(array('id'=>array('eq',I('id'))))->find();
+        $id = I('get.id');
+        if(empty($id)){
+            $this->error("页面加载错误，请重新操作！");
+            exit;
+        }
+        $data = M('Type')->where(array('id'=>array('eq',$id)))->find();
         // dump($data);
         $this->assign('list',$data);
         $this->display('Type/edit');
@@ -78,11 +82,16 @@ class TypeController extends AdminController
     //执行删除
     public function del()
     {
+        $id = I('get.id');
+        if(empty($id)){
+            $this->error("抱歉操作失误，请您重新操作！");
+            exit;
+        }
         $d = D('Type');
 
         $map = array();
-        $map['id'] = array('eq',I('id'));
-        $map['path'] = array('like','%'.I('id').'%');
+        $map['id'] = array('eq',$id);
+        $map['path'] = array('like','%'.$id.'%');
         $map['_logic'] = 'or';
         // dump($map);
 
