@@ -1,18 +1,25 @@
 <extend name="Public/table" />
+
+<block name="user">
+    <li class="active open">
+</block>
+
+<block name="adduser">
+    <li class="active">
+</block>
 <block name="where">
     <li>
     <li><a href="#"><{$title}></a></li>
     <li><{$stitle}></li>
     </li>
 </block>
-
 <block name="content">
-   <div class="table-header"><small><{$title}></small></div>
+   <div class="table-header"><small><{$stitle}></small></div>
    <div class="row">
        <div class = "col-md-12">
-           <p>给<b><{$data.name}></b>分配权限</p>
+           <p>给<b><{$admin.name}></b>分配权限</p>
        </div>
-       <form action="<{:U('User/saverole')}>" method='post'>
+       <form action="<{:U('AdminUser/saverole')}>" method='post'>
             <p style="width:600px">
                 <volist name="list" id="vo">
                     <input type="checkbox" name="role[]"  value="<{$vo.id}>" <if condition="in_array($vo['id'],$role) eq true">checked</if>><b><{$vo.role}></b>
@@ -21,7 +28,7 @@
                     &nbsp;
                 </volist>
             </p>
-            <input type="hidden" name="user_id" value="<{$user.id}>">
+            <input type="hidden" name="user_id" value="<{$admin.id}>">
             <input type="submit" value="保存" class="btn btn-primary">
 
             </form>

@@ -7,12 +7,17 @@
 <block name="adminuser">
     <li class="active">
 </block>
-
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
 <block name="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-               <{$title}>
+               <{$stitle}>
             </div>
 
             <div class="table-responsive">
@@ -29,6 +34,7 @@
                             <th>角色</th>               
                             <th class="hidden-480">用户名</th>
                             <th class="hidden-480">性别</th>
+                            <th>头像</th>
                              <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                 email
@@ -39,7 +45,7 @@
                     </thead>
 
                     <tbody>
-                    <foreach name = "Adminlist" item = "v">
+                    <foreach name = "list" item = "v">
                         <tr>
                             <td class="center">
                                 <label>
@@ -51,8 +57,12 @@
                               <td>
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
+                               
                                <td>
-                                    <{$v.role}>
+                                <volist name="v.role" id="role">
+                                  <span style="color:#999"><{$role}></span>
+                                &nbsp;
+                              </volist>
                                </td>
                                 <td class="hidden-480"><{$v.name}></td>
                                   <td class="hidden-480">
@@ -60,16 +70,20 @@
                                   <elseif condition = "$v.sex eq '2'" />男
                                   <else />保密
                                   </if>
-                                </td>
+                                </td> 
+                                <td><{$v.hpic}></td>
                                  <td><{$v.email}></td>
                             <td>
                                 <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                    <a class="blue" href="#">
+                                    <a class="blue" href="<{:U('select',array('id'=>$v['id']))}>">
                                         <i class="icon-zoom-in bigger-130"></i>
                                     </a>
 
                                     <a class="green" href="<{:U('edit',array('id'=>$v['id']))}>">
                                         <i class="icon-pencil bigger-130"></i>
+                                    </a>   
+                                    <a class="lightgreen" href="<{:U('rolelist',array('id'=>$v['id']))}>">
+                                        <i class="icon-edit bigger-130"></i>
                                     </a>
 
                                     <a class="red" href="<{:U('del',array('id'=>$v['id']))}>">
@@ -168,7 +182,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,
+              null, null,null, null, null,null,
               { "bSortable": false }
             ] } );
             

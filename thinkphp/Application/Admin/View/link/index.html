@@ -1,25 +1,26 @@
 <extend name="Public/table" />
 
-<block name="user">
+<block name="link">
     <li class="active open">
 </block>
 
-<block name="ptuser">
+<block name="linklist">
     <li class="active">
 </block>
+ 
 <block name="where">
     <li>
     <li><a href="#"><{$title}></a></li>
     <li><{$stitle}></li>
     </li>
 </block>
+
 <block name="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="table-header">
-              <{$stitle}>
+           <div class="table-header">
+              <{$title}>
             </div>
-
             <div class="table-responsive">
                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                     <thead>
@@ -30,17 +31,14 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>ID</th>
-                            <th><span>角色</span></th>
-                            <th class="hidden-480">用户名</th>
-                            <th class="hidden-480">性别</th>
-                            <th>头像</th>
+                            <th>友情链接编号</th>
+                            <th>友情链接标题</th>
+                            <th class="hidden-480">友情链接网址</th>
+                            <th class="hidden-480">显示</th>
                              <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                email
+                                操作
                             </th>
-
-                            <th>操作</th>
                         </tr>
                     </thead>
 
@@ -57,36 +55,19 @@
                                 <td>
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
-                               <td>
-
-                            <volist name="v.role" id="role">
-                                <span style="color:#999"><{$role}></span>
-                                &nbsp;
-                        </volist>
-                               </td>
-                                <td class="hidden-480"><{$v.name}></td>
-                                  <td class="hidden-480">
-                                  <if condition = "$v.sex eq '1'">女
-                                  <elseif condition = "$v.sex eq '2'" />男
-                                  <else />保密
-                                  </if>
-                                </td>
-                                <td><img src="__ROOT__/<{$v['hpic']}>" width="50" alt=""></td>
-                                 <td><{$v.email}></td>
+                               <td><{$v.linktitle}> </td>
+                                <td class="hidden-480"><{$v.linkurl}></td>
+                                  <td class="hidden-480"> 
+                                     <if condition="$v.is_show eq '1'">显示
+                                     <else />不显示
+                                     </if>
+                                  </td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="blue" href="<{:U('User/select',array('id'=>$v['id']))}>">
-                                            <i class="icon-zoom-in bigger-130"></i>
-                                        </a>
-
-                                        <a class="green" href="<{:U('User/edit',array('id'=>$v['id']))}>">
+                                        <a class="green" href="<{:U('Link/edit',array('id'=>$v['id']))}>">
                                             <i class="icon-pencil bigger-130"></i>
                                         </a>
-
-                                        <a class="lightgreen" href="<{:U('User/rolelist',array('id'=>$v['id']))}>">
-                                            <i class=" icon-edit bigger-130"></i>
-                                        </a>
-                                        <a class="red" href="<{:U('User/del',array('id'=>$v['id']))}>">
+                                        <a class="red" href="<{:U('Link/del',array('id'=>$v['id']))}>">
                                             <i class="icon-trash bigger-130"></i>
                                         </a>
                                     </div>
@@ -183,7 +164,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,null,
+              null, null,null, null,
               { "bSortable": false }
             ] } );
             

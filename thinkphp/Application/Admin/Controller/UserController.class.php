@@ -1,6 +1,12 @@
 <?php
 namespace Admin\Controller;
 
+
+        /**
+        *  普通用户管理
+        * @author xiao
+        */ 
+
 class UserController extends AdminController
 {
 
@@ -26,29 +32,33 @@ class UserController extends AdminController
             //将新得到的角色信息放置到$vz中
             $arr[]=$v;
         }
-        // var_dump($list);
-        // var_dump($arr);
-
-        //
         $this->assign('list',$arr);
-        $this->assign('title','普通用户列表');
+        $this->assign('title','用户管理');
+        $this->assign('stitle','普通用户列表');
         $this->display('User/index');
     }
-    /*
-      查询用户个人信息
-    */ 
+
+
+        /*
+          查询用户个人信息
+        */ 
+
       public function select(){
+
         $rolelist = M('role')->select();
+         //获取ID
+        $id = I('get.id/d');
         $data = M('user')->find($id);
-        $this->assign('title','个人信息');
+        $this->assign('stitle','个人信息');
         $this->assign('data',$data);
         $this->assign('rolelist',$rolelist);
         $this->display('User/select');
       }
 
-    /*
-    执行删除
-    */ 
+        /*
+        执行删除
+        */ 
+
     public function del(){
         //判断有无ID
         if (empty($_GET['id'])) {
@@ -69,9 +79,10 @@ class UserController extends AdminController
     */
 
     public function add(){
+        date_default_timezone_set('PRC');
         $data = M('role')->select();
         // var_dump($data);
-        $this->assign('title','添加普通用户列表');
+        $this->assign('stitle','添加普通用户列表');
         $this->assign('data',$data);
 
         $this->display('User/add');
@@ -80,10 +91,15 @@ class UserController extends AdminController
     执行添加操作
     */ 
     public function doAdd(){
+
+        $hpic = $this->upload();
+        $_POST['hpic'] = $hpic;
+        /*var_dump($_POST);
+        die;*/
         //得到数据模型 
         $user = D('user');
-        $role_id=I('post.id/d');
         //进行数据过滤 也就是数据验证
+        $role_id=I('post.id/d');
         if (!$user->create()) {
             //如果创建没有完成，则验证失败
             //输出错误信息 并跳转
@@ -99,16 +115,19 @@ class UserController extends AdminController
         }
     }
 
-    /*
-     编辑页面
+
+     /*
+     * 获取编辑页面
     */ 
+
      public function edit(){
+
         $rolelist = M('role')->select();
         //获取ID
         $id = I('get.id/d');
         //查出数据
          $data = M('user')->find($id);
-         $this->assign('title','编辑普通用户列表');
+         $this->assign('stitle','编辑普通用户列表');
          $this->assign('data',$data);
          $this->assign('rolelist',$rolelist);
          $this->display('User/edit');
@@ -119,16 +138,18 @@ class UserController extends AdminController
      执行编辑
      */ 
      public function update()
-     {
+     { 
+
         $user=M('user');
         // 判断有无值
         if (empty($_POST)) {
             $this->redirect('Admin/User/index');
             exit;
-        }
+        }  
+        $hpic = $this->upload();
+        $_POST['hpic'] = $hpic;
         //数据过滤
-         $a = $user->create();
-         // var_dump($a);exit;
+         $user->create();
         //执行修改
          if ($user->save()>0) {
                 $this->success('恭喜您，修改成功',U('User/index'));
@@ -137,6 +158,42 @@ class UserController extends AdminController
             }
     }
 
+
+    /**
+    *  图片上传
+    */ 
+
+   public function upload(){
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->rootPath = 'Public/linkimg/'; // 设置附件上传根目录
+        $upload->savePath = ''; // 设置附件上传（子）目录
+        // 上传文件
+        $info = $upload->upload();
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($upload->getError());
+        }else{
+            //获取上传后的路径和文件名
+            
+            $path = 'Public/linkimg/'.$info['file']['savepath'];
+            $name = $info['file']['savename'];
+
+            $big = ltrim('./'.$path.$name);
+            
+            $image = new \Think\Image();
+            $image->open($big);
+            // 生成一个缩放后填充大小150*150的缩略图并保存为thumb.jpg
+            $image->thumb(150, 150,\Think\Image::IMAGE_THUMB_FILLED)->save('./'.$path.'s_'.$name);
+            unlink($big);
+            $small = ltrim($path.'s_'.$name);
+            //$arr = array('small'=>$small,'big'=>$big);
+            return $small;
+
+        }
+    }
+
+   
     /*
      分配、浏览角色（权限）
     */ 

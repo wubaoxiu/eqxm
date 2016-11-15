@@ -1,0 +1,55 @@
+<extend name="Public/table" />
+
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+<block name="content">
+ <div class="table-header"><small><{$stitle}></small></div>
+    <form class="form-horizontal" role="form" action="<{:U('Link/update')}>" method="post">
+    <input type="hidden" name = "id" value = "<{$data.id}>">
+   <div class="form-group" style="height:50px;margin-top:20px;">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 友情链接标题:</label>
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="text" name="linktitle" id="" placeholder = "请输入标题" class="width-100" value = "<{$data.linktitle}>"/>
+                </span>
+            </div>
+        </div>
+        <div class="form-group" style="height:50px">
+            <label for="" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 友情链接网址 :</label>
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="text" name="linkurl" placeholder = "请输入网址" id="" class="width-100" value = "<{$data.linkurl}>"/>
+                </span>
+            </div>
+        </div>
+          <div  class="form-group" style="height:50px;font-size:18px;">
+                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">显示 :</label>
+                <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" <if condition="$data.is_show eq '1'">checked</if> >显示
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" <if condition="$data.is_show eq '2'">checked</if> >不显示
+                 
+                  </span>
+                </div>
+          </div>
+        <div class="clearfix" style="margin-top:10px;">
+            <div class="col-md-offset-3 col-md-9">
+                <button class="btn btn-info" type="submit">
+                    <i class="icon-ok bigger-110"></i>
+                    确认修改
+                </button>
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="icon-undo bigger-110"></i>
+                    重新修改
+                </button>
+            </div>
+        </div>
+        <div class="hr hr-24"></div>
+    </form>
+</block>

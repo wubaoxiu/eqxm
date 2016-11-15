@@ -6,10 +6,16 @@
 
 <block name="adduser">
     <li class="active">
-</block>s
+</block>
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
 
 <block name="content">
- <div class="table-header">用户管理 》》 <small><{$title}></small></div>
+ <div class="table-header"><small><{$stitle}></small></div>
     <form class="form-horizontal" role="form" action="<{:U('User/update')}>" method="post">
    <div class="form-group" style="height:50px;margin-top:20px;">
             <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 :</label>
@@ -57,17 +63,17 @@
                     <i class="icon-leaf"></i>
                 </span>
             </div>
-        </div>
-
-        <div style="width:500px;text-align:center">
-            <label for="form-field-select-1" style="margin-left:-50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 性别 :</label>
-
-            <select name = "sex" class="form-control" id="form-field-select-1" style="width:420px;margin-left:260px;margin-top:-25px;">
-                <option value="1" <if condition="$data.sex eq '1'">selected</if> >女</option>
-                <option value="2" <if condition="$data.sex eq '2'">selected</if> >男</option>                      
-                <option value="3" <if condition="$data.sex eq '3'">selected</if> >保密</option>                      
-            </select>
-        </div>   
+        </div> 
+            <div  class="form-group" style="height:50px;font-size:18px;">
+                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">显示 :</label>
+                <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" <if condition="$data.is_show eq '1'">selected</if> >显示
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" <if condition="$data.is_show eq '2'">selected</if> >不显示
+                 
+                  </span>
+                </div>
+          </div>
 
         <div style="width:500px;text-align:center;margin-top:30px;">
             <label for="form-field-select-1" style="margin-left:-50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色 :</label>
