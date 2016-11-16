@@ -21,7 +21,7 @@
    <div class="form-group" style="height:50px;margin-top:20px;">
             <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 :</label>
 
-            <div class="col-xs-12 col-sm-5">
+            <div class="col-xs-12 col-sm-4">
                 <span class="block input-icon input-icon-right">
                     <input type="text" name="name" id="" placeholder = "请输入用户名" class="width-100" />
                     <i class="icon-leaf"></i>
@@ -32,7 +32,7 @@
         <div class="form-group" style="height:50px">
             <label for="" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 密　码 :</label>
 
-            <div class="col-xs-12 col-sm-5">
+            <div class="col-xs-12 col-sm-4">
                 <span class="block input-icon input-icon-right">
                     <input type="password" name="password" placeholder = "请输入密码" id="" class="width-100" />
                     <i class="icon-leaf"></i>
@@ -43,7 +43,7 @@
         <div class="form-group" style="height:50px">
             <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 确认密码 :</label>
 
-            <div class="col-xs-12 col-sm-5">
+            <div class="col-xs-12 col-sm-4">
                 <span class="block input-icon input-icon-right">
                     <input type="password" name="repassword" id="" placeholder = "请输入确认密码" class="width-100" />
                     <i class="icon-leaf"></i>
@@ -54,21 +54,21 @@
         <div class="form-group" style="height:50px">
             <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right"> email :</label>
 
-            <div class="col-xs-12 col-sm-5">
+            <div class="col-xs-12 col-sm-4">
                 <span class="block input-icon input-icon-right">
                     <input type="email" name="email" id=""placeholder = "请输入正确的邮箱"  class="width-100" />
                     <i class="icon-leaf"></i>
                 </span>
             </div>
         </div>
-             <div style="width:500px;text-align:center;">
+            <div style="width:500px;text-align:center;margin-top:-10px;">
             <label for="form-field-select-1" style="margin-left:-50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色 :</label>
            
-            <select name = "role_id" class="form-control" placeholder = "请选择...." id="form-field-select-1" style="width:420px;margin-left:260px;margin-top:-25px;">
-                   <option value="">请选择....</option>
-            <foreach name='data' item='v'>
-                <option value="<{$v.id}>"><{$v.role}></option>   
-            </foreach>
+            <select name = "role_id" class="form-control" id="form-field-select-1" style="width:340px;margin-left:260px;margin-top:-25px;"> 
+            <option value="">请选择.....</option>
+            <foreach name='data' item='v'> 
+              <option value="<{$v['id']}>"><{$v.role}></option>      
+            </foreach> 
             </select>
         </div>  
       
@@ -110,4 +110,18 @@
         <div class="hr hr-24"></div>
 
     </form>
+</block>
+<block name="tablejs">
+<script type="text/javascript">
+    
+ var ajax = new XMLHttpRequest();
+  ajax.open('get','',true);
+  ajax.send();
+  ajax.onreadystatechange = function(){
+    if (ajax.Status=4||ajax.readyStatus==200) {
+        var result = ajax.responseText;
+    };
+  }
+</script>
+
 </block>
