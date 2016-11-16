@@ -25,7 +25,7 @@
         <div class="col-xs-12 col-sm-3 center">
  
             <span class="profile-picture">
-                <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="__ROOT__/<{$data.hpic}>" />
+                <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="__UPLOAD__/<{$data.hpic}>" />
             </span>
 
             <div class="space-4"></div>
@@ -45,9 +45,9 @@
 
         <div class="profile-contact-info">
             <div class="profile-contact-links align-left">
-                <a class="btn btn-link" href="#">
-                    <i class="icon-plus-sign bigger-120 green"></i>
-                   加好友
+                <a class="btn btn-link" href="#" role="button" data-toggle="modal" data-target="#myModal">
+                    <i class="icon-cloud-upload bigger-120 green"></i>
+                    修改头像
                 </a>
 
                 <a class="btn btn-link" href="#">
@@ -55,6 +55,27 @@
                     发信息
                 </a>
             </div>
+
+            <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">修改头像</h4>
+              </div>
+              <form action="<{:U('Barinfo/upload')}>" method="post" enctype="multipart/form-data">
+              <div class="modal-body">
+                    <input type="file" name="hpic">
+                    <input type="hidden" name="id" value="<{$data['id']}>">
+              </div>
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-default" data-dismiss="modal">重置</button>
+                <button type="submit" class="btn btn-primary">修改</button>
+              </div>
+              </form>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
             <div class="space-6"></div>
 
@@ -78,7 +99,7 @@
 
         <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
             <div class="profile-info-row">
-                <div class="profile-info-name"> 用户名 </div>
+                <div class="profile-info-name"> 贴吧名 </div>
 
                 <div class="profile-info-value">
                     <span class="editable" id="name"><{$data.name}></span>
@@ -86,32 +107,50 @@
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 性别 </div>
+                <div class="profile-info-name"> 吧主 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="sex"><{$data.sex}></span>
+                    <span class="editable" id="sex"><if condition="$data['username']['name'] eq null">还没有吧主<else /><{$data['username'].name}></if></span>
                 </div>
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 邮箱 </div>
+                <div class="profile-info-name"> 吧管理员 </div>
 
                 <div class="profile-info-value">
 
-                    <span class="editable" id="email"><{$data.email}></span>
+                    <span class="editable" id="email">还没有做</span>
                 </div>
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 爱好 </div>
+                <div class="profile-info-name"> 贴吧类别 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="like"><{$data.like}></span>
+
+                    <span class="editable" id="email"><{$data['typename'].name}></span>
                 </div>
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 注册时间</div>
+                <div class="profile-info-name"> 关注人数 </div>
+
+                <div class="profile-info-value">
+
+                    <span class="editable" id="email"><{$data['attention']}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 宣言 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="like"><{$data.title}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 创建时间 </div>
 
                 <div class="profile-info-value">
                     <span class="editable" id="createtime"><{$data.createtime|date='Y-m-d H:i:s',###}></span>
@@ -119,12 +158,19 @@
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 简介 </div>
+                <div class="profile-info-name"> 吧公告 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="introduction"><{$data.introduction}></span>
+                    <span class="editable" id="introduction"><if condition="$data['desc'] eq null">未设置<else /><{$data.desc}></if></span>
                 </div>
             </div>
         </div>
     </div>      
+</block>
+
+<block name="tablejs">
+    <script src="__PUBLIC__/dist/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/dist/js/holder.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="__PUBLIC__/dist/js/bootstrap.min.js"></script>
 </block>

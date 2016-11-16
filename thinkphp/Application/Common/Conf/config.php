@@ -14,4 +14,9 @@ return array(
     'DB_PWD'                =>  '',          // 密码
     'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  'csw_',    // 数据库表前缀
+
+    /* 路径设置 */
+    'TMPL_PARSE_STRING' =>array(
+        '__UPLOAD__' => __ROOT__.'/Uploads',
+    ),
 );
