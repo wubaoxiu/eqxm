@@ -23,12 +23,18 @@ class AdminController extends Controller
         $cname = CONTROLLER_NAME; //获取控制器名
         $aname = ACTION_NAME;     //获取方法名
 
+        // echo $cname.'||'.$aname;
+
 
         $nodelist = $_SESSION['admin_info']['nodelist']; //获取权限信息
         // dump($cname);
         // dump($nodelist);
         // dump($nodelist[$cname]);
         // dump($aname);
+
+        // dump($nodelist);
+
+        // dump($_SESSION);
 
         if($_SESSION['admin_info']['name'] !== 'admin'){
             if(empty($nodelist[$cname]) || !in_array($aname,$nodelist[$cname])){

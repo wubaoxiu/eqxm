@@ -11,106 +11,43 @@ class BarinfoController extends AdminController
     {
         parent::_initialize();
         $this->_barinfo = D('Barinfo');
-        $this->_user = D('User');
-        $this->_type = D('Type');
+        $this->_user = M('User');
+        $this->_type = M('Type');
     }
 
     public function index()
     {
-        $data = $this->_barinfo->select();
-        $arr = array();
-
-        foreach($data as $v){
-            $uname = array();  //定义一个空数组，用来存放创建人名
-            $uname = $this->_user->field('name')->where(array('id'=>array('eq',$v['user_id'])))->find();
-            $v['username'] = $uname;
-
-            $tname = array();  //定义一个空数组，用来存放分类名
-            $tname = $this->_type->field('name')->where(array('id'=>array('eq',$v['type_id'])))->find();
-            $v['typename'] = $tname;
-
-            $arr[] = $v;
-        }
+        $arr = $this->_barinfo->getBarinformation();
         // dump($arr);
         $this->assign('list',$arr);
         $this->display('Barinfo/index');
     }
 
+    //获取添加页面
     public function add()
     {
-        $data = $this->_type->field('id,name,path')->select();
-        $arr = array();
-        foreach($data as $v){
-            $count=substr_count($v['path'],',');
-            $repeat=str_repeat('♔',$count-1);
-            $v['newname'] = $repeat.$v['name'];
-            $arr[] =$v;
-        }
+        $arr = $this->_barinfo->getOption();
         // dump($arr);
         $this->assign('list',$arr);
         $this->display("Barinfo/add");
     }
 
+    //执行添加
     public function doAdd()
     {
-        // dump($_POST);
-        if($_FILES['url']['error'] == 0){           
-            $upload = new \Think\Upload();// 实例化上传类
-            $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-            $upload->rootPath = './Uploads/'; // 设置附件上传根目录
-            // 上传文件
-            $info = $upload->upload();
-            if(!$info) {
-                // 上传错误提示错误信息
-                $this->error($upload->getError());
-            }else{
-                // 上传成功
-                // $this->success('上传成功！');
-                // $model = M('Barinfo');
-                $arr = array();
-                foreach($info as $file){
-                    // echo $file['savepath'].$file['savename'];
-                    $arr[] = $file['savepath'].$file['savename'];
-                }
-                // $data['user_id'] = $_SESSION['admin_info']['id'];
-                $data['name'] = I("post.name");
-                $data['type_id'] = I("post.type_id");
-                $data['createtime'] = time();
-                $data['title'] = I("post.title");
-                $data['desc'] = I("post.desc");
-                $data['hpic'] = $arr[0];
-                $data['bgpic'] = $arr[1];
-                // $data['url']=$info['url']['savepath'].$info['url']['savename'];
-                // dump($data);
-                if($data['type_id']==0){
-                    $this->error("请选择具体贴吧类别！！！");
-                    exit;
-                }
-
-                if(empty($data['title'])){
-                    $this->error("贴吧宣言不能为空！！！");
-                    exit;
-                }
-                if($this->_barinfo->field('id')->where(array('name'=>array('eq',$data['name'])))){
-                    $this->error("该贴吧名已存在！！！");
-                    exit;
-                }
-                if($this->_barinfo->data($data)->add()){
-                    $this->success("恭喜您，创建成功！！！",U('Barinfo/index'));
-                    exit;
-                }
-                unlink($data['hpic']);
-                unlink($data['bgpic']);
-                $this->error('添加失败');
-            }
-            unlink($data['hpic']);
-            unlink($data['bgpic']);
-            $this->error('添加失败');
-            exit;
-        }else{
-            $this->error("头像，背景图没上传！！！");
+        if(!$this->_barinfo->create()){
+            $this->error($this->_barinfo->getError());
             exit;
         }
+
+        if($this->_barinfo->add() > 0){
+            $this->success("添加成功！！！",U("Barinfo/index"));
+            exit;
+        }else{
+            $this->error("添加失败！！！");
+            exit;
+        }
+
     }
 
     /*
@@ -140,15 +77,8 @@ class BarinfoController extends AdminController
             $this->error("操作错误！！！");
         }
         $list = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
-        // dump($data);
-        $data = $this->_type->field('id,name,path')->select();
-        $arr = array();
-        foreach($data as $v){
-            $count=substr_count($v['path'],',');
-            $repeat=str_repeat('♔',$count-1);
-            $v['newname'] = $repeat.$v['name'];
-            $arr[] =$v;
-        }
+
+        $arr = $this->_barinfo->getOption();
         // dump($list);
 
         //分配数据
@@ -180,6 +110,87 @@ class BarinfoController extends AdminController
     //查看详情
     public function detail()
     {
+        $id = I('id');
+        if(empty($id)){
+            $this->error("操作失误！！！");
+            exit;
+        }
+        $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
+        $data['typename'] = $this->_type->field('name')->where(array('id'=>array('eq',$data['type_id'])))->find();
+        $data['username'] = $this->_user->field('name')->where(array('id'=>array('eq',$data['user_id'])))->find();
+        // dump($data);
+        $this->assign('title',"贴吧管理");
+        $this->assign('stitle','贴吧详情');
+        $this->assign('data',$data);
         $this->display("Barinfo/detail");
+    }
+
+    //执行头像上传和修改
+    public function upload()
+    {
+        if($_FILES['url']['error'] == 0){           
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+            $upload->rootPath = './Uploads/'; // 设置附件上传根目录
+            // 上传文件
+            $info = $upload->upload();
+            if(!$info) {
+                // 上传错误提示错误信息
+                $this->error($upload->getError());
+            }else{
+                // 上传成功
+                $data['id'] = I("post.id");
+                $data['hpic'] = $info['hpic']['savepath'].$info['hpic']['savename'];
+
+                $image = new \Think\Image();
+                $image->open("./Uploads/{$data['hpic']}");
+                // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
+                $image->thumb(150, 150)->save("./Uploads/{$info['hpic']['savepath']}/s_"."{$info['hpic']['savename']}");
+
+                if($this->_barinfo->data($data)->save()>0){
+                    $this->success("头像上传成功！！！",U('Barinfo/index'));
+                }else{                    
+                    unlink($info['hpic']['savepath'].'/'.$info['hpic']['savename']);
+                    $this->error('添加失败');
+                }
+            }
+        }
+    }
+
+    public function Request()
+    {
+        $r = M('request');
+        $data = $r->field('u.name uname,u.email uemail,b.name bname,r.id,r.status,r.user_id userid')->table('csw_barinfo b,csw_user u,csw_request r')->where('r.user_id=u.id and r.bar_id=b.id')->select();
+        // dump($data);
+        $this->assign('title','申请吧管理');
+        $this->assign('list',$data);
+        $this->display("Barinfo/request");
+    }
+
+    public function agree()
+    {
+        $id = I('id');
+        if(empty($id)){
+            $this->error("操作失误！！！");
+        }
+        $r = M('request');
+        $data = $r->field('user_id,bar_id,status')->where(array('id'=>array('eq',$id)))->find();
+        dump($data);
+        if(M('baradmin')->data($data)->add()>0){
+            if($data['status'] == 1){ 
+                $map = array();           
+                $map['user_id'] = $data['user_id'];
+                $map['id'] = $data['bar_id'];
+                dump($map);            
+                if($this->_barinfo->data($map)->save()>0){
+                    $r->where(array('id'=>$id))->delete();
+                    $this->success("已同意",U('Barinfo/request'));
+                }else{
+                    $this->error("操作失误！！！");
+                }
+            }
+        }else{
+            $this->error("操作失误！！！");
+        }
     }
 }

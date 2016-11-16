@@ -52,15 +52,14 @@ class LoginController extends Controller
             exit;
         }
         $_SESSION['admin_info'] = $data;
-        // dump($_SESSION['admin_info']);
-        $list = M('node')->field('cname,aname')->where('id in'.M('role_node')->field('node_id')->where("role_id in ".M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$data['id'])))->buildSql())->buildSql())->select();
 
-        // dump($list);
+        $list = M('node')->field('cname,aname')->where('id in'.M('role_node')->field('node_id')->where("role_id in ".M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$data['id'])))->buildSql())->buildSql())->select();
 
         //控制器名转换为大写
         foreach($list as $k=>$v){
             $list[$k]['cname'] = ucfirst($v['cname']);
         }
+
 
         $nodelist = array();
         $nodelist['Index'] = array('index');
@@ -69,14 +68,16 @@ class LoginController extends Controller
         foreach($list as $v){
             $nodelist[$v['cname']][] = $v['aname'];
             //将获取添加页面与执行添加，获取修改页面与执行修改，拼装到一起
-            if($v['aname'] == 'add'){
-                $nodelist[$v['cname']][] = "doAdd";
+
+            if($v['aname']=='add'){
+                $nodelist[$v['cname']][]='doadd';
             }
-            if($v['aname'] == 'edit') {
-                $nodelist[$v['cname']][] = "save";
+            if($v['aname']=='edit'){
+                $nodelist[$v['cname']][]='save';
             }
         }
             // dump($nodelist);
+
 
         $_SESSION['admin_info']['nodelist'] = $nodelist;
 

@@ -4,7 +4,7 @@
     <li class="active open">
 </block>
 
-<block name="barlist">
+<block name="requestlist">
     <li class="active">
 </block>
 
@@ -35,16 +35,16 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th> -->
-                            <th>ID</th>
-                            <th>吧名</th>
-                            <th class="hidden-480">类别</th>
-                            <th class="hidden-480">吧主</th>
-                            <th>状态</th>
-                            <th>宣言</th>               
-                            <th>
+                            <th>申请编号</th>
+                            <th>申请人</th>
+                            <th class="hidden-480">申请人ID</th>
+                            <th class="hidden-480">申请类别</th>
+                            <th>申请吧名</th>
+                            <th>email</th>              
+                            <!-- <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                 创建时间
-                            </th>
+                            </th> -->
 
                             <th>操作</th>
                         </tr>
@@ -63,46 +63,26 @@
                                 <td>
                                     <a href="#"> <{$v['id']}> </a>
                                 </td>
-                               <td> <{$v['name']}> </td>
+                               <td> <{$v['uname']}> </td>
                                 <td class="hidden-480">
-                                    <{$v['typename'].name}>
+                                    <{$v['userid']}>
                                 </td>
                                 <td class="hidden-480">
-                                    <{$v['username'].name}> 
+                                    <if condition="$v['status'] eq 1">吧主<else />吧管理员</if> 
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <a href="<{:U('Barinfo/checkStatus',array('id'=>$v['id']))}>">
                                     <if condition="$v['status'] eq 1">启用<else />禁用</if>
                                     </a>
-                                </td>
-                                <td> <{$v['title']}> </td>
-                                <td> <{$v['createtime']|date="Y-m-d",###}> </td>
+                                </td> -->
+                                <td> <{$v['bname']}> </td>
+                                <td> <{$v['uemail']}> </td>
                                 <td>
-                                    <!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="btn btn-primary" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
-                                            修改
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="btn btn-primary" href="<{:U('Barinfo/agree',array('id'=>$v['id']))}>">
+                                            同意请求
                                         </a>
                                     </div>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="btn btn-primary" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
-                                            查看详情
-                                        </a>
-                                    </div> -->
-
-                                    <a class="blue" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
-                                        <i class="icon-zoom-in bigger-130" title="查看详情"></i>
-                                    </a>
-
-                                    <a class="green" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
-                                        <i class="icon-pencil bigger-130" title="修改信息"></i>
-                                    </a>
-
-                                    <a class="lightgreen" href="#" role="button" data-toggle="modal" data-target="#myModal">
-                                        <i class=" icon-cloud-upload bigger-130" title="上传头像"></i>
-                                    </a>
-                                    <!-- <a class="red" href="<{:U('User/del',array('id'=>$v['id']))}>">
-                                        <i class="icon-trash bigger-130"></i>
-                                    </a> -->
                                     <div class="modal fade" id="myModal">
                                       <div class="modal-dialog">
                                         <div class="modal-content">
@@ -217,7 +197,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,null,
+              null, null,null, null, null,
               { "bSortable": false }
             ] } );
             
