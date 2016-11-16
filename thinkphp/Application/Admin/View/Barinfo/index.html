@@ -78,11 +78,31 @@
                                 <td> <{$v['title']}> </td>
                                 <td> <{$v['createtime']|date="Y-m-d",###}> </td>
                                 <td>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                         <a class="btn btn-primary" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
                                             修改
                                         </a>
                                     </div>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="btn btn-primary" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
+                                            查看详情
+                                        </a>
+                                    </div> -->
+
+                                    <a class="blue" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
+                                        <i class="icon-zoom-in bigger-130"></i>
+                                    </a>
+
+                                    <a class="green" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
+                                        <i class="icon-pencil bigger-130"></i>
+                                    </a>
+
+                                    <!-- <a class="lightgreen" href="<{:U('User/rolelist',array('id'=>$v['id']))}>"> -->
+                                        <!-- <i class=" icon-edit bigger-130"></i> -->
+                                    <!-- </a> -->
+                                    <!-- <a class="red" href="<{:U('User/del',array('id'=>$v['id']))}>">
+                                        <i class="icon-trash bigger-130"></i>
+                                    </a> -->
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
                                         <div class="inline position-relative">
