@@ -58,11 +58,9 @@
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
                                <td>
-
-                            <volist name="v.role" id="role">
-                                <span style="color:#999"><{$role}></span>
-                                &nbsp;
-                        </volist>
+                                  <if condition = "$v.status eq '1'">会员
+                                  <else />VIP
+                                  </if>     
                                </td>
                                 <td class="hidden-480"><{$v.name}></td>
                                   <td class="hidden-480">

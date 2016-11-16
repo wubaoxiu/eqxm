@@ -1,27 +1,36 @@
 <?php 
 namespace Admin\Controller;
 
-class BarController extends AdminController
+class NoteController extends AdminController
 {
     private $_note = null;//帖子表操作
-    private $_user = null;//帖子表操作
+    private $_user = null;//用户表表操作
+    private $_barinfo = null;//贴吧表操作
 
     public function _initialize(){
         parent::_initialize();
         $this->_note = D('Note');
         $this->_user = D('User');
+        $this->_barinfo = D('Barinfo');
     }
     //帖子用户列表
     public function index(){
         //查询数据
         $list = $this->_note->select();
-       $data = $this->_user->field('u.name')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
+       // $data = $this->_user->field('u.name')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
+        //声明一个空数组
+        $arr = array();
+        //遍历帖子信息
+        foreach ($list as $v) {
+           $notes = $this->_user->field('user_id')->where(array('id'=>array('eq',$v['user_id'])))->select();
+           var_dump($notes);
+        }
 
         $this->assign('title','帖子列表');
         //分配数据
         $this->assign('data',$data);
         $this->assign('list',$list);
-        $this->display('Bar/index');
+        $this->display('Note/index');
     }
 
 
@@ -35,7 +44,7 @@ class BarController extends AdminController
         $this->assign('title','帖子个人信息查询');
         $this->assign('list',$list);
         $this->assign('data',$data);
-        $this->display('Bar/select');
+        $this->display('Note/select');
     }
 
     //帖子删除
@@ -43,14 +52,14 @@ class BarController extends AdminController
 
         //判断有无ID
         if (empty($_GET['id'])) {
-            $this->redirect('Admin/Bar/index');
+            $this->redirect('Admin/Note/index');
             exit;
         }
 
         //过滤 也就是数据验证
         $id = I('get.id/d');
         if ($this->_note->delete($id)>0) {
-            $this->success('恭喜您，删除成功',U('Bar/index'));
+            $this->success('恭喜您，删除成功',U('Note/index'));
         }else{
             $this->error('删除失败......');
         }
@@ -69,7 +78,7 @@ class BarController extends AdminController
         $this->assign('title','帖子用户列表');
         $this->assign('stitle','编辑列表');
         $this->assign('data',$data);
-        $this->display('Bar/edit');
+        $this->display('Note/edit');
     }
 
 
@@ -79,7 +88,7 @@ class BarController extends AdminController
    public  function update(){
      //判断post是否为空
     if (empty($_POST)) {
-        $this->redirect('Admin/Bar/index');
+        $this->redirect('Admin/Note/index');
         exit;
     }
 
@@ -90,7 +99,7 @@ class BarController extends AdminController
     // var_dump($data);die;
 
     if ($this->_note->save($data)>0) {
-        $this->success('恭喜你，修改成功',U('Bar/index'));
+        $this->success('恭喜你，修改成功',U('Note/index'));
     }else{
         $this->error('修改失败......');
     }

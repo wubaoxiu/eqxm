@@ -22,7 +22,7 @@
        <form action="<{:U('AdminUser/saverole')}>" method='post'>
             <p style="width:600px">
                 <volist name="list" id="vo">
-                    <input type="checkbox" name="role[]"  value="<{$vo.id}>" <if condition="in_array($vo['id'],$role) eq true">checked</if>><b><{$vo.role}></b>
+                    <input type="radio" name="role[]"  value="<{$vo.id}>" <if condition="in_array($vo['id'],$role) eq true">checked</if>><b><{$vo.role}></b>
                     &nbsp;
                     &nbsp;
                     &nbsp;

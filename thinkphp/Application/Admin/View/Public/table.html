@@ -384,7 +384,7 @@
 						</block>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-desktop"></i>
-								<span class="menu-text"> 用户管理 </span>
+								<span class="menu-text"> 前台用户管理 </span>
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
@@ -394,25 +394,44 @@
 								</block>
 									<a href="<{:U('User/index')}>">
 										<i class="icon-double-angle-right"></i>
-										普通用户
+										前台用户列表
 									</a>
 								</li>
-
-								<block name="adminuser"><li></block>
-									<a href="<{:U('AdminUser/index')}>">
-										<i class="icon-double-angle-right"></i>
-										后台管理用户
-									</a>
-								</li>
-
 								<block name="adduser"><li></block>
 									<a href="<{:U('User/add')}>">
 										<i class="icon-double-angle-right"></i>
-										添加用户
+										添加前台用户
 									</a>
 								</li>
 							</ul>
 						</li>
+						<block name="adminuser">
+						<li>
+						</block>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 后台台用户管理 </span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<block name="ptuser">
+									<li>
+								</block>
+									<a href="<{:U('AdminUser/index')}>">
+										<i class="icon-double-angle-right"></i>
+										后台用户列表
+									</a>
+								</li>
+								<block name="adduser"><li></block>
+									<a href="<{:U('AdminUser/add')}>">
+										<i class="icon-double-angle-right"></i>
+										添加后台用户
+									</a>
+								</li>
+							</ul>
+						</li>
+
 
 						<block name="role">
 						<li>
@@ -552,7 +571,8 @@
 
 							</ul>
 						</li>
-						<block name="note"><li></block>
+						<block name="Note"><li></block>
+
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 贴子管理 </span>
@@ -560,7 +580,7 @@
 								<b class="arrow icon-angle-down"></b>
 							</a>
 							<ul class="submenu">
-								<block name="notelist"><li></block>
+								<block name="Notelist"><li></block>
 									<a href="<{:U('Note/index')}>">
 										<i class="icon-double-angle-right"></i>
 										帖子列表
