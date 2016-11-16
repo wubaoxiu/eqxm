@@ -17,22 +17,22 @@ class UserController extends AdminController
     public function index(){
         //查询数据
         $list = M('user')->select();
-        //定义一个空数组
-        $arr = array(); 
-        //声明遍历信息
-        foreach ($list as $v) {
-            $role_ids = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$v['id'])))->select();
-          //定义一个空数组
-            $roles = array();
-            //遍历
-            foreach ($role_ids as $value) {
-                $roles[]=M('role')->where(array('id'=>array('eq',$value['role_id'])))->getField('role');
-            }
-            $v['role']=$roles;
-            //将新得到的角色信息放置到$vz中
-            $arr[]=$v;
-        }
-        $this->assign('list',$arr);
+        // //定义一个空数组
+        // $arr = array(); 
+        // //声明遍历信息
+        // foreach ($list as $v) {
+        //     $role_ids = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$v['id'])))->select();
+        //   //定义一个空数组
+        //     $roles = array();
+        //     //遍历
+        //     foreach ($role_ids as $value) {
+        //         $roles[]=M('homerole')->where(array('id'=>array('eq',$value['role_id'])))->getField('role');
+        //     }
+        //     $v['role']=$roles;
+        //     //将新得到的角色信息放置到$vz中
+        //     $arr[]=$v;
+        // }
+        $this->assign('list',$list);
         $this->assign('title','用户管理');
         $this->assign('stitle','普通用户列表');
         $this->display('User/index');
@@ -80,7 +80,7 @@ class UserController extends AdminController
 
     public function add(){
         date_default_timezone_set('PRC');
-        $data = M('role')->select();
+        $data = M('Homerole')->select();
         // var_dump($data);
         $this->assign('stitle','添加普通用户列表');
         $this->assign('data',$data);

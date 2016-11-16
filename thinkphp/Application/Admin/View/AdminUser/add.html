@@ -1,0 +1,113 @@
+<extend name="Public/table" />
+
+<block name="adminuser">
+    <li class="active open">
+</block>
+
+<block name="addadminuser">
+    <li class="active">
+</block>
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+<block name="content">
+ <div class="table-header"><small><{$stitle}></small></div>
+    <form class="form-horizontal" role="form" action="<{:U('AdminUser/doAdd')}>" method="post"  enctype="multipart/form-data">
+    <input type="hidden" name = "id">
+   <div class="form-group" style="height:50px;margin-top:20px;">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 :</label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="text" name="name" id="" placeholder = "请输入用户名" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" style="height:50px">
+            <label for="" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 密　码 :</label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="password" name="password" placeholder = "请输入密码" id="" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" style="height:50px">
+            <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 确认密码 :</label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="password" name="repassword" id="" placeholder = "请输入确认密码" class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" style="height:50px">
+            <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right"> email :</label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="email" name="email" id=""placeholder = "请输入正确的邮箱"  class="width-100" />
+                    <i class="icon-leaf"></i>
+                </span>
+            </div>
+        </div>
+             <div style="width:500px;text-align:center;">
+            <label for="form-field-select-1" style="margin-left:-50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色 :</label>
+           
+            <select name = "role_id" class="form-control" placeholder = "请选择...." id="form-field-select-1" style="width:420px;margin-left:260px;margin-top:-25px;">
+                   <option value="">请选择....</option>
+            <foreach name='data' item='v'>
+                <option value="<{$v.id}>"><{$v.role}></option>   
+            </foreach>
+            </select>
+        </div>  
+      
+            <div  class="form-group" style="height:50px;font-size:17px;margin-top:30px;">
+                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">性别 :</label>
+                <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" checked="">女
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" >男
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="3" >保密
+                  </span>
+                </div>
+          </div>
+
+         <div class="form-group" style="height:50px">
+            <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 文件上传 :</label>
+
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                    <input type="file" name="file" id="" class="width-100" />
+                </span>
+            </div>
+        </div>
+        <div class="clearfix form-actions" style="margin-top:10px;">
+            <div class="col-md-offset-3 col-md-9">
+                <button class="btn btn-info" type="submit">
+                    <i class="icon-ok bigger-110"></i>
+                    确认添加
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="icon-undo bigger-110"></i>
+                    重新填写
+                </button>
+            </div>
+        </div>
+
+        <div class="hr hr-24"></div>
+
+    </form>
+</block>
