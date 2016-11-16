@@ -82,7 +82,19 @@ class BarinfoController extends AdminController
                 $data['bgpic'] = $arr[1];
                 // $data['url']=$info['url']['savepath'].$info['url']['savename'];
                 // dump($data);
+                if($data['type_id']==0){
+                    $this->error("请选择具体贴吧类别！！！");
+                    exit;
+                }
 
+                if(empty($data['title'])){
+                    $this->error("贴吧宣言不能为空！！！");
+                    exit;
+                }
+                if($this->_barinfo->field('id')->where(array('name'=>array('eq',$data['name'])))){
+                    $this->error("该贴吧名已存在！！！");
+                    exit;
+                }
                 if($this->_barinfo->data($data)->add()){
                     $this->success("恭喜您，创建成功！！！",U('Barinfo/index'));
                     exit;
@@ -94,8 +106,10 @@ class BarinfoController extends AdminController
             unlink($data['hpic']);
             unlink($data['bgpic']);
             $this->error('添加失败');
+            exit;
         }else{
-            $this->error("文件上传失败！！！");
+            $this->error("头像，背景图没上传！！！");
+            exit;
         }
     }
 
@@ -118,15 +132,54 @@ class BarinfoController extends AdminController
         }
     }
 
-    public function edit()
+    //获取修改页面
+    public function edit($id)
     {
         $id = I('id');
         if(empty($id)){
             $this->error("操作错误！！！");
         }
-        $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
+        $list = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
         // dump($data);
+        $data = $this->_type->field('id,name,path')->select();
+        $arr = array();
+        foreach($data as $v){
+            $count=substr_count($v['path'],',');
+            $repeat=str_repeat('♔',$count-1);
+            $v['newname'] = $repeat.$v['name'];
+            $arr[] =$v;
+        }
+        // dump($list);
+
+        //分配数据
+        $this->assign('title',"修改贴吧信息");
+        $this->assign('list',$arr);
+        $this->assign('data',$list);
 
         $this->display("Barinfo/edit");
+    }
+
+    //执行修改
+    public function save()
+    {
+        if(!$this->_barinfo->create()){
+            $this->error("操作错误！！！");
+            exit;
+        }
+        // dump($this->_barinfo->create());exit;
+
+        if($this->_barinfo->save()>=0){
+            $this->success("修改成功！！！",U("Barinfo/index"));
+            exit;
+        }else{
+            $this->error("修改失败！！！");
+            exit;
+        }
+    }
+
+    //查看详情
+    public function detail()
+    {
+        $this->display("Barinfo/detail");
     }
 }
