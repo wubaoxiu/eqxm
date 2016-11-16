@@ -85,7 +85,7 @@ class NoteController extends AdminController
    /**
    *  执行编辑
    */ 
-   public  function update(){
+   public  function save(){
      //判断post是否为空
     if (empty($_POST)) {
         $this->redirect('Admin/Note/index');

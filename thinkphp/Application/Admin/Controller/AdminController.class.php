@@ -25,10 +25,15 @@ class AdminController extends Controller
 
 
         $nodelist = $_SESSION['admin_info']['nodelist']; //获取权限信息
+        // dump($cname);
+        // dump($nodelist);
+        // dump($nodelist[$cname]);
+        // dump($aname);
 
         if($_SESSION['admin_info']['name'] !== 'admin'){
             if(empty($nodelist[$cname]) || !in_array($aname,$nodelist[$cname])){
                 $this->error("抱歉，你没有操作权限！");
+
                 exit;
             }
         }

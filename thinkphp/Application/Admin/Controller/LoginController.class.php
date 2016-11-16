@@ -70,18 +70,19 @@ class LoginController extends Controller
             $nodelist[$v['cname']][] = $v['aname'];
             //将获取添加页面与执行添加，获取修改页面与执行修改，拼装到一起
             if($v['aname'] == 'add'){
-                $nodelist[$v['cname']][] = $v['doAdd'];
+                $nodelist[$v['cname']][] = "doAdd";
             }
             if($v['aname'] == 'edit') {
-                $nodelist[$v['cname']][] = $v['save'];
+                $nodelist[$v['cname']][] = "save";
             }
         }
+            // dump($nodelist);
 
         $_SESSION['admin_info']['nodelist'] = $nodelist;
 
-        dump($_SESSION);
+        // dump($_SESSION);
 
-        // $this->redirect('Index/index');
+        $this->redirect('Index/index');
     }
 
     /*
