@@ -11,110 +11,125 @@
 <block name="content">
 <div class="table-header"><small><{$stitle}></small></div>
 
-<div class="col-xs-12">
- <div class="hr dotted"></div> <div>
-    <div id="user-profile-1" class="user-profile row">
-    <div class="col-xs-12 col-sm-3 center">
-       <span class="profile-picture">
-            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="__PUBLIC__/Public/image/luhan.jpg" />
-        </span>
+   <div class="col-xs-12 col-md-offset-1">
+      <div class="hr dotted"></div>
+       <div id="user-profile-1" class="user-profile row">
+        <div class="col-xs-12 col-sm-3 center" style = "width:250px;margin-top:23px;">
+            <span class="profile-picture">
+                <img id="avator" class="editable img-responsive" style = "width:180px;" alt="头像" src="__ROOT__/<{$data['hpic']}>" />
+                <div class="space-4"></div>
+                <div class="site-demo-upload">
+                    <div class="site-demo-upbar">
+                        <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">
+                    </div>
+                </div>
+            </span>
+            <div class="space-4"></div>
 
-        <div class="space-4"></div>
-
-        <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-            <div class="inline position-relative">
-                <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-circle light-green middle"></i>
-                    &nbsp;
-                    <span class="white"><{$data.name}></span>
-                </a>
+            <div class="width-100 label label-info label-xlg arrowed-in arrowed-in-right">
+                <div class="inline position-relative">
+                    <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-circle light-green middle"></i>
+                        &nbsp;
+                        <span class="white"><{$data.name}></span>
+                    </a>
+                </div>
             </div>
-        </div>
-
-
-    <div class="space-6"></div>
-
-    <div class="profile-contact-info">
-        <div class="profile-contact-links align-left">
-            <a class="btn btn-link" href="#">
-                <i class="icon-plus-sign bigger-120 green"></i>
-               加好友
-            </a>
-
-            <a class="btn btn-link" href="#">
-                <i class="icon-envelope bigger-120 pink"></i>
-                发信息
-            </a>
-        </div>
-
         <div class="space-6"></div>
-
-        <div class="profile-social-links center">
-            <a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
-                <i class="middle icon-facebook-sign icon-2x blue"></i>
-            </a>
-
-            <a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
-                <i class="middle icon-twitter-sign icon-2x light-blue"></i>
-            </a>
-
-            <a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
-                <i class="middle icon-pinterest-sign icon-2x red"></i>
-            </a>
-        </div>
     </div>
-</div>
+    <div class="col-xs-12 col-sm-7">
+        <div class="space-12"></div>
 
-<div class="col-xs-12 col-sm-9">
-    <div class="space-12"></div>
-    <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 用户名 </div>
+        <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 用户名 </div>
 
-            <div class="profile-info-value">
-                <span class="editable" id="name"><{$data.name}></span>
+                <div class="profile-info-value">
+                    <span class="editable" id="name"><{$data.name}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 性别 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="sex"><{$data.sex}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 邮箱 </div>
+
+                <div class="profile-info-value">
+
+                    <span class="editable" id="email"><{$data.email}></span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 角色 </div>
+
+                <div class="profile-info-value">
+             <!-- <{:dump($adminrole)}> -->
+                    <span class="editable" id="email">
+                     <if condition = "$userlist.status eq '1'">会员
+                     <else />VIP
+                     </if>
+                     <if condition = "$list.status eq '1'">吧主
+                     <else />吧管理员
+                     </if>
+                   <{$adminrole[0]['role']}>
+                    </span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 爱好 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="like"><{$data.like}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 注册时间</div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="createtime"><{$data.createtime|date='Y-m-d H:i:s',###}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 简介 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="introduction"><{$data.introduction}></span>
+                </div>
             </div>
         </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 性别 </div>
-
-            <div class="profile-info-value">
-                <span class="editable" id="sex"><{$data.sex}></span>
-            </div>
-        </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 邮箱 </div>
-
-            <div class="profile-info-value">
-                <span class="editable" id="email"><{$data.email}></span>
-            </div>
-        </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 爱好 </div>
-
-            <div class="profile-info-value">
-                <span class="editable" id="like"><{$data.like}></span>
-            </div>
-        </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 注册时间</div>
-
-            <div class="profile-info-value">
-                <span class="editable" id="createtime"><{$data.createtime|date='Y-m-d H:i:s',###}></span>
-            </div>
-        </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 简介 </div>
-
-            <div class="profile-info-value">
-                <span class="editable" id="introduction"><{$data.introduction}></span>
-            </div>
-        </div>
-    </div>
-</div>           
+    </div>      
+</block>
+<block name="tablejs">
+<script src="__PUBLIC__/layui/layui.js"></script>
+    <script type="text/javascript"> 
+    // 上传文件
+    layui.use('upload', function(){
+        layui.upload({
+            url: "<{:U('Admin/AdminUser/updateAvator',array('id' => $data['id']))}>" //上传接口
+            ,method: 'post',
+            data:1
+            ,before: function(input){
+                //返回的参数item，即为当前的input DOM对象
+                layer.msg('文件上传中.....', {
+                    icon: 16
+                    ,shade: 0.01,
+                    time:0,
+                });
+            }
+            ,success: function(res){ //上传成功后的回调
+                layer.closeAll();
+                $('#avator').attr('src','__ROOT__/' + res);
+            }
+        });
+});  
+</script> 
 </block>

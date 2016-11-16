@@ -1,10 +1,10 @@
 <extend name="Public/table" />
 
-<block name="user">
+<block name="admin">
     <li class="active open">
 </block>
 
-<block name="adminuser">
+<block name="adminlist">
     <li class="active">
 </block>
 <block name="where">
@@ -60,7 +60,10 @@
                                
                                <td>
                                 <volist name="v.role" id="role">
-                                  <span style="color:#999"><{$role}></span>
+                                  <span style="color:#999">
+                                   <{$role}>
+                                  </if>
+                                  </span>
                                 &nbsp;
                               </volist>
                                </td>
@@ -82,9 +85,6 @@
                                     <a class="green" href="<{:U('edit',array('id'=>$v['id']))}>">
                                         <i class="icon-pencil bigger-130"></i>
                                     </a>   
-                                    <a class="lightgreen" href="<{:U('rolelist',array('id'=>$v['id']))}>">
-                                        <i class="icon-edit bigger-130"></i>
-                                    </a>
 
                                     <a class="red" href="<{:U('del',array('id'=>$v['id']))}>">
                                         <i class="icon-trash bigger-130"></i>

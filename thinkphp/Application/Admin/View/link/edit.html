@@ -31,8 +31,8 @@
                 <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">显示 :</label>
                 <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
-                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" <if condition="$data.is_show eq '1'">checked</if> >显示
-                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" <if condition="$data.is_show eq '2'">checked</if> >不显示
+                  <input type="radio" onclick('show') style ="margin-left:10px;" name="is_show" value="1" <if condition="$data.is_show eq '1'">checked</if> >显示
+                  <input type="radio" id = "show" style ="margin-left:10px;" name="is_show" value="2" <if condition="$data.is_show eq '2'">checked</if> >不显示
                  
                   </span>
                 </div>
@@ -53,3 +53,10 @@
         <div class="hr hr-24"></div>
     </form>
 </block>
+<block name="tablejs">
+<script type="text/javascript">
+    show.click(function(
+        $('#show').toggle();
+        ))
+</script>
+</block>>

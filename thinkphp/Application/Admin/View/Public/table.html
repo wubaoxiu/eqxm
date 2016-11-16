@@ -7,6 +7,7 @@
 
 		<link href="__PUBLIC__/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="__PUBLIC__/Admin/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -405,17 +406,17 @@
 								</li>
 							</ul>
 						</li>
-						<block name="adminuser">
+						<block name="admin">
 						<li>
 						</block>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-desktop"></i>
-								<span class="menu-text"> 后台台用户管理 </span>
+								<span class="menu-text"> 后台用户管理 </span>
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
-								<block name="ptuser">
+								<block name="adminlist">
 									<li>
 								</block>
 									<a href="<{:U('AdminUser/index')}>">
@@ -423,7 +424,7 @@
 										后台用户列表
 									</a>
 								</li>
-								<block name="adduser"><li></block>
+								<block name="addadmin"><li></block>
 									<a href="<{:U('AdminUser/add')}>">
 										<i class="icon-double-angle-right"></i>
 										添加后台用户
@@ -431,8 +432,6 @@
 								</li>
 							</ul>
 						</li>
-
-
 						<block name="role">
 						<li>
 						</block>
@@ -883,6 +882,7 @@
 
 		<script src="__PUBLIC__/Admin/assets/js/ace-elements.min.js"></script>
 		<script src="__PUBLIC__/Admin/assets/js/ace.min.js"></script>
+		
 
 		<!-- inline scripts related to this page -->
         

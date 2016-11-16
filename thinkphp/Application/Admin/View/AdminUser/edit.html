@@ -1,12 +1,6 @@
 <extend name="Public/table" />
 
-<block name="user">
-    <li class="active open">
-</block>
 
-<block name="adduser">
-    <li class="active">
-</block>
 <block name="where">
     <li>
     <li><a href="#"><{$title}></a></li>
@@ -16,46 +10,20 @@
 
 <block name="content">
  <div class="table-header"><small><{$stitle}></small></div>
-    <form class="form-horizontal" role="form" action="<{:U('User/update')}>" method="post">
+    <form class="form-horizontal" role="form" action="<{:U('AdminUser/save')}>" method="post">
+    <input type="hidden" name = "id" value = "<{$data.id}>">
    <div class="form-group" style="height:50px;margin-top:20px;">
             <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 :</label>
-              <input type="hidden" name = "id" value = "<{$data.id}>">
             <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
                     <input type="text" name="name" id="" class="width-100" value="<{$data.name}>"/>
                     <i class="icon-leaf"></i>
                 </span>
             </div>
-           <!--  <div class="help-block col-xs-12 col-sm-reset inline">
-                Warning tip help!
-            </div> -->
         </div>
-
-        <div class="form-group" style="height:50px">
-            <label for="" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 密　码 :</label>
-
-            <div class="col-xs-12 col-sm-5">
-                <span class="block input-icon input-icon-right">
-                    <input type="password" name="password" id="" class="width-100" value="<{$data.password}>" disabled/>
-                    <i class="icon-leaf"></i>
-                </span>
-            </div>
-            <!-- <div class="help-block col-xs-12 col-sm-reset inline"> Error tip help! </div> -->
-        </div>
-
-        <div class="form-group" style="height:50px">
-            <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right"> 确认密码 :</label>
-
-            <div class="col-xs-12 col-sm-5">
-                <span class="block input-icon input-icon-right">
-                    <input type="password" name="repassword" id="" class="width-100" value="<{$data.repassword}>" disabled/>
-                    <i class="icon-leaf"></i>
-                </span>
-            </div>
-        </div>
-
-        <div class="form-group" style="height:50px">
-            <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right"> email :</label>
+        <!-- <{:dump($data)}> -->
+               <div class="form-group" style="height:50px">
+            <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right"> 邮箱 :</label>
 
             <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
@@ -65,26 +33,26 @@
             </div>
         </div> 
             <div  class="form-group" style="height:50px;font-size:18px;">
-                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">显示 :</label>
+                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">性别 :</label>
                 <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
-                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" <if condition="$data.is_show eq '1'">selected</if> >显示
-                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" <if condition="$data.is_show eq '2'">selected</if> >不显示
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="1" <if condition="$data['sex'] eq '1'">checked</if> >女
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="2" <if condition="$data['sex'] eq '2'">checked</if> >男
+                  <input type="radio" style ="margin-left:10px;" name="sex" value="3" <if condition="$data['sex'] eq '3'">checked</if> >保密
                  
                   </span>
                 </div>
           </div>
-
-        <div style="width:500px;text-align:center;margin-top:30px;">
+           <div style="width:500px;text-align:center;margin-top:-10px;">
             <label for="form-field-select-1" style="margin-left:-50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色 :</label>
            
             <select name = "role_id" class="form-control" id="form-field-select-1" style="width:420px;margin-left:260px;margin-top:-25px;"> 
-            <foreach name='rolelist' item='list'>  
-              <option value="<{$list.id}>" <if condition="$data.role_id eq $list['id']">selected</if> ><{$list.role}></option>      
-            </foreach>  
+            <foreach name='rolelist' item='v'> 
+              <option value="<{$v['id']}>"<if condition = "$list[0]['id'] eq $v['id']">selected</if> ><{$v.role}></option>      
+            </foreach> 
             </select>
         </div>  
-        <div class="clearfix form-actions" style="margin-top:50px;">
+        <div style="margin-top:30px;">
             <div class="col-md-offset-3 col-md-9">
                 <button class="btn btn-info" type="submit">
                     <i class="icon-ok bigger-110"></i>
@@ -97,7 +65,7 @@
                     重新修改
                 </button>
             </div>
-        </div>
+            </div>
 
         <div class="hr hr-24"></div>
 
