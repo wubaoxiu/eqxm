@@ -39,6 +39,7 @@
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                 email
                             </th>
+                            <th>状态</th>
 
                             <th>操作</th>
                         </tr>
@@ -71,6 +72,13 @@
                                 </td>
                                 <td><img src="__ROOT__/<{$v['hpic']}>" width="50" alt=""></td>
                                  <td><{$v.email}></td>
+                                 <td>
+                                     <if condition="$v.freeze eq '0'">正常
+                                     <elseif condition="$v.freeze eq '1'" />封号三天
+                                     <elseif condition="$v.freeze eq '2'" />封号七天
+                                     <else />封号一年
+                                     </if>
+                                 </td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                         <a class="blue" href="<{:U('User/select',array('id'=>$v['id']))}>">
@@ -181,7 +189,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,null,
+              null, null,null, null, null, null, null,
               { "bSortable": false }
             ] } );
             

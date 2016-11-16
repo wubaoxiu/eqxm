@@ -16,7 +16,7 @@
        <div id="user-profile-1" class="user-profile row">
         <div class="col-xs-12 col-sm-3 center">
  
-            <span class="profile-picture">
+            <span class="profile-picture mt40">
                 <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="__ROOT__/<{$data.hpic}>" />
             </span>
 
@@ -81,7 +81,12 @@
                 <div class="profile-info-name"> 性别 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="sex"><{$data.sex}></span>
+                    <span class="editable" id="sex">
+                    <if condition="$data.sex eq '1'">女
+                    <elseif condition="$data.sex eq '2'" />男
+                    <else />保密
+                    </if>
+                    </span>
                 </div>
             </div>
 
@@ -123,6 +128,20 @@
 
                 <div class="profile-info-value">
                     <span class="editable" id="introduction"><{$data.introduction}></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 账号状态 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="freeze">
+                    <if condition="$data.freeze eq '1'">封号三天,解封时间：<{$data.relieve|date='Y-m-d H:i:s',###}>
+                    <elseif condition="$data.freeze eq '2'" />封号七天,解封时间：<{$data.relieve|date='Y-m-d H:i:s',###}>
+                    <elseif condition="$data.freeze eq '3'" />封号一年,解封时间：<{$data.relieve|date='Y-m-d H:i:s',###}>
+                    <else />正常
+                    </if>
+                    </span>
                 </div>
             </div>
         </div>

@@ -45,8 +45,10 @@ class LoginController extends Controller
             exit;
         }
 
-        if($password !== $data['password']){
+        if($password!=$data['password']){
             $this->error("您输入的密码有误！");
+            // echo $password."<br>";
+            // echo $data['password'];
             exit;
         }
         $_SESSION['admin_info'] = $data;
@@ -77,9 +79,9 @@ class LoginController extends Controller
 
         $_SESSION['admin_info']['nodelist'] = $nodelist;
 
-        // dump($_SESSION);
+        dump($_SESSION);
 
-        $this->redirect('Index/index');
+        // $this->redirect('Index/index');
     }
 
     /*
