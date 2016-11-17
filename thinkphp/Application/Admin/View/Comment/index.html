@@ -1,0 +1,248 @@
+<extend name="Public/table" />
+
+<block name="comment">
+    <li class="active open">
+</block>
+
+<block name="commentlist">
+    <li class="active">
+</block>
+
+<block name="content">
+    <div class="page-header">
+        <h1>
+            贴吧列表
+            <small>
+                <i class="icon-double-angle-right"></i>
+                Bar List Tables
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                Results for "Latest Registered Domains"
+            </div>
+
+            <div class="table-responsive">
+                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <!-- <th class="center">
+                                <label>
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </th> -->
+                            <th>ID</th>
+                            <th>评论人</th>
+                            <th class="hidden-480">评论的帖子ID号</th>
+                            <th class="hidden-480">评论的楼层ID号</th>
+                            <th>评论所处贴吧</th>
+                            <th>状态</th>               
+                            <th>
+                                <i class="icon-time bigger-110 hidden-480"></i>
+                                评论时间
+                            </th>
+
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <foreach name="list" item="v">
+                            <tr>
+                                <!-- <td class="center">
+                                    <label>
+                                        <input type="checkbox" class="ace" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td> -->
+
+                                <td>
+                                    <a href="#"> <{$v['id']}> </a>
+                                </td>
+                               <td> <{$v['uname']}> </td>
+                                <td class="hidden-480">
+                                    <{$v['note_id']}>
+                                </td>
+                                <td class="hidden-480">
+                                    <{$v['floor']}> 
+                                </td>
+                                <td> <{$v['bname']}> </td>
+                                <td>
+                                    <a href="javascript:;" values="<{:U('Comment/changeStatus',array('id'=>$v['id']))}>" class="aajax" style="color:blue;font-weight:bold;font-size:14px;">
+                                    <!-- <if condition="$v['status'] eq 1">启用<else />禁用</if> -->
+                                    <if condition="($v['status'] eq 1)">显示<else />不显示</if>
+                                    </a>
+                                </td>
+                                <td> <{$v['createtime']|date="Y-m-d",###}> </td>
+                                <td>
+                                    <!-- <div class="visible-md visible-md hidden-sm hidden-xs action-buttons"> -->
+                                        <!-- <a class="btn btn-success" href="<{:U('Comment/changeStatus',array('id'=>$v['id']))}>">
+                                            是否显示
+                                        </a> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"> -->
+                                        <a class="btn btn-primary" href="<{:U('Comment/detail',array('id'=>$v['id']))}>">
+                                            查看评论内容
+                                        </a>
+                                
+
+                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-caret-down icon-only bigger-120"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                <li>
+                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                        <span class="blue">
+                                                            <i class="icon-zoom-in bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                        <span class="green">
+                                                            <i class="icon-edit bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                        <span class="red">
+                                                            <i class="icon-trash bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="modal-table" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        用户列表
+                    </div>
+                </div> -->
+
+                <div class="modal-footer no-margin-top">
+                    <ul class="pagination pull-right no-margin">
+                        <li class="prev disabled">
+                            <a href="#">
+                                <i class="icon-double-angle-left"></i>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+
+                        <li class="next">
+                            <a href="#">
+                                <i class="icon-double-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- PAGE CONTENT ENDS -->
+
+</block>
+
+<block name="tablejs">
+    <script>
+            var aajax = $("td .aajax");
+            // console.log(aajax.length);
+            for(var i = 0;i<aajax.length;i++){
+                // alert(i);
+                (function(i){
+                    aajax[i].onclick =function(){
+                        // alert(i);
+                        var url = $(this).attr("values");
+                        // console.log(url);
+                        var  $_this = $(this);
+                        $.ajax({
+                            type:'get',
+                            data:"",
+                            url:url,
+                            success:function(data){
+                                if(data==1){
+                                    // alert(data);
+                                    $_this.html('显示');
+                                }else if(data==2){
+                                    // alert(data);
+                                    $_this.html('不显示');
+                                }
+                            },
+                        })
+                    }
+                })(i);                   
+            }        
+      </script>
+    <script type="text/javascript">
+        jQuery(function($) {
+            var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+              { "bSortable": false },
+              null, null,null, null, null,null,
+              { "bSortable": false }
+            ] } );
+            
+            
+            $('table th input:checkbox').on('click' , function(){
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+                    
+            });
+        
+        
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+        
+                var off2 = $source.offset();
+                var w2 = $source.width();
+        
+                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    
+</block>

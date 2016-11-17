@@ -1,0 +1,27 @@
+<extend name="Public/table" />
+
+<block name="comment">
+    <li class="active open">
+</block>
+
+<block name="commentlist">
+    <li class="active">
+</block>
+
+<block name="content">
+    
+</block>
+
+<block name="tablejs">
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script>
+        layer.ready(function(){
+            layer.open({
+            type: 1,
+            area: ['600px', '360px'],
+            // shadeClose: false, //点击遮罩关闭 
+            content: '\<\div style="padding:20px;"><{$list['content']}>\<\/div>\<\div style="padding:20px;">\<\a href="<{:U('Comment/index')}>" class="btn btn-success">返回评论页\<\/a>\<\/div>' 
+        });
+        })
+    </script>
+</block>
