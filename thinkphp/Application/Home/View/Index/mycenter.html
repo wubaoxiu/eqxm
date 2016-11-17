@@ -1,58 +1,359 @@
-<extend name='Index/header' />
-    <title>个人中心</title>
-<block name='main'>
-<div class = "center">
-    <div class = "center_nav">    
-        <div class = "center_header">
-            <ul>
-                <li><a href="">贴吧首页</a></li>
-                <li><a href="">我的帖子</a></li>
-                <li><a href="">我的贴吧</a></li>
-            </ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧">
+    <title>我的贴吧</title>
+    <script async="" src="__PUBLIC__/Center/dp.min.js.下载"></script>
+    <script async="" src="__PUBLIC__/Center/alog.min.js.下载"></script>
+    <script type="text/javascript">void function(t,e,n,a,r,i,o){t.alogObjectName=r,t[r]=t[r]||function(){(t[r].q=t[r].q||[]).push(arguments)},t[r].l=t[r].l||+new Date,i=e.createElement(n),i.async=!0,i.src=a,o=e.getElementsByTagName(n)[0],o.parentNode.insertBefore(i,o)}(window,document,"script","http://img.baidu.com/hunter/alog/alog.min.js","alog"),void function(){function t(){}window.PDC={mark:function(t,e){alog("speed.set",t,e||+new Date),alog.fire&&alog.fire("mark")},init:function(t){alog("speed.set","options",t)},view_start:t,tti:t,page_ready:t}}(),void function(t){var e=!1;t.onerror=function(t,n,a,r){var i=!0;return!n&&/^script error/i.test(t)&&(e?i=!1:e=!0),i&&alog("exception.send","exception",{msg:t,js:n,ln:a,col:r}),!1},alog("exception.on","catch",function(t){alog("exception.send","exception",{msg:t.msg,js:t.path,ln:t.ln,method:t.method,flag:"catch"})})}(window),window.xssfw=function(t){function e(t,e){if(!(10<++u)){var n={type:"INLINE",path:t,code:e.substr(0,400),len:e.length};alog("xss.send","xss",n),p.push(n),c()}}function n(t,e){if(t&&0!=e){var a=t.tagName;if("BODY"!=a){t.id&&(a+="#"+t.id);var r=t.className;return r&&(a+="."+r.split(" ")[0]),(r=n(t.parentNode,e-1))?r+" "+a:a}}}function a(t){for(var e=g.length-1;e>=0;e--){var n=g[e];if(t>n.b)return n}}function r(t){for(var e=l.length-1;e>=0;e--){var n=l[e];if(n.b.test(t))return n}}function i(t,i){function o(s){var f=s._k;if(f||(f=s._k=++d),f=f<<8|i,!m[f]&&(m[f]=!0,1==s.nodeType)){var l;s[t]&&(l=s.getAttribute(t))&&(f=a(l.length)||r(l)||{},f.a&&(s[t]=null),f.c&&e(n(s,5)+"["+t+"]",l)),c&&"A"==s.tagName&&"javascript:"==s.protocol&&(l=s.href.substr(11),f=a(l.length)||r(l)||{},f.a&&(s.href="javascript:void(0)"),f.c&&e(n(s,5)+"[href]",l)),o(s.parentNode)}}var c="onclick"==t;document.addEventListener(t.substr(2),function(t){o(t.target)},!0)}function o(t){var e=[];if(t)for(var n=t.length-1;n>=0;n--){var a=t[n],r=a.target;e.push({b:a.match,a:/D/.test(r),c:/W/.test(r)})}return e}function c(){if(s){for(var t=0;t<p.length;t++)s(p[t]);p=[]}}var s,f,l,g,u=0,m={},d=0,p=[],h={};return h.init=function(e){if(t.addEventListener&&!f){f=!0,alog("xss.create",{dv:5,postUrl:"http://tb1.bdstatic.com/tb/pms/img/st.gif",page:"tb-xss"}),g=o(e["len-limit"]),l=o(e["key-limit"]),e=0;for(var n in document)/^on./i.test(n)&&i(n,e++)}},h.watch=function(t){s=t,c()},h}(this),xssfw.init({"len-limit":[{match:400,target:"Warn"}],"key-limit":[{match:/createElement/,target:"Warn"},{match:/fromCharCode|eval|getScript|xss/,target:"Warn,Deny"},{match:/alert\(|prompt/,target:"Warn"}]});
+</script>
+<link rel="shortcut icon" href="http://tb1.bdstatic.com/tb/favicon.ico">
+<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource">
+<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(1)">
+<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(2)">
+<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(3)">
+        <script>    
+        var PageData = {        "tbs": "",        "charset": "UTF-8",        "product": "ihome",        "page": "main"    };    PageData.user = {        "id": "1542002465",        "user_id": "1542002465",        "name": "YANG木漪",        "user_name": "YANG木漪",        "name_url": "YANG%E6%9C%A8%E6%BC%AA",        "no_un": 0,        "is_login": 1,        "portrait": "",        "balv": {}, /* Ban 这个模块真够讨厌的 */"Parr_props": null,"Parr_scores": null,"mParr_props": null,"vipInfo": null,        "power": {}    };    PageData.search_what = "";    var Env = {        server_time: 1479212984000};    var Tbs = {"common":""};</script><script type="text/javascript">function resizePic_temp(e,t,i,s,n){function r(e,t,i,s){var n=0,r=e,a=t;switch(e>i&&(n+=1),t>s&&(n+=2),n){case 1:r=i,a=t*i/e;case 2:a=s,r=e*s/t;case 3:a=t/s>e/i?s:t*i/e,r=t/s>e/i?e*s/t:i}return 0!=n&&(l=!0),[r,a]}var a=t||120,c=i||120,l=!1,p=new Image;p.src=e.src;var h=r(p.width,p.height,a,c);return e.style.width=h[0]+"px",e.style.height=h[1]+"px","function"==typeof n&&n.apply(this,arguments),e.style.visibility="visible",1==s&&(e.style.marginTop=(i-parseInt(h[1]))/2+"px"),p=null,l}
+    </script>
+    <script type="text/javascript">alog("speed.set","ht",new Date);</script>
+    <script type="text/javascript" src="./YANG木漪的贴吧_files/common_default_merger.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/Center/MsgSystem.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/Center/UserMessage.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/Center/get_data"></script>
+</head>
+<body>
+<script>    
+PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,options) {        var tempImg = document.createElement('img');        mImg.onload = null;        mImg.loading = true;        var maxWidth = 400;        var maxHeight = 75;        if (loc==1) {            maxHeight = 100;        }        if (options!=null) {            maxWidth = options['width']!=null? options['width'] : maxWidth;            maxHeight = options['height']!=null? options['height'] : maxHeight;        }        tempImg.onload = function() {            if (maxHeight>100 && tempImg.height > tempImg.width) {                maxWidth = maxHeight;   maxHeight = 100000;            }            resizePic_temp(tempImg,maxWidth,maxHeight);            var twidth = tempImg.style.width,                width = Number(twidth.replace("px",""));            if(width<50){                var pObj = mImg.parentNode,                    classN = pObj.className;                if(classN=="vpic_wrap")                {                    mImg.parentNode.className ="vpic_wrap vpic_small";                }            }            mImg.style.width = tempImg.style.width;            mImg.style.height = tempImg.style.height;            mImg.src = tempImg.src;            mImg.loaded = true;            mImg.loading = null;            this.onload = null;        };        tempImg.src = mImg.getAttribute('original');    }
+</script>
+<div id="headinfo_wrap" class="headinfo_wrap">    
+<img src="__PUBLIC__/Center/1.jpg" style = "width:980px;height:255px;"alt="">
+    <a class="btn_editbg" href="http://tieba.baidu.com/home/main?id=211759414e47c4bee4f4e95b&amp;fr=userbar#"></a>    
+</div>
+<div id="userinfo_wrap" class="userinfo_wrap clearfix">
+    <div class="userinfo_left ">
+        <div class="userinfo_left_head" id="j_userhead" data-sign="2117e95b?t=1479174124" title="点击查看高清头像">
+            <a href="javascript:;" style="" class="userinfo_head">
+                <img src="__PUBLIC__/Center/2117e95b">
+            </a>
         </div>
     </div>
-    <div class = "center_warp">
-        <div class = "center_center">
-        <div class = "center_left fl">
-            <div class = "center_left_top">
-                <div class = "center_left_top_one">
-                    <ul>
-                        <li><b>个人中心</b></li>
-                        <li><a href="">[设置]</a></li>
-                    </ul>
+    <div class="userinfo_middle">
+        <div class="userinfo_relation">
+            <div class="btn_grounps">
+                <a class="btn-sub btn-small" target="_blank" href="#">
+                    <i class="icon-edit"></i>编辑资料</a>
+                </div>    
+            </div>
+            <div class="userinfo_title">            
+                <span class="userinfo_username ">YANG木漪</span>                        
+            </div>
+            <div class="userinfo_num">
+                <div class="userinfo_userdata">
+                    <span class="userinfo_sex userinfo_sex_female"></span>
+                    <span>吧龄:#####年</span>
+                    <span class="userinfo_split"></span>
+                    <span>发贴:####</span>                
                 </div>
-                <div class = "center_left_top_two">
-                    <div class = "center_img"><img style = "width:100px;height:100px;" src="./1.jpg" alt=""></div>
-                   <div class = "center_fans fr">
-                       <ul>
-                           <li><b>萧萧</b></li>
-                           <li>粉丝：777</li>
-                           <li>关注：666</li>
-                       </ul>
-                   </div>
-                </div>   
+            </div>        
+            <div class="userinfo_honor clearfix">           
+                <span class="icon_wrap  icon_wrap_theme2  icon_slot_wrap j_book_icon">
+                    <a href="javascript:void(0)" data-slot="1" data-name="" title="点击添加印记" class="j_slot_null_icon j_icon_slot icon_slot_null_icon" style="top: 0px;left:0px">
+                        <div class="j_icon_slot_refresh"></div>
+                    </a>
+                    <a href="javascript:void(0)" title="开启插槽" class="j_icon_slot_buy icon_add_solt" style="top: 0px;left:28px"></a>
+                </span>            
             </div>
-            <div class = "center_bottom">
-                <ul>
-                   <li><a href="">首页</a></li>
-                   <li><a href="">我的贴吧</a></li>
-                   <li><a href="">我的帖子</a></li>
-                   <li><a href="">我的收藏</a></li>
-                   <li><a href="">我的提醒</a></li>
-                   <li><a href="">好友申请</a></li>
-                   <li><a href="">我的关注</a></li>
-                   <li><a href="">我的网盘</a></li>
-                </ul>
+        </div>
+        <div class="userinfo_right">        
+            <div class="userinfo_scores clearfix">
+                <span class="scores-header-hr"></span>
+                <span>我的T豆:</span>
+                <a class="userinfo_scores_num j_userinfo_scores_num" href="#">
+                    <i class="icon-tbean"></i>0</a>
+                    <div>
+                        <a class="btn-sub btn-small j-ihome-get-tdou" href="javaScript:;">获取T豆</a>
+                        <a class="btn-sub btn-small userinfo_buy_props" href="#">道具商城</a>
+                    </div>
+                </div>
+                <div class="userinfo_scores userinfo_scores_border clearfix">                
+                    <span class="blue-header-hr"></span>
+                    <span>我的蓝钻：</span>
+                    <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
+                    <div>
+                        <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
+                        <a class="btn-sub btn-small" href="http://tieba.baidu.com/f?kw=%C0%B6%D7%EA&amp;fr=index" target="_blank">蓝钻换购</a>
+                    </div>
+                </div>                    
+                <div class="userinfo_shortcut">            
+                    <a href="#" target="_blank">服务中心</a>
+                    <span class="userinfo_split"></span>
+                    <a href="#" target="_blank">我在百度</a>
+                    <span class="userinfo_split"></span>
+                    <a href="#" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>            
+                </div>
+            </div>
+        </div>
+        <div id="container" class="container_wrap clearfix ihome_body">
+            <div class="left_aside ihome_left_aside">
+                <div class="content_wrap">        
+                    <div id="ihome_nav_wrap" class="ihome_nav_wrap">
+                        <ul class="ihome_nav_list">                    
+                            <li class="focus">      
+                                <div class="tbnav_tab_inner">                    
+                                    <p class="space">                    
+                                        <a class="nav_icon nav_main" href="#">我的主页</a>
+                                    </p>                    
+                                </div>
+                            </li>                    
+                            <li>        
+                                <div class="tbnav_tab_inner">                    
+                                    <p class="space">                    
+                                        <a class="nav_icon nav_msg" href="#">通知</a>
+                                    </p>                    
+                                    <span></span>                    
+                                </div>
+                            </li>                    
+                            <li>        
+                                <div class="tbnav_tab_inner">                    
+                                    <p class="space">                    
+                                        <a class="nav_icon nav_collect" href="#">收藏</a>
+                                    </p>                    
+                                    <span></span>                    
+                                </div>
+                            </li>                    
+                            <li>        
+                                <div class="tbnav_tab_inner">                    
+                                    <p class="space">                    
+                                        <a class="nav_icon nav_concern" href="#">关注的吧</a>
+                                    </p>                    
+                                </div>
+                            </li>                    
+                            <li>        
+                                <div class="tbnav_tab_inner">                    
+                                    <p class="space">                    
+                                        <a class="#" target="_blank">贴子</a>
+                                    </p>                    
+                                </div>
+                            </li>                    
+                            <li>        
+                                <div class="tbnav_tab_inner">                    
+                                    <p>                    
+                                        <a class="nav_icon nav_achieve" href="#">成就</a>
+                                    </p>                    
+                                </div>
+                            </li>    
+                        </ul>
+                    </div>
+                    <div class="ihome_forum_group ihome_section clearfix">    
+                        <div id="onekey_sign">
+                            <a class="onekey_btn" onclick="return false;" href="#">
+                                <i class="icon_signed"></i>
+                            </a>
+                        </div>
+                        <h1 class="ihome_title">
+                            <span class="cut_line">|</span>爱逛的吧
+                        </h1>
+                        <div class="clearfix u-f-wrap" id="forum_group_wrap">         
+                            <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="#" class="u-f-item unsign">
+                                <span>李毅</span>
+                                <span class="forum_level lv1"></span>
+                            </a>          
+                        </div>
+                    </div>
 
+                    <div class="ihome_hot_feed ihome_section">
+                        <h1 class="threadList_title">
+                            <span class="cut_line">|</span>热门动态
+                        </h1>
+                        <ul class="new_list clearfix">        
+                            <div class="n_right n_right_first clearfix">
+                                <div class="n_post_time">2015-12-26</div><div class="n_avatar">
+                                <a href="#" target="_blank" title="苏州经贸职业技术学院">
+                                    <img src="./YANG木漪的贴吧_files/77c6a7efce1b9d1675fcaae8f2deb48f8c54647b.jpg">
+                                </a>
+                            </div>
+                            <div class="n_contain">
+                                <div>
+                                    <div class="title_wraper">
+                                        <a href="#" target="_blank" class="n_name" title="苏州经贸职业技术学院">苏州经贸职业技术学院吧</a>
+                                    </div>
+                                    <div class="thread_name">
+                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1" title="新年快乐">【咩咩】苏经贸吧祝全体吧友新年快乐</a>
+                                    </div>
+                                </div>
+                                <div class="n_txt">羊年到，羊年好，羊年瑞雪步步高。羊年吉，羊年顺，羊年伊始祥云飘。 羊年伊始，衷心...
+                                </div>
+                                <div class="n_reply">
+                                    <a href="#" title="主题作者" target="_blank" class="post_author ">love影6</a>
+                                    <span class="userinfo_split"></span>
+                                    <span class="post_num">98</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                    <div class="data_loading">
+                        <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>    
+                    </div>
+                </div>
+            </div>
+            <div class="right_aside">
+                <div class="ihome_aside_section ihome-aside-gift-center">
+                    <h1 class="ihome_aside_title">        我的礼物<span class="gift-num">(<i>0</i>)</span>        
+                        <a class="mygift-more" j-gift-more="" href="javascript:;" data-user-id="1542002465" style="display: inline;">查看全部 &gt;</a>        
+                    </h1>
+                    <div class="ihome-aside-gift-center-container" style="display: block;">        
+                        <ul class="ihome-aside-gift-center-container-list"></ul>                
+                        <p class="ihome-aside-gift-center-container-no-gift">你还没有收到任何礼物~</p>        
+                    </div>
+                </div>
+                <div class="ihome_aside_section ihome-aside-grab-treasure">
+                    <h1 class="ihome_aside_title">我的夺宝</h1>
+                    <div class="home-aside-grab-treasure-main">
+                        <span class="pull-left home-aside-grab-treasure-info">暂时没有参与夺宝</span>
+                        <a class="pull-right link" target="_blank" href="#">查看我的夺宝&gt;</a>
+                    </div>
+                </div>
+                <div class="ihome_aside_section ihome_visitor ">
+                    <h1 class="ihome_aside_title">最近来访</h1>
+                    <div class="card_wrap">
+                        <ul id="visitor_card_wrap">            
+                            <li class="visitor_card">
+                                <a href="#" target="_blank" class="j_user_card" locate="visitor#ihome_v1" data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}">
+                                    <img src="__PUBLIC__/Center/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a" alt="头像"></a>                    
+                                </li>            
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ihome_aside_section">
+                        <h1 class="ihome_aside_title">我关注的人<span class="concern_num">(<a href="http://tieba.baidu.com/home/concern?id=211759414e47e69ca8e6bcaae95b?t=1479174124&amp;fr=home" target="_blank">1</a>)</span></h1>
+                        <ul class="concern_wrap" id="concern_wrap_concern">        
+                            <li class="concern_item">
+                                <a data-field="{&quot;un&quot;:&quot;\u77eb\u60c5\u4f60222&quot;}" class="j_user_card" target="_blank" locate="concern#ihome_v1" href="#">
+                                    <img src="__PUBLIC__/Center/0998e79fabe68385e4bda0323232de35">
+                                </a>                
+                            </li>        
+                        </ul>
+                    </div>
+                    <div class="ihome_aside_section ">
+                        <h1 class="ihome_aside_title">关注我的人<span class="concern_num">(<a href="#" target="_blank">1</a>)</span></h1>
+                        <ul class="concern_wrap" id="concern_wrap_fans">        
+                            <li class="concern_item"><a data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}" class="j_user_card" target="_blank" locate="fans#ihome_v1" href="#"><img src="./YANG木漪的贴吧_files/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a"></a>
+                            </li>        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="footer" class="footer">                                                                                                      
+                <span>©2016 Baidu</span>
+                <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">吧主制度</a>
+                <span>|</span>
+                <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
+            </div> 
+        </div>
+        <span class="fix-for-ie8"></span>
+    </div>
+    <script type="text/javascript">alog&&alog("speed.set","drt",+new Date);</script>
+    <script>
+    PageUnitData={"search_input_tip":"\u8f93\u5165\u4f60\u611f\u5174\u8da3\u7684\u4e1c\u4e1c","icons_category":{"101":["\u5df4\u897f\u4e16\u754c\u676f"],"102":["\u661f\u5ea7\u5370\u8bb0"],"104":["\u8d34\u5427\u5370\u8bb0"]}};
+    </script>
+<script src="__PUBLIC__/Center/saved_resource(4)"></script>
+
+<script src="__PUBLIC__/Center/saved_resource(6)"></script>
+<script src="__PUBLIC__/Center/saved_resource(7)"></script>
+<script src="__PUBLIC__/Center/saved_resource(8)"></script>
+<script>window.modDiscardTemplate={};</script>
+<script>
+    _.Module.use('creativeplatform/widget/aopApp', [[]]);
+</script>
+<script>
+    _.Module.use('common/widget/httpTransform', [], function(){});  </script><script>_.Module.use('common/widget/suggestion', [], function(){});</script><script>_.Module.use('common/widget/searchBright',[$('#head'),{    style:'bright',    theme:'2',    forumName:'',    searchFixed:'',    sugOn:'1'}]);</script><script>_.Module.use("ihome/widget/Interaction", {'un':'YANG木漪','tbs':'394351ad41a4db961479212983'});</script><script>    _.Module.use('ihome/widget/interactionMod', []);</script><script>    _.Module.use('ihome/widget/marry',{ homeUserMarriage: null, userMarriage: null});</script><script>    PageData.forum = PageData.forum || {};    PageData.forum.id = 0;    PageData.forum.name = '';    PageData.current_page_uname = 'YANG木漪';    _.Module.use('ihome/widget/Userinfo', {"user":{"user_id":1542002465,"homeUserName":"YANG\u6728\u6f2a","personal_pronouns":"\u5979","appraise":null,"medal_endtime":""},"isSuperMember":false,"isAnnualMember":false,"memberLevel":1});    PageData.user = PageData.user || {};    PageData.user.Parr_scores=null;    PageData.iconInfo = null;    PageData.category_info = {"category_list":{"104":{"id":"10","name":"\u8d34\u5427\u5370\u8bb0","category_id":"104","op_time":"1464680413","status":"1","is_default":"1"},"102":{"id":"11","name":"\u661f\u5ea7\u5370\u8bb0","category_id":"102","op_time":"1415847225","status":"1","is_default":"0"},"101":{"id":"12","name":"\u5df4\u897f\u4e16\u754c\u676f","category_id":"101","op_time":"1415847232","status":"1","is_default":"0"},"105":{"id":"13","name":"\u5427\u4f1a\u5458\u5370\u8bb0","category_id":"105","op_time":"1430278431","status":"1","is_default":"0"},"106":{"id":"15","name":"\u5427\u4f1a\u5458\u5370\u8bb02","category_id":"106","op_time":"1458890681","status":"1","is_default":"0"}},"default_category":{"104":{"id":"10","name":"\u8d34\u5427\u5370\u8bb0","category_id":"104","op_time":"1464680413","status":"1","is_default":"1"}}};    _.Module.use('user/widget/Icons/IconsBookControl',[{}],function(){});
+        </script>
+        <script>
+        _.Module.use("props/widget/Feedback",[{"appraise":null}]);</script><script>    _.Module.use('ihome/widget/OnekeySign');</script><script>    _.Module.use('ihome/widget/forumGroup', {"forumArr":[{"user_id":1542002465,"forum_id":59099,"forum_name":"\u674e\u6bc5","is_black":0,"is_top":0,"in_time":1478677138,"level_id":1,"cur_score":1,"score_left":4,"level_name":"\u4e16\u5916\u9ad8\u4eba","forum_type":1,"is_sign":0},{"user_id":1542002465,"forum_id":648141,"forum_name":"\u82cf\u5dde\u7ecf\u8d38\u804c\u4e1a\u6280\u672f\u5b66\u9662","is_black":0,"is_top":0,"in_time":1420806292,"level_id":3,"cur_score":19,"score_left":11,"level_name":"\u6ee1\u8179\u7ecf\u7eb6","forum_type":2,"is_sign":0},{"user_id":1542002465,"forum_id":1627045,"forum_name":"\u80e5\u6e21","is_black":0,"is_top":0,"in_time":1479212968,"level_id":2,"cur_score":5,"score_left":10,"level_name":"\u4e2d\u7ea7\u7c89\u4e1d","forum_type":2,"is_sign":1},{"user_id":1542002465,"forum_id":426938,"forum_name":"\u8bdd\u5267\u5267\u672c","is_black":0,"is_top":0,"in_time":1429799640,"level_id":1,"cur_score":4,"score_left":1,"level_name":"\u521d\u7ea7\u7c89\u4e1d","forum_type":2,"is_sign":0},{"user_id":1542002465,"forum_id":10866131,"forum_name":"\u82f1\u4e09\u5609\u54e5","is_black":0,"is_top":0,"in_time":1478741351,"level_id":1,"cur_score":3,"score_left":2,"level_name":"\u521d\u7ea7\u7c89\u4e1d","forum_type":2,"is_sign":0},{"user_id":1542002465,"forum_id":6570,"forum_name":"php","is_black":0,"is_top":0,"in_time":1478742371,"level_id":1,"cur_score":1,"score_left":4,"level_name":"\u8def\u8fc7\u9171\u6cb9","forum_type":2,"is_sign":0}], "ihome":{"is_mine":1}, "user": {"itb_tbs":"ff622e78c3fbcd4e"}});
+    </script>
+    <script>
+         _.Module.use('comforum/widget/gameGroup', {"gameArr":[], "isMine":1});
+    </script>
+    <script>    _.Module.use("ihome/component/ThreadItem");</script>
+    <script>    _.Module.use("ihome/widget/HotFeed",["YANG木漪"]);</script>
+    <script>    window.alogObjectConfig = {product: '14',page: '14_17', speed: {sample: '0.1'}}</script>
+    <script>    _.Module.use('user/widget/icon_tip',{ myIcons:[null] });</script>
+    <script>    _.Module.use('ihome/widget/gift', {        userId: '1542002465',        $container: '.ihome-aside-gift-center',        isMyHome: 1});</script>
+    <script>    _.Module.use('ihome/widget/my_grab_treasure', {    });</script>
+    <script>    _.Module.use('ihome/widget/visitor');</script>
+    <script>        _.Module.use('ihome/widget/concern');</script>
+    <script>    _.Module.use('ihome/widget/my_forbid_speech');</script>
+    <script>_.Module.use("common/widget/AsideFloatBar",[{buttons: ["props","top"],propsData : {        "owner" : null,        "home_user_id" : 1542002465,        "home_user_props" : null}}]);</script>
+    <script>    _.Module.use('ihome/widget/UserVisitCard',{'uname':'YANG木漪','is_login':1,'tbs':'394351ad41a4db961479212983'});</script>
+    <script>(function(){    var leftHeight = $("#container .left_aside").height();    var rightHeight = $("#container .right_aside").height();    if(leftHeight < rightHeight){    $("#container .left_aside").css({"min-height":rightHeight});    }})();</script>
+    <script>    _.Module.use('creativeplatform/widget/normalApp', [[]]);</script>
+    <script>PageData.lcs = {};PageData.lcs.sbduss = 'rFfg5ygxw6a8OWCC4yU3DGUCn5qPmM4a2aUY+9sK63Iil5S3SaqEENqqnh5tpCDsfye7d97v7gdQ0Yp2k\/q2DTfQdjoUHU+p0P2QQKbNitPfpLXCmS84lNuemsyL0cT8U9KFXWATfMnQ\/ZBAps2K00F6sDg8FyuOQXqwODwXK45BerA4PBcrjkF6sDg8FyuOQXqwODwXK45BerA4PBcrjkF6sDg8FyuOQXqwODwXK47gWEx5G7hI258hiLQIf8kS';</script>
+    <script>_.Module.use("common/widget/Userbar", [PageData.user, PageData.product, {    bluePushUnit: {"url":["http:\/\/push.dui1dui.com\/tieba\/awaken"],"button":["\u9a6c\u4e0a\u62a2"],"text":["\u4eb2\u7231\u7684\uff0c\u4f60\u4e0d\u77e5\u9053\u5417\uff1f\u4f60\u8d26\u6237\u4e2d\u7684\u84dd\u94bb\u53ef\u4ee5\u7528\u6765\u5151\u6362\u8d34\u5427\u4f1a\u5458\uff01\u540d\u989d\u6709\u9650\uff0c\u901f\u6765\u62a2\uff01"]},    bluePushFlag: "all",    userDiamond: null}]);</script>
+    <script>_.Module.use('common/widget/footer',null, function(){});</script>
+    <script>        _.Module.use('common/widget/AdStats', [{}]);    </script>
+    
+<script>(function(){    })()</script>
+<script type="text/javascript">void function(e,t,n,a,o,s){function c(t){e.attachEvent?e.attachEvent("onload",t,!1):e.addEventListener&&e.addEventListener("load",t)}function r(e,n,a){a=a||15;var o=new Date;o.setTime((new Date).getTime()+1e3*a),t.cookie=e+"="+escape(n)+";path=/;expires="+o.toGMTString()}function i(e){var n=t.cookie.match(new RegExp("(^| )"+e+"=([^;]*)(;|$)"));return null!=n?unescape(n[2]):null}function l(){var e=i("PMS_JT");if(e){r("PMS_JT","",-1);try{e=e.match(/{["']s["']:(\d+),["']r["']:["']([\s\S]+)["']}/),e=e&&e[1]&&e[2]?{s:parseInt(e[1]),r:e[2]}:{}}catch(n){e={}}e.r&&t.referrer.replace(/#.*/,"")!=e.r||alog("speed.set","wt",e.s)}}if(e.alogObjectConfig){var p=e.alogObjectConfig.sample,d=e.alogObjectConfig.rand;if("https:"===e.location.protocol){if(a="https://gss2.bdstatic.com/70cFsjip0QIZ8tyhnq"+a,!p||!d)return}else a="http://img.baidu.com"+a;p&&d&&d>p||(c(function(){alog("speed.set","lt",+new Date),o=t.createElement(n),o.async=!0,o.src=a+"?v="+~(new Date/864e5),s=t.getElementsByTagName(n)[0],s.parentNode.insertBefore(o,s)}),l())}}(window,document,"script","/hunter/alog/dp.min.js"),$(window).on("load",function(){window.xssfw&&xssfw.watch(function(e){e&&$.sendAjaxError({msg:$.tb.escapeHTML("xss---"+(e.code.replace(/\s/g,"|")||"")),locator:$.tb.escapeHTML(e.path.replace(/\s/g,"|")||"")})})});
+</script>
+<script type="text/javascript">!function(e){function t(e){if(0!=e.length){var t=new Image(1,1),o="img_"+ +new Date,a=[],n=e.split("&");a.push("ts=9mp&t=csp&sid="+f+"&dv=5&page="+encodeURIComponent(d.pageId)+"&p="+encodeURIComponent(d.productId)+"&type=CROSS_SITE_RES");for(var r=0;r<n.length;++r)a.push("desc"+r+"="+n[r]);v[o]=t,t.onload=t.onerror=function(){v[o]=t=t.onload=t.onerror=null,delete v[o]},t.src=g+"/tb/pms/img/st.gif?"+a.join("&")}}function o(e){return e=e.replace(/\s/g,"").replace(/\./g,"\\.").replace(/\*/g,".*").replace(/\?/g,"."),"^"+e+"$"}function a(){for(var e=d["default-exclude"],t=0;t<e.length;++t){var a=RegExp(o(e[t]),"i");l.push(a)}1==d["exclude-host"]&&l.push(RegExp(m,"i"))}function n(){for(var e=window.performance.getEntriesByType("resource"),o=0;o<e.length;++o){var a=e[o].name;if(a&&void 0==s[a]){var n=a.match(h);if(n){n=n[1],/[:@]/.test(n)&&(n=n.split("@").pop().split(":")[0]);for(var r=0;r<l.length;++r){var p=l[r];if(p.test(n)){s[a]=1;break}}a.indexOf(g)>=0&&(s[a]=1),void 0==s[a]&&(s[a]=0)}}}var i=[],c=0;for(var d in s)if(0==s[d]){var m=encodeURIComponent(d);c+m.length>=u&&(c>0&&t(i.join("&")),c=0,i=[]),c+=m.length,i.push(m),s[d]=1}i.length>0&&t(i.join("&"))}function r(){var e=48,t=2,o=1e4,a=0,p=setInterval(function(){a++},16),i=0,c=setInterval(function(){e>a?i=0:++i==t&&(clearInterval(p),clearInterval(c),n(),setTimeout(r,o)),a=0},1e3)}function p(){a(),window.performance&&window.performance.getEntriesByType&&(n(),r())}var i={index:{pv:65e6,pageId:"14_329"},frs:{pv:13e7,pageId:"14_331"},pb:{pv:3e8,pageId:"14_333"},ihome:{pv:3e6,pageId:"14_321"},tbmall:{pv:3e6,pageId:"14_322"},itieba3:{pv:5e6,pageId:"14_323"},other:{pv:3e5,pageId:"14_327"}},c=i[PageData.product]?PageData.product:"other",d={sample:1e5/i[c].pv,"exclude-host":!0,"default-exclude":["tb1.bdstatic.com","tb2.bdstatic.com","tb.himg.baidu.com","m.tiebaimg.com","imgsrc.baidu.com","tb1.bdstatic.com"],productId:14,pageId:i[c].pageId},g="http://static.tieba.baidu.com";"https:"==window.location.protocol&&(g="https://gsp0.baidu.com/5aAHeD3nKhI2p27j8IqW0jdnxx1xbK");var l=[],s={},u=1200,m=location.hostname,v={},f=e.logId||(+new Date).toString(36)+Math.random().toString(36).substr(2,3),h=/^(?:http?:\/\/)([^\/]+)/i;Math.random()<=d.sample&&p()}(window);
+</script>
+<div id="lcsas-container" style="position: fixed; top: 0px;">
+    <object id="LCSAS" height="1" width="1" align="middle" type="application/x-shockwave-flash" data="__PUBLIC__/Center/LCSAS_b80db27.swf.下载">
+        <param name="quality" value="high">
+        <param name="allowScriptAccess" value="always">
+        <param name="wMode" value="transparent">
+        <param name="swLiveConnect" value="true">
+        <param name="menu" value="false">
+        <param name="flashVars" value="host=220.181.111.16%3A8800&amp;Cuid=93F7FB6C07D04642A648DBB79D3BFC28%3AFG%3D1&amp;Appid=tieba&amp;Appkey=appkey&amp;DeviceType=21&amp;ExtensionVersion=2.2&amp;LCSHeaderVersion=1&amp;callTarget=STQ&amp;timeout=20000&amp;retry=1&amp;onopen=undefined&amp;onclose=undefined&amp;onerror=undefined&amp;tabInfo=1542002465">
+    </object>
+</div>
+<div class="dialogJmodal" style="display: none; z-index: 50000; width: 1263px; height: 1929px;"></div>
+<div class="dialogJ dialogJfix dialogJshadow ui-draggable" style="z-index: 50001; display: none; width: 600px; left: 326.5px; top: 277px;">
+    <div class="uiDialogWrapper">
+        <div class="dialogJtitle" style="cursor: move;">
+            <span class="dialogJtxt"></span>
+            <a href="#" class="dialogJclose" title="关闭本窗口">&nbsp;</a>
+        </div>
+        <div class="dialogJcontent">
+            <div class="dialogJbody" id="dialogJbody">
+                <div class="j_sign_dialog_content_wrapper"></div>
             </div>
         </div>
-          <div class = "center_right">
-              <!-- <img src="./1.jpg" style = "width:750px;height:460px;" alt=""> -->
-          </div>  
-        </div>
-    </div>       
+    </div>
 </div>
-<block name="bottomstyle"></block>
-</block>>
-<!-- </body>
-</html> -->
+<ul class="tbui_aside_float_bar">
+    <li class="tbui_aside_fbar_button tbui_fbar_props">
+        <a href="#"></a>
+        <ul class="tbui_aside_props_list clearfix" id="tbui_aside_props_list" style="display: none;">
+            <li class="props_item props_item_1070001">
+                <a class="props_item_btn" target="_blank" href="#" data-id="1070001">
+                    <img src="__PUBLIC__/Center/worship.png">
+                    <span class="props_buy_icon"></span>
+                </a>
+                <p class="props_item_title">
+                    <span>魔拜</span>
+                </p>
+            </li>
+            <li class="props_item props_item_1070002">
+                <a class="props_item_btn" target="_blank" href="#" data-id="1070002">
+                    <img src="__PUBLIC__/Center/egg.png">
+                    <span class="props_buy_icon"></span>
+                </a>
+                <p class="props_item_title">
+                    <span>魔蛋</span>
+                </p>
+            </li>
+        </ul>
+    </li>
+    <li class="tbui_aside_fbar_button tbui_fbar_top" style="visibility: hidden;">
+        <a href="#"></a>
+    </li>
+</ul>
+</body>
+</html>

@@ -10,20 +10,15 @@
 
 <block name="content">
 <div class="table-header"><small><{$stitle}></small></div>
-
-   <div class="col-xs-12 col-md-offset-1">
+     <div class="col-xs-12 col-md-offset-1">
       <div class="hr dotted"></div>
        <div id="user-profile-1" class="user-profile row">
-
-        <div class="col-xs-12 col-sm-3 center">
- 
-            <span class="profile-picture mt40">
-                <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="__ROOT__/<{$data.hpic}>" />
-
-        <div class="col-xs-12 col-sm-3 center" style = "width:250px;margin-top:23px;">
+        <div class="col-xs-12 col-sm-3 center" style = "width:250px;height:200px;margin-top:23px;">
             <span class="profile-picture">
-                <img id="avator" class="editable img-responsive" style = "width:180px;" alt="头像" src="__ROOT__/<{$data['hpic']}>" />
-                <div class="space-4"></div>
+            <div style="width:200px;height:220px;border:1px solid #ccc">
+              <img id="avator" class="editable img-responsive" style = "width:250px;height:220px;" alt="头像" src="__ROOT__/<{$data['hpic']}>" />
+            </div>
+                   <div class="space-4"></div>
                 <div class="site-demo-upload">
                     <div class="site-demo-upbar">
                         <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">
@@ -59,12 +54,7 @@
                 <div class="profile-info-name"> 性别 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="sex">
-                    <if condition="$data.sex eq '1'">女
-                    <elseif condition="$data.sex eq '2'" />男
-                    <else />保密
-                    </if>
-                    </span>
+                    <span class="editable" id="sex"><{$data.sex}></span>
                 </div>
             </div>
 
@@ -80,14 +70,15 @@
                 <div class="profile-info-name"> 角色 </div>
 
                 <div class="profile-info-value">
-
+             <!-- <{:dump($adminrole)}> -->
                     <span class="editable" id="email">
-                     <if condition = "$data.statu eq '1'">会员
+                     <if condition = "$userlist.status eq '1'">会员
                      <else />VIP
                      </if>
-                     <if condition = "$list.statu eq '1'">吧主
+                     <if condition = "$list.status eq '1'">吧主
                      <else />吧管理员
                      </if>
+                   <{$adminrole[0]['role']}>
                     </span>
                 </div>
             </div>
@@ -130,7 +121,7 @@
                 </div>
             </div>
         </div>
-    </div>      
+    </div>           
 </block>
 <block name="tablejs">
 <script src="__PUBLIC__/layui/layui.js"></script>

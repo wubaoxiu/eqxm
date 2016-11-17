@@ -44,19 +44,15 @@ class AdminUserController extends AdminController
 
       //获取id
       $id = I('get.id/d');
-       $list = M('baradmin')->field('status')->where(array('user_id'=>array('eq',$id)))->select();
+  
 
       $data = M('admin')->find($id);
-      $userlist = M('user')->field('status')->find($id);
       $role_id = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
       $adminrole = M('role')->where(array('id'=>$role_id[0]['role_id']))->select();
-      // var_dump($adminrole);
 
       $this->assign('title','后台管理用户列表');
       $this->assign('stitle','个人信息');
       $this->assign('data',$data);
-      $this->assign('list',$list);
-      $this->assign('userlist',$userlist);
       $this->assign('adminrole',$adminrole);
       $this->display('AdminUser/select');
     }
@@ -92,7 +88,7 @@ class AdminUserController extends AdminController
      $admin_id = $admin->add($data);
        if ($admin_id>0) {
           $list['user_id']=$admin_id;
-          $list['role_id']=$_POST['role'];
+          $list['role_id']=$_POST['role_id'];
             M('user_role')->add($list);
           $this->success('恭喜您，添加成功',U('index'));
         }else{
@@ -159,7 +155,9 @@ class AdminUserController extends AdminController
         }
 
         //进行数据过滤
-        $id=I('get.id/d');
+            $id=I('get.id/d');
+            $list['user_id']= $id;
+            M('user_role')->where(array('user_id'=>array('eq',$id)))->delete();
         if (M('admin')->delete($id)>0) {
             $this->success('恭喜您，删除成功！',U('index'));
         }else{

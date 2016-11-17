@@ -34,12 +34,15 @@ class UserController extends AdminController
         $id = I('get.id/d');
         // var_dump($id);
         $list = M('baradmin')->field('status')->where(array('user_id'=>array('eq',$id)))->select();
+         $role_id = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
+         $adminrole = M('role')->where(array('id'=>$role_id[0]['role_id']))->select();
         // var_dump($list);
         $data = M('user')->find($id);
         $this->assign('title','前台用户列表');
         $this->assign('stitle','个人信息');
         $this->assign('data',$data);
         $this->assign('list',$list);
+        $this->assign('adminrole',$adminrole);
         $this->display('User/select');
       }
 

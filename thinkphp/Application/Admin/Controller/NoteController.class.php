@@ -17,19 +17,30 @@ class NoteController extends AdminController
     public function index(){
         //查询数据
         $list = $this->_note->select();
-       // $data = $this->_user->field('u.name')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
         //声明一个空数组
         $arr = array();
+        
         //遍历帖子信息
         foreach ($list as $v) {
-           $notes = $this->_user->field('user_id')->where(array('id'=>array('eq',$v['user_id'])))->select();
-           var_dump($notes);
-        }
+           $user_ids = $this->_user->field('id,name')->where(array('id'=>array('eq',$v['user_id'])))->select();
+           // var_dump($user_ids);
+           //定义一个空数组
+           $barinfo = array();
+           foreach ($user_ids as $value) {
 
-        $this->assign('title','帖子列表');
+            $barinfo = $this->_barinfo->field('user_id,title,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
+           }
+           $v['bar_id']=$barinfo[0]['name'];
+           $v['name']=$barinfo[0]['title'];
+           $v['user_id']=$user_ids[0]['name'];
+          $arr[] = $v;
+      }
+        $this->assign('title','帖子管理');
+        $this->assign('stitle','帖子列表');
         //分配数据
-        $this->assign('data',$data);
-        $this->assign('list',$list);
+        $this->assign('list',$arr);
+        $this->assign('barinfo',$barinfo);
+        $this->assign('list',$arr);
         $this->display('Note/index');
     }
 
@@ -38,12 +49,44 @@ class NoteController extends AdminController
     public function select(){
         //获取当前用户的id
         $id = I('get.id/d');
+        // var_dump($id);
+        // $list = $this->_note->find($id);
+        // var_dump($list);
+        // $data = $this->_user->field('u.hpic')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
+        // var_dump($data);
+        // $this->assign('title','帖子个人信息查询');
+        // $this->assign('list',$list);
+        // $this->assign('data',$data);
+         //查询数据
         $list = $this->_note->find($id);
-        $data = $this->_user->field('u.hpic')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
-        // var_dump($data);die;
-        $this->assign('title','帖子个人信息查询');
-        $this->assign('list',$list);
-        $this->assign('data',$data);
+        // var_dump($list);
+        //声明一个空数组
+        $arr = array();
+        
+        //遍历帖子信息
+        foreach ($list as $v) {
+           $user_ids = $this->_user->field('id,name')->where(array('id'=>array('eq',$v['id'])))->select();
+           var_dump($user_ids);
+      //      //定义一个空数组
+           $barinfo = array();
+           foreach ($user_ids as $value) {
+
+            $barinfo = $this->_barinfo->field('user_id,title,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
+           }
+           var_dump($barinfo[0]['name']);
+           $v['bar_id']=$barinfo[0]['name'];
+           $v['name']=$barinfo[0]['title'];
+           $v['user_id']=$user_ids[0]['name'];
+           var_dump($v);
+          $arr[] = $v;
+          var_dump($arr);
+      }
+      //   $this->assign('title','帖子列表');
+      //   //分配数据
+      //   $this->assign('list',$arr);
+      //   $this->assign('barinfo',$barinfo);
+      //   $this->assign('list',$arr);
+        // $this->display('Note/index');
         $this->display('Note/select');
     }
 

@@ -43,7 +43,6 @@
                             <th>操作</th>
                         </tr>
                     </thead>
-            <!-- <{:dump($list)}> -->
                     <tbody>
                         <foreach name="list" item="v">
                             <tr>
@@ -57,10 +56,10 @@
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
                                <td>
-                                  <{$v.name}>
+                                  <{$v['name']}>
                                </td>
-                                <td class="hidden-480"><{$v.bar_id}></td>
-                                <td class="hidden-480"><{$data.name}></td>
+                                <td class="hidden-480"><{$v['bar_id']}></td>
+                                <td class="hidden-480"><{$v['user_id']}></td>
                                   <td class="hidden-480">
                                  <if condition="$v.istop eq '1'">置顶
                                  <else />不置顶
