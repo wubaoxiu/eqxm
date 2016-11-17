@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Login/css/login.css">
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/my.css">
+    <!-- <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css"  media="all"> -->
+    <script type="text/javascript" src="__PUBLIC__/Public/js/jquery.min.js"></script>
+</head>
+<body>
+<img src="__PUBLIC__/Public/image/bj10.jpg" alt="" width="100%">
+<div class="zhuce_body">
+<div id="1">111</div>
+	<!-- <div class="logo"><a href="./index.html"><img src="__PUBLIC__/Public/image/logo.gif" width="114" height="54" border="0"></a></div> -->
+    <div class="zhuce_kong login_kuang">
+    	<div class="zc">
+        	<div class="bj_bai">
+            <h3>登录</h3>
+       	  	  <form action="" method="post">
+                <input name="name" type="text" id="name" class="kuang_txt" placeholder="用户名">
+                <input name="password" type="password" class="kuang_txt" placeholder="密码">
+                <div>
+               		<a href="#">忘记密码？</a><input name="" type="checkbox" value="" checked><span>记住我</span> 
+                </div>
+                <button type="submit" class="btn_zhuce" >登录</button>
+                
+                </form>
+            </div>
+        	<div class="bj_right ">
+            	<p>使用以下账号直接登录</p>
+                <a href="https://ssl.zc.qq.com/chs/index.html" class="zhuce_qq">QQ注册</a>
+                <a href="http://www.weibo.com/signup/signup.php" class="zhuce_wb">微博注册</a>
+                <a href="https://open.weixin.qq.com/cgi-bin/readtemplate?t=regist/regist_tmpl&lang=zh_CN" class="zhuce_wx">微信注册</a>
+                <p>还没有账号？<a href="<{:U('Login/reg')}>">立即注册</a></p>
+            
+            </div>
+        </div>       
+    </div>
+</div>
+<script src="__PUBLIC__/layer/layer.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $('form').submit(function(){
+        var name = $("input[name='name']").val();
+        var password = $("input[name='password']").val();
+        // alert("name="+name+"&password="+password);
+        $.ajax({
+            type:"post",
+            url:"<{:U('Login/doLogin')}>",
+            data:"name="+name+"&password="+password,
+            success:function(data){
+                // alert(data);
+                // layer.tips('123','#name');
+                // layer.open({
+                //   type: 1,
+                //   skin: 'layui-layer-rim', //加上边框
+                //   area: ['420px', '240px'], //宽高
+                //   content: data
+                // });
+                layer.msg(data, {
+                  time: 20000, //20s后自动关闭
+                  btn: ['明白了', '知道了', '哦']
+                });
+            }
+        });
+    });
+</script> 
+</body>
+</html>
