@@ -1,6 +1,12 @@
 <?php 
 namespace Admin\Controller;
 
+        /**
+        * 帖子管理
+        * @author xiao
+        * date 2016-11-16
+        */ 
+
 class NoteController extends AdminController
 {
     private $_note = null;//帖子表操作
@@ -13,13 +19,14 @@ class NoteController extends AdminController
         $this->_user = D('User');
         $this->_barinfo = D('Barinfo');
     }
+
+
     //帖子用户列表
     public function index(){
         //查询数据
         $list = $this->_note->select();
         //声明一个空数组
-        $arr = array();
-        
+        $arr = array();  
         //遍历帖子信息
         foreach ($list as $v) {
            $user_ids = $this->_user->field('id,name')->where(array('id'=>array('eq',$v['user_id'])))->select();
@@ -28,10 +35,9 @@ class NoteController extends AdminController
            $barinfo = array();
            foreach ($user_ids as $value) {
 
-            $barinfo = $this->_barinfo->field('user_id,title,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
+            $barinfo = $this->_barinfo->field('user_id,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
            }
            $v['bar_id']=$barinfo[0]['name'];
-           $v['name']=$barinfo[0]['title'];
            $v['user_id']=$user_ids[0]['name'];
           $arr[] = $v;
       }
@@ -40,74 +46,59 @@ class NoteController extends AdminController
         //分配数据
         $this->assign('list',$arr);
         $this->assign('barinfo',$barinfo);
-        $this->assign('list',$arr);
         $this->display('Note/index');
     }
 
 
-   //帖子用户管理
+   //帖子用户查询
     public function select(){
         //获取当前用户的id
         $id = I('get.id/d');
-        // var_dump($id);
-        // $list = $this->_note->find($id);
-        // var_dump($list);
-        // $data = $this->_user->field('u.hpic')->table('csw_user u,csw_note n')->where('u.id=n.user_id')->select();
-        // var_dump($data);
-        // $this->assign('title','帖子个人信息查询');
-        // $this->assign('list',$list);
-        // $this->assign('data',$data);
          //查询数据
         $list = $this->_note->find($id);
-        // var_dump($list);
         //声明一个空数组
         $arr = array();
         
         //遍历帖子信息
-        foreach ($list as $v) {
-           $user_ids = $this->_user->field('id,name')->where(array('id'=>array('eq',$v['id'])))->select();
-           var_dump($user_ids);
-      //      //定义一个空数组
+           $user_ids = $this->_user->field('id,name,hpic')->where(array('id'=>array('eq',$list['id'])))->select();
+        //定义一个空数组
            $barinfo = array();
            foreach ($user_ids as $value) {
 
             $barinfo = $this->_barinfo->field('user_id,title,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
            }
-           var_dump($barinfo[0]['name']);
            $v['bar_id']=$barinfo[0]['name'];
-           $v['name']=$barinfo[0]['title'];
            $v['user_id']=$user_ids[0]['name'];
-           var_dump($v);
+           $v['hpic']=$user_ids[0]['hpic'];
           $arr[] = $v;
-          var_dump($arr);
-      }
-      //   $this->assign('title','帖子列表');
+
+        $this->assign('title','帖子列表');
+        $this->assign('stitle','帖子信息');
       //   //分配数据
-      //   $this->assign('list',$arr);
-      //   $this->assign('barinfo',$barinfo);
-      //   $this->assign('list',$arr);
-        // $this->display('Note/index');
+        $this->assign('data',$arr);
+        $this->assign('list',$list);
+        $this->assign('hpic',$hpic);
         $this->display('Note/select');
     }
 
-    //帖子删除
-    public function del(){
+    // //帖子删除
+    // public function del(){
 
-        //判断有无ID
-        if (empty($_GET['id'])) {
-            $this->redirect('Admin/Note/index');
-            exit;
-        }
+    //     //判断有无ID
+    //     if (empty($_GET['id'])) {
+    //         $this->redirect('Admin/Note/index');
+    //         exit;
+    //     }
 
-        //过滤 也就是数据验证
-        $id = I('get.id/d');
-        if ($this->_note->delete($id)>0) {
-            $this->success('恭喜您，删除成功',U('Note/index'));
-        }else{
-            $this->error('删除失败......');
-        }
+    //     //过滤 也就是数据验证
+    //     $id = I('get.id/d');
+    //     if ($this->_note->delete($id)>0) {
+    //         $this->success('恭喜您，删除成功',U('Note/index'));
+    //     }else{
+    //         $this->error('删除失败......');
+    //     }
 
-    }
+    // }
 
     /**
     *  获取修改是否置顶 是否加精页面
@@ -115,7 +106,7 @@ class NoteController extends AdminController
     public function edit(){
         //获取id
         $id = I('get.id/d');
-        $data = $this->_note->field('id,istop,isfine')->find($id);
+        $data = $this->_note->field('id,istop,isfine,is_show')->find($id);
         // var_dump($data);die;
         //分配数据
         $this->assign('title','帖子用户列表');
@@ -134,14 +125,11 @@ class NoteController extends AdminController
         $this->redirect('Admin/Note/index');
         exit;
     }
-
-    // $this->_note->create();
     $data['id'] = $_POST['id'];
     $data['istop'] = $_POST['istop'];
     $data['isfine'] = $_POST['isfine'];
-    // var_dump($data);die;
-
-    if ($this->_note->save($data)>0) {
+    $data['is_show'] = $_POST['is_show'];
+    if ($this->_note->save($data) !==false) {
         $this->success('恭喜你，修改成功',U('Note/index'));
     }else{
         $this->error('修改失败......');

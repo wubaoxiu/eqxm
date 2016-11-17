@@ -1,31 +1,41 @@
 <?php
 namespace Admin\Controller;
 
-  /*
-  *后台管理员管理
-   * @author xiao
-  *date 2016-11-14
+  /**
+   * 后台管理员管理
+   *  @author xiao
+   * date 2016-11-14
   */ 
 
 class AdminUserController extends AdminController
 {
+
+  private $_admin = null; //后台用户操作表
+  private $_user_role = null; //用户角色关系操作表
+  private $_role = null; //角色操作表
+
+  public function _initialize(){
+    parent::_initialize();
+    $this->_admin = D('admin');
+    $this->_user_role = D('user_role');
+    $this->_role = M('role');
+  }
     /*
      *获取后台管理员信息
      */ 
     public function index(){
       //查询数据
-      $list = M('admin')->select();
-      // var_dump($list);
+      $list = $this->_admin->select();
       //定义一个空数组
       $arr = array();
       //遍历$list
       foreach($list as $v){
-        $role_ids = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$v['id'])))->select();
+        $role_ids =$this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$v['id'])))->select();
         // 定义一个空数组
         $roles = array();
         //遍历
         foreach ($role_ids as $value) {
-          $roles[] = M('role')->where(array('id'=>array('eq',$value['role_id'])))->getField('role');
+          $roles[] = $this->_role->where(array('id'=>array('eq',$value['role_id'])))->getField('role');
         }
         $v['role']=$roles;
         $arr[]=$v;
@@ -41,14 +51,12 @@ class AdminUserController extends AdminController
     */ 
 
     public function select(){
-
       //获取id
       $id = I('get.id/d');
-  
 
-      $data = M('admin')->find($id);
-      $role_id = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
-      $adminrole = M('role')->where(array('id'=>$role_id[0]['role_id']))->select();
+      $data = $this->_admin->find($id);
+      $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
+      $adminrole = $this->_role->where(array('id'=>$role_id[0]['role_id']))->select();
 
       $this->assign('title','后台管理用户列表');
       $this->assign('stitle','个人信息');
@@ -61,53 +69,61 @@ class AdminUserController extends AdminController
     *  获取添加后台管理员页面
     */ 
     public function add(){
-    $data = M('role')->select();
+    $data = $this->_role->select();
      $this->assign('title','后台用户列表');
      $this->assign('stitle','添加后台用户');
      $this->assign('data',$data);
      $this->display('AdminUser/add');
     }
 
-    /**
-    *  执行添加
-    */ 
-
+     //对POST的值进行验证
+    public function action(){
+       $name = $this->_admin->field('name')->select();
+       $pn = $_POST['aname'];
+       if ($pn==$name[0]['name']) {
+       return $this->ajaxReturn(1);
+       }else{
+       return $this->ajaxReturn(2);
+       }
+      
+      
+    }
+    
+    // 执行添加
     public function doAdd(){
       $data['name']=$_POST['name'];
       $data['password']=md5($_POST['password']);
       $data['repassword']=md5($_POST['repassword']);
       $data['email']=$_POST['email'];
       $data['sex']=$_POST['sex'];
-      $hpic = $this->upload();
-      $data['hpic']=$hpic; 
+      // $hpic = $this->upload();
+      // $data['hpic']=$hpic; 
      //得到数据模型
-      $admin = M('admin');
+      $admin = $this->_admin;
       //获取id
       $id = I('post.id/d'); 
 
-     $admin_id = $admin->add($data);
-       if ($admin_id>0) {
-          $list['user_id']=$admin_id;
-          $list['role_id']=$_POST['role_id'];
-            M('user_role')->add($list);
-          $this->success('恭喜您，添加成功',U('index'));
-        }else{
-          $this->error('删除失败......');
-        }
+     // $admin_id = $admin->add($data);
+       // if ($admin_id>0) {
+       //    $list['user_id']=$admin_id;
+       //    $list['role_id']=$_POST['role_id'];
+       //      // M('user_role')->add($list);
+       //    $this->success('恭喜您，添加成功',U('index'));
+       //  }else{
+       //    $this->error('添加失败......');
+       //  }
 
       }
-
 
      //处理头像
     public function updateAvator(){
          $hpic = $this->upload();
         $data['hpic'] = $hpic;
         $data['id'] = I('get.id');
-       M('admin')->save($data);
+       $this->_admin->save($data);
        return $this->ajaxReturn($hpic);
 
     } 
-
 
     /**
     *  图片上传
@@ -157,8 +173,8 @@ class AdminUserController extends AdminController
         //进行数据过滤
             $id=I('get.id/d');
             $list['user_id']= $id;
-            M('user_role')->where(array('user_id'=>array('eq',$id)))->delete();
-        if (M('admin')->delete($id)>0) {
+            $this->_user_role->where(array('user_id'=>array('eq',$id)))->delete();
+        if ($this->_admin->delete($id)>0) {
             $this->success('恭喜您，删除成功！',U('index'));
         }else{
             $this->error('删除失败！');
@@ -171,10 +187,10 @@ class AdminUserController extends AdminController
     public function edit(){
          //接受ID
         $id = I('get.id/d');
-        $role_id = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$id)))->find();
-        $list = M('role')->field('id')->where(array('id'=>$role_id['role_id']))->select();
+        $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->find();
+        $list = $this->_role->field('id')->where(array('id'=>$role_id['role_id']))->select();
         //数据查找
-        $data = M('admin')->find($id);
+        $data = $this->_admin->find($id);
         $rolelist = M('role')->select();
 
            //分配数据
@@ -203,69 +219,12 @@ class AdminUserController extends AdminController
             // var_dump($data);
                 $new_role_id = $_POST['role_id'];
                 $list['role_id']=$new_role_id;
-                M('user_role')->where(array('user_id'=>array('eq',$_POST['id'])))->save($list);
-          if (M('admin')->save($data) !== false) {
+                $this->_user_role->where(array('user_id'=>array('eq',$_POST['id'])))->save($list);
+          if ($this->_admin->save($data) !== false) {
               $this->success('恭喜您，修改成功！',U('index'));
           }else{
               $this->error('修改失败！');
           }
         }
-
- 
-
-       /**
-       * 分配角色
-       */ 
-
-       // public function rolelist(){
-       //  //查询节点信息
-       //  $list = M('role')->select();
-
-       //  //查询当前用户的信息
-       //  $admin = M('admin')->where(array('id'=>array('eq',I('id'))))->find();
-
-       //  //查询当前用户的角色信息
-       //  $role = M('user_role')->where(array('user_id'=>array('eq',I('id'))))->select();
-
-       //  //定义一个空数组
-       //  $myrole = array();
-
-       //  //对角色进行重组
-       //  foreach ($role as $v) {
-       //    $myrole[]=$v['role_id'];
-       //  }
-       //  $this->assign('title','后台管理员列表');
-       //  $this->assign('stitle','分配角色');
-       //  //分配数据
-       //  $this->assign('list',$list);
-       //  $this->assign('admin',$admin);
-       //  $this->assign('role',$myrole);
-       //  $this->display('AdminUser/rolelist');
-       // }
-
-       // /**
-       // *  保存角色信息
-       // *
-       // */ 
-
-       // public function saverole(){
-       //  //判断必须选择一个角色
-       //  if (empty($_POST['role'])) {
-       //    $this->role('必须选择一个角色');
-       //  }
-       //  //获取id
-       //  $uid = $_POST['user_id'];
-       //  // var_dump($uid);
-
-       //  //清除原有的角色 以免重复
-       //  M('user_role')->where(array('user_id'=>array('eq',$uid)))->delete();
-
-       //  foreach (I('role') as $v) {
-       //    $data['user_id']=$uid;
-       //    $data['role_id']=$v;
-       //  M('user_role')->data($data)->add();
-       //  }
-       // $this->success('恭喜您，角色修改成功',U('AdminUser/index'));
-       // }
        
 }

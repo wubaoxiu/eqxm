@@ -39,6 +39,7 @@
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                 加精
                             </th>
+                            <th>显示</th>
 
                             <th>操作</th>
                         </tr>
@@ -56,7 +57,7 @@
                                     <a href="#"> <{$v.id}> </a>
                                 </td>
                                <td>
-                                  <{$v['name']}>
+                                  <{$v['title']}>
                                </td>
                                 <td class="hidden-480"><{$v['bar_id']}></td>
                                 <td class="hidden-480"><{$v['user_id']}></td>
@@ -71,6 +72,11 @@
                                  </if>
                                 </td>
                                 <td>
+                                     <if condition="$v.is_show eq '1'">显示
+                                     <else />不显示
+                                    </if>
+                                </td>
+                                <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                         <a class="blue" href="<{:U('Note/select',array('id'=>$v['id']))}>">
                                             <i class="icon-zoom-in bigger-130"></i>
@@ -78,9 +84,9 @@
                                         <a class="green" href="<{:U('Note/edit',array('id'=>$v['id']))}>">
                                             <i class="icon-pencil bigger-130"></i>
                                         </a>
-                                        <a class="red" href="<{:U('Note/del',array('id'=>$v['id']))}>">
+                                    <!--     <a class="red" href="<{:U('Note/del',array('id'=>$v['id']))}>">
                                             <i class="icon-trash bigger-130"></i>
-                                        </a>
+                                        </a> -->
                                     </div>
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -175,7 +181,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,null,
+              null, null,null, null, null,null,null,
               { "bSortable": false }
             ] } );
             

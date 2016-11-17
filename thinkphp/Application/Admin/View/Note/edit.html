@@ -13,6 +13,7 @@
     <!-- <{:dump($data)}> -->
         <input type="hidden" name = "id" value="<{$data.id}>">
         <div  class="form-group" style="height:50px;font-size:17px;margin-top:30px;margin-left:100px;">
+        <!-- <{:dump($data)}> -->
                 <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">置顶 :</label>
                 <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
@@ -27,6 +28,15 @@
                 <span class="block input-icon input-icon-right">
                   <input type="radio" style ="margin-left:10px;" name="isfine" value="1" <if condition="$data.isfine eq '1'">checked</if> >加精
                   <input type="radio" style ="margin-left:10px;" name="isfine" value="2"  <if condition="$data.isfine eq '2'">checked</if> >不加精
+                  </span>
+                </div>
+          </div>     
+          <div  class="form-group" style="height:50px;font-size:17px;margin-top:10px;margin-left:100px;">
+                <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">显示 :</label>
+                <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <input type="radio" style ="margin-left:10px;" name="is_show" value="1" <if condition="$data.is_show eq '1'">checked</if> >显示
+                  <input type="radio" style ="margin-left:10px;" name="is_show" value="2"  <if condition="$data.is_show eq '2'">checked</if> >不显示
                   </span>
                 </div>
           </div>

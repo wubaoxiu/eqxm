@@ -9,32 +9,26 @@
 
 <block name="content">
 <div class="table-header"><small><{$title}></small></div>
-
 <div class="row">
  <div class="col-xs-12 col-md-offset-1">
      <div class="hr dotted"></div> <div>
         <div id="user-profile-1" class="user-profile row">
-            <div class="col-xs-12 col-sm-3 center">
-     <!-- <{:dump($data)}> -->
+            <div class="col-xs-12 col-sm-3 center" style="margin-top:30px;">
                 <span class="profile-picture">
             <div style="width:200px;height:220px;border:1px solid #ccc">
               <img id="avator" class="editable img-responsive" style = "width:250px;height:220px;" alt="请选择您的头像" src="__ROOT__/<{$data[0]['hpic']}>" />
             </div>
                 </span>
-
                 <div class="space-4"></div>
-
                 <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
                     <div class="inline position-relative">
                         <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-circle light-green middle"></i>
                             &nbsp;
-                            <span class="white"><{$list.name}></span>
+                            <span class="white"><{$list['user_id']}></span>
                         </a>
                     </div>
                 </div>
-        
-
             <div class="space-6"></div>
 
             <div class="profile-contact-info">
@@ -49,7 +43,6 @@
                         发信息
                     </a>
                 </div>
-
                 <div class="space-6"></div>
 
                 <div class="profile-social-links center">
@@ -67,12 +60,9 @@
                 </div>
             </div>
         </div>
-
+    <!-- <{:dump($list)}> -->
         <div class="col-xs-12 col-sm-9">
-       
-
             <div class="space-12"></div>
-
             <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
                 <div class="profile-info-row">
                     <div class="profile-info-name"> ID </div>
@@ -81,31 +71,27 @@
                         <span class="editable" id="id"><{$list.id}></span>
                     </div>
                 </div>
-
                 <div class="profile-info-row">
                     <div class="profile-info-name"> 帖子名 </div>
 
                     <div class="profile-info-value">
-                        <span class="editable" id="bar_id"><{$list.bar_id}></span>
+                        <span class="editable" id="bar_id"><{$list['title']}></span>
                     </div>
                 </div>
-
                 <div class="profile-info-row">
-                    <div class="profile-info-name"> 用户名 </div>
+                    <div class="profile-info-name"> 所属吧名 </div>
 
                     <div class="profile-info-value">
-                        <span class="editable" id="user_id"><{$data.name}></span>
+                        <span class="editable" id="user_id"><{$data[0]['bar_id']}></span>
                     </div>
                 </div>
-
                 <div class="profile-info-row">
-                    <div class="profile-info-name"> 用户名 </div>
+                    <div class="profile-info-name"> 作者 </div>
 
                     <div class="profile-info-value">
-                        <span class="editable" id="name"><{$list.name}></span>
+                        <span class="editable" id="name"><{$data[0]['user_id']}></span>
                     </div>
                 </div>
-
                 <div class="profile-info-row">
                     <div class="profile-info-name"> 置顶</div>
 
@@ -117,7 +103,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="profile-info-row">
                     <div class="profile-info-name"> 加精 </div>
 
@@ -127,6 +112,34 @@
                             <else />不加精
                             </if>
                         </span>
+                    </div>
+                </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 创建时间 </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable" id="createtime"><{$list['createtime']|date="Y-m-d",###}></span>
+                    </div>
+                </div>   
+                 <div class="profile-info-row">
+                    <div class="profile-info-name"> 回复 </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable" id="replay"><{$list['reply']}></span>
+                    </div>
+                </div>  
+                 <div class="profile-info-row">
+                    <div class="profile-info-name"> 关注 </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable" id="scan"><{$list['scan']}></span>
+                    </div>
+                </div>   
+                 <div class="profile-info-row">
+                    <div class="profile-info-name"> 内容 </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable" id="content"><{$list['content']}></span>
                     </div>
                 </div>
             </div>

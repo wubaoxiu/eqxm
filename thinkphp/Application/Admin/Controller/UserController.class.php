@@ -5,10 +5,24 @@ namespace Admin\Controller;
         /**
         *  普通用户管理
         * @author xiao
+        * date 2016-11-13
         */ 
 
 class UserController extends AdminController
 {
+
+    private $_user = null; //前台用户操作表
+    private $_user_role = null; //用户角色操作表
+    private $_role = null; //角色操作表
+    private $_baradmin = null; //吧管理操作表
+
+    public  function _initialize(){
+        parent::_initialize();
+        $this->_user = D('user');
+        $this->_user_role = D('user_role');
+        $this->_baradmin = M('baradmin');
+        $this->_role = M('role');
+    }
 
     /*
         获取普通用户列表
@@ -16,7 +30,7 @@ class UserController extends AdminController
 
     public function index(){
         //查询数据
-        $list = M('user')->select();
+        $list = $this->_user->select();
         $this->assign('list',$list);
         $this->assign('title','用户管理');
         $this->assign('stitle','普通用户列表');
@@ -29,15 +43,14 @@ class UserController extends AdminController
         */ 
 
       public function select(){
-        // var_dump(M('baradmin')->select());
          //获取ID
         $id = I('get.id/d');
         // var_dump($id);
-        $list = M('baradmin')->field('status')->where(array('user_id'=>array('eq',$id)))->select();
-         $role_id = M('user_role')->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
-         $adminrole = M('role')->where(array('id'=>$role_id[0]['role_id']))->select();
+        $list = $this->_baradmin->field('status')->where(array('user_id'=>array('eq',$id)))->select();
+         $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
+         $adminrole = $this->_role->where(array('id'=>$role_id[0]['role_id']))->select();
         // var_dump($list);
-        $data = M('user')->find($id);
+        $data = $this->_user->find($id);
         $this->assign('title','前台用户列表');
         $this->assign('stitle','个人信息');
         $this->assign('data',$data);
@@ -58,7 +71,7 @@ class UserController extends AdminController
         }
         //进行数据验证 （过滤）
         $id=I('get.id/d');
-        if (M('user')->delete($id)>0) {
+        if ($this->_user->delete($id)>0) {
             $this->success('恭喜您，删除成功！',U('User/index'));
         }else{
             $this->error('删除失败.....');
@@ -70,9 +83,7 @@ class UserController extends AdminController
     */
 
     public function add(){
-
-        $this->assign('stitle','添加普通用户列表');
-        
+        $this->assign('stitle','添加普通用户列表');    
         $this->display('User/add');
     }
     /*
@@ -82,10 +93,8 @@ class UserController extends AdminController
 
         $hpic = $this->upload();
         $_POST['hpic'] = $hpic;
-        /*var_dump($_POST);
-        die;*/
         //得到数据模型 
-        $user = D('user');
+        $user = $this->_user;
         //进行数据过滤 也就是数据验证
         $role_id=I('post.id/d');
         if (!$user->create()) {
@@ -108,7 +117,7 @@ class UserController extends AdminController
          $hpic = $this->upload();
         $data['hpic'] = $hpic;
         $data['id'] = I('get.id/d');
-       M('user')->save($data);
+       $this->_user->save($data);
        return $this->ajaxReturn($hpic);
 
     } 
@@ -144,23 +153,17 @@ class UserController extends AdminController
         }
     }
 
-
-
      /*
      * 获取编辑页面
     */ 
 
      public function edit(){
-
-        // $list = M('baradmin')->select();
         //获取ID
         $id = I('get.id/d');
         //查出数据
-         $data = M('user')->find($id);
-         // var_dump($data);
+         $data = $this->_user->find($id);
          $this->assign('stitle','编辑普通用户列表');
          $this->assign('data',$data);
-         // $this->assign('rolelist',$rolelist);
          $this->display('User/edit');
 
      }
@@ -171,7 +174,7 @@ class UserController extends AdminController
      public function save()
      { 
 
-        $user=M('user');
+        $user=$this->_user;
         // 判断有无值
         if (empty($_POST)) {
             $this->redirect('Admin/User/index');
