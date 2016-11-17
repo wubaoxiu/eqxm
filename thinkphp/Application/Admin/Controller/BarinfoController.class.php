@@ -1,12 +1,23 @@
 <?php
 namespace Admin\Controller;
 
+/**
+* 控制器名：BarinfoController
+*     控制器作用：贴吧管理
+* @author wbx
+* @date  2016-11-17
+*/
 class BarinfoController extends AdminController
 {
     private $_barinfo = null;
     private $_user = null;
     private $_type = null;
 
+    /**
+    * 方法名：_initalize()
+    *
+    * @return[void]  初始化操作
+    */
     public function _initialize()
     {
         parent::_initialize();
@@ -15,6 +26,11 @@ class BarinfoController extends AdminController
         $this->_type = M('Type');
     }
 
+    /**
+    * 方法名：index() 获取贴吧基本信息表
+    *
+    * @return[void]
+    */
     public function index()
     {
         $arr = $this->_barinfo->getBarinformation();
@@ -23,7 +39,11 @@ class BarinfoController extends AdminController
         $this->display('Barinfo/index');
     }
 
-    //获取添加页面
+    /**
+    * 方法名：add() 获取添加页面
+    *
+    * @return[void]
+    */
     public function add()
     {
         $arr = $this->_barinfo->getOption();
@@ -32,8 +52,12 @@ class BarinfoController extends AdminController
         $this->display("Barinfo/add");
     }
 
-    //执行添加
-    public function doAdd()
+    /**
+    * 方法名：doadd() 执行添加
+    *
+    * @return[void]
+    */
+    public function doadd()
     {
         if(!$this->_barinfo->create()){
             $this->error($this->_barinfo->getError());
@@ -50,8 +74,10 @@ class BarinfoController extends AdminController
 
     }
 
-    /*
-        * 改变状态  （可用ajax，有bug未解决）
+    /**
+    * 方法名：checkStatus() 改变状态  （可用ajax，有bug未解决）
+    *
+    * @return[void] 
     */
     public function checkStatus()
     {
@@ -69,7 +95,11 @@ class BarinfoController extends AdminController
         }
     }
 
-    //获取修改页面
+    /**
+    * 方法名：edit()
+    *
+    * @return[void] 获取修改页面
+    */
     public function edit($id)
     {
         $id = I('id');
@@ -89,7 +119,11 @@ class BarinfoController extends AdminController
         $this->display("Barinfo/edit");
     }
 
-    //执行修改
+    /**
+    * 方法名：save() 执行修改
+    *
+    * @return[void]
+    */
     public function save()
     {
         if(!$this->_barinfo->create()){
@@ -107,7 +141,11 @@ class BarinfoController extends AdminController
         }
     }
 
-    //查看详情
+    /**
+    *方法名：detail()
+    *
+    * @return[void]  返回贴吧详情页面
+    */
     public function detail()
     {
         $id = I('id');
@@ -118,14 +156,25 @@ class BarinfoController extends AdminController
         $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
         $data['typename'] = $this->_type->field('name')->where(array('id'=>array('eq',$data['type_id'])))->find();
         $data['username'] = $this->_user->field('name')->where(array('id'=>array('eq',$data['user_id'])))->find();
+        //查询吧管理员
+        $list[] = M('baradmin')->field('u.name,u.id')->table('csw_baradmin b,csw_user u')->where("b.bar_id=$id and b.user_id=u.id and b.status=2")->select();
         // dump($data);
+        dump($list);
+        $arr = array_pop($list);
+        dump($arr);
+        // echo $arr[0]['name'];
         $this->assign('title',"贴吧管理");
         $this->assign('stitle','贴吧详情');
-        $this->assign('data',$data);
+        $this->assign('data',$data); //分配贴吧信息
+        $this->assign('list',$arr);  //分配管理员信息
         $this->display("Barinfo/detail");
     }
 
-    //执行头像上传和修改
+    /**
+    * 方法名：upload()
+    *
+    *@return[void]  执行头像上传和修改
+    */
     public function upload()
     {
         if($_FILES['url']['error'] == 0){           
@@ -157,6 +206,11 @@ class BarinfoController extends AdminController
         }
     }
 
+    /**
+    * 方法名称：Request()
+    *
+    * @return['void']  返回吧管理请求列表
+    */
     public function Request()
     {
         $r = M('request');
@@ -167,6 +221,11 @@ class BarinfoController extends AdminController
         $this->display("Barinfo/request");
     }
 
+    /**
+    * 方法名：agree()
+    *
+    * @return['void'] 同意请求
+    */
     public function agree()
     {
         $id = I('id');
@@ -174,23 +233,90 @@ class BarinfoController extends AdminController
             $this->error("操作失误！！！");
         }
         $r = M('request');
-        $data = $r->field('user_id,bar_id,status')->where(array('id'=>array('eq',$id)))->find();
-        dump($data);
-        if(M('baradmin')->data($data)->add()>0){
-            if($data['status'] == 1){ 
-                $map = array();           
-                $map['user_id'] = $data['user_id'];
-                $map['id'] = $data['bar_id'];
-                dump($map);            
-                if($this->_barinfo->data($map)->save()>0){
-                    $r->where(array('id'=>$id))->delete();
-                    $this->success("已同意",U('Barinfo/request'));
-                }else{
-                    $this->error("操作失误！！！");
-                }
+
+        $data = $r->field('r.user_id,r.bar_id,r.status,b.user_id uid')->table('csw_request r,csw_barinfo b')->where("r.id=$id and r.bar_id=b.id")->select();
+        // dump($data);
+        $list = array();
+        $list['user_id'] = $data[0]['user_id'];
+        $list['bar_id'] = $data[0]['bar_id'];
+        $list['status'] = $data[0]['status'];
+
+        // dump($list);exit;
+
+        //判断是否申请吧主
+        if($list['status'] == 1){
+            //判断该吧是否已经存在吧主，不存在继续申请，存在则提示
+            if($data[0]['uid']>0){
+                M('baradmin')->where(array('id'=>$res))->delete(); //操作失败，将已插入的数据删除
+                $this->error("此吧已有吧主，若要换吧主，请先撤销原吧主！");
+                exit;
+            } 
+            $map = array();           
+            $map['user_id'] = $list['user_id'];
+            $map['id'] = $list['bar_id'];
+            // dump($map);
+            //将吧主插入到贴吧信息表,并将数据添加到贴吧管理表        
+            if($this->_barinfo->data($map)->save()>0 && M('baradmin')->data($list)->add()>0){
+                $r->where(array('id'=>$id))->delete();
+                $this->success("已同意",U('Barinfo/request'));
+                exit;
+            }else{
+                $this->error("操作失败！！！");
+                exit;
             }
-        }else{
+        }else if(M('baradmin')->data($list)->add()>0 && $r->where(array('id'=>$id))->delete()>0){
+            $this->success("已同意",U('Barinfo/request'));
+            exit;
+        }
+    }
+
+    /**
+    * 方法名：revoke()  撤销吧主
+    *
+    * @return[void]
+    */
+    public function revoke()
+    {
+        $id = I('id');
+        if(empty($id)){
             $this->error("操作失误！！！");
+            exit;
+        }
+        $data = array();
+        $data['user_id'] = "";
+        $data['id'] = $id;
+        if($this->_barinfo->data($data)->save()>0 && M('baradmin')->where("bar_id=$id and status=1")->delete()>0){
+            $this->success("撤销职位成功！！！");
+            exit;
+        }else{
+            $this->error("撤销失败！！！");
+            exit;
+        }
+    }
+
+    /**
+    * 方法名：annul()  撤销吧管理
+    *
+    * @return[void]
+    */
+    public function annul()
+    {
+        $id = I('id');
+        if(empty($id)){
+            $this->error("操作失误！！！");
+            exit;
+        }
+        $map = array();
+        $map['bar_id'] = $id;
+        $map['status'] = '2';
+        $map['user_id'] = I('user_id');
+        // dump($map);exit;
+        if(M('baradmin')->where($map)->delete()>0){
+            $this->success("撤销吧管理员成功！");
+            exit;
+        }else{
+            $this->error("撤销职位失败！");
+            exit;
         }
     }
 }
