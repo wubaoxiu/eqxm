@@ -16,6 +16,10 @@ class UserController extends AdminController
     private $_role = null; //角色操作表
     private $_baradmin = null; //吧管理操作表
 
+    /**
+    * 方法名 _initialize()  初始化操作
+    * @return[void]
+    */
     public  function _initialize(){
         parent::_initialize();
         $this->_user = D('user');

@@ -1,10 +1,10 @@
 <extend name="Public/table" />
 
-<block name="admin">
+<block name="feedback">
     <li class="active open">
 </block>
 
-<block name="adminlist">
+<block name="feedback_list">
     <li class="active">
 </block>
 <block name="where">
@@ -30,14 +30,12 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                           <th>ID</th>
-                            <th>角色</th>               
+                           <th>用户编号</th>
                             <th class="hidden-480">用户名</th>
-                            <th class="hidden-480">性别</th>
-                            <th>头像</th>
+                            <th class="hidden-480">内容</th>
                              <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                email
+                               反馈时间
                             </th>
 
                             <th class="center">操作</th>
@@ -45,6 +43,7 @@
                     </thead>
 
                     <tbody>
+                    <!-- <{:dump($list)}> -->
                     <foreach name = "list" item = "v">
                         <tr>
                             <td class="center">
@@ -55,32 +54,20 @@
                             </td>
 
                               <td>
-                                    <a href="#"> <{$v.id}> </a>
+                                    <a href="#"> <{$v['id']}> </a>
                                 </td>
-                               
-                               <td>
-                                <volist name="v.role" id="role">
-                                  <span style="color:#999">
-                                   <{$role}>
-                                  </if>
-                                  </span>
-                                &nbsp;
-                              </volist>
-                               </td>
-                                <td class="hidden-480"><{$v.name}></td>
+                                <td class="hidden-480"><{$v['name']}></td>
                                   <td class="hidden-480">
-                                  <if condition = "$v.sex eq '1'">女
-                                  <elseif condition = "$v.sex eq '2'" />男
-                                  <else />保密
-                                  </if>
+                                    <{$v['content']}>
                                 </td> 
-                                <td><img src="__ROOT__/<{$v['hpic']}>" width="50" alt=""></td>
-                                 <td><{$v.email}></td>
+                              
+                                 <td><{$v['add_time']|date="Y-m-d H:i:s",###}></td>
                             <td>
                                 <div class="visible-md visible-md hidden-sm hidden-xs action-buttons center">
-                                    <a href="<{:U('select',array('id'=>$v['id']))}>" class="btn btn-default">查询</a>
-                                    <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">编辑</a>
-                                    <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
+                                    <!-- <a href="<{:U('select',array('id'=>$v['id']))}>" class="btn btn-default">查询</a> -->
+                                    <a href="<{:U('Feedback/reply',array('id'=>$v['id']))}>" class="btn btn-primary">查询并回复</a>
+                                    <!-- <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a> -->
+                                   
                                 </div>
 
                                 <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -174,7 +161,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,null,
+              null, null,null, null,
               { "bSortable": false }
             ] } );
             
