@@ -4,24 +4,27 @@ namespace Admin\Controller;
 use \Think\Controller;
 use \Think\Verify;
 
-/*
-    * 控制器名称  LoginController
-    * 控制器作用  处理登录、退出
-    * @author   wbx
-    * @date     2016-11-13
+/**
+* 控制器名称  LoginController
+* 控制器作用  处理登录、退出
+* @author   wbx
+* @date     2016-11-13
 */
 
 class LoginController extends Controller 
 {
-    //获取登录界面
+    /**
+    * 方法名：login() 获取登录界面
+    * @return[void]
+    */
     public function login()
     {
         $this->display('Login/login');
     }
 
-    /*
-        * 登录响应
-        * @return bool ;  true跳转至首页，false返回登录
+    /**
+    * 方法名：doLogin() 登录响应
+    * @return bool ;  true跳转至首页，false返回登录
     */
     public function doLogin()
     {
@@ -86,8 +89,9 @@ class LoginController extends Controller
         $this->redirect('Index/index');
     }
 
-    /*
-        *生成验证码
+    /**
+    * 方法名：yzm() 生成验证码
+    * @return
     */
     public function yzm()
     {
@@ -103,8 +107,9 @@ class LoginController extends Controller
 
     }
 
-    /*
-        * 退出登录
+    /**
+    * 方法名：logout() 退出登录
+    * @return
     */
     public function logout()
     {

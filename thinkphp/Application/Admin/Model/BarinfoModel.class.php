@@ -26,6 +26,14 @@ class BarinfoModel extends Model{
         foreach($data as $v){
             $uname = array();  //定义一个空数组，用来存放创建人名
             $uname = M('user')->field('name')->where(array('id'=>array('eq',$v['user_id'])))->find();
+
+            if(empty($uname)){
+                $map = array();
+                $map['user_id'] = '';
+                $map['id'] = $v['id'];
+                $res = M('barinfo')->data($map)->save(); //把已删除账号的用户的吧主撤销
+                // echo $res.'<br/>';
+            }
             $v['username'] = $uname;
 
             $tname = array();  //定义一个空数组，用来存放分类名

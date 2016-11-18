@@ -1,10 +1,10 @@
 <extend name="Public/table" />
 
-<block name="bar">
+<block name="comment">
     <li class="active open">
 </block>
 
-<block name="barlist">
+<block name="commentlist">
     <li class="active">
 </block>
 
@@ -36,14 +36,14 @@
                                 </label>
                             </th> -->
                             <th>ID</th>
-                            <th>吧名</th>
-                            <th class="hidden-480">类别</th>
-                            <th class="hidden-480">吧主</th>
-                            <th>状态</th>
-                            <th>宣言</th>               
+                            <th>评论人</th>
+                            <th class="hidden-480">评论的帖子ID号</th>
+                            <th class="hidden-480">评论的楼层ID号</th>
+                            <th>评论所处贴吧</th>
+                            <th>状态</th>               
                             <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                创建时间
+                                评论时间
                             </th>
 
                             <th>操作</th>
@@ -63,69 +63,32 @@
                                 <td>
                                     <a href="#"> <{$v['id']}> </a>
                                 </td>
-                               <td> <{$v['name']}> </td>
+                               <td> <{$v['uname']}> </td>
                                 <td class="hidden-480">
-                                    <{$v['typename'].name}>
+                                    <{$v['note_id']}>
                                 </td>
                                 <td class="hidden-480">
-                                    <{$v['username'].name}> 
+                                    <{$v['floor']}> 
                                 </td>
+                                <td> <{$v['bname']}> </td>
                                 <td>
-                                    <a href="<{:U('Barinfo/checkStatus',array('id'=>$v['id']))}>">
-                                    <if condition="$v['status'] eq 1">启用<else />禁用</if>
+                                    <a href="javascript:;" values="<{:U('Comment/changeStatus',array('id'=>$v['id']))}>" class="aajax" style="color:blue;font-weight:bold;font-size:14px;">
+                                    <!-- <if condition="$v['status'] eq 1">启用<else />禁用</if> -->
+                                    <if condition="($v['status'] eq 1)">显示<else />不显示</if>
                                     </a>
                                 </td>
-                                <td> <{$v['title']}> </td>
                                 <td> <{$v['createtime']|date="Y-m-d",###}> </td>
                                 <td>
-                                    <!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="btn btn-primary" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
-                                            修改
+                                    <!-- <div class="visible-md visible-md hidden-sm hidden-xs action-buttons"> -->
+                                        <!-- <a class="btn btn-success" href="<{:U('Comment/changeStatus',array('id'=>$v['id']))}>">
+                                            是否显示
+                                        </a> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"> -->
+                                        <a class="btn btn-primary" href="<{:U('Comment/detail',array('id'=>$v['id']))}>">
+                                            查看评论内容
                                         </a>
-                                    </div>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="btn btn-primary" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
-                                            查看详情
-                                        </a>
-                                    </div> -->
-
-                                    <a class="blue" href="<{:U('Barinfo/detail',array('id'=>$v['id']))}>">
-                                        <i class="icon-zoom-in bigger-130" title="查看详情"></i>
-                                    </a>
-
-                                    <a class="green" href="<{:U('Barinfo/edit',array('id'=>$v['id']))}>">
-                                        <i class="icon-pencil bigger-130" title="修改信息"></i>
-                                    </a>
-
-                                    <a class="lightgreen" href="#" role="button" data-toggle="modal" data-target="#myModal">
-                                        <i class=" icon-cloud-upload bigger-130" title="上传头像"></i>
-                                    </a>
-                                    <a class="red" href="<{:U('Barinfo/revoke',array('id'=>$v['id']))}>">
-                                        <i class="icon-reply bigger-130"></i>
-                                    </a>
-                                    <!-- <button class="btn btn-grey btn-lg">
-                                                <i class="icon-trash icon-2x icon-only"></i>
-                                            </button> -->
-                                    <div class="modal fade" id="myModal">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title">修改头像</h4>
-                                          </div>
-                                          <form action="<{:U('Barinfo/upload')}>" method="post" enctype="multipart/form-data">
-                                          <div class="modal-body">
-                                                <input type="file" name="hpic">
-                                                <input type="hidden" name="id" value="<{$v['id']}>">
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="reset" class="btn btn-default" data-dismiss="modal">重置</button>
-                                            <button type="submit" class="btn btn-primary">修改</button>
-                                          </div>
-                                          </form>
-                                        </div><!-- /.modal-content -->
-                                      </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
+                                
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
                                         <div class="inline position-relative">
@@ -212,9 +175,39 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- PAGE CONTENT ENDS -->
+
 </block>
 
 <block name="tablejs">
+    <script>
+            var aajax = $("td .aajax");
+            // console.log(aajax.length);
+            for(var i = 0;i<aajax.length;i++){
+                // alert(i);
+                (function(i){
+                    aajax[i].onclick =function(){
+                        // alert(i);
+                        var url = $(this).attr("values");
+                        // console.log(url);
+                        var  $_this = $(this);
+                        $.ajax({
+                            type:'get',
+                            data:"",
+                            url:url,
+                            success:function(data){
+                                if(data==1){
+                                    // alert(data);
+                                    $_this.html('显示');
+                                }else if(data==2){
+                                    // alert(data);
+                                    $_this.html('不显示');
+                                }
+                            },
+                        })
+                    }
+                })(i);                   
+            }        
+      </script>
     <script type="text/javascript">
         jQuery(function($) {
             var oTable1 = $('#sample-table-2').dataTable( {

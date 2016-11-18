@@ -109,17 +109,20 @@
             <div class="profile-info-row">
                 <div class="profile-info-name"> 吧主 </div>
 
-                <div class="profile-info-value">
-                    <span class="editable" id="sex"><if condition="$data['username']['name'] eq null">还没有吧主<else /><{$data['username'].name}></if></span>
+                <div class="profile-info-value" style="height:50px">
+                    <span class="editable" id="sex"><if condition="$data['username']['name'] eq null">还没有吧主<else /><{$data['username'].name}><a href="<{:U('Barinfo/revoke',array('id'=>$data['id']))}>" class="btn btn-danger" style="float:right;">撤销吧主</a></if></span>
                 </div>
             </div>
 
             <div class="profile-info-row">
                 <div class="profile-info-name"> 吧管理员 </div>
 
-                <div class="profile-info-value">
-
-                    <span class="editable" id="email">还没有做</span>
+                <div class="profile-info-value" style="height:50px">
+                    <volist name="list" id="vo">
+                        <span class="editable" id="email">
+                            <{$vo['name']}><a href="<{:U('Barinfo/annul',array('id'=>$data['id'],'user_id'=>$vo['id']))}>" title="点击撤销职位"><sub><span class="label label-danger arrowed-in">撤销</span></sub></a>
+                        </span>
+                    </volist>
                 </div>
             </div>
 
