@@ -96,9 +96,11 @@ ul li{
     float:left;
 }
 .content_d .content_nav{
-    width:800px;
+    width:780px;
     height:50px;
-    border:1px solid #ccc;
+    /*border:1px solid #ccc;*/
+    margin-top: 20px;
+    background: #F8F8F8;
 
 }
 .content_d .content_nav span{
@@ -108,20 +110,31 @@ ul li{
     line-height: 50px;
 }
 .content_d .content_con{
-    width:395px;
+    width:695px;
     /*height:300px;*/
     /*border-left:1px solid #ccc;*/
     float:left;
-    /*margin-left: 5px;*/
+    margin-top: 30px;
+    margin-left: 25px;
+    padding-bottom: 30px;
+    border-bottom: 1px dotted #F4F4F4;
 }
 .content_d .content_con .content_dt{
-    width:390px;
-    height:200px;
+    width:690px;
+    /*height:200px;*/
     /*border:1px solid #ccc;*/
 }
+.content_d .content_con .content_dt .content_footer{
+    width:690px;
+    margin-top: 50px;
+}
+.content_d .content_con .content_dt .content_footer span{
+    margin-right: 30px;
+    color:#999;
+}
 .content_con .content_dt .content_top{
-    width:390px;
-    height:24px;
+    width:690px;
+    /*height:24px;*/
     margin-top: 10px;
 
 }
@@ -129,36 +142,45 @@ ul li{
     font-size: 20px;
     line-height: 24px;
     margin-left: 10px;
-
+    color:#333;
 
 }
 .content_con .content_dt .content_cen a{
    font-size: 16px;
-
+    color:#2C89E2;
+}
+.content_con .content_dt .content_cen a:hover{
+    color:blue;
 }
 .content_con .content_dt .content_cen{
-    width:434px;
-    height:22px;
-    margin-top: 5px;
+    width:634px;
+    /*height:22px;*/
+    margin-top: 25px;
 }
 .content_con .content_dt .content_img{
-    width:390px;
-    height:120px;
+    width:690px;
+    /*height:120px;*/
     /*border:1px solid #abcdef;*/
-    margin-top: 10px;
+    margin-top: 30px;
 }
+
+.contentl{
+    width:330px;
+    float:right;
+}
+
 .ul_info{
-    width:250px;height:80px;float:left;
+    width:150px;height:80px;float:left;
 }
 .bar_link{
     /*width:200px;*/
-    height:100px;
+    /*height:100px;*/
     /*border:1px solid #ccc;*/
-   margin-left:20px;
+   margin-left:10px;
 }
 .bar_link ul li{
     margin-top: 5px;
-    float:left;
+    /*float:left;*/
     margin-left:10px;
     
 }

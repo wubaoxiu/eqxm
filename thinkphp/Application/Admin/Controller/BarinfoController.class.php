@@ -159,9 +159,9 @@ class BarinfoController extends AdminController
         //查询吧管理员
         $list[] = M('baradmin')->field('u.name,u.id')->table('csw_baradmin b,csw_user u')->where("b.bar_id=$id and b.user_id=u.id and b.status=2")->select();
         // dump($data);
-        dump($list);
+        // dump($list);
         $arr = array_pop($list);
-        dump($arr);
+        // dump($arr);
         // echo $arr[0]['name'];
         $this->assign('title',"贴吧管理");
         $this->assign('stitle','贴吧详情');
@@ -194,7 +194,7 @@ class BarinfoController extends AdminController
                 $image = new \Think\Image();
                 $image->open("./Uploads/{$data['hpic']}");
                 // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
-                $image->thumb(150, 150)->save("./Uploads/{$info['hpic']['savepath']}/s_"."{$info['hpic']['savename']}");
+                $image->thumb(100, 100)->save("./Uploads/{$info['hpic']['savepath']}/s_"."{$info['hpic']['savename']}");
 
                 if($this->_barinfo->data($data)->save()>0){
                     $this->success("头像上传成功！！！",U('Barinfo/index'));
