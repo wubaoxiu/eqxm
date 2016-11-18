@@ -17,13 +17,13 @@
     	<div class="zc">
         	<div class="bj_bai">
             <h3>登录</h3>
-       	  	  <form action="" method="post">
+       	  	  <form action="<{:U('Login/doLogin')}>" method="post" onsubmit="return checkAll();">
                 <input name="name" type="text" id="name" class="kuang_txt" placeholder="用户名">
                 <input name="password" type="password" class="kuang_txt" placeholder="密码">
                 <div>
                		<a href="#">忘记密码？</a><input name="" type="checkbox" value="" checked><span>记住我</span> 
                 </div>
-                <button type="submit" class="btn_zhuce" >登录</button>
+                <input type="submit" id="dl" class="btn_zhuce" value="登录">
                 
                 </form>
             </div>
@@ -40,30 +40,37 @@
 </div>
 <script src="__PUBLIC__/layer/layer.js" charset="utf-8"></script>
 <script type="text/javascript">
-    $('form').submit(function(){
+    var is_ok;
+    function check(){
         var name = $("input[name='name']").val();
         var password = $("input[name='password']").val();
         // alert("name="+name+"&password="+password);
-        $.ajax({
-            type:"post",
-            url:"<{:U('Login/doLogin')}>",
-            data:"name="+name+"&password="+password,
-            success:function(data){
-                // alert(data);
-                // layer.tips('123','#name');
-                // layer.open({
-                //   type: 1,
-                //   skin: 'layui-layer-rim', //加上边框
-                //   area: ['420px', '240px'], //宽高
-                //   content: data
-                // });
-                layer.msg(data, {
-                  time: 20000, //20s后自动关闭
-                  btn: ['明白了', '知道了', '哦']
+        $.post("<{:U('Login/checkLogin')}>",{'name':name,'password':password},function(data){
+            // console.log(data.val == false);
+            if(data.val == false){
+                layer.msg(data.content, {
+                time: 20000, //20s后自动关闭
+                btn: ['确定', '取消']
                 });
+                is_ok = false;
+                // return false;
+            }else{
+                // return true;
+                is_ok = true;
             }
         });
-    });
+    };
+    // $('form').submit(function(){
+    //     alert(return check());
+    // })
+    function checkAll(){
+        check();
+        if(is_ok == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
 </script> 
 </body>
 </html>

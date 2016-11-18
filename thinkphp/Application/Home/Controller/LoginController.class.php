@@ -82,6 +82,7 @@ class LoginController extends Controller
         $data['password'] = md5($_POST['password']);
         $data['email'] = $_POST['email'];
         $data['createtime'] = time();
+        $data['hpic'] = 'Public/linkimg/2016-11-15/s_582af894f13db.jpg';
         $data['sex'] = 1;
         $data['freeze'] = 0;
         // var_dump($data);
@@ -92,25 +93,52 @@ class LoginController extends Controller
         }
     }
 
-    // 执行登录
-    public function doLogin()
+    // 登录验证
+    public function checkLogin()
     {
         $name = $_POST['name'];
         $password = md5($_POST['password']);
         $data = $this->_user->where(array('name'=>array('eq',$name)))->find();
         // 判断用户名是否存在
         if(empty($data)){
-            $this->ajaxReturn('请输入正确的用户名!');exit;
+            $list = array('val'=>false,'content'=>'请输入正确的用户名!');
+            $this->ajaxReturn($list);exit;
         }
         // 判断密码是否正确
         if($data['password'] != $password){
-            $this->ajaxReturn('密码错误！');exit;
+            $list = array('val'=>false,'content'=>'请输入正确的密码!');
+            $this->ajaxReturn($list);exit;
         }
         // 判断是否封号
         if($data['freeze'] != 0){
-            $this->ajaxReturn("对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");exit;
+            // $this->ajaxReturn("对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");exit;
+            $list = array("val"=>false,"content"=>"对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");
+            $this->ajaxReturn($list);exit;
         }
 
+        $list = array("val"=>true);
+        $this->ajaxReturn($list);
+    }
+
+    // 执行登录
+    public function doLogin()
+    {
+        session_start();
+        $name = $_POST['name'];
+        $data = $this->_user->where(array('name'=>array('eq',$name)))->find();
+        $_SESSION['user'] = $data;
+        // 检测用户是否存在被禁言
+        $shutup = $this->_shutup->where(array('user_id'=>array('eq',$data['id'])))->select();
+        if(!empty($shutup)){
+            foreach ($shutup as $v) {
+            // dump($v);
+            // 收集禁言信息
+            $st_info[$v['bar_id']] = $v['relieve']; 
+            }
+            dump($st_info);
+        }
+        $_SESSION['shutup'] = $st_info;
+        dump($_SESSION);
     }
 }
 
