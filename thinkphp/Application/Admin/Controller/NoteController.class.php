@@ -13,6 +13,12 @@ class NoteController extends AdminController
     private $_user = null;//用户表表操作
     private $_barinfo = null;//贴吧表操作
 
+
+  
+    /**
+    * 方法名 _initialize()  初始化操作
+    * @return[void]
+    */
     public function _initialize(){
         parent::_initialize();
         $this->_note = D('Note');
@@ -23,29 +29,13 @@ class NoteController extends AdminController
 
     //帖子用户列表
     public function index(){
-        //查询数据
-        $list = $this->_note->select();
-        //声明一个空数组
-        $arr = array();  
-        //遍历帖子信息
-        foreach ($list as $v) {
-           $user_ids = $this->_user->field('id,name')->where(array('id'=>array('eq',$v['user_id'])))->select();
-           // var_dump($user_ids);
-           //定义一个空数组
-           $barinfo = array();
-           foreach ($user_ids as $value) {
 
-            $barinfo = $this->_barinfo->field('user_id,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
-           }
-           $v['bar_id']=$barinfo[0]['name'];
-           $v['user_id']=$user_ids[0]['name'];
-          $arr[] = $v;
-      }
+    //查询数据
+      $list = $this->_note->field('n.id,n.title,u.name uname,n.istop,n.isfine,b.name bname')->table('csw_user u,csw_note n,csw_barinfo b')->where('n.bar_id=b.id and n.user_id = u.id')->select();
         $this->assign('title','帖子管理');
         $this->assign('stitle','帖子列表');
         //分配数据
-        $this->assign('list',$arr);
-        $this->assign('barinfo',$barinfo);
+        $this->assign('list',$list);
         $this->display('Note/index');
     }
 

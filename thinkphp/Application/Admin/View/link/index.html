@@ -37,11 +37,12 @@
                             <th class="hidden-480">显示</th>
                              <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                操作
+                                友情链接内容
                             </th>
+                            <th>操作</th>
                         </tr>
                     </thead>
-
+                   <!-- <{:dump($list)}> -->
                     <tbody>
                         <foreach name="list" item="v">
                             <tr>
@@ -62,6 +63,7 @@
                                      <else />不显示
                                      </if>
                                   </td>
+                                  <td><{$v.desc}></td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                         <a class="green" href="<{:U('Link/edit',array('id'=>$v['id']))}>">
@@ -114,48 +116,6 @@
             </div>
         </div>
     </div>
-    <div id="modal-table" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header no-padding">
-                    <div class="table-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <span class="white">&times;</span>
-                        </button>
-                        用户列表
-                    </div>
-                </div>
-
-                <div class="modal-footer no-margin-top">
-                    <ul class="pagination pull-right no-margin">
-                        <li class="prev disabled">
-                            <a href="#">
-                                <i class="icon-double-angle-left"></i>
-                            </a>
-                        </li>
-
-                        <li class="active">
-                            <a href="#">1</a>
-                        </li>
-
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-
-                        <li class="next">
-                            <a href="#">
-                                <i class="icon-double-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- PAGE CONTENT ENDS -->
 </block>
 
 <block name="tablejs">
@@ -164,7 +124,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null,
+              null, null,null, null,null,
               { "bSortable": false }
             ] } );
             

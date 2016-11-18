@@ -12,6 +12,12 @@ class Linkcontroller extends AdminController
 {
    private $_link = null;//友情链接表操作s
 
+
+  
+    /**
+    * 方法名 _initialize()  初始化操作
+    * @return[void]
+    */
    public function _initialize()
    {
     parent::_initialize();

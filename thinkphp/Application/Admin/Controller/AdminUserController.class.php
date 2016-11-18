@@ -14,6 +14,11 @@ class AdminUserController extends AdminController
   private $_user_role = null; //用户角色关系操作表
   private $_role = null; //角色操作表
 
+ 
+    /**
+    * 方法名 _initialize()  初始化操作
+    * @return[void]
+    */
   public function _initialize(){
     parent::_initialize();
     $this->_admin = D('admin');
@@ -80,7 +85,9 @@ class AdminUserController extends AdminController
     public function action(){
        $name = $this->_admin->field('name')->select();
        $pn = $_POST['aname'];
-       if ($pn==$name[0]['name']) {
+       // dump($pn);
+       // dump($name[0]['name']);
+       if ($pn == $name[0]['name']) {
        return $this->ajaxReturn(1);
        }else{
        return $this->ajaxReturn(2);
@@ -96,22 +103,22 @@ class AdminUserController extends AdminController
       $data['repassword']=md5($_POST['repassword']);
       $data['email']=$_POST['email'];
       $data['sex']=$_POST['sex'];
-      // $hpic = $this->upload();
-      // $data['hpic']=$hpic; 
+      $hpic = $this->upload();
+      $data['hpic']=$hpic; 
      //得到数据模型
       $admin = $this->_admin;
       //获取id
       $id = I('post.id/d'); 
 
-     // $admin_id = $admin->add($data);
-       // if ($admin_id>0) {
-       //    $list['user_id']=$admin_id;
-       //    $list['role_id']=$_POST['role_id'];
-       //      // M('user_role')->add($list);
-       //    $this->success('恭喜您，添加成功',U('index'));
-       //  }else{
-       //    $this->error('添加失败......');
-       //  }
+     $admin_id = $admin->add($data);
+       if ($admin_id>0) {
+          $list['user_id']=$admin_id;
+          $list['role_id']=$_POST['role_id'];
+            M('user_role')->add($list);
+          $this->success('恭喜您，添加成功',U('index'));
+        }else{
+          $this->error('添加失败......');
+        }
 
       }
 
