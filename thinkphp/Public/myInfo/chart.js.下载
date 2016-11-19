@@ -1,0 +1,1 @@
+define("echarts/chart",[],function(){var e={},t={};return e.define=function(a,i){return t[a]=i,e},e.get=function(e){return t[e]},e});
