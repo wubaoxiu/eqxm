@@ -13,8 +13,32 @@
     <form class="form-horizontal" role="form" action="<{:U('Feedback/doReply')}>" method="post">
     <input type="hidden" name = "id" value = "<{$list['id']}>">
     <input type="hidden" name = "user_id" value = "<{$list['name']}>">
-        <div class="form-group" style="height:50px;margin-top:40px;">
-            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 回复 :</label>
+        <div class="form-group" style="height:50px;margin-top:40px;font-size:20px">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 : </label>
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <{$list['name']}>
+                </span>
+            </div>
+        </div>    
+        <div class="form-group" style="height:50px;font-size:20px">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 内 容 : </label>
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <{$list['content']}>
+                </span>
+            </div>
+        </div>    
+        <div class="form-group" style="height:50px;font-size:20px">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 时 间 : </label>
+            <div class="col-xs-12 col-sm-5">
+                <span class="block input-icon input-icon-right">
+                  <{$list['add_time']}>
+                </span>
+            </div>
+        </div>    
+        <div class="form-group" style="height:50px;margin-top:10px;">
+            <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 回 复 :</label>
             <div class="col-xs-12 col-sm-5">
                 <span class="block input-icon input-icon-right">
                     <textarea name="content" id="" cols="44" rows="4" maxlength="50"></textarea>
@@ -33,7 +57,7 @@
                 &nbsp; &nbsp; &nbsp;
                 <button class="btn" type="reset">
                     <i class="icon-undo bigger-110"></i>
-                    修改回复
+                    重置回复
                 </button>
             </div>
             </div>

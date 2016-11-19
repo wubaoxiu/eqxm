@@ -48,8 +48,6 @@ class FeedbackController extends AdminController{
     public function doReply(){
        $post = $_POST;
        $post['reply_time']=time();
-       // var_dump($post);die;
-       // echo $this->_feedback_reply;
         if ($this->_feedback_reply->data($post)->add()>0) {
             $this->success('回复成功！',U('Feedback/index'));
         }else{

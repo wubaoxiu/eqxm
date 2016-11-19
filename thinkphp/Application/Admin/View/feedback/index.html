@@ -30,10 +30,10 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                           <th>用户编号</th>
-                            <th class="hidden-480">用户名</th>
-                            <th class="hidden-480">内容</th>
-                             <th>
+                           <th  class="center">用户编号</th>
+                            <th class="hidden-480 center">用户名</th>
+                            <th class="hidden-480 center">内容</th>
+                             <th  class="center">
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                反馈时间
                             </th>
@@ -45,7 +45,7 @@
                     <tbody>
                     <!-- <{:dump($list)}> -->
                     <foreach name = "list" item = "v">
-                        <tr>
+                        <tr  class="center">
                             <td class="center">
                                 <label>
                                     <input type="checkbox" class="ace" />
@@ -64,9 +64,8 @@
                                  <td><{$v['add_time']|date="Y-m-d H:i:s",###}></td>
                             <td>
                                 <div class="visible-md visible-md hidden-sm hidden-xs action-buttons center">
-                                    <!-- <a href="<{:U('select',array('id'=>$v['id']))}>" class="btn btn-default">查询</a> -->
                                     <a href="<{:U('Feedback/reply',array('id'=>$v['id']))}>" class="btn btn-primary">查询并回复</a>
-                                    <!-- <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a> -->
+                                
                                    
                                 </div>
 

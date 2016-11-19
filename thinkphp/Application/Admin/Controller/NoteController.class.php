@@ -44,30 +44,17 @@ class NoteController extends AdminController
     public function select(){
         //获取当前用户的id
         $id = I('get.id/d');
-         //查询数据
-        $list = $this->_note->find($id);
-        //声明一个空数组
-        $arr = array();
-        
-        //遍历帖子信息
-           $user_ids = $this->_user->field('id,name,hpic')->where(array('id'=>array('eq',$list['id'])))->select();
-        //定义一个空数组
-           $barinfo = array();
-           foreach ($user_ids as $value) {
-
-            $barinfo = $this->_barinfo->field('user_id,title,name')->where(array('user_id'=>array('eq',$value['id'])))->select();
-           }
-           $v['bar_id']=$barinfo[0]['name'];
-           $v['user_id']=$user_ids[0]['name'];
-           $v['hpic']=$user_ids[0]['hpic'];
-          $arr[] = $v;
-
+       //查询数据
+         $list = $this->_note->field('n.id,n.title,n.scan,n.reply,n.content,u.name uname,u.hpic,n.istop,n.isfine,b.name bname')->table('csw_user u,csw_note n,csw_barinfo b')->where("n.bar_id=b.id and n.user_id = u.id and n.id='$id'")->select();
+    
+        foreach ($list as $value) {
+           $arr = $value;
+        }
+        // var_dump($arr);
         $this->assign('title','帖子列表');
         $this->assign('stitle','帖子信息');
-      //   //分配数据
+        //分配数据
         $this->assign('data',$arr);
-        $this->assign('list',$list);
-        $this->assign('hpic',$hpic);
         $this->display('Note/select');
     }
 

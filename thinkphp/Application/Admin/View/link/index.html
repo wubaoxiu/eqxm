@@ -33,20 +33,20 @@
                             </th>
                             <th>友情链接编号</th>
                             <th>友情链接标题</th>
-                            <th class="hidden-480">友情链接网址</th>
-                            <th class="hidden-480">显示</th>
-                             <th>
+                            <th class="hidden-480 center">友情链接网址</th>
+                            <th class="hidden-480 center">显示</th>
+                             <th class="center">
                                 <i class="icon-time bigger-110 hidden-480"></i>
                                 友情链接内容
                             </th>
-                            <th>操作</th>
+                            <th class="center">操作</th>
                         </tr>
                     </thead>
                    <!-- <{:dump($list)}> -->
                     <tbody>
                         <foreach name="list" item="v">
-                            <tr>
-                                <td class="center">
+                            <tr class="center">
+                                <td>
                                     <label>
                                         <input type="checkbox" class="ace" />
                                         <span class="lbl"></span>
@@ -58,7 +58,7 @@
                                 </td>
                                <td><{$v.linktitle}> </td>
                                 <td class="hidden-480"><{$v.linkurl}></td>
-                                  <td class="hidden-480"> 
+                                  <td class="hidden-480" style="color:green;width:80px;"> 
                                      <if condition="$v.is_show eq '1'">显示
                                      <else />不显示
                                      </if>
@@ -66,12 +66,8 @@
                                   <td><{$v.desc}></td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="<{:U('Link/edit',array('id'=>$v['id']))}>">
-                                            <i class="icon-pencil bigger-130"></i>
-                                        </a>
-                                        <a class="red" href="<{:U('Link/del',array('id'=>$v['id']))}>">
-                                            <i class="icon-trash bigger-130"></i>
-                                        </a>
+                                    <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改</a>
+                                    <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
                                     </div>
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
