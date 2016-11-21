@@ -1,0 +1,107 @@
+<extend name="Index/head" />
+
+<block name="main">
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+
+    <title>个人中心</title>
+<div class = "center">
+    <div class = "center_nav">    
+        <div class = "center_header">
+            <ul>
+                <li><a href="<{:U('Index/index')}>">贴吧首页</a></li>
+                <li><a href="<{:U('Profile/mynote')}>">我的帖子</a></li>
+                <li><a href="<{:U('Profile/mybar')}>">我的贴吧</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class = "center_warp">
+        <div class = "center_center">
+        <div class = "center_left fl">
+            <div class = "center_left_top">
+                <div class = "center_left_top_one">
+                    <ul>
+                        <li><b>个人中心</b></li>
+                        <li><a href="<{:U('Profile/setting')}>" target="main">[设置]</a></li>
+                    </ul>
+                </div>
+                <div class = "center_left_top_two">
+                    <div class = "center_img"><img style = "width:100px;height:100px;" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" /></div>
+                   <div class = "center_fans fr">
+                       <ul>
+                           <li><b><{$list['name']}></b></li>
+                           <li>粉丝：777</li>
+                           <li>关注：666</li>
+                       </ul>
+                   </div>
+                </div>   
+            </div>
+            <div class = "center_bottom">
+                <ul>
+                   <li><a href="<{:U('MyInfo/index')}>">首页</a></li>
+                   <li><a href="<{:U('Profile/mybar')}>" target="main">我的贴吧</a></li>
+                   <li><a href="<{:U('Profile/mynote')}>" target="main">我的帖子</a></li>
+                   <li><a href="<{:U('avater',array('id'=>$list['id']))}>" target="main">基本资料</a></li>
+                   <li><a href="#">我的提醒</a></li>
+                   <li><a href="#">好友申请</a></li>
+                   <li><a href="#">我的关注</a></li>
+                   <li><a href="#">我的网盘</a></li>
+                </ul>
+
+            </div>
+        </div>
+          <div class = "center_right">
+
+          <iframe style = "width:750px;height:400px;"src="" name="main" frameborder="0">
+            
+          </iframe> 
+
+            
+          </iframe>   
+          </div>  
+        </div>
+    </div>       
+</div>
+
+
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0)
+        ,content: '内容'+ (Math.random()*1000|0)
+      })
+    }
+    ,tabDelete: function(){
+      //删除指定Tab项
+      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+
+
+</script>
+
+
+</block>

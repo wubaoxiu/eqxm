@@ -1,1 +1,0 @@
-define("zrender/shape",[],function(){var e={},t={};return e.define=function(n,i){return t[n]=i,e},e.get=function(e){return t[e]},e});

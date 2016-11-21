@@ -1,0 +1,190 @@
+<!-- <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" /> -->
+ <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+   <!-- <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" /> -->
+ <div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">修改头像</li>
+    <li class="layui-this">修改个人信息</li>
+  </ul>
+  <{:dump($list)}>
+  <?php 
+     $id = $_SESSION['user']['id'];
+     $list = M('user')->find($id);
+     var_dump($list);
+   ?>
+  <div class="layui-tab-content" style="height: 390px;">
+    <div class="layui-tab-item layui-show">
+        <span class="profile-picture">
+            <div style="width:150px;height:150px;border:1px solid #ccc;margin-left:50px;margin-top:30px;">
+              <img id="img" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" /> 
+            </div>
+                   <div class="space-4"></div>
+                <div class="site-demo-upload" style="margin-top:20px;margin-left:50px;font-size:20px;">
+                    <div class="site-demo-upbar">
+                        <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">              
+                    </div>
+                </div>
+            </span>
+  </div>
+    <div class="layui-tab-item">
+ 
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+    <label class="layui-form-label">性别</label>
+    <div class="layui-input-block">
+      <input type="radio" name="sex" value="男" title="男" checked="">
+      <input type="radio" name="sex" value="女" title="女">
+      <input type="radio" name="sex" value="禁" title="保密" disabled="">
+    </div>
+  </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">生日</label>
+    <div class="layui-input-inline">
+      <select name="quiz1">
+        <option value="">年</option>
+        <option value="1993" selected="">1993</option>
+        <option value="1994">1994</option>
+        <option value="1995">1995</option>
+      </select>
+    </div>
+    <div class="layui-input-inline">
+      <select name="quiz2">
+        <option value="">月</option>
+        <option value="1">1</option>
+        <option value="2" disabled="">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="layui-input-inline">
+      <select name="quiz3">
+        <option value="">日</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">爱好</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="like[write]" title="写作">
+      <input type="checkbox" name="like[listen]" title="听歌" checked="">
+      <input type="checkbox" name="like[game]" title="游戏">
+    </div>
+  </div>
+ 
+ 
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">简介</label>
+    <div class="layui-input-block">
+
+      <textarea placeholder="请输入内容" class="layui-textarea" cols="40" rows="4" maxsize="30"></textarea>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>  
+</div>
+</div>
+
+ <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+ <script type="text/javascript">
+     // 上传文件
+    layui.use('upload', function(){
+        layui.upload({
+            url: "<{:U('Home/Profile/action',array('id' =>$_SESSION['user']['id']))}>" //上传接口
+            ,method: 'post',
+            data:1
+            ,before: function(input){
+                //返回的参数item，即为当前的input DOM对象
+                layer.msg('文件上传中.....', {
+                    icon: 16
+                    ,shade: 0.01,
+                    time:0,
+                });
+            }
+            ,success: function(res){ //上传成功后的回调
+                layer.closeAll();
+                $('#img').attr('src','__ROOT__/' + res);
+            }
+        });
+});  
+
+
+ layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0)
+        ,content: '内容'+ (Math.random()*1000|0)
+      })
+    }
+    ,tabDelete: function(){
+      //删除指定Tab项
+      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+
+ /**/ 
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+  
+  
+});
+
+ </script>
