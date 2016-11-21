@@ -12,6 +12,7 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
         //推荐贴吧信息
+        dump($_SESSION['user']);
         $suggest = M('barinfo')->where(array('status'=>array('eq','1')))->order('attention desc')->limit(3)->select();
 
         $arr = array();
