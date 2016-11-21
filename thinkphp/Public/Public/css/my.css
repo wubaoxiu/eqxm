@@ -60,10 +60,20 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .bar_head_center{
     /*border: 1px solid red;*/
     width: 500px;
-    height: 50px;
+    height: 40px;
     margin-left: 200px;
     /*padding: 10px;*/
-    margin-top:30px;
+    margin-top:8px;
+}
+.bar_head_foot{
+    /*border: 1px solid red;*/
+    width: 500px;
+    height: 30px;
+    margin-left: 200px; 
+    padding-left: 20px;
+    padding-top: 5px;
+    color: #7f7f7f;
+    font-size: 13px;
 }
 .bar_head_center .lione{
     /*width: 70px;*/
@@ -74,7 +84,7 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     float: left;
 }
 .bar_head_center .litwo{
-    width: 70px;
+    /*width: 70px;*/
     text-align: center;
     background: orange;
     height: 30px;
@@ -90,7 +100,7 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     background: lightgreen;
 }
 .bar_head_center .lithree{
-    width: 60px;
+    /*width: 60px;*/
     height: 50px;
     font-size: 12px;
     color: #7f7f7f;
@@ -98,6 +108,65 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     line-height: 50px;
     float: left;
 }
+.my_headslider{
+    width: 120px;
+    height: 220px;
+    padding: 10px;
+    margin-right: 20px;
+    background: #f7f7f7;
+}
+.my_headslider img{
+    width: 100px;
+    height: 100px;
+    border: 5px solid white;
+}
+.my_headslider .user_name{
+    width: 100px;
+    text-align: center; 
+}
+.my_headslider .louzhu{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;   
+}
+.my_headslider .user_name a{
+    font-size: 16px;
+}
+.fatie{
+    width: 759px;
+    height: 520px;
+    background: #f8f8f8;
+    padding: 30px;
+    /*margin-left:75px; */
+}
+.fatie_head{
+    margin-top: 50px;
+}
+.input_title{
+    width: 300px;
+    height: 30px;
+    /*border: 1px solid blue;*/
+}
+.fatie_content{
+    width: 650px;
+    margin-top: 20px;
+    height: 250px;
+}
+.fatie_content2{
+    width: 650px;
+    height: 250px;
+}
+.fatie_fabiao{
+    /*width: 50px;*/
+    height: 30px;
+    line-height: 10px; 
+    margin-top: 80px;
+}
+
+
+
+/*     贴吧结束      */
 
 .note_main{
     width: 100%;
@@ -205,4 +274,6 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     width: 200px;
     margin-left: 25px;
 }
+
+
 
