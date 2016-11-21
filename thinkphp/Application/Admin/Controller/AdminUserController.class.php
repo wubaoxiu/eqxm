@@ -126,7 +126,7 @@ class AdminUserController extends AdminController
     public function updateAvator(){
          $hpic = $this->upload();
         $data['hpic'] = $hpic;
-        $data['id'] = I('get.id');
+        $data['id'] = I('get.id/d');
        $this->_admin->save($data);
        return $this->ajaxReturn($hpic);
 

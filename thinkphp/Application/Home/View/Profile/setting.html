@@ -1,0 +1,77 @@
+  
+
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">基本资料</li>
+    <li class="layui-this">签名档设置</li>
+  </ul>
+  <div class="layui-tab-content" style="height: 390px;">
+    <div class="layui-tab-item layui-show">
+    <div class="photo">    
+        <span class="profile-picture">
+            <div style="width:150px;height:150px;border:1px solid #ccc;">
+              <img id="avator" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__PUBLIC__/Public/image/qi.jpg" />
+            </div>
+            </span>
+    </div>
+    <div class="set">
+    <ul>
+        <li>姓名：萧萧</li>
+        <li>性别：女</li>
+        <li>注册时间：2016-11-21</li>
+        <li>简介：<br> 每位用户可以设置5套签名档，每套签名档可引用一张百度贴吧或空间的图片。
+        赶快来创建您最具个性的签名档吧</li>
+
+    </ul>
+    </div>
+    </div>
+     <div class="layui-tab-item">
+      <b>我的签名档：</b> 
+        添加一套签名档
+        每位用户可以设置5套签名档，每套签名档可引用一张百度贴吧或空间的图片。
+        赶快来创建您最具个性的签名档吧^_^
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0)
+        ,content: '内容'+ (Math.random()*1000|0)
+      })
+    }
+    ,tabDelete: function(){
+      //删除指定Tab项
+      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+  
+
+
+
+</script>
+
