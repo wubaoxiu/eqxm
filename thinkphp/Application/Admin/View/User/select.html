@@ -38,11 +38,10 @@
             </div>
         <div class="space-6"></div>
     </div>
-    <div class="col-xs-12 col-sm-7">
+    <div class="col-xs-12 col-sm-9">
         <div class="space-12"></div>
-
         <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 用户名 </div>
 
                 <div class="profile-info-value">
@@ -50,15 +49,20 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 性别 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="sex"><{$data.sex}></span>
+                    <span class="editable" id="sex">
+                        <if condition = "$data.sex eq '1'">女
+                        <else if condition = "$data.sex eq '2'">男
+                        <else />保密
+                     </if>
+                    </span>
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 邮箱 </div>
 
                 <div class="profile-info-value">
@@ -66,12 +70,12 @@
                     <span class="editable" id="email"><{$data.email}></span>
                 </div>
             </div>
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 角色 </div>
 
                 <div class="profile-info-value">
              <!-- <{:dump($adminrole)}> -->
-                    <span class="editable" id="email">
+                    <span class="editable" id="role">
                      <if condition = "$userlist.status eq '1'">会员
                      <else />VIP
                      </if>
@@ -82,16 +86,29 @@
                     </span>
                 </div>
             </div>
-
-            <div class="profile-info-row">
+<!-- <{:dump($data)}> -->
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 爱好 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="like"><{$data.like}></span>
+                    <span class="editable" id="like">
+                        <{$data['like']}>
+                     
+                    </span>
+                </div>
+            </div>
+            <div class="profile-info-row" style = "height:30px;">
+                <div class="profile-info-name"> 生日 </div>
+
+                <div class="profile-info-value">
+                    <span class="editable" id="brith">
+                        <{$data['brith']}>
+                     
+                    </span>
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 注册时间</div>
 
                 <div class="profile-info-value">
@@ -99,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 简介 </div>
 
                 <div class="profile-info-value">
@@ -107,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 账号状态 </div>
 
                 <div class="profile-info-value">

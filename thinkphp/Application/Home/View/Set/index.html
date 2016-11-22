@@ -3,28 +3,37 @@
    <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
   <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
-<div class="layui-tab layui-tab-card">
+<div class="layui-tab layui-tab-card"> 
   <ul class="layui-tab-title">
     <li class="layui-this">基本资料</li>
     <li class="layui-this">签名档设置</li>
   </ul>
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
-    <div class="photo">    
+    <div class="photo"> 
+ 
         <span class="profile-picture">
             <div style="width:150px;height:150px;border:1px solid #ccc;">
-              <img id="avator" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__PUBLIC__/Public/image/qi.jpg" />
+              <img id="avator" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" />
             </div>
             </span>
-    </div>
+    </div> 
+    <!-- <{:dump($list)}> -->
     <div class="set">
     <ul>
-        <li>姓名：萧萧</li>
-        <li>性别：女</li>
-        <li>注册时间：2016-11-21</li>
-        <li>简介：<br> 每位用户可以设置5套签名档，每套签名档可引用一张百度贴吧或空间的图片。
-        赶快来创建您最具个性的签名档吧</li>
-
+       
+        <li>姓　　名：<{$list['name']}></li>
+        <li>性　　别：
+          <if condition="$list['sex'] eq '1'">女
+          <else if condition="$list['sex'] eq '2'">男
+          <else />保密
+          </if>
+        </li>
+        <li>愛　　好：<{$list['like']}></li>
+        <li>邮　　箱：<{$list['email']}></li>
+        <li>生　　日：<{$list['brith']}></li>
+        <li>注册时间：<{$list['createtime']|date='Y-m-d',###}></li>
+        <li>简　　介:<br><{$list['introduction']}>
     </ul>
     </div>
     </div>
@@ -68,10 +77,6 @@ layui.use('element', function(){
     active[type] ? active[type].call(this) : '';
   });
 });
-
-  
-
-
 
 </script>
 

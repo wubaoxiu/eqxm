@@ -13,9 +13,7 @@ class ProfileController extends Controller{
 
     public function index(){
         $id = $_SESSION['user']['id'];
-        // var_dump($id);
           $list = M('user')->find($id);
-          var_dump($list);
           $this->assign('list',$list);
            $this->display();
 
@@ -25,7 +23,7 @@ class ProfileController extends Controller{
 
     public function action(){
          $hpic = $this->upload();
-         console.log($hpic);
+         // console.log($hpic);
         $data['hpic'] = $hpic;
         $data['id'] = I('get.id/d');
         M('user')->save($data);
@@ -67,13 +65,4 @@ class ProfileController extends Controller{
 
         }
     }
-
-    public function dophoto(){
-        $id = I('get.id');
-        $list = M('user')->find($id);
-        $this->assign('list',$list);
-    
-    }
-
-
  }
