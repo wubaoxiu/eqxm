@@ -1,0 +1,105 @@
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<div class = "nav">
+    <img src="__PUBLIC__/Public/image/timg.jpg" alt="">
+
+<div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">我的帖子</li>
+    <li class="layui-this">我的回复</li>
+    <li class="layui-this">我的精品</li>
+  </ul>
+  <div class="layui-tab-content" style="height: 330px;">
+    <div class="layui-tab-item layui-show">
+      <div class="note">
+          <div class = "note_content">
+              <span>在<b>鹿晗吧</b>发表了<b>88888</b> 回复[0]</span>
+          </div>
+          <div class="note_time">
+             2016-11-21 
+          </div>
+      </div>   
+      <div class="note">
+          <div class = "note_content">
+              <span>在<b>鹿晗吧</b>发表了<b>88888</b> 回复[0]</span>
+          </div>
+          <div class="note_time">
+             2016-11-21 
+          </div>
+      </div>
+    </div>
+     <div class="layui-tab-item">
+        <div class="note_reply">
+              <div class = "note_content">
+                  <span> 回复</span>
+              </div>
+              <div class="note_time">
+                 2016-11-21 
+              </div>
+              <div class = "note_warp">
+                  "没发过贴"<a href="">回复</a>
+              </div>
+              <div class = "note_topic">
+                   <span><b>xx</b>回复(6)来自于<b>ffff</b></span>
+              </div>
+        </div> 
+       <div class="note_reply">
+              <div class = "note_content">
+                  <span> 回复</span>
+              </div>
+              <div class="note_time">
+                 2016-11-21 
+              </div>
+              <div class = "note_warp">
+                  "没发过贴"<a href="">回复</a>
+              </div>
+              <div class = "note_topic">
+                   <span><b>xx</b>回复(6)来自于<b>ffff</b></span>
+              </div>
+       </div>
+     </div>
+    <div class="layui-tab-item">
+    你暂时还没有添加精品哦！
+    </div>
+  </div>
+</div>
+</div>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0)
+        ,content: '内容'+ (Math.random()*1000|0)
+      })
+    }
+    ,tabDelete: function(){
+      //删除指定Tab项
+      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+
+
+</script>
+
+

@@ -1,67 +1,419 @@
-<extend name="Index/main" />
-    <block name="headstyle">
-    <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="__PUBLIC__/Public/css/mycenter.css" type="text/css" />
-      <!-- <link href="./dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<extend name="Index/head" />
+
+<block name="main">
+   
+  <link rel="stylesheet" href="__PUBLIC__/public/css/style.css" type="text/css" /> 
+<link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+
+<div class="container">
+    <!-- 第一部分 轮播图和热门话题 -->
+    <div class="index_per index_first clearfix">
+        <div class="sidebar_per sidebar_first">
+            <dl>
+                <dt>
+                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                <strong>我的贴吧<span class="name-en">/BAR</span></strong>
+                </dt>
+                <div class = "bar_warp">
+                    <div class = "bar_warp_all">
+                    <div class  = "bar_img">  
+                        <a href=""><img style="width:100px;height:100px;" src="__PUBLIC__/Public/image/qi.jpg" alt=""></a>
+                    </div>
+                     <div class = "bar_list">
+                       <ul>
+                           <li><div class = "crown"></div></li>
+                           <li><a href="">邓紫棋9999</a></li>
+                       </ul>  
+                       <ul>
+                           <li><div class = "dou"></div></li>
+                           <li><a href="">0[获取]</a></li>
+                       </ul>
+                    </div>
+                    </div>
+                    <div class = "bar_love">
+                        <span><a href=""><b>爱逛的吧</b></a></span>
+                        <a href=""><div></div></a>
+                    </div>
+                    <div class = "bar_love_list">
+                        <button><a href="`">励志</a><div></div></button>
+                        <button><a href="`">励志</a><div></div></button>
+                    </div>
+                   
+                </div>
+              
+            </dl>
+        </div>
+       
+        <div class="index_left clearfix">
+            <img style = "width:180px;height:250px" src="__PUBLIC__/Public/image/1_left.jpg" alt="" />
+            <div class="banner" id="banner">
+                <div class="row">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="__PUBLIC__/Public/image/1.jpg" alt="...">
+                                <div class="carousel-caption">
+                                ...
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="__PUBLIC__/Public/image/2.jpg" alt="...">
+                                <div class="carousel-caption">
+                                ...
+                                </div>
+                            </div>
+                            ...
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+               <!--  <ul id="index_banner"> 
+
+                    <li>
+                        <a target="_blank" href="js.html?/0-0-52-0-0-0">
+                            <img alt="响应式模板" src="__PUBLIC__/Public/image/1.jpg">
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="js.html?/22-0-0-0-0-0">
+                            <img alt="商城,特卖模板" src="Public/images/other/mall.jpg">
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="js.html?/53-0-0-0-0-0">
+                            <img alt="404模板" src="Public/images/other/404.jpg">
+                        </a>
+                    </li>
+                </ul> -->
+                <!-- <div class="banner_page" id="banner_page"></div> -->
+                <!-- <a class="banner_page_btn banner_page_left" id="banner_page_left"></a> -->
+                <!-- <a class="banner_page_btn banner_page_right" id="banner_page_right"></a> -->
+            </div>
+        </div>
+    </div><!-- index_per index_first clearfix -->
+
+    <!-- 第二部分 贴吧推荐 和 贴吧分类 -->
+    <div class="index_per clearfix">
+        <!-- 右边 -->
+        <div class="sidebar_per sidebar_second">
+            <dl>
+                <dt>
+                    <a href="js.html?/0-0-0-6-0-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                    <strong>贴吧推荐 <span class="name-en">/Recommend</span></strong>
+                </dt>
+            </dl>
+            <volist name="suggest" id="sug">
+                <div class = "bar_rec">
+                    <div class = "rec_img"><a href="<{:U('Bar/index',array('id'=>$sug['id']))}>"><img style = "width:100px;height:100px;"src="__UPLOAD__/<{$sug['hpic']}>" alt="" /></a></div>
+                    <div class = "rec_list">
+                        <ul>
+                            <li><a href=""><strong><{$sug['name']}></strong></a></li>
+                            <li><a href=""><{$sug['attention']}></a></li>
+                            <li><a href=""><{$sug['count'][0]['count']}></a></li>
+                            <li><a href=""><{$sug['title']}></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </volist>
+        </div>
+
+        <!-- 左边 -->
+        <div class="index_recommend" id='index_recommend_0'>
+            <div class="head clearfix">
+                <strong>贴吧分类</strong>
+                <a class="more" href="" target="_blank">更多&nbsp;<span class="more-sign"></span></a>
+                <div id = "head_nav">
+                <ul class="clearfix index-coupon-menus">
+                    <li class="li_warp" style="font-size:15px;">
+                        <b>全部</b>
+                        <span class="arrow-up-menu arrow"></span>
+                         <ul class = "lis">
+                            <li><a href="">娱乐明星</a></li>
+                            <li><a href="">爱综艺</a></li>
+                            <li><a href="">追矿剧</a></li>
+                            <li><a href="">看电影</a></li>
+                            <li><a href="">体育</a></li>
+                            <li><a href="">小说</a></li>
+                            <li><a href="">生活</a></li>
+                            <li><a href="">闲趣</a></li>
+                            <li><a href="">动漫宅</a></li>
+                            <li><a href="">高校</a></li>
+                            <li><a href="">人文自然</a></li>
+                        </ul>
+                    </li>
+                    <li class="li_warp">
+                        娱乐明星 <span class="arrow-up-menu arrow"></span>
+                        <ul class = "lis">
+                            <li><a href="">港台东南亚</a></li>
+                            <li><a href="">韩国明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                        </ul>
+                    </li>
+                    <li class="li_warp">
+                        爱综艺  <span class="arrow-up-menu arrow"></span>
+                        <ul class = "lis">
+                            <li><a href="">港台东南亚</a></li>
+                            <li><a href="">韩国明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                            <li><a href="">日本明星</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        追矿剧<span class="arrow-up-menu arrow"></span>
+                    </li>
+                    <li>
+                        看电影 <span class="arrow-up-menu arrow"></span>
+                    </li>
+                    <li>
+                        体育<span class="arrow-up-menu arrow"></span>
+                    </li>
+                    <li>
+                        小说 <span class="arrow-up-menu arrow"></span>
+                    </li>
+                    <li>
+                        生活 <span class="arrow-up-menu arrow"></span>
+                    </li>
+                    <li>
+                        闲趣 <span class="arrow-up-menu arrow"></span>
+                    </li>                
+                </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+               var lis = document.getElementById('head_nav').getElementsByTagName('li');
+                console.log(lis);
+                for( var i=0;i<lis.length;i++){
+                    lis[i].onmouseover=function(){
+                        if (this.className == 'li_warp') {
+                            this.getElementsByTagName('ul')[0].style.display='block';
+                        };
+                    }
+
+                    lis[i].onmouseout = function(){
+                        if (this.className == 'li_warp') {
+                            this.getElementsByTagName('ul')[0].style.display = "";
+                        };
+                    }
+                }
+
+            </script>
+
+            <div class="content clearfix">
+                <div class="per current">
+                    <ul class="ul_pics">
+                        <volist name="bars" id="bar">
+                            <li>
+                                <a target="_blank"  href="js.html?/440.html">
+                                    <img src="__UPLOAD__/<{$bar['hpic']}>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
+                                </a> 
+                                <div class= "ul_info">     
+                                    <b style="font-size:20px;"><{$bar['name']}> </b><br>
+                                    <span style = "font-size:10px;margin-top:-10px;"><a href="" title="<{$bar['title']}>"><{$bar['title']}></a><br>关注：<{$bar['attention']}>　帖子：<{$bar['count'][0]['count']}></span>
+                                </div>
+                            </li>
+                        </volist>
+                        <!-- <li><a target="_blank"  href="js.html?/440.html">
+                            <img src="__PUBLIC__/Public/image/qi.jpg" style = "height:150px" alt="鹿晗吧" class="lazy"  />
+                             </a>
+                             <div class= "ul_info">     
+                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
+                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
+                             </div>
+                        </li>  --> 
+                    </ul>
+                </div>
+            </div>
+        </div><!-- 左边完 -->
+    </div>
+
+    <!-- 第三部分  -->
+    <div class="index_per clearfix">
+        <!-- 右边 -->
+        <div class="contentl clearfix">   
+            <div class="sidebar_per sidebar_second clearfix">
+                <dl>
+                    <dt>
+                        <a href="js.html?/0-0-6-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                        <strong>友情链接<span class="name-en">/Link</span></strong>
+                    </dt>
+                    <volist name="links" id="link">
+                        <div class = "bar_link">
+                            <b><a href="<{$link['linkurl']}>"><{$link['linktitle']}></a></b> 
+                            <ul>                              
+                                <li><a href="<{$link['linkurl']}>" target="_blank"><{$link['desc']}></a></li>
+                            </ul>
+                        </div>
+                    </volist>
+                </dl>
+            </div>
+
+            <div class="sidebar_per sidebar_first">
+            <dl>
+                <dt>
+                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                <strong>热门话题<span class="name-en">/HOT</span></strong>
+                </dt>
+                <dd class="sidebar_articles">
+                    <span>487</span>
+                    <a target="_blank"  href="js.html?/712.html">美国大选川普逆袭</a>
+                </dd>
+                <dd class="sidebar_articles">
+                    <span>02-04</span>
+                    <a target="_blank"  href="js.html?/442.html">1111总攻节</a>
+                </dd>
+                <dd class="sidebar_articles">
+                    <span>02-04</span>
+                    <a target="_blank"  href="js.html?/441.html">基于ace的CRM项目管理系统后台</a>
+                </dd>
+                <dd class="sidebar_articles">
+                    <span>02-03</span>
+                    <a target="_blank"  href="js.html?/437.html">投票任务服务平台bootstrap响应式微信模板</a>
+                </dd>
+                <dd class="sidebar_articles">
+                    <span>02-03</span>
+                    <a target="_blank"  href="js.html?/440.html">联途旅游网全套bootstrap网站模板</a>
+                </dd><dd class="sidebar_articles">
+                    <span>02-03</span>
+                    <a target="_blank"  href="js.html?/439.html">eteams协同办公OA管理系统模板</a>
+                </dd>
+                <dd class="sidebar_articles">
+                    <span>02-03</span>
+                    <a target="_blank"  href="js.html?/438.html">投票任务平台手机版</a>
+                </dd>
+            </dl>
+        </div>
+        </div><!-- 右边完 -->
+        
+        <!-- 左边 -->
+        <div class = "content_d clearfix">
+            <div class="content_nav">
+                <!-- <span>热门动态</span> -->
+                <ul class="nav nav-tabs"> 
+                    <li role="presentation" class="active"><a href="#" style="font-size:20px;font-weight:bold">热门动态</a></li> 
+                    <li role="presentation"><a href="#" style="font-size:20px;">加精帖子</a></li> 
+                    <li role="presentation"><a href="#" style="font-size:20px;">Messages</a></li> 
+                </ul>
+            </div>
+            <volist name="notes" id="note">
+                <div class = "content_con">
+                    <div class = "content_dt">
+                        <div class = "content_top">
+                            <span><a href=""><{$note['name']}></a></span>
+                        </div>
+                        <div class="content_cen">
+                            <a href=""><{$note['title']}></a>
+                        </div>
+                        <div class = "content_cen">
+                            <a href=""><{$note['content']}> </a>
+                        </div>
+                        <!-- <div class = "content_img">
+                            <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                            <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                            <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                        </div> -->
+                        <div class="content_footer">
+                            <span class="glyphicon glyphicon-user"> <{$note['user_id']}></span><span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span>
+                        </div>
+                    </div>
+                </div>
+            </volist>
+            <!--以下热门贴非遍历，可删除-->  
+            <div class = "content_con">
+                <div class = "content_dt">
+                    <div class = "content_top">
+                        <span><a href="">赵丽颖吧</a></span>
+                    </div>
+                    <div class="content_cen">
+                        <a href=""></a>
+                    </div>
+                    <div class = "content_cen">
+                        <a href="">【如颖随行】20161108赵丽颖最火热十部剧 第六最惊艳 赵丽颖最火热十部剧 第六最惊艳 </a>
+                    </div>
+                    <div class = "content_img">
+                        <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
+                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
+                    </div>
+                    <div class="content_footer">
+                        <span class="glyphicon glyphicon-user">帖主</span><span class="glyphicon glyphicon-time">时间</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_con">
+                <div class="content_dt">
+                    <div class="content_top">
+                       <span><a href="">赵丽颖吧</a></span>
+                    </div>
+                    <div class="content_cen">
+                        <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
+                    </div>
+                    <!-- <div class = "content_img"> -->
+                        <!-- <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" /> -->
+                        <!-- <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" /> -->
+                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
+                    <!-- </div> -->
+                    <div class="content_footer">
+                        <span>帖主</span><span>时间</span>
+                    </div>
+                </div>
+            </div>
+            <div class = "content_con">
+                <div class = "content_dt">
+                    <div class = "content_top">
+                       <span><a href="">赵丽颖吧</a></span>
+                    </div>
+                    <div class = "content_cen">
+                        <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
+                    </div>
+                    <div class = "content_img">
+                        <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div><!-- 左边完 -->
+    </div>
+
+   
     </block>
-    <block name="content">
-    <div id="header-top">
 
-        <div class="container">
 
-            <a href="#"><img src="" alt="" class="rss-icon" /></a>
-
-            <p class="left">
-            <a href="#">新闻</a>
-            <a href="#">网页</a>
-            <a href="#">贴吧</a>
-            <a href="#">知道</a>
-            <a href="#">音乐</a>
-            <a href="#">图片</a>
-            <a href="#">视频</a>
-            <a href="#">地图</a>
-            <a href="#">百科</a>
-            <a href="#">文库</a>
-            </p>
-
-            <p class="right">
-            <a href="<{:U('Login/login')}>">登录</a>
-            <a href="<{:U('Login/reg')}>">注册</a>
-            <a href="#">会员官网</a>
-            <a href="www.baidu.com">百度首页</a>
-            <a href="<{:U('index')}>">贴吧首页</a>
-            </p>
-
-        </div><!-- end .container -->
-
-</div><!-- end #header-top -->
-<div id="header" style = "margin-top:-10px;">
-    <div class="container">
-        <h1 id="logo">
-            <a href="<{:U('index')}>">
-                <img src="__PUBLIC__/public/image/logo.gif" alt="">
-            </a>
-        </h1>        
-        <div  style = "margin-top:30px;"class="row">
-         <div class="col-lg-6">
-            <div class="input-group">
-              <input style = "height:40px;"type="text" class="form-control" aria-label="...">
-              <div class="input-group-btn">
-                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">进入贴吧</button><button style = "height:40px;margin-left:20px;border-radius:10%;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
-              </div><!-- /btn-group -->
-            </div><!-- /input-group -->
-          </div><!--/.col-lg-6 -->
-        </div><!-- end row-->
-    </div><!-- end .container -->
-</div><!-- end #header -->
-
-</block>
-
-<block name='main'></block>
-<!-- start scripts -->
-<block name="bottomstyle">
-<script src="__PUBLIC__/public/js/jquery.min.js"></script>
-<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>
-</block>
-<!-- end scripts -->
