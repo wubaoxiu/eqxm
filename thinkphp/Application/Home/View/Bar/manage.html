@@ -1,0 +1,32 @@
+<extend name="Index/head" />
+
+<block name="main">
+  <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+
+  <title>贴吧管理</title>
+  <div class = "center">
+    <div class = "center_nav">    
+        <div class = "center_header">
+            <ul>
+                <li><a href="<{:U('Bar/index',array('id'=>$data['id']))}>">返回贴吧</a></li>
+                <li><a href="<{:U('Bar/gl_bar',array('id'=>$data['id']))}>" target="main">贴吧信息管理</a></li>
+                <li><a href="<{:U('Bar/gl_note',array('id'=>$data['id']))}>" target="main">帖子管理</a></li>
+                <li><a href="<{:U('Bar/fans')}>" target="main">贴吧会员</a></li>
+                <if condition="$data.baradmin eq '0'"><li><a href="<{:U('Bar/baradmin',array('id'=>$data['id']))}>" target="main">贴吧管理员</a></li></if>
+            </ul>
+        </div>
+    </div>
+    <div class="manage_main fl mt30">
+      <iframe class="iframe" src="<{:U('Bar/gl_bar',array('id'=>$data['id']))}>" name="main" frameborder="0" style="background: #fbfbfb;">
+        <!-- <div>
+          <img src="__UPLOAD__/<{$data['bgpic']}>" alt="">111
+          欢迎管理员<{$data.name}>
+        </div> -->
+      </iframe>   
+    </div>
+  </div><!--center 最外层的div-->
+<!--   <hr> -->
+</block>

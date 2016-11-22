@@ -18,6 +18,7 @@ class BarController extends Controller
     private $_barinfo = null;
     private $_note = null;
     private $_user = null;
+    private $_baradmin = null;
 
     // 初始化
     public function _initialize()
@@ -25,33 +26,93 @@ class BarController extends Controller
         $this->_barinfo = M('barinfo');
         $this->_note = M('note');
         $this->_user = M('user');
+        $this->_baradmin = M('baradmin');
     }
 
     // 主页
     public function index()
     {
-
+        // 获取传过来的贴吧id
+        // $id = $_GET['id'];
         $id = 1;
         $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
         // dump($data);
         if(empty($data)){
             U('index/index');exit;
         }
+        // 查询所有该贴吧中帖子的楼主信息
         $list = $this->_note->where(array('bar_id'=>array('eq',$id)))->order('id desc')->select();
         foreach ($list as $k=>$v) {
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->find();
         }
+        // 检测用户是否为该贴吧的管理人员
+        $baradmin = $this->_baradmin->field('status')->where(array('bar_id'=>array('eq',$id),'user_id'=>array('eq',$_SESSION['user']['id'])))->find();
         // $attenbars = attentionBars();
         // dump($list);die;
-        // dump($attenbars);
+        // dump($is_baradmin);die;
+        if(empty($baradmin)){
+            $data['baradmin'] = 2;
+        }else{
+            $data['baradmin'] = $baradmin['status'];
+        }
         $this->assign('list',$list);
-        $this->assign('louzhu',$louzhu);
         $this->assign('data',$data);
         // $this->assign('attenbars',$attenbars);
 
         // dump($attenbars);
         $this->display();
+    }
+
+    /**
+     * 方法名：manage()  贴吧的管理界面主体
+    */
+    public function manage()
+    {
+        $id = I('get.id');
+        $baradmin = I('get.baradmin');
+        $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
+        // dump($data);
+        if(empty($data)){
+            U('index/index');exit;
+        }
+        $data['baradmin'] = $baradmin;
+        $this->assign('title','帖吧管理');
+        $this->assign('stitle','贴吧信息');
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+    /**
+     * 方法名：gl_bar()  贴吧的信息管理界面
+    */
+    public function gl_bar()
+    {
+        $id = I('get.id');
+        $baradmin = I('get.baradmin');
+        $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
+        // dump($data);
+        if(empty($data)){
+            U('index/index');exit;
+        }
+        $data['baradmin'] = $baradmin;
+        $data['notes'] = $this->_note->where(array('bar_id'=>array('eq',$id)))->count();
+        // echo $this->_note->getLastSql();die;
+        $this->assign('title','帖吧管理');
+        $this->assign('stitle','贴吧信息管理');
+        $this->assign('data',$data);
+        $this->display();
+    }
+    public function c_info()
+    {
+        $data['id'] = $_POST['id'];
+        $data['desc'] = $_POST['desc'];
+        if($this->_barinfo->data($data)->save()>0){
+            $this->success('修改成功！');
+        }else{
+            $this->error('修改失败！');
+        }
+        // echo $this->_barinfo->getLastSql();die;
     }
 
     /**

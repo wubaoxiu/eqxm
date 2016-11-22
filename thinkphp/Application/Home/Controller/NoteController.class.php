@@ -26,6 +26,12 @@ class NoteController extends Controller
         if(empty($_SESSION['user'])){
             $this->error('您还没有登录，请先登录！',U('Login/index'));
         }
+        if(empty($_POST['title'])){
+            $this->error('标题不能为空');
+        }
+        if(empty($_POST['content'])){
+            $this->error('内容不能为空');
+        }
         // dump($_POST['content']);
         $data['user_id'] = $_SESSION['user']['id'];
         $data['bar_id'] = $_POST['id'];

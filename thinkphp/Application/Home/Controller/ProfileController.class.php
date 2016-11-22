@@ -14,18 +14,18 @@ class ProfileController extends Controller{
     public function index(){
         $id = $_SESSION['user']['id'];
         // var_dump($id);
-          $list = M('user')->find($id);
-          var_dump($list);
-          $this->assign('list',$list);
-           $this->display();
+        $list = M('user')->find($id);
+        var_dump($list);
+        $this->assign('list',$list);
+        $this->display();
 
     }
 
     //修改头像
 
     public function action(){
-         $hpic = $this->upload();
-         console.log($hpic);
+        $hpic = $this->upload();
+        console.log($hpic);
         $data['hpic'] = $hpic;
         $data['id'] = I('get.id/d');
         M('user')->save($data);
