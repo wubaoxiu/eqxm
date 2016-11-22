@@ -16,106 +16,105 @@
 </block>
 
 <block name="content">
-    <div class="row">
-        <div class="col-xs-12">
-           <div class="table-header">
-              <{$title}>
-            </div>
-            <div class="table-responsive">
-                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th class="center">
-                                <label>
-                                    <input type="checkbox" class="ace" />
-                                    <span class="lbl"></span>
-                                </label>
-                            </th>
-                            <th>友情链接编号</th>
-                            <th>友情链接标题</th>
-                            <th class="hidden-480 center">友情链接网址</th>
-                            <th class="hidden-480 center">显示</th>
-                             <th class="center">
-                                <i class="icon-time bigger-110 hidden-480"></i>
-                                友情链接内容
-                            </th>
-                            <th class="center">操作</th>
-                        </tr>
-                    </thead>
-                   <!-- <{:dump($list)}> -->
-                    <tbody>
-                        <foreach name="list" item="v">
-                            <tr class="center">
-                                <td>
-                                    <label>
-                                        <input type="checkbox" class="ace" />
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>
-                                  
-                                <td>
-                                    <a href="#"> <{$v.id}> </a>
-                                </td>
-                               <td><{$v.linktitle}> </td>
-                                <td class="hidden-480"><{$v.linkurl}></td>
-                                  <td class="hidden-480" style="color:green;width:80px;"> 
-                                     <if condition="$v.is_show eq '1'">显示
-                                     <else />不显示
-                                     </if>
-                                  </td>
-                                  <td><{$v.desc}></td>
-                                <td>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                    <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改</a>
-                                    <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
-                                    </div>
+<div class="row">
+<div class="col-xs-12">
+<div class="table-header">
+<{$title}>
+</div>
+<div class="table-responsive">
+<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th class="center">
+                <label>
+                    <input type="checkbox" class="ace" />
+                    <span class="lbl"></span>
+                </label>
+            </th>
+            <th>友情链接编号</th>
+            <th>友情链接标题</th>
+            <th class="hidden-480 center">友情链接网址</th>
+            <th class="hidden-480 center">显示</th>
+             <th class="center">
+                <i class="icon-time bigger-110 hidden-480"></i>
+                友情链接内容
+            </th>
+            <th class="center">操作</th>
+        </tr>
+        </thead>
+        <!-- <{:dump($list)}> -->
+        <tbody>
+        <foreach name="list" item="v">
+            <tr class="center">
+                <td>
+                    <label>
+                        <input type="checkbox" class="ace" />
+                        <span class="lbl"></span>
+                    </label>
+                </td>
+                  
+                <td>
+                    <a href="#"> <{$v.id}> </a>
+                </td>
+               <td><{$v.linktitle}> </td>
+                <td class="hidden-480"><{$v.linkurl}></td>
+                  <td class="hidden-480" style="color:green;width:80px;"> 
+                     <a href="<{:U('Link/doshow',array('id'=>$v['id']))}>" class="show" onclick=" return false"><if condition="($v.is_show eq 1)">显示<else />不显示</if></a>
+                  </td>
+                  <td><{$v.desc}></td>
+                <td>
+                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                    <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改</a>
+                    <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
+                    </div>
 
-                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                        <div class="inline position-relative">
-                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-caret-down icon-only bigger-120"></i>
-                                            </button>
+                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-caret-down icon-only bigger-120"></i>
+                            </button>
 
-                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                <li>
-                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                        <span class="blue">
-                                                            <i class="icon-zoom-in bigger-120"></i>
-                                                        </span>
-                                                    </a>
-                                                </li>
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                        <span class="blue">
+                                            <i class="icon-zoom-in bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
 
-                                                <li>
-                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                        <span class="green">
-                                                            <i class="icon-edit bigger-120"></i>
-                                                        </span>
-                                                    </a>
-                                                </li>
+                                <li>
+                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                        <span class="green">
+                                            <i class="icon-edit bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
 
-                                                <li>
-                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                        <span class="red">
-                                                            <i class="icon-trash bigger-120"></i>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </foreach>
+                                <li>
+                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                        <span class="red">
+                                            <i class="icon-trash bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </foreach>
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+        </tbody>
+</table>
+</div>
+</div>
+</div>
 </block>
 
 <block name="tablejs">
     <script type="text/javascript">
+
         jQuery(function($) {
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
@@ -150,5 +149,25 @@
                 return 'left';
             }
         })
+
+   //显示与不显示
+
+   $("td .show").click(function () { 
+              var url = $(this).attr("href");
+              var  $_this = $(this);
+              $.ajax({
+                type:'get',
+                data:"",
+                url:url,
+                success:function(data){
+                   if(data==1){
+                    $_this.html('显示');
+                   }else if(data==2){
+                    $_this.html('不显示');
+                   }
+                },
+              })
+                                  
+            })
     </script>
 </block>

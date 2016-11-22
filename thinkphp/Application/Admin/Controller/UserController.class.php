@@ -198,9 +198,6 @@ class UserController extends AdminController
                 $this->error('修改失败.....');
             }
     }
-
-
-
    
     /*
      分配、浏览角色（权限）
