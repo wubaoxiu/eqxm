@@ -57,9 +57,10 @@ ul li{
     overflow: hidden;
 }
 
-#logo {
+#head_logo {
     float: left;
     margin-left:110px;
+
 }
 
 /*

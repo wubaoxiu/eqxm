@@ -17,12 +17,14 @@ a{
 .center{
     width:1263px;
     height:531px;
+    margin-top: -20px;
 }
 .center_nav{
     width:980px;
-    height:32px;
+    height:42px;
     background: #5492DB;
     margin:0 auto;
+    line-height: 42px;
 }
 .center_header ul li{
     float:left;
@@ -39,6 +41,7 @@ a{
     width: 100px;
     text-align: center;
     text-decoration: none;
+    line-height: 42px;
 }
 .center_header ul li a:hover{
     background: #abcdef;
@@ -206,7 +209,14 @@ a{
     margin-left: 20px;margin-top: -20px;
 }
 .set ul li{
-    margin-top: 20px;margin-left: 20px;font-size: 17px;
+    margin-top: 10px;margin-left: 20px;font-size: 17px;
 }
+
+/*我的主页*/
+/*===================================*/
+.follow{
+    width:80px;height:30px;margin-left: 60px;background: url('../image/gz.png') no-repeat 2px 5px;/*border:1px solid #ccc;*/
+}
+
 
 

@@ -16,7 +16,7 @@ use Think\Controller;
             $id = $_SESSION['user']['id'];
           $list = M('user')->find($id);
           // $data = $this->_barinfo->find($id);
-          var_dump($list);
+          // var_dump($list);
           $this->assign('list',$list);
            $this->display();
 

@@ -202,55 +202,55 @@ class UserController extends AdminController
 
 
    
-    // /*
-    //  分配、浏览角色（权限）
-    // */ 
-    //  public function rolelist(){
-    //     //查询节点信息
-    //     $list = M('role')->select();
-    //     //查询用户信息
-    //     $user= M('user')->where(array('id'=>array('eq',I('id'))))->find();
-    //     //获取当前用户的角色信息
-    //     $rolelist = M('user_role')->where(array('user_id'=>array('eq',I('id'))))->select();
-    //     // var_dump($rolelist);
-    //     //定义一个空数组
-    //     $myrole = array();
+    /*
+     分配、浏览角色（权限）
+    */ 
+     // public function rolelist(){
+     //    //查询节点信息
+     //    $list = M('role')->select();
+     //    //查询用户信息
+     //    $user= M('user')->where(array('id'=>array('eq',I('id'))))->find();
+     //    //获取当前用户的角色信息
+     //    $rolelist = M('user_role')->where(array('user_id'=>array('eq',I('id'))))->select();
+     //    // var_dump($rolelist);
+     //    //定义一个空数组
+     //    $myrole = array();
 
-    //     //对用户角色进行重组
-    //     foreach ($rolelist as $v) {
-    //        $myrole[]=$v['role_id'];
-    //     }
-    //     // var_dump($myrole);
-    //     $this->assign('title','分配角色');
-    //     //分配数据
-    //     $this->assign('list',$list);
-    //     //分配当前用户信息
-    //     $this->assign('user',$user);
-    //     //分配该用户的角色信息
-    //     $this->assign('role',$myrole);
-    //     //加载模板
-    //     $this->display('User/rolelist');
-    //  }
+     //    //对用户角色进行重组
+     //    foreach ($rolelist as $v) {
+     //       $myrole[]=$v['role_id'];
+     //    }
+     //    // var_dump($myrole);
+     //    $this->assign('title','分配角色');
+     //    //分配数据
+     //    $this->assign('list',$list);
+     //    //分配当前用户信息
+     //    $this->assign('user',$user);
+     //    //分配该用户的角色信息
+     //    $this->assign('role',$myrole);
+     //    //加载模板
+     //    $this->display('User/rolelist');
+     // }
 
-    //  /*
-    //  保存用户角色
-    //  */ 
-    //  public function saverole(){
-    //     //判断必须选择一个角色
-    //     if (empty($_POST['role'])) {
-    //        $this->error("请选择一个角色");
-    //     }
-    //     $uid = $_POST['user_id'];
-    //     //清除用户所有的角色信息，避免重复
-    //     M('user_role')->where(array('user_id'=>array('eq',$uid)))->delete();
-    //     // $list = I('role');
-    //     foreach (I('role') as $v) {
-    //         $data['user_id']=$uid;
-    //         $data['role_id']=$v;
-    //         //执行添加
-    //         M('user_role')->data($data)->add();
-    //     }
-    //     $this->success('角色分配成功',U('User/index'));
-    //  }
+     // /*
+     // 保存用户角色
+     // */ 
+     // public function saverole(){
+     //    //判断必须选择一个角色
+     //    if (empty($_POST['role'])) {
+     //       $this->error("请选择一个角色");
+     //    }
+     //    $uid = $_POST['user_id'];
+     //    //清除用户所有的角色信息，避免重复
+     //    M('user_role')->where(array('user_id'=>array('eq',$uid)))->delete();
+     //    // $list = I('role');
+     //    foreach (I('role') as $v) {
+     //        $data['user_id']=$uid;
+     //        $data['role_id']=$v;
+     //        //执行添加
+     //        M('user_role')->data($data)->add();
+     //    }
+     //    $this->success('角色分配成功',U('User/index'));
+     // }
  
 }

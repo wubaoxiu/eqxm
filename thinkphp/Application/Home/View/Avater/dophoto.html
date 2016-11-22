@@ -6,12 +6,8 @@
     <li class="layui-this">修改头像</li>
     <li class="layui-this">修改个人信息</li>
   </ul>
-  <{:dump($list)}>
-  <?php 
-     $id = $_SESSION['user']['id'];
-     $list = M('user')->find($id);
-     var_dump($list);
-   ?>
+<!--   <{:dump($list)}> -->
+
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
         <span class="profile-picture">
@@ -28,53 +24,32 @@
   </div>
     <div class="layui-tab-item">
  
-<form class="layui-form" action="">
+<form class="layui-form" action="<{:U('Avater/dodata')}>" method="POST">
+   <input type="hidden" name="id" value="<{$list['id']}>">
     <div class="layui-form-item">
     <label class="layui-form-label">性别</label>
     <div class="layui-input-block">
-      <input type="radio" name="sex" value="男" title="男" checked="">
-      <input type="radio" name="sex" value="女" title="女">
-      <input type="radio" name="sex" value="禁" title="保密" disabled="">
+      <input type="radio" name="sex" value="1" title="女" <if condition="$list['sex'] eq '1'">checked</if> >
+      <input type="radio" name="sex" value="2" title="男" <if condition="$list['sex'] eq '2'">checked</if> >
+      <input type="radio" name="sex" value="3" title="保密" <if condition="$list['sex'] eq '3'">checked</if> >
     </div>
   </div>
-
     <div class="layui-form-item">
-    <label class="layui-form-label">生日</label>
-    <div class="layui-input-inline">
-      <select name="quiz1">
-        <option value="">年</option>
-        <option value="1993" selected="">1993</option>
-        <option value="1994">1994</option>
-        <option value="1995">1995</option>
-      </select>
+    <div class="layui-inline">
+      <label class="layui-form-label">生日</label>
+      <div class="layui-input-block">
+        <input type="text" name="brith" id="brith" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" value="<{$list['brith']}>">
+      </div>
     </div>
-    <div class="layui-input-inline">
-      <select name="quiz2">
-        <option value="">月</option>
-        <option value="1">1</option>
-        <option value="2" disabled="">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-    </div>
-    <div class="layui-input-inline">
-      <select name="quiz3">
-        <option value="">日</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-  </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">爱好</label>
-    <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="写作">
-      <input type="checkbox" name="like[listen]" title="听歌" checked="">
-      <input type="checkbox" name="like[game]" title="游戏">
-    </div>
+  <!--   <{:dump($arr['like'])}> -->
+   
+    <div class="layui-input-block"> 
+    <volist name="data" id="vo">
+      <input type="checkbox" name="likename[]" title="<{$vo['likename']}>"  value="<{$vo.likename}>" <if condition="in_array($vo['likename'],$arr['like']) eq true">checked</if>>
+      </volist>
+    </div> 
   </div>
  
  
@@ -82,7 +57,7 @@
     <label class="layui-form-label">简介</label>
     <div class="layui-input-block">
 
-      <textarea placeholder="请输入内容" class="layui-textarea" cols="40" rows="4" maxsize="30"></textarea>
+      <textarea placeholder="请输入内容" name="introduction" class="layui-textarea" cols="40" rows="4" maxlength="30"><{$list['introduction']}></textarea>
     </div>
   </div>
 
@@ -177,12 +152,12 @@
   
   
   //监听提交
-  form.on('submit(demo1)', function(data){
-    layer.alert(JSON.stringify(data.field), {
-      title: '最终的提交信息'
-    })
-    return false;
-  });
+  // form.on('submit(demo1)', function(data){
+  //   layer.alert(JSON.stringify(data.field), {
+  //     title: '最终的提交信息'
+  //   })
+  //   // return false;
+  // });
   
   
 });
