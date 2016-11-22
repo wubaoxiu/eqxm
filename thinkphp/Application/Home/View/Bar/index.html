@@ -102,14 +102,16 @@
         <!-- <{:dump($v)}> -->
             <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
                 <div class="my_headslider fl">
-                    <a title="<{$v.louzhu.name}>" href="#">
+                    <a title="<{$v.louzhu.name}>" href="<{:U('MyInfo/index',array('id'=>$v['louzhu']['id']))}>">
                         <img  src="<if condition="$v['louzhu']['hpic']==null">__PUBLIC__/Linkimg/default.png<else />__ROOT__/<{$v['louzhu']['hpic']}> </if>">
+
                     </a>
                     <div class="louzhu">楼主</div>
                     <div class="user_name">
                     <a title="<{$v.louzhu.name}>" target="_blank" href="#"><{$v.louzhu.name}></a>
                     </div>
                 </div>
+                <!-- <{:dump($v['louzhu']['id'])}> -->
                 <div class="wendaslider">
                     <h2 class="wendaquetitle">
                         <!-- <i class="glyphicon glyphicon-file" style="margin-top:20px"></i> -->

@@ -348,3 +348,30 @@ font-size: 16px;
     display: block;
 }
 */
+
+/*我的主页*/
+/*=====================*/
+.userinfo_middle .litwo{
+    text-align: center;
+    background: orange;
+    height: 30px;
+    margin-left: 10px;
+    line-height: 30px;
+    margin-top:10px;
+    font-size: 18px;
+    float: left;
+    color: white;
+    margin-top:-30px;
+    margin-left: 80px;
+}
+.userinfo_middle a:hover{
+    background: lightgreen;
+}
+.userinfo_middle .lithree{
+    height: 50px;
+    font-size: 12px;
+    color: #7f7f7f;
+    margin-left: 40px;
+    line-height: 50px;
+    float: left;
+}

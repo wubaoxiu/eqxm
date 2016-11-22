@@ -1,10 +1,13 @@
-<!-- 
-<extend name="Index/head" />
-<block name="main"> -->
- <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
-    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-   <!--  <link rel="search" type="application/opensearchdescription+xml" href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧"> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="__PUBLIC__/Public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧">
     <title>我的贴吧</title>
     <script async="" src="__PUBLIC__/Center/dp.min.js.下载"></script>
     <script async="" src="__PUBLIC__/Center/alog.min.js.下载"></script>
@@ -25,6 +28,35 @@
     <script type="text/javascript" src="__PUBLIC__/Center/get_data"></script>
 </head>
 <body>
+<div id="header-top">
+        <div class="container">
+
+            <a href="#"><img src="" alt="" class="rss-icon" /></a>
+
+            <p class="left">
+            <a href="#">新闻</a>
+            <a href="#">网页</a>
+            <a href="#">贴吧</a>
+            <a href="#">知道</a>
+            <a href="#">音乐</a>
+            <a href="#">图片</a>
+            <a href="#">视频</a>
+            <a href="#">地图</a>
+            <a href="#">百科</a>
+            <a href="#">文库</a>
+            </p>
+
+            <p class="right">
+            <a href="<{:U('Login/login')}>">登录</a>
+            <a href="<{:U('Login/reg')}>">注册</a>
+            <a href="<{:U('MyInfo/index',array('id'=>$_SESSION['user']['id']))}>">我的主页</a>
+            <a href="#">百度首页</a>
+            </p>
+
+        </div><!-- end .container -->
+
+</div><!-- end #header-top -->
+
 <script>    
 PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,options) {        var tempImg = document.createElement('img');        mImg.onload = null;        mImg.loading = true;        var maxWidth = 400;        var maxHeight = 75;        if (loc==1) {            maxHeight = 100;        }        if (options!=null) {            maxWidth = options['width']!=null? options['width'] : maxWidth;            maxHeight = options['height']!=null? options['height'] : maxHeight;        }        tempImg.onload = function() {            if (maxHeight>100 && tempImg.height > tempImg.width) {                maxWidth = maxHeight;   maxHeight = 100000;            }            resizePic_temp(tempImg,maxWidth,maxHeight);            var twidth = tempImg.style.width,                width = Number(twidth.replace("px",""));            if(width<50){                var pObj = mImg.parentNode,                    classN = pObj.className;                if(classN=="vpic_wrap")                {                    mImg.parentNode.className ="vpic_wrap vpic_small";                }            }            mImg.style.width = tempImg.style.width;            mImg.style.height = tempImg.style.height;            mImg.src = tempImg.src;            mImg.loaded = true;            mImg.loading = null;            this.onload = null;        };        tempImg.src = mImg.getAttribute('original');    }
 </script>
@@ -64,9 +96,12 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
                         <div class="j_icon_slot_refresh"></div>
                     </a>
                     <a href="javascript:void(0)" title="开启插槽" class="j_icon_slot_buy icon_add_solt" style="top: 0px;left:28px"></a>
-                </span>
-                <a href=""><div class="follow"></div></a>           
+                </span>            
             </div>
+             <li class="lione fl"><a href="<{:U('MyInfo/follow',array('id'=>$list['id']))}>" class="litwo"><if condition="$follow eq 1"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+             <else />
+             <li class="lithree fl" style="color:orange;">已关注</li>
+            </if>
         </div>
         <div class="userinfo_right">        
             <div class="userinfo_scores clearfix">
@@ -157,11 +192,13 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
                         <h1 class="ihome_title">
                             <span class="cut_line">|</span>爱逛的吧
                         </h1>
-                        <div class="clearfix u-f-wrap" id="forum_group_wrap">         
+                        <div class="clearfix u-f-wrap" id="forum_group_wrap">
+                        <volist name="love" id="vo">       
                             <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="#" class="u-f-item unsign">
-                                <span>李毅</span>
+                                <span><{$vo['name']}></span>
                                 <span class="forum_level lv1"></span>
-                            </a>          
+                            </a> 
+                            </volist>         
                         </div>
                     </div>
 
@@ -169,24 +206,26 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
                         <h1 class="threadList_title">
                             <span class="cut_line">|</span>热门动态
                         </h1>
-                        <ul class="new_list clearfix">        
+                        <ul class="new_list clearfix"> 
+                        <volist name="hot" id="v">       
                             <div class="n_right n_right_first clearfix">
-                                <div class="n_post_time">2015-12-26</div><div class="n_avatar">
-                                <a href="#" target="_blank" title="苏州经贸职业技术学院">
-                                    <img src="./YANG木漪的贴吧_files/77c6a7efce1b9d1675fcaae8f2deb48f8c54647b.jpg">
+                                <div class="n_post_time"><{$v['createtime']|date='Y-m-d',###}></div><div class="n_avatar">
+                                <a href="#" target="_blank" title="头像">
+                                    <img src="__UPLOAD__/<if condition="$v['hpic'] == null">dog.jpg<else /><{$v['hpic']}></if>"> 
+                                  <!-- <img src="__UPLOAD__/<{$v['hpic']}>">   -->
                                 </a>
                             </div>
                             <div class="n_contain">
                                 <div>
                                     <div class="title_wraper">
-                                        <a href="#" target="_blank" class="n_name" title="苏州经贸职业技术学院">苏州经贸职业技术学院吧</a>
+                                        <a href="#" target="_blank" class="n_name" title="吧名"><{$v['name']}></a>
                                     </div>
                                     <div class="thread_name">
-                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1" title="新年快乐">【咩咩】苏经贸吧祝全体吧友新年快乐</a>
+                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1" title="标题"><{$v['title']}></a>
                                     </div>
                                 </div>
-                                <div class="n_txt">羊年到，羊年好，羊年瑞雪步步高。羊年吉，羊年顺，羊年伊始祥云飘。 羊年伊始，衷心...
-                                </div>
+                                <div class="n_txt"><{$v['desc']}></div>
+                                
                                 <div class="n_reply">
                                     <a href="#" title="主题作者" target="_blank" class="post_author ">love影6</a>
                                     <span class="userinfo_split"></span>
@@ -194,6 +233,9 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
                                 </div>
                             </div>
                         </div>
+                        </volist>
+                        <!-- <{:dump($v)}> -->
+
                     </ul>
                     <div class="data_loading">
                         <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>    
@@ -247,7 +289,16 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
                     </div>
                 </div>
             </div>
-         
+            <div id="footer" class="footer">                                                                                                      
+                <span>©2016 Baidu</span>
+                <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">吧主制度</a>
+                <span>|</span>
+                <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
+            </div> 
         </div>
         <span class="fix-for-ie8"></span>
     </div>
@@ -348,4 +399,8 @@ PageData.tbs = "394351ad41a4db961479212983";    function loadPic(mImg,loc,option
         <a href="#"></a>
     </li>
 </ul>
-<!-- </block> -->
+<script src="__PUBLIC__/Public/js/jquery.min.js"></script>
+</body>
+</html>
+<!-- <block name="bottomstyle">
+</block> -->
