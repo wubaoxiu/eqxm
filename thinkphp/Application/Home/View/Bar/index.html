@@ -73,7 +73,11 @@
     <div class="bar_head_center fl">
         <ul>
             <li class="lione fl"><b><{$data.name}></b></li>
-            <li class="lione fl"><a href="" class="litwo">　<span class="glyphicon glyphicon-plus"></span>关注　</a></li>
+            <if condition="$atten eq 0">
+            <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$data[0]['bar_id']))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+            <else />
+            <li class="lithree fl" style="color:orange;">已关注</li>
+            </if>
             <li class="lithree fl">关注：<{$data.attention}></li>
             <li class="lithree fl">帖子：</li>
         </ul>
@@ -93,6 +97,7 @@
                     <!--左侧列表内容-->
         <block name="the_main">
         <div class="wenda-list">
+        <!-- 开始遍历 -->
         <foreach name="list" item="v">
         <!-- <{:dump($v)}> -->
             <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
@@ -110,7 +115,7 @@
                         <!-- <i class="glyphicon glyphicon-file" style="margin-top:20px"></i> -->
                                                      
                         <div class="wendatitlecon">
-                        <a class="wendatitle"  href="#"><{$v.title}></a>
+                        <a class="wendatitle"  href="<{:U('Bar/note',array('bar_id'=>$v['bar_id'],'note_id'=>$v['id']))}>"><{$v.title}></a>
                         </div>
                     </h2>
                    
@@ -149,56 +154,60 @@
                     </a>
                 </div>
             </div><!--wenda-listcon clearfix-->
-            </foreach>
+        </foreach>
+
             <div class="pager">共<span class="red"> 30 </span>个话题  <a class="prev" href="http://www.sucaihuo.com/topic/0-0-1">上一页</a> <a class="current">1</a><a class="num" href="http://www.sucaihuo.com/topic/0-0-2">2</a>  <a class="next" href="http://www.sucaihuo.com/topic/0-0-2">下一页</a>
             </div><!--page-->
             <hr>
         <div class="fatie fl">
-        <form action="<{:U('Note/add')}>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<{$data.id}>">
-        <div class="fatei_head">
-            <b>标题：</b><br><input class="input_title" type="text" name="title" placeholder="请填写标题"> 
-        </div>
-        <div id="myEditor" class="fatie_content edui-default">
-            <b>内容：</b><br>
-            <div class="fatie_content2 fl">
-                <script id="container" name="content" type="text/plain" style="width:650px;height:220px">
-                </script>
-                <!-- 配置文件 -->
-                <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
-                <!-- 编辑器源码文件 -->
-                <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
-                <!-- 实例化编辑器 -->
-                <script type="text/javascript">
-                    var ue = UE.getEditor('container',{
-                        indentValue:'2em'
-                        ,initialFrameWidth:650  //初始化编辑器宽度,默认1000
-                        ,initialFrameHeight:220  //初始化编辑器高度,默认320
-                        ,zindex:650
-                        , toolbars: [[
-                        'fullscreen', 'undo', 'redo', '|',
-                        'bold', 'italic', 'underline', 'fontborder', 'rowspacingbottom', 'lineheight', '|', 'fontfamily', 'fontsize', '|',
-                        'directionalityltr', 'directionalityrtl', 'indent', '|',
-                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
-                        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', '|',
-                        'horizontal', 'date', 'time', 'snapscreen'
-                        ]]
-                        //是否启用元素路径，默认是显示
-                        ,elementPathEnabled :false
-                        ,autoHeightEnabled: false
-                    });
-                </script>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary mt10 fatie_fabiao" >发　表</button>
-    </form>
-    </div><!--fatie-->
+            <form action="<{:U('Note/add')}>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<{$data.id}>">
+                <div class="fatei_head">
+                    <b>标题：</b><br><input class="input_title" type="text" name="title" placeholder="请填写标题"> 
+                </div>
+                <div id="myEditor" class="fatie_content edui-default">
+                    <b>内容：</b><br>
+                    <div class="fatie_content2 fl">
+                        <script id="container" name="content" type="text/plain" style="width:650px;height:220px">
+                        </script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container',{
+                                indentValue:'2em'
+                                ,initialFrameWidth:650  //初始化编辑器宽度,默认1000
+                                ,initialFrameHeight:220  //初始化编辑器高度,默认320
+                                ,zindex:650
+                                , toolbars: [[
+                                'fullscreen', 'undo', 'redo', '|',
+                                'bold', 'italic', 'underline', 'fontborder', 'rowspacingbottom', 'lineheight', '|', 'fontfamily', 'fontsize', '|',
+                                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
+                                'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', '|',
+                                'horizontal', 'date', 'time', 'snapscreen'
+                                ]]
+                                //是否启用元素路径，默认是显示
+                                ,elementPathEnabled :false
+                                ,autoHeightEnabled: false
+                            });
+                        </script>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt10 fatie_fabiao" >发　表</button>
+            </form>
+        </div><!--fatie-->
     </div><!--wenda list-->
     </block>
     </div><!--wenda main-->
     <div class="wenda-slider" style="margin-top:20px">
         <empty name="$Think.session.user">
             <div class="panel wenda-form clearfix mt">
+        <else />
+            <div class="panel wenda-form clearfix mt" style="display:none;">
+        </empty>
                 <div>我的信息</div>
                 <hr>
                 <div class="wenda-my">
@@ -215,7 +224,7 @@
                 <hr>
                 <div class="panel-body clearfix">
                     <volist name="attenbars" id="att">
-                    <a class="hot-label"   href="#" style="margin:0 6px 10px 0"><{$att['name']}></a>
+                    <a class="hot-label"   href="<{:U('Bar/index',array('bar_id'=>$att['id']))}>" style="margin:0 6px 10px 0"><{$att['name']}></a>
                     </volist>
                     <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">周杰伦吧</a> -->
                     <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">林俊杰吧</a>                    -->
@@ -223,7 +232,7 @@
                     <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">林俊杰吧</a>                    -->
                 </div>
             </div>
-        </empty>
+        
 
         <div class="panel hot">
             <div class="panel-heading">
