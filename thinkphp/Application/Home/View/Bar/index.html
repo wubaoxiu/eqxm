@@ -32,7 +32,7 @@
             </p>
 
             <p class="right">
-            <a href="#">登录</a>
+            <a href="<{:U('Login/index')}>">登录</a>
             <a href="#">注册</a>
             <a href="#">会员官网</a>
             <a href="#">百度首页</a>
@@ -98,7 +98,7 @@
             <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
                 <div class="my_headslider fl">
                     <a title="<{$v.louzhu.name}>" href="#">
-                        <img width="40" height="40" src="Public/images/avatar.jpg" />
+                        <img  src="<if condition="$v['louzhu']['hpic']==null">__PUBLIC__/Linkimg/default.png<else />__ROOT__/<{$v['louzhu']['hpic']}> </if>">
                     </a>
                     <div class="louzhu">楼主</div>
                     <div class="user_name">
@@ -203,12 +203,14 @@
                 <hr>
                 <div class="wenda-my">
                     <div class="user-info">
-                        <a href="/myclub/otherquestion?uid=1973702" class="user-img">
+                        <a href="<{:U('Profile/index')}>" class="user-img">
                             <img alt="<{$Think.session.user.name}>" src="__ROOT__/<{$Think.session.user.hpic}>">
                         </a>
-                        <p class="username"><{$Think.session.user.name}></p>
-                        <p class="help-count"><{$Think.session.user.introduction}></p>
+                        <p class="username"><{$Think.session.user.name}>　<span style="color:blue"><if condition="$data.baradmin eq '0'">吧主　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'status'=>$data['baradmin']))}>"><button class="btn btn-primary">管理本吧</button></a><elseif condition="$data.baradmin eq '1'" />管理员　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><else /></if></span></p>
+                       
                     </div>
+                    <hr>
+                    <div class="mt10">贴吧宣言：</div><div><span class="help-count" style="color: #777;font-size:12px;">　　 <{$Think.session.user.introduction}></span></div>
                 </div>
                 <hr>
                 <div>我关注的吧</div>
