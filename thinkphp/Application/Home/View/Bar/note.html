@@ -18,8 +18,9 @@
     </div>
 </div> <!--bar_head--> 
 <div class="page">
-    <ul>
-        <li style="width:60px"><a href="">首页</a></li>
+    <{$show}>
+    <!-- <ul> -->
+        <!-- <li style="width:60px"><a href="">首页</a></li>
         <li style="width:60px"><a href="">上一页</a></li>
         <li><a href="">1</a></li>
         <li><a href="">2</a></li>
@@ -27,8 +28,8 @@
         <li><a href="">4</a></li>
         <li style="width:60px"><a href="">下一页</a></li>
         <li style="width:60px"><a href="">尾页</a></li>
-        <li style="width:160px;"><span style="font-size:10px;">跳到 </span><input type="text" style="width:30px;height:20px;"><a style="width:30px;height:20px;"> 确定</a></li>
-    </ul>
+        <li style="width:160px;"><span style="font-size:10px;">跳到 </span><input type="text" style="width:30px;height:20px;"><a style="width:30px;height:20px;"> 确定</a></li> -->
+    <!-- </ul> -->
 </div>
 </block>
 <block name="main_head">
@@ -37,7 +38,11 @@
 </block>
 <block name="the_main">
     <!-- 一楼帖主楼 -->
-    <div class="note_main">
+    <if condition='($pagenow eq 0) or ($pagenow eq 1)'>
+        <div class="note_main">
+    <else />
+        <div class="note_main" style="display:none;">
+    </if>
         <div class="note_main_left">
             <div class="user_tx"><img src="__ROOT__/<{$data[0]['uhpic']}>" alt="heihei" width="100%" height="100%"></div>
             <div class="user_name"><{$data[0]['uname']}></div>
@@ -45,7 +50,7 @@
         </div>
         <div class="note_main_main"><p><{$data[0]['content']}></p></div>
         <div class="note_main_right">
-            <a href="javascript:;"><span style="float:right"> 回 复 &nbsp;&nbsp;</span></a>
+            <a href="#pinglun"><span style="float:right"> 回 复 &nbsp;&nbsp;</span></a>
             <span class="createtime"><{$data[0]['createtime']|date="Y-m-d H:i:s",###}></span>
             <span class="floor">1楼</span>
         </div>
@@ -59,7 +64,7 @@
                 <div class="user_name"><{$reply['uname']}></div>
                 <div class="user_grade">初入江湖</div>
             </div>
-            <div class="note_main_main"><p><{$reply['content']}></p></div>
+            <div class="note_main_main"><p><{$reply.content}></p></div>
             <div class="note_main_right">
                 <a href="javascript:;" class="huifu" style="width:60px;text-align:center;">查看回复</a>
                 <span class="createtime"><{$reply['createtime']|date="Y-m-d H:i:s",###}></span>
@@ -73,6 +78,7 @@
                             <li style="margin-left:30px;"><span><a href=""><{$comment['uname']}>：</a></span><{$comment['content']}><span style="float:right;margin-right:30px"><{$comment['createtime']|date="Y-m-d H:i",###}> <a  class="a-comment" href="javascript:;"  style="margin-left:30px;">回复</a></span></li>
                             </eq>
                         </volist>
+                        <span class="shuo" style="float:right;margin-right:30px;margin-top:10px;"><a href="javascript:;">我也说一句</a></span>
                     </div>
                     <br>
                     <div class="replybottom">
@@ -87,6 +93,48 @@
             </div>
         </div><!--note_main-->
     </volist>
+
+    <div class="fatie fl" style="margin-top:50px;" id="pinglun">
+            <form action="<{:U('Floor/floorAdd')}>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="note_id" value="<{$data[0]['id']}>">
+                <input type="hidden" name="bar_id" value="<{$data[0]['bar_id']}>">
+                <!-- <div class="fatei_head">
+                    <b>标题：</b><br><input class="input_title" type="text" name="title" placeholder="请填写标题"> 
+                </div> -->
+                <div id="myEditor" class="fatie_content edui-default">
+                    <b>内容：</b><br>
+                    <div class="fatie_content2 fl">
+                        <script id="container" name="content" type="text/plain" style="width:650px;height:220px">
+                        </script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container',{
+                                indentValue:'2em'
+                                ,initialFrameWidth:650  //初始化编辑器宽度,默认1000
+                                ,initialFrameHeight:220  //初始化编辑器高度,默认320
+                                ,zindex:650
+                                , toolbars: [[
+                                'fullscreen', 'undo', 'redo', '|',
+                                'bold', 'italic', 'underline', 'fontborder', 'rowspacingbottom', 'lineheight', '|', 'fontfamily', 'fontsize', '|',
+                                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
+                                'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', '|',
+                                'horizontal', 'date', 'time', 'snapscreen'
+                                ]]
+                                //是否启用元素路径，默认是显示
+                                ,elementPathEnabled :false
+                                ,autoHeightEnabled: false
+                            });
+                        </script>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt10 fatie_fabiao" >发　表</button>
+            </form>
+        </div><!--fatie-->
     
 </block>
 
@@ -140,7 +188,7 @@
                         // data:"bar_id="+<{$data[0].bid}>+"&content="+content+"&bar_as_id="+bsid+"&reception="+recid,
                         success:function(results){
                             // console.log(results);
-                            handle.parent().prev().prev().children("li:last").after('<li style="margin-left:30px;"><span><a href=""><{$Think.session.user.name}>：</a></span>'+contents+'<span style="float:right;margin-right:30px">刚刚发布 <a  class="a-comment" href="javascript:;"  style="margin-left:30px;">回复</a></span></li>');
+                            handle.parent().prev().prev().children("span").before('<li style="margin-left:30px;"><span><a href=""><{$Think.session.user.name}>：</a></span>'+contents+'<span style="float:right;margin-right:30px">刚刚发布 <a  class="a-comment" href="javascript:;"  style="margin-left:30px;">回复</a></span></li>');
                             // console.log()
                             handle.parent().children(":first").val("");
                             handle.parent().children(":first").attr("placeholder","");
@@ -168,6 +216,11 @@
                     con.attr('placeholder','回复'+placeholder);
                     con.focus();
             });
+
+            $(document).on('click','.shuo',function(){
+                // console.log($(this).parent().next().next().children(":first"));
+                $(this).parent().next().next().children(":first").attr("placeholder","");
+            })
 
         });
     </script>

@@ -117,18 +117,28 @@
             <dl>
                 <dt>
                     <a href="js.html?/0-0-0-6-0-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                    <strong>贴吧推荐 <span class="name-en">/Recommend</span></strong>
+                    <strong>贴吧分类 <span class="name-en">/Recommend</span></strong>
                 </dt>
             </dl>
-            <volist name="suggest" id="sug">
+            <volist name="typehead" id="tp">
                 <div class = "bar_rec">
-                    <div class = "rec_img"><a href="<{:U('Bar/index',array('id'=>$sug['id']))}>"><img style = "width:100px;height:100px;"src="__UPLOAD__/<{$sug['hpic']}>" alt="" /></a></div>
+                    <!-- <div class = "rec_img"><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><img style = "width:100px;height:100px;"src="__UPLOAD__/<{$sug['hpic']}>" alt="" /></a></div> -->
                     <div class = "rec_list">
                         <ul>
-                            <li><a href=""><strong><{$sug['name']}></strong></a></li>
-                            <li><a href=""><{$sug['attention']}></a></li>
-                            <li><a href=""><{$sug['count'][0]['count']}></a></li>
-                            <li><a href=""><{$sug['title']}></a></li>
+                            <li><a href="" target="_blank"><strong>☆<{$tp['name']}></strong></a></li>
+                                <ul class="type_one">
+                                    <volist name="types" id="typ">
+                                        <!-- <{:dump($typ['pid'])}> -->
+                                        <if condition="$typ['pid'] eq $tp['id']">
+                                            <li><a href=""><{$typ['name']}></a></li>
+                                            <!-- <li><a>yyyy</a></li> -->
+                                        </if>
+                                    </volist>
+                                    <!-- <li><a>中国</a></li> -->
+                                </ul>
+                            <!-- <li><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><{$sug['attention']}></a></li> -->
+                            <!-- <li><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><{$sug['count'][0]['count']}></a></li> -->
+                            <!-- <li><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><{$sug['title']}></a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -138,98 +148,8 @@
         <!-- 左边 -->
         <div class="index_recommend" id='index_recommend_0'>
             <div class="head clearfix">
-                <strong>贴吧分类</strong>
-                <a class="more" href="" target="_blank">更多&nbsp;<span class="more-sign"></span></a>
-                <div id = "head_nav">
-                <ul class="clearfix index-coupon-menus">
-                    <li class="li_warp" style="font-size:15px;">
-                        <b>全部</b>
-                        <span class="arrow-up-menu arrow"></span>
-                         <ul class = "lis">
-                            <li><a href="">娱乐明星</a></li>
-                            <li><a href="">爱综艺</a></li>
-                            <li><a href="">追矿剧</a></li>
-                            <li><a href="">看电影</a></li>
-                            <li><a href="">体育</a></li>
-                            <li><a href="">小说</a></li>
-                            <li><a href="">生活</a></li>
-                            <li><a href="">闲趣</a></li>
-                            <li><a href="">动漫宅</a></li>
-                            <li><a href="">高校</a></li>
-                            <li><a href="">人文自然</a></li>
-                        </ul>
-                    </li>
-                    <li class="li_warp">
-                        娱乐明星 <span class="arrow-up-menu arrow"></span>
-                        <ul class = "lis">
-                            <li><a href="">港台东南亚</a></li>
-                            <li><a href="">韩国明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                        </ul>
-                    </li>
-                    <li class="li_warp">
-                        爱综艺  <span class="arrow-up-menu arrow"></span>
-                        <ul class = "lis">
-                            <li><a href="">港台东南亚</a></li>
-                            <li><a href="">韩国明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                            <li><a href="">日本明星</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        追矿剧<span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                        看电影 <span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                        体育<span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                        小说 <span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                        生活 <span class="arrow-up-menu arrow"></span>
-                    </li>
-                    <li>
-                        闲趣 <span class="arrow-up-menu arrow"></span>
-                    </li>                
-                </ul>
-                </div>
+                <strong>贴吧推荐</strong>
             </div>
-            <script type="text/javascript">
-               var lis = document.getElementById('head_nav').getElementsByTagName('li');
-                console.log(lis);
-                for( var i=0;i<lis.length;i++){
-                    lis[i].onmouseover=function(){
-                        if (this.className == 'li_warp') {
-                            this.getElementsByTagName('ul')[0].style.display='block';
-                        };
-                    }
-
-                    lis[i].onmouseout = function(){
-                        if (this.className == 'li_warp') {
-                            this.getElementsByTagName('ul')[0].style.display = "";
-                        };
-                    }
-                }
-
-            </script>
 
             <div class="content clearfix">
                 <div class="per current">
@@ -240,8 +160,8 @@
                                     <img src="__UPLOAD__/<{$bar['hpic']}>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
                                 </a> 
                                 <div class= "ul_info">     
-                                    <b style="font-size:20px;"><{$bar['name']}> </b><br>
-                                    <span style = "font-size:10px;margin-top:-10px;"><a href="" title="<{$bar['title']}>"><{$bar['title']}></a><br>关注：<{$bar['attention']}>　帖子：<{$bar['count'][0]['count']}></span>
+                                    <a href="<{:U('Bar/index',array('bar_id'=>$bar['id']))}>" target="_blank"><b style="font-size:20px;"><{$bar['name']}> </b></a><br>
+                                    <span style = "font-size:10px;margin-top:-10px;"><a href="<{:U('Bar/index',array('bar_id'=>$bar['id']))}>" target="_blank" title="<{$bar['title']}>"><{$bar['title']}></a><br>关注：<{$bar['attention']}>　帖子：<{$bar['count'][0]['count']}></span>
                                 </div>
                             </li>
                         </volist>
@@ -270,6 +190,7 @@
                         <strong>友情链接<span class="name-en">/Link</span></strong>
                     </dt>
                     <volist name="links" id="link">
+                        <!-- <{:dump($link)}> -->
                         <div class = "bar_link">
                             <b><a href="<{$link['linkurl']}>"><{$link['linktitle']}></a></b> 
                             <ul>                              
@@ -319,39 +240,54 @@
         
         <!-- 左边 -->
         <div class = "content_d clearfix">
-            <div class="content_nav">
+            <div class="content_nav" id="contentnav">
                 <!-- <span>热门动态</span> -->
                 <ul class="nav nav-tabs"> 
-                    <li role="presentation" class="active"><a href="#" style="font-size:20px;font-weight:bold">热门动态</a></li> 
-                    <li role="presentation"><a href="#" style="font-size:20px;">加精帖子</a></li> 
-                    <li role="presentation"><a href="#" style="font-size:20px;">Messages</a></li> 
+                    <li role="presentation" id="hotstatus" class="active"><a href="javascript:;" id="ishot" style="font-size:20px;font-weight:bold">热门动态</a></li> 
+                    <li role="presentation"><a href="javascript:;" id="isfine" style="font-size:20px;">加精帖子</a></li> 
+                    <!-- <li role="presentation"><a href="#" style="font-size:20px;">Messages</a></li>  -->
                 </ul>
             </div>
-            <volist name="notes" id="note">
-                <div class = "content_con">
-                    <div class = "content_dt">
-                        <div class = "content_top">
-                            <span><a href=""><{$note['name']}></a></span>
-                        </div>
-                        <div class="content_cen">
-                            <a href=""><{$note['title']}></a>
-                        </div>
-                        <div class = "content_cen">
-                            <a href=""><{$note['content']}> </a>
-                        </div>
-                        <!-- <div class = "content_img">
-                            <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                            <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                            <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-                        </div> -->
-                        <div class="content_footer">
-                            <span class="glyphicon glyphicon-user"> <{$note['user_id']}></span><span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span>
+            <script>
+                var contentnavli = document.getElementById('contentnav').getElementsByTagName('li');
+
+                for(var i=0;i<contentnavli.length;i++){
+                    contentnavli[i].onclick=function(){
+                        for(var j=0;j<contentnavli.length;j++){
+                            contentnavli[j].className="";
+                        }
+                        this.className="active";
+                    }
+                }
+
+            </script>
+            <div id="hothot">
+                <volist name="notes" id="note">
+                    <div class = "content_con">
+                        <div class = "content_dt">
+                            <div class = "content_top">
+                                <span><a href=""><{$note['name']}></a></span>
+                            </div>
+                            <div class="content_cen">
+                                <a href=""><{$note['title']}></a>
+                            </div>
+                            <div class = "content_cen">
+                                <a href="" style="color:#999;"><{$note['content']}> </a>
+                            </div>
+                            <!-- <div class = "content_img">
+                                <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
+                                <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
+                                <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                            </div> -->
+                            <div class="content_footer">
+                                <span class="glyphicon glyphicon-user"> <{$note['user_id']}></span><span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </volist>
+                </volist>
+            </div>
             <!--以下热门贴非遍历，可删除-->  
-            <div class = "content_con">
+            <!-- <div class = "content_con">
                 <div class = "content_dt">
                     <div class = "content_top">
                         <span><a href="">赵丽颖吧</a></span>
@@ -368,52 +304,67 @@
                         <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
                         <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
                         <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
+                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
                         <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                    </div>
+                    <!-- </div>
                     <div class="content_footer">
                         <span class="glyphicon glyphicon-user">帖主</span><span class="glyphicon glyphicon-time">时间</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="content_con">
-                <div class="content_dt">
-                    <div class="content_top">
-                       <span><a href="">赵丽颖吧</a></span>
-                    </div>
-                    <div class="content_cen">
-                        <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-                    </div>
-                    <!-- <div class = "content_img"> -->
-                        <!-- <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                        <!-- <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                    <!-- </div> -->
-                    <div class="content_footer">
-                        <span>帖主</span><span>时间</span>
-                    </div>
-                </div>
-            </div>
-            <div class = "content_con">
-                <div class = "content_dt">
-                    <div class = "content_top">
-                       <span><a href="">赵丽颖吧</a></span>
-                    </div>
-                    <div class = "content_cen">
-                        <a href="">【如颖随行】161108赵丽颖最火热十部剧 第六最惊艳 </a>
-                    </div>
-                    <div class = "content_img">
-                        <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-                    </div>
-                </div>
-            </div>
         </div><!-- 左边完 -->
     </div>
-
-   
+ 
     </block>
+
+<block name="myjs">  
+    <script>
+        $(function(){
+            console.log($(".content_d"));
+            // var hotcontent = $("#hothot").html();
+            $(document).on('click','#isfine',function(){
+                $("#hothot").html("");
+                $.ajax({
+                    type:'post',
+                    url:"<{:U('Index/isfine')}>",
+                    success:function(results){
+                        console.log(results);
+                        console.log(results.length);
+                        for(var i=0;i<results.length;i++){
+                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a href=''>"+results[i].name+"</a></span></div><div class='content_cen'><a href=''>"+results[i].title+"</a></div><div class = 'content_cen'><a href='' style='color:#999;'>"+results[i].content+"</a></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
+                            // $(".content_d").append("<a href=''>"+results[i].name+"</a>");
+                        }
+                    },
+                    error:function(results){
+                        // console.log(results);
+                        alert("回复失败！！！");
+                    }
+                });
+            })
+            
+            $(document).on('click','#ishot',function(){
+                $("#hothot").html("");
+                // $("#hothot").html(hotcontent);
+                $.ajax({
+                    type:'post',
+                    url:"<{:U('Index/ishot')}>",
+                    success:function(results){
+                        console.log(results);
+                        console.log(results.length);
+                        for(var i=0;i<results.length;i++){
+                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a href=''>"+results[i].name+"</a></span></div><div class='content_cen'><a href=''>"+results[i].title+"</a></div><div class = 'content_cen'><a href='' style='color:#999;'>"+results[i].content+"</a></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
+                            // $(".content_d").append("<a href=''>"+results[i].name+"</a>");
+                        }
+                    },
+                    error:function(results){
+                        // console.log(results);
+                        alert("回复失败！！！");
+                    }
+                });
+            })
+        })
+    </script> 
+</block>
 
 

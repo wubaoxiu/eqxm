@@ -43,7 +43,7 @@ class NoteController extends Controller
         $data['reply'] = 0;
         $data['content'] = $_POST['content'];
         if($this->_note->data($data)->add()>0){
-            $this->success('发帖成功！',U('Bar/index'));
+            $this->success('发帖成功！');
         }else{
             $this->error('发帖失败！');
         }

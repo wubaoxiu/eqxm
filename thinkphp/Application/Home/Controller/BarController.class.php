@@ -33,8 +33,10 @@ class BarController extends Controller
     public function index()
     {
         // 获取传过来的贴吧id
-        // $id = $_GET['id'];
-        $id = 1;
+        $id = I('bar_id');
+        // $id = 1;
+        $atten = $this->is_attentionBar($id);
+
         $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
         // dump($data);
         if(empty($data)){
@@ -46,6 +48,7 @@ class BarController extends Controller
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->find();
         }
+
         // 检测用户是否为该贴吧的管理人员
         $baradmin = $this->_baradmin->field('status')->where(array('bar_id'=>array('eq',$id),'user_id'=>array('eq',$_SESSION['user']['id'])))->find();
         // $attenbars = attentionBars();
@@ -56,9 +59,16 @@ class BarController extends Controller
         }else{
             $data['baradmin'] = $baradmin['status'];
         }
+
+        //关注的吧
+        $attenbars = attentionBars();
+        // dump($list);
+        // dump($attenbars);
+
         $this->assign('list',$list);
         $this->assign('data',$data);
-        // $this->assign('attenbars',$attenbars);
+        $this->assign('attenbars',$attenbars);
+        $this->assign('atten',$atten);
 
         // dump($attenbars);
         $this->display();
@@ -121,24 +131,35 @@ class BarController extends Controller
     */
     public function note()
     {
-        // $barid = I('bar_id');
-        $barid = 3;
-        // $noteid = I('note_id');
-        $noteid = 1;
+        $barid = I('bar_id');
+        // $barid = 3;
+        $noteid = I('note_id');
+        // $noteid = 1;
 
         $atten = $this->is_attentionBar($barid);
 
-        // $attenbars = attentionBars();
+        $attenbars = attentionBars();
         // echo $atten;
 
         //贴子主要信息
         $count = M('note')->field(array('count(bar_id)'=>"count"))->where("bar_id=$barid")->select();
-        $data = M('note')->field(array("b.name bname","n.bar_id","b.attention","b.hpic bhpic","u.hpic uhpic","u.name uname","n.content","n.createtime","n.title"))->table("csw_barinfo b,csw_note n,csw_user u")->where("b.id=$barid and n.user_id=u.id and n.id=$noteid")->select();
+        $data = M('note')->field(array("b.name bname","n.bar_id","n.id","b.attention","b.hpic bhpic","u.hpic uhpic","u.name uname","n.content","n.createtime","n.title"))->table("csw_barinfo b,csw_note n,csw_user u")->where("b.id=$barid and n.user_id=u.id and n.id=$noteid")->select();
         // dump($data);
         // dump($count);
         //贴吧楼层
-        $replys = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->select();
-
+        $reply = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->page($_GET['p'],2)->select();
+        // dump($reply);
+        $pagenum = M('floor')->where("bar_id=$barid and note_id=$noteid")->count();
+        // dump($pagenum);
+        $pagenow = $_GET['p'];
+        // echo $pagenow;
+        $page = new \Think\Page($pagenum,2);
+        $show = $page->show();
+        foreach($reply as $v){
+            $v['content'] = htmlspecialchars_decode($v['content']);
+            // dump($v);
+            $replys[] = $v;
+        }
         //楼层评论
         $comments = M('comments')->field("u.name uname,c.content,c.createtime,u.hpic,c.floor cfloor")->table("csw_user u,csw_comments c")->where("c.note_id=$noteid and c.user_id=u.id and c.status=1")->select();
         // dump($comments);
@@ -149,7 +170,9 @@ class BarController extends Controller
         $this->assign('comments',$comments);
         $this->assign("replys",$replys);
         $this->assign("atten",$atten);
-        // $this->assign("attenbars",$attenbars);
+        $this->assign("attenbars",$attenbars);
+        $this->assign('show',$show);
+        $this->assign('pagenow',$pagenow);
 
         $this->display("Bar/note");
     }

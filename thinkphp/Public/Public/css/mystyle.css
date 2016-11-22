@@ -70,7 +70,7 @@ ul li{
 */
 .bar_rec{
     width:320px;
-    height:140px;
+    /*height:0px;*/
     border-top:1px solid #ccc;
     border-bottom:1px solid #ccc;
     margin-top: -5px;
@@ -78,18 +78,33 @@ ul li{
 }
 .rec_list{
     width:160px;
-    height:100px;
+    /*height:100px;*/
     float:left;
     margin-left: 10px;
     margin-top: 10px;
 }
-.bar_rec .rec_img{
-    width:100px;
-    height:100px;
-    margin-top: 10px;
-    margin-left: 20px;
+/*++++++++++++++++++++++++ wbx ++++++++++++++++++++++++++*/
+.type_one li{
     float:left;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
+.type_one li a{
+    color:#337AB7;
+    text-decoration: none;
+    font-size: 13px;
+}
+.type_one li a:hover{
+    color:blue;
+}
+/*.bar_rec li a{
+    color:#999;
+    text-decoration: none;
+}
+.bar_rec li a:hover{
+    color:#FF6600;
+}*/
+/*++++++++++++++++++++++++ end ++++++++++++++++++++++++++*/
 .content_d{
     width:800px;
     /*height:450px;*/
@@ -289,35 +304,45 @@ font-size: 16px;
 /*悬浮框开始*/
 /*==================================*/
 .index_recommend .index-coupon-menus .lis{
-    width:200px;
-    background:#F6F7FB;
+    width:300px;
+    background:#FCFCFC;
     /*float:none;*/
     margin-top: -10px;
+    margin-left:-100px;
+    border-radius: 10%;
+    position: absolute;
+    opacity: 0.9;
 }
 .head ul li{
     float:left;
-
+}
+.index_recommend .index-coupon-menus .lis li a{
+    color:#999;
+    font-size: 10px;
 }
 .index_recommend .index-coupon-menus .lis li a:hover{
-    /*width:100px;*/
-    /*height:100px;*/
-    background: #49AAEE;
+    background: #FCFCFC;
+    color:#FF6600;
     /*float:none;*/
 }
 .index_recommend .index-coupon-menus .lis li{
-   width:100px;
-   margin-left: -10px;
+   /*width:80px;*/
+   /*width:auto;*/
+   margin-left: 15px;
+   text-align: center;
    /*height:100px;*/
 }
 .index_recommend .index-coupon-menus .li_warp ul{
     display: none;
     position: absolute;
-  
-
 }
-.index_recommend .index-coupon-menus .li_warp:hover{
-    background: #F6F7FB;
-    display: block;
+.index_recommend .index-coupon-menus .li_warp span a{
+    /*background: #F6F7FB;*/
+    color:#999;
+}
+.index_recommend .index-coupon-menus .li_warp span a:hover{
+    color:#FF6600;
+    /*background: #FCFCFC;*/
 }
 /*.index_recommend .index-coupon-menus .li_warp:hover>ul{
     display: block;
