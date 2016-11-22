@@ -42,12 +42,13 @@ class BarController extends Controller
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->find();
         }
-        $attenbars = attentionBars();
+        // $attenbars = attentionBars();
         // dump($list);die;
+        // dump($attenbars);
         $this->assign('list',$list);
         $this->assign('louzhu',$louzhu);
         $this->assign('data',$data);
-        $this->assign('attenbars',$attenbars);
+        // $this->assign('attenbars',$attenbars);
 
         // dump($attenbars);
         $this->display();
@@ -66,7 +67,7 @@ class BarController extends Controller
 
         $atten = $this->is_attentionBar($barid);
 
-        $attenbars = attentionBars();
+        // $attenbars = attentionBars();
         // echo $atten;
 
         //贴子主要信息
@@ -87,7 +88,7 @@ class BarController extends Controller
         $this->assign('comments',$comments);
         $this->assign("replys",$replys);
         $this->assign("atten",$atten);
-        $this->assign("attenbars",$attenbars);
+        // $this->assign("attenbars",$attenbars);
 
         $this->display("Bar/note");
     }
