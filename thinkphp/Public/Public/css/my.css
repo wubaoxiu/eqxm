@@ -133,7 +133,14 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .my_headslider .user_name a{
     font-size: 16px;
 }
+.note_page{
+    width: 100%;
+    height: 50px;
+    border: 1px solid red;
+    margin-top: 20px;
+}
 .fatie{
+    margin-top: 30px;
     width: 759px;
     height: 520px;
     background: #f8f8f8;
@@ -191,11 +198,11 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 }
 .bgpic{
     width: 900px;
-    height: 120px;
+    height: 130px;
 }
 .hpic{
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 160px;
     border: 5px solid #fff;
 }
 .gl_bar_main{
@@ -206,6 +213,17 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .bar_info{
     width: 760px;
 }
+    /*贴吧信息管理 end*/
+
+
+    /*贴吧帖子管理 strat*/
+.gl_note{
+    background: #fbfbfb;
+}
+
+    /*贴吧帖子管理 end*/
+
+
 
 /* 贴吧管理页面样式 end */
 

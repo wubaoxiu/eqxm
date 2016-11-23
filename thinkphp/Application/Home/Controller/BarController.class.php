@@ -33,8 +33,8 @@ class BarController extends Controller
     public function index()
     {
         // 获取传过来的贴吧id
-        $id = I('bar_id');
-        // $id = 1;
+        // $id = I('bar_id');
+        $id = 1;
         $atten = $this->is_attentionBar($id);
 
         $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
@@ -123,6 +123,90 @@ class BarController extends Controller
             $this->error('修改失败！');
         }
         // echo $this->_barinfo->getLastSql();die;
+    }
+    //处理背景
+    public function updateAvator1(){
+        $bgpic = $this->upload1();
+        // dump($bgpic);
+        $data['bgpic'] = $bgpic;
+        $data['id'] = I('get.id/d');
+        $this->_barinfo->save($data);
+        return $this->ajaxReturn($bgpic);
+    }
+
+    public function upload1(){
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->thumbType = 1;// 缩略图生成方式 1 按设置大小截取 0 按原图等比例缩略
+        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->rootPath = './Uploads/bgimg/'; // 设置附件上传根目录
+        $upload->savePath = ''; // 设置附件上传（子）目录
+        // 上传文件
+        $info = $upload->upload();
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($upload->getError());
+        }else{
+            //获取上传后的路径和文件名
+            // dump($info);
+            $path = './Uploads/bgimg/'.$info['file']['savepath'];
+            $name = $info['file']['savename'];
+
+            $big = ltrim($path.$name);
+            
+            $image = new \Think\Image();
+            $image->open($big);
+            // 生成一个缩放后填充大小150*150的缩略图并保存为thumb.jpg
+            $image->thumb(1100, 150)->save($path.'s_'.$name);
+            unlink($big);
+            $small = ltrim($path.'s_'.$name);
+            //$arr = array('small'=>$small,'big'=>$big);
+            return $small;
+
+        }
+    }
+
+     //处理头像
+    public function updateAvator2(){
+        $hpic = $this->upload();
+        // dump($hpic);
+        $data['hpic'] = $hpic;
+        $data['id'] = I('get.id/d');
+        $this->_barinfo->save($data);
+        return $this->ajaxReturn($hpic);
+    } 
+
+    /**
+    *  图片上传
+    */ 
+
+   public function upload(){
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->rootPath = './Uploads/'; // 设置附件上传根目录
+        $upload->savePath = ''; // 设置附件上传（子）目录
+        // 上传文件
+        $info = $upload->upload();
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($upload->getError());
+        }else{
+            //获取上传后的路径和文件名
+            
+            $path = $info['file']['savepath'];
+            $name = $info['file']['savename'];
+
+            $big = ltrim('./Uploads/'.$path.$name);
+            
+            $image = new \Think\Image();
+            $image->open($big);
+            // 生成一个缩放后填充大小150*150的缩略图并保存为thumb.jpg
+            $image->thumb(150, 150)->save('./Uploads/'.$path.'s_'.$name);
+            unlink($big);
+            $small = ltrim($path.'s_'.$name);
+            //$arr = array('small'=>$small,'big'=>$big);
+            return $small;
+
+        }
     }
 
     /**

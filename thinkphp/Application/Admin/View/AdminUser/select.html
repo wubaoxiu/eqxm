@@ -111,8 +111,8 @@
     layui.use('upload', function(){
         layui.upload({
             url: "<{:U('Admin/AdminUser/updateAvator',array('id' => $data['id']))}>" //上传接口
-            ,method: 'post',
-            data:1
+            ,method: 'post'
+            ,data:1
             ,before: function(input){
                 //返回的参数item，即为当前的input DOM对象
                 layer.msg('文件上传中.....', {

@@ -3,15 +3,33 @@
 <link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css" />
 <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 <div class="gl_bar">
+<!-- <{:dump($data)}> -->
   <span><{$title}>>><span style="color:#828282;font-size:12px"><{$stitle}></span></span>
   <hr>
   <div class="bgpic fl">
-    <a href=""><img src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/bgpic/default_bgpic.jpg<else />__PUBLIC__/$data['bgpic']</if>" title="点我切换贴吧背景图" width="100%" height="100%"></a>
+    <span class="profile-picture">
+      <img id="bgpic" src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/default_bgpic.jpg<else />__ROOT__/<{$data['bgpic']}></if>" width="100%" height="100%">
+      <div class="space-4"></div>
+      <div class="site-demo-upload">
+        <div class="site-demo-upbar" style="margin-top:-36px">
+          <input id="avator1" type="file" name="file" class="layui-upload-file" lay-title="修改背景">
+        </div>
+      </div>
+    </span>
   </div>
   <div class="gl_bar_main fl mt20">
     <div class="hpic fl">
-      <a href=""><img src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/hpic/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" title="点我切换贴吧头像" width="100%" height="100%"></a>
-      <button class="btn btn-primary mt20" style="margin-left: 10px;">修改头像</button>
+      <span class="profile-picture">
+        <div style="width:110px;height:110px;">
+        <img id="hpic" class="editable img-responsive" alt="请选择您的头像" src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" width="110px" height="110px">
+          </div>
+          <div class="space-4"></div>
+          <div class="site-demo-upload">
+            <div class="site-demo-upbar">
+              <input id="avator2" type="file" name="file" class="layui-upload-file" lay-title="修改头像">
+            </div>
+          </div>
+        </span>
     </div>
     <div class="bar_info fr">
         <table class="table">
@@ -39,3 +57,49 @@
     </div>
   </div>
 </div>
+<script src="__PUBLIC__/layui/layui.js"></script>
+<script src="__PUBLIC__/Public/js/jquery.min.js"></script>
+<script type="text/javascript"> 
+    // 上传文件
+    layui.use('upload', function(){
+
+        layui.upload({
+            url: "<{:U('Home/Bar/updateAvator1',array('id' => $data['id']))}>" //上传接口
+            ,elem: '#avator1'
+            ,method: 'post',
+            data:1
+            ,before: function(input){
+                //返回的参数item，即为当前的input DOM对象
+                layer.msg('文件上传中.....', {
+                    icon: 16
+                    ,shade: 0.01,
+                    time:0,
+                });
+            }
+            ,success: function(res){ //上传成功后的回调
+                layer.closeAll();
+                $('#bgpic').attr('src','__ROOT__/'+res);
+            }
+        });
+
+        layui.upload({
+            url: "<{:U('Home/Bar/updateAvator2',array('id' => $data['id']))}>" //上传接口
+            ,elem: '#avator2'
+            ,method: 'post'
+            ,data: 1
+            ,before: function(input){
+                //返回的参数item，即为当前的input DOM对象
+                layer.msg('文件上传中.....', {
+                    icon: 16
+                    ,shade: 0.01,
+                    time:0,
+                });
+            }
+            ,success: function(res){ //上传成功后的回调
+                layer.closeAll();
+                console.log(res);
+                $('#hpic').attr('src','__UPLOAD__/' + res);
+            }
+        });
+});  
+</script> 

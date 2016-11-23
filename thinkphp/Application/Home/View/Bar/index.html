@@ -65,10 +65,10 @@
 
 <div class="wenda clearfix">
 <block name="the_head">
-<div class="bar_head1"><img src="__PUBLIC__/public/img/3.jpg" alt="贴吧图片" width="100%" height="100%"></div> 
+<div class="bar_head1"><img src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/bgpic/default_bgpic.jpg<else />__ROOT__/<{$data['bgpic']}></if>" width="100%" height="100%"></div> 
 <div class="bar_head">
     <div class="left">
-        <img src="__PUBLIC__/Public/img/1.png" alt="" width="100%" height="100%">
+        <img src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/hpic/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" width="100%" height="100%">
     </div>
     <div class="bar_head_center fl">
         <ul>
@@ -157,9 +157,7 @@
                 </div>
             </div><!--wenda-listcon clearfix-->
         </foreach>
-
-            <div class="pager">共<span class="red"> 30 </span>个话题  <a class="prev" href="http://www.sucaihuo.com/topic/0-0-1">上一页</a> <a class="current">1</a><a class="num" href="http://www.sucaihuo.com/topic/0-0-2">2</a>  <a class="next" href="http://www.sucaihuo.com/topic/0-0-2">下一页</a>
-            </div><!--page-->
+        <div class="note_page fl"></div>
             <hr>
         <div class="fatie fl">
             <form action="<{:U('Note/add')}>" method="post" enctype="multipart/form-data">
@@ -205,6 +203,7 @@
     </block>
     </div><!--wenda main-->
     <div class="wenda-slider" style="margin-top:20px">
+        <!-- <{:dump($data)}> -->
         <empty name="$Think.session.user">
             <div class="panel wenda-form clearfix mt">
         <else />
@@ -217,7 +216,7 @@
                         <a href="<{:U('Profile/index')}>" class="user-img">
                             <img alt="<{$Think.session.user.name}>" src="__ROOT__/<{$Think.session.user.hpic}>">
                         </a>
-                        <p class="username"><{$Think.session.user.name}>　<span style="color:blue"><if condition="$data.baradmin eq '0'">吧主　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'status'=>$data['baradmin']))}>"><button class="btn btn-primary">管理本吧</button></a><elseif condition="$data.baradmin eq '1'" />管理员　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><else /></if></span></p>
+                        <p class="username"><{$Think.session.user.name}>　<span style="color:blue"><if condition="$data.baradmin eq '0'">吧主　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'status'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><elseif condition="$data.baradmin eq '1'" />管理员　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><else /></if></span></p>
                        
                     </div>
                     <hr>
