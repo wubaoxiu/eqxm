@@ -38,7 +38,11 @@
             </p>
 
             <p class="right">
-            <a href="<{:U('Login/login')}>">登录</a>
+            <if condition="$Think.session.user eq null">
+                <a href="<{:U('Login/login')}>">登录</a>
+            <else />
+                <a href="<{:U('Login/logout')}>">退出</a>
+            </if>
             <a href="<{:U('Login/reg')}>">注册</a>
             <a href="#">会员官网</a>
             <a href="www.baidu.com">百度首页</a>

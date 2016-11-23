@@ -33,9 +33,22 @@ class BarController extends Controller
     public function index()
     {
         // 获取传过来的贴吧id
+
         // $id = I('bar_id');
-        $id = 1;
+        // $id = 1;
+
+        // dump($_SESSION['user']);
+        $id = I('id');
+        // $id = 1;
+
         $atten = $this->is_attentionBar($id);
+
+        //关注的吧
+        if($_SESSION['user']){           
+            $attenbars = attentionBars();
+        }
+        // dump($list);
+        // dump($attenbars);
 
         $data = $this->_barinfo->where(array('id'=>array('eq',$id)))->find();
         // dump($data);
@@ -60,10 +73,7 @@ class BarController extends Controller
             $data['baradmin'] = $baradmin['status'];
         }
 
-        //关注的吧
-        $attenbars = attentionBars();
-        // dump($list);
-        // dump($attenbars);
+        
 
         $this->assign('list',$list);
         $this->assign('data',$data);
@@ -222,7 +232,9 @@ class BarController extends Controller
 
         $atten = $this->is_attentionBar($barid);
 
-        $attenbars = attentionBars();
+        if($_SESSION['user']){           
+            $attenbars = attentionBars();
+        }
         // echo $atten;
 
         //贴子主要信息
