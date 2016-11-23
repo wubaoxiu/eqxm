@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
 
 <div class="container">
-    <!-- 第一部分 轮播图和热门话题 -->
+    <!-- 第一部分 轮播图和登录后的个人信息 -->
     <div class="index_per index_first clearfix">
         <div class="sidebar_per sidebar_first">
             <dl>
@@ -18,12 +18,12 @@
                 <div class = "bar_warp">
                     <div class = "bar_warp_all">
                     <div class  = "bar_img">  
-                        <a href=""><img style="width:100px;height:100px;" src="__PUBLIC__/Public/image/qi.jpg" alt=""></a>
+                        <a href=""><img style="width:100px;height:100px;" src="__ROOT__/<{$Think.session.user.hpic}>" alt=""></a>
                     </div>
                      <div class = "bar_list">
                        <ul>
                            <li><div class = "crown"></div></li>
-                           <li><a href="">邓紫棋9999</a></li>
+                           <li><a href=""><{$Think.session.user.name}></a></li>
                        </ul>  
                        <ul>
                            <li><div class = "dou"></div></li>
@@ -33,11 +33,31 @@
                     </div>
                     <div class = "bar_love">
                         <span><a href=""><b>爱逛的吧</b></a></span>
-                        <a href=""><div></div></a>
+                        <if condition="$signin eq 0">
+                            <a href="<{:U('Sign/allIn')}>" class="yiqian">
+                                <div>                               
+                                    <span style="color:red;font-size:18px;font-weight:bold">√</span>                                
+                                    <!-- <span style="color:red;font-size:18px;font-weight:bold"></span>                                 -->
+                                </div>
+                            </a>
+                        <else />
+                            <a href="<{:U('Sign/allIn')}>" class="weiqian">
+                                <div>                               
+                                    <!-- <span class="yiqian" style="color:red;font-size:18px;font-weight:bold">√</span>                                 -->
+                                    <span style="color:red;font-size:18px;font-weight:bold"></span>                                
+                                </div>
+                            </a>
+                        </if>
                     </div>
+
                     <div class = "bar_love_list">
-                        <button><a href="`">励志</a><div></div></button>
-                        <button><a href="`">励志</a><div></div></button>
+                        <volist name="attenBars" id="att">
+                            <button><a href=""><{$att['name']}></a><div></div></button>
+                        </volist>
+                        <!-- <button><a href="">励志</a><div></div></button> -->
+                        <!-- <dt>
+                            <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                        </dt> -->
                     </div>
                    
                 </div>
@@ -85,27 +105,6 @@
                         </a>
                     </div>
                 </div>
-               <!--  <ul id="index_banner"> 
-
-                    <li>
-                        <a target="_blank" href="js.html?/0-0-52-0-0-0">
-                            <img alt="响应式模板" src="__PUBLIC__/Public/image/1.jpg">
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="js.html?/22-0-0-0-0-0">
-                            <img alt="商城,特卖模板" src="Public/images/other/mall.jpg">
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="js.html?/53-0-0-0-0-0">
-                            <img alt="404模板" src="Public/images/other/404.jpg">
-                        </a>
-                    </li>
-                </ul> -->
-                <!-- <div class="banner_page" id="banner_page"></div> -->
-                <!-- <a class="banner_page_btn banner_page_left" id="banner_page_left"></a> -->
-                <!-- <a class="banner_page_btn banner_page_right" id="banner_page_right"></a> -->
             </div>
         </div>
     </div><!-- index_per index_first clearfix -->
@@ -318,7 +317,7 @@
  
     </block>
 
-<block name="myjs">  
+<block name="myjs"> 
     <script>
         $(function(){
             console.log($(".content_d"));
@@ -363,8 +362,14 @@
                     }
                 });
             })
+            
+            $(document).on('click','.yiqian',function(){
+                $(this).attr('href',"javascript:;");
+                alert("已经签到过了");
+            })
+            
         })
-    </script> 
+    </script>
 </block>
 
 

@@ -52,6 +52,18 @@ class IndexController extends Controller {
         $types = M('type')->select();
         // dump($typehead);
         // dump($types);
+        if($_SESSION['user']){
+            $attenBars = attentionBars(2);
+        }
+        // dump($attenBars);
+        $s = 0;
+        foreach ($attenBars as $v) {
+            if($v['signin']==0){
+                $s = 1;
+                break;
+            }
+        }
+        echo $s;
 
         // $this->assign('suggest',$arr);
         $this->assign('bars',$list);
@@ -59,6 +71,8 @@ class IndexController extends Controller {
         $this->assign('typehead',$typehead);
         $this->assign('types',$types);
         $this->assign('links',$links);
+        $this->assign('attenBars',$attenBars);
+        $this->assign('signin',$s);
 
         $this->display();
     }

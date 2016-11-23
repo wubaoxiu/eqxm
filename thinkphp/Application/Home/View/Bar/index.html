@@ -205,11 +205,12 @@
     </block>
     </div><!--wenda main-->
     <div class="wenda-slider" style="margin-top:20px">
-        <empty name="$Think.session.user">
-            <div class="panel wenda-form clearfix mt">
-        <else />
+        <!-- <{:dump($_SESSION['user']['cc'])}> -->
+        <if condition="$Think.session.user eq null">
             <div class="panel wenda-form clearfix mt" style="display:none;">
-        </empty>
+        <else />
+            <div class="panel wenda-form clearfix mt">
+        </if>
                 <div>我的信息</div>
                 <hr>
                 <div class="wenda-my">

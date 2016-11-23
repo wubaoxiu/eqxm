@@ -86,7 +86,7 @@
             }              
         });
         // 匹配输入的密码是否符合要求
-        $('#pwd').change(function(){
+        $('#pwd').blur(function(){
             var pwd = $('#pwd').val();
             if(pwd.length<6 || pwd.length>20){
                 layer.tips('密码长度必须在6-20位之间', '#pwd');
@@ -101,7 +101,7 @@
             }
         });
         // 验证两次输入的密码是否相同
-        $('#rpwd').change(function(){
+        $('#rpwd').blur(function(){
             var rpwd = $('#rpwd').val();
             if(rpwd != $('#pwd').val()){
                 layer.tips('两次输入的密码不同', '#rpwd');
@@ -116,7 +116,7 @@
             }
         });
         // 邮箱验证
-        $('#email').change(function(){
+        $('#email').blur(function(){
             var email = $('#email').val();
             var reg = /^[0-9a-z]+@[a-z]{2,3}[\.][a-z]{2,3}$/i;
             if(reg.test(email)>0){
@@ -139,7 +139,7 @@
     });
 
     // ajax验证验证码
-    $('#yzm').change(function(){
+    $('#yzm').blur(function(){
         $.ajax({
             type:"POST",
             url:"<{:U('Login/checkyzm')}>",
