@@ -23,7 +23,7 @@
                 <div class = "center_left_top_one">
                     <ul>
                         <li><b>个人中心</b></li>
-                        <li><a href="<{:U('Set/index')}>" target="main">[设置]</a></li>
+                        <li><a href="<{:U('Set/detail')}>" target="main">[设置]</a></li>
                     </ul>
                 </div>
                 <div class = "center_left_top_two">
@@ -40,12 +40,12 @@
             <div class = "center_bottom">
                 <ul>
                    <li><a href="<{:U('MyInfo/index')}>">我的主页</a></li>
-                   <li><a href="<{:U('Profile/mybar')}>" target="main">我的贴吧</a></li>
+                   <li><a href="<{:U('Set/mybar')}>" target="main">我的贴吧</a></li>
                    <li><a href="<{:U('Profile/mynote')}>" target="main">我的帖子</a></li>
-                   <li><a href="<{:U('Avater/dophoto',array('id'=>$list['id']))}>" target="main">基本资料</a></li>
-                   <li><a href="#">我的提醒</a></li>
-                   <li><a href="#">好友申请</a></li>
-                   <li><a href="#">我的关注</a></li>
+                   <li><a href="<{:U('Set/dophoto',array('id'=>$list['id']))}>" target="main">基本资料</a></li>
+                   <li><a href="<{:U('Set/friend')}>" target="main">我的关注</a></li>
+                   <li><a href="<{:U('Profile/choose')}>" target="main">修改密码</a></li>
+                   <li><a href="<{:U('Profile/updatepwd')}>" target="main">好友申请</a></li>
                    <li><a href="#">我的网盘</a></li>
                 </ul>
 
@@ -53,7 +53,7 @@
         </div>
           <div class = "center_right">
 
-          <iframe style = "width:750px;height:450px;"src="<{:U('Set/index')}>" name="main" frameborder="0">
+          <iframe style = "width:750px;height:460px;"src="<{:U('Set/detail')}>" name="main" frameborder="0">
 
           </iframe> 
 

@@ -43,7 +43,7 @@
         <div class="space-12"></div>
 
         <div class="profile-user-info profile-user-info-striped" style="font-size:17px;">
-            <div class="profile-info-row">
+            <div class="profile-info-row" style = "height:30px;">
                 <div class="profile-info-name"> 用户名 </div>
 
                 <div class="profile-info-value">
@@ -51,15 +51,28 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 性别 </div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="sex"><{$data.sex}></span>
+                    <span class="editable" id="sex">
+                      <if condition = "$data.sex eq '1'">女
+                        <else if condition = "$data.sex eq '2'">男
+                        <else />保密
+                     </if>
+                    </span>
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
+                <div class="profile-info-name"> 手机号 </div>
+
+                <div class="profile-info-value">
+
+                    <span class="editable" id="phone"><{$data.phone}></span>
+                </div>
+            </div>   
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 邮箱 </div>
 
                 <div class="profile-info-value">
@@ -67,18 +80,18 @@
                     <span class="editable" id="email"><{$data.email}></span>
                 </div>
             </div>
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 角色 </div>
 
                 <div class="profile-info-value">
              <!-- <{:dump($adminrole)}> -->
-                    <span class="editable" id="email">
+                    <span class="editable" id="role">
                    <{$adminrole[0]['role']}>
                     </span>
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 爱好 </div>
 
                 <div class="profile-info-value">
@@ -86,7 +99,7 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 注册时间</div>
 
                 <div class="profile-info-value">
@@ -94,7 +107,7 @@
                 </div>
             </div>
 
-            <div class="profile-info-row">
+            <div class="profile-info-row"  style = "height:30px;">
                 <div class="profile-info-name"> 简介 </div>
 
                 <div class="profile-info-value">

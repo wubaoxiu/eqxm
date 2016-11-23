@@ -1,0 +1,64 @@
+  
+
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<div class="layui-tab layui-tab-card" style="margin-top:-10px;">
+  <ul class="layui-tab-title">
+    <li class="layui-this">我关注的吧</li>
+  </ul>
+  <div class="layui-tab-content" style="height: 390px;text-align:center">
+    <div class="layui-tab-item layui-show">
+    <table class = "table table-bordered table-hover table-striped">
+      <tr>
+        <th>吧名</th>
+        <th>经验值</th>
+        <th>吧等级</th>
+        <th>取消关注</th>
+      </tr>
+      <!-- <{:dump($list)}> -->
+      <volist name="list" id="vo">
+      <tr>
+        <td><{$vo['name']}></td>
+        <td><{$vo['integral']}></td>
+        <td>
+        <if condition="$vo['integral'] lt 100">等级1
+        <elseif condition="$vo['integral'] lt 500" />等级2
+        <else />等级3
+        </if>
+        </td>
+        <td><button class="layui-btn site-demo-layer" data-type="confirmTrans" onclick="active(this,'<{$vo['id']}>')">×</button></td>
+      </tr>
+      </volist>
+       <!-- <{:dump($vo)}> -->
+    </table>
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script>
+function active(obj, data) {
+    layui.use('layer', function(){ //独立版的layer无需执行这一句   
+          //配置一个透明的询问框
+          layer.msg('取消之后，你们将不再是好友，确认要取消吗？', {
+            time: 20000, //20s后自动关闭
+            btn: ['确定', '取消']
+            ,yes: function(index, layero){
+
+            //按钮【按钮一】的回调 
+            $.post("<{:U('Set/delfriend')}>",{'id':data},function(res) {
+                 if (res) {
+                    layer.msg('取消关注成功');
+                    $(obj).parentsUntil('tbody').hide();
+                 }
+            });
+          }
+          });
+    });
+}
+
+</script>
+
+

@@ -17,8 +17,8 @@ use Think\Controller;
 
           $id = I('get.id/d');
           $list = M('user')->find($id);
-          $love_bar = M('barinfo')->field('name')->where(array('id'=>$id))->select();
-          // var_dump($love_bar);
+          $love_bar = M('barinfo')->field('name')->where(array('user_id'=>$id))->select();
+          var_dump($love_bar);
           $hot = M('barinfo')->select();
           // var_dump($hot);
 

@@ -153,21 +153,21 @@
    //显示与不显示
 
    $("td .show").click(function () { 
-              var url = $(this).attr("href");
-              var  $_this = $(this);
-              $.ajax({
-                type:'get',
-                data:"",
-                url:url,
-                success:function(data){
-                   if(data==1){
-                    $_this.html('显示');
-                   }else if(data==2){
-                    $_this.html('不显示');
-                   }
-                },
-              })
+        var url = $(this).attr("href");
+        var $_this = $(this);
+        $.ajax({
+        type:'get',
+            data:"",
+            url:url,
+            success:function(data){
+               if(data == 1){
+                $_this.html('显示');
+               }else if(data == 2){
+                $_this.html('不显示');
+               }
+            },
+        })
                                   
-            })
+    });
     </script>
 </block>

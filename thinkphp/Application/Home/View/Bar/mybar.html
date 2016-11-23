@@ -1,0 +1,96 @@
+  
+
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<div class="layui-tab layui-tab-card" style="margin-top:-10px;">
+  <ul class="layui-tab-title">
+    <li class="layui-this">我关注的吧</li>
+  </ul>
+  <div class="layui-tab-content" style="height: 390px;text-align:center">
+    <div class="layui-tab-item layui-show">
+    <table class = "table table-bordered table-hover table-striped">
+      <tr>
+        <th>吧名</th>
+        <th>经验值</th>
+        <th>吧等级</th>
+        <th>取消关注</th>
+      </tr>
+      <!-- <{:dump($list)}> -->
+      <volist name="list" id="vo">
+      <tr>
+        <td><{$vo['name']}></td>
+        <td><{$vo['integral']}></td>
+        <td><{$vo['grade']}></td>
+        <td><button class="layui-btn site-demo-layer" data-type="confirmTrans" onclick="active(<{$vo['id']}>)">×</button></td>
+      </tr>
+      </volist>
+
+    </table>
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script>
+ /*layui.use('layer', function(){ //独立版的layer无需执行这一句
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  
+  //触发事件
+  var active = {
+      confirmTrans: function(){
+      //配置一个透明的询问框
+      layer.msg('取消之后，经验值不再增长，你在该吧的各种权限也将收回，确认要取消吗？', {
+        time: 20000, //20s后自动关闭
+        btn: ['确定', '取消']
+        ,yes: function(index, layero){
+        //按钮【按钮一】的回调
+
+
+    
+      },btn2: function(index, layero){
+       //按钮【按钮二】的回调
+       }
+  
+      });
+    }
+  };
+ $('.site-demo-layer').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});*/
+
+function active(data) {
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+         
+          //配置一个透明的询问框
+          layer.msg('取消之后，经验值不再增长，你在该吧的各种权限也将收回，确认要取消吗？', {
+            time: 20000, //20s后自动关闭
+            btn: ['确定', '取消']
+            ,yes: function(index, layero){
+            //按钮【按钮一】的回调 
+             alert(data);
+            // M('barinfo')->where(array('id'=>array('eq',data)))->delete();
+            // if (M('barinfo')->where(array('id'=>array('eq',id)))->delete()>0) {
+            //     M('score')->where(array('id'=>array('eq',id)))->delete();
+             
+            // }
+            $.post("<{:U('Bar/')}>",{'id':data},function(res) {
+                  
+            });
+
+
+        
+          },btn2: function(index, layero){
+           //按钮【按钮二】的回调
+           }
+      
+          });
+    });
+}
+
+</script>
+
+

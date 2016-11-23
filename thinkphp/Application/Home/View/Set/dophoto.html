@@ -24,7 +24,7 @@
   </div>
     <div class="layui-tab-item">
  
-<form class="layui-form" action="<{:U('Avater/dodata')}>" method="POST">
+<form class="layui-form" action="<{:U('Set/dodata')}>" method="POST">
    <input type="hidden" name="id" value="<{$list['id']}>">
     <div class="layui-form-item">
     <label class="layui-form-label">性别</label>
@@ -70,13 +70,14 @@
 </form>  
 </div>
 </div>
-
+  
+  <script src="__PUBLIC__/public/js/jquery.min.js"></script>
  <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
  <script type="text/javascript">
      // 上传文件
     layui.use('upload', function(){
         layui.upload({
-            url: "<{:U('Home/Profile/action',array('id' =>$_SESSION['user']['id']))}>" //上传接口
+            url: "<{:U('Home/Set/action',array('id' =>$_SESSION['user']['id']))}>" //上传接口
             ,method: 'post',
             data:1
             ,before: function(input){
