@@ -125,6 +125,7 @@ class AdminUserController extends AdminController
      //处理头像
     public function updateAvator(){
          $hpic = $this->upload();
+         // dump($hpic);
         $data['hpic'] = $hpic;
         $data['id'] = I('get.id/d');
        $this->_admin->save($data);

@@ -134,21 +134,15 @@ class Linkcontroller extends AdminController
     public function doshow(){
         $id = I('get.id/d');
         $show = $this->_link->where(array('id'=>array('eq',$id)))->getField('is_show');
-      dump($is_show);
-      if ($show) {
-          $data['is_show']=0;
-          $this->_link->where(array('id'=>array('eq',$id)))->save($data);
-          $this->ajaxReturn(2);
-      }else{
-         $data['is_show']=1;
-         $this->_link->where(array('id'=>array('eq',$id)))->save($data);
-         $this->ajaxReturn(1);
-      }
-
+        if ($show) {
+            $data['is_show']=0;
+            $this->_link->where(array('id'=>array('eq',$id)))->save($data);
+            $this->ajaxReturn(2);
+        }else{
+           $data['is_show']=1;
+           $this->_link->where(array('id'=>array('eq',$id)))->save($data);
+           $this->ajaxReturn(1);
+        }
     }
-
-
-
-
 
 }

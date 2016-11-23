@@ -11,58 +11,59 @@ use Think\Controller;
 
 class ProfileController extends Controller{
 
+    private $_user = null;//用户表操作
+
+    public function _initialize(){
+        $this->_user=M('user');
+    }
+
+    //个人中心首页显示 
     public function index(){
         $id = $_SESSION['user']['id'];
-          $list = M('user')->find($id);
+          $list = $this->_user->find($id);
           $this->assign('list',$list);
            $this->display();
 
     }
-
-    //修改头像
-
-    public function action(){
-         $hpic = $this->upload();
-         // console.log($hpic);
-        $data['hpic'] = $hpic;
-        $data['id'] = I('get.id/d');
-        M('user')->save($data);
-       return $this->ajaxReturn($hpic);
+    // 选择短信验证处理方法
+    public function choose(){
+        $id = $_SESSION['user']['id'];
+        $list = $this->_user->where(array('id'=>array('eq',$id)))->find();
+        $this->assign('list',$list);
+        $this->display();
 
     }
 
-
-        /**
-        *  头像上传
-        */ 
-
-   public function upload(){
-        $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize = 3145728 ;// 设置附件上传大小
-        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath = 'Public/linkimg/'; // 设置附件上传根目录
-        $upload->savePath = ''; // 设置附件上传（子）目录
-        // 上传文件
-        $info = $upload->upload();
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
+    // 获取最新的验证码
+    public function newyzm(){
+        $sms = I('post.sms');
+        if ($sms == session('sms')) {
+            $this->ajaxReturn(true);
         }else{
-            //获取上传后的路径和文件名
-            
-            $path = 'Public/linkimg/'.$info['file']['savepath'];
-            $name = $info['file']['savename'];
+            $this->ajaxReturn(false);
+        }
 
-            $big = ltrim('./'.$path.$name);
-            
-            $image = new \Think\Image();
-            $image->open($big);
-            // 生成一个缩放后填充大小150*150的缩略图并保存为thumb.jpg
-            $image->thumb(150, 150,\Think\Image::IMAGE_THUMB_FILLED)->save('./'.$path.'s_'.$name);
-            unlink($big);
-            $small = ltrim($path.'s_'.$name);
-            //$arr = array('small'=>$small,'big'=>$big);
-            return $small;
+    }
+    // 修改新密码页面
+    public function updatepwd(){
+        $list = $this->_user->find();
+        $this->assign('list',$list);
+        $this->display();
+    }
 
+
+    // 执行密码修改
+    public function dopwd(){
+        // var_dump($_POST);
+        $id = I('post.id/d');
+        $data['password']=md5($_POST['newpwd']);
+        $res = $this->_user->where(array('id'=>array('eq',$id)))->save($data);
+        if ($res !==false) {
+            $this->success('修改密码成功',U('Set/detail'));
+        }else{
+            $this->error('修改密码失败......');
         }
     }
+
+   
  }

@@ -1,0 +1,142 @@
+<link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+ <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+   <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+ <div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">选择修改方式</li>
+  </ul>
+  <!-- <{:dump($list)}> -->
+
+  <div class="layui-tab-content" style="height: 390px;">
+    <div class="layui-tab-item layui-show">
+     <div class ="pwd_warp">
+         <span>修改密码关系到您的帐号安全，请先选择安全验证方式：</span>
+         <div class = "pwd_choose">
+             <div class="pwd_choose_one">
+                  <div class = "pwd_radius">
+                      <div class="pwd_m"></div>
+                  </div>
+             </div>  
+             <div class="pwd_choose_one">
+                  <div class = "pwd_radius">
+              <div class="pwd_phone"> </div>
+                        
+                  </div>
+             </div>          
+         </div>
+     </div>
+  </div>
+</div>
+  
+  <script src="__PUBLIC__/public/js/jquery.min.js"></script>
+ <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+ <script type="text/javascript">
+ var timer = null;
+ var m = 60;
+   $('.pwd_phone').click(function(){
+        layer.open({
+          type: 1,
+          skin: 'layui-layer-rim', //加上边框
+          area: ['450px', '240px'], //宽高
+          btn: ['确认', '取消'],
+          yes: function(index, layero){
+            $.post("<{:U('Profile/newyzm')}>",{'sms':$('#smsinput').val()},function(res){
+                  if (res == true) {
+                    location.href="<{:U('Profile/updatepwd')}>";
+                    // layer.closeAll();
+                    // changepwd();
+                  }else{
+                    layer.tips('验证码不正确','#smsinput');
+                  }
+            })
+          },
+          content: 
+          "<button style='background:#4B97E4;margin-top:30px;' onclick='sendsms()' id = 'send' class='btn btn-info btn-sm'>发送</button><p>验证码：<input type='text' style='margin-top:30px;' id = 'smsinput'></p>"
+        });
+   })
+function sendsms(){
+   $.post("<{:U('Updatepwd/sendSms')}>",{'val':"<{$list['phone']}>"},function(res){
+        console.log(res);
+        if (res == 'true'){
+             $('#send').html('已发送,60秒后重新输入');
+             $('#send').attr('disabled','disabled');
+             timer = setInterval(demo,1000);
+        }else{
+            layer.tips('发送失败','#smsinput');
+        }
+   })
+    
+}
+function demo(){ 
+    if (m<=0) {
+         $('#send').html('发送');
+         $('#send').removeAttr('disabled');
+         clearInterval(timer);
+    }else{
+        $('#send').html('已发送,'+m+'秒后重新输入');
+        m--;
+
+    }
+
+}
+
+
+     layui.use('element', function(){
+      var $ = layui.jquery
+      ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+      
+      //触发事件
+      var active = {
+        tabAdd: function(){
+          //新增一个Tab项
+          element.tabAdd('demo', {
+            title: '新选项'+ (Math.random()*1000|0)
+            ,content: '内容'+ (Math.random()*1000|0)
+          })
+        }
+        ,tabDelete: function(){
+          //删除指定Tab项
+          element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+        }
+        ,tabChange: function(){
+          //切换到指定Tab项
+          element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+        }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+
+ /**/ 
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+});
+
+
+
+ </script>

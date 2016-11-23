@@ -256,6 +256,8 @@ class BarController extends Controller
             return 1;
         }
     }
+
+   
 }
 
 
