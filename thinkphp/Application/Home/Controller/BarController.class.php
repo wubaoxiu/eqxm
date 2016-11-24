@@ -42,6 +42,7 @@ class BarController extends Controller
 
         $atten = $this->is_attentionBar($id);
 
+        
         //关注的吧
         if ($_SESSION['user']) {
             $attenbars = attentionBars();
@@ -79,12 +80,6 @@ class BarController extends Controller
         $this->assign('attenbars',$attenbars);
         $this->assign('atten',$atten);
         $this->assign('bar_id',$id);
-
-        // $this->assign('list', $list);
-        // $this->assign('data', $data);
-        // $this->assign('attenbars', $attenbars);
-        // $this->assign('atten', $atten);
-
 
         // dump($attenbars);
         $this->display();
@@ -245,6 +240,7 @@ class BarController extends Controller
         // $noteid = 1;
 
         $atten = $this->is_attentionBar($barid);
+        $collect = $this->is_collect($noteid);
 
         if ($_SESSION['user']) {
             $attenbars = attentionBars();
@@ -285,15 +281,7 @@ class BarController extends Controller
         $this->assign('show',$show);
         $this->assign('pagenow',$pagenow);
         $this->assign('bar_id',$barid);
-
-        // $this->assign('count', $count);
-        // $this->assign('data', $data);
-        // $this->assign('comments', $comments);
-        // $this->assign("replys", $replys);
-        // $this->assign("atten", $atten);
-        // $this->assign("attenbars", $attenbars);
-        // $this->assign('show', $show);
-        // $this->assign('pagenow', $pagenow);
+        $this->assign('collect',$collect);
 
         $this->display("Bar/note");
     }
@@ -401,6 +389,75 @@ class BarController extends Controller
         }
     }
 
+       /**
+        *   方法名 collect() 收藏帖子
+        *  
+        *   @author xiao
+        */
+
+        public function collect(){
+
+          //判断有无登录
+          if (empty($_SESSION['user']['name'])) {
+             $this->error('您还没有登录，请先登录');
+             exit;
+          }
+          //接受帖子的id
+          $note_id = I('get.noteid/d');
+          $data['user_id'] = $_SESSION['user']['id'];
+          $data['note_id'] = $note_id;
+         if (M('collect')->data($data)->add()>0) {
+            $this->success('收藏成功！');
+         }else{
+          $this->error('收藏失败....');
+         }
+        }
+
+
+        /**
+        * 方法名 delcollect() 取消关注
+        * @param int noteid 好友id
+        */ 
+
+        public function delcollect(){
+           //接受你要取消收藏的帖子的id
+          $note_id = I('get.noteid/d');
+          if (empty($note_id)) {
+             $this->error('操作失误！');
+             exit;
+          }
+
+          $data['user_id']=$_SESSION['user']['id'];
+          $data['note_id'] = $note_id;
+          // var_dump($data);die;
+          if (M('collect')->where($data)->delete()>0) {
+             $this->success('取消收藏成功！');
+          }else{
+            $this->error('取消收藏失败........');
+          }
+        }
+
+      
+        /**
+        *  定义一个私有方法
+        *  方法名 is_collect()  判断是否关收藏了此贴吧
+        *  @param int id  好友id
+        *   @return string 1 表示收藏 2 表示已收藏
+        */ 
+        private function is_collect($noteid){
+            //定义一个空数组
+          $arr = [];
+          $arr['user_id'] =$_SESSION['user']['id'];
+          $arr['note_id'] = $noteid;
+          $res = M('collect')->where($arr)->select();
+          if (empty($res)) {
+            return 1;
+          }else{
+            return 2;
+          }
+
+        }
+    
 
 }
 

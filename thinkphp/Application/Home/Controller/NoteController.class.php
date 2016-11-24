@@ -115,7 +115,7 @@ class NoteController extends Controller
             $this->error('取消置顶失败！');
         }
     }
-    
+
 }
 
 

@@ -277,7 +277,7 @@
 						<!-- 头部登录信息 -->
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="__PUBLIC__/Admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="__ROOT__/<{$data['hpic']}>" alt="Jason's Photo" />
 								<span class="user-info">
 										<small>欢迎回来,</small>
 										<{$Think.session.admin_info.name}>
@@ -288,16 +288,17 @@
 
 							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
-										<i class="icon-cog"></i>
-										系统设置
+
+									<a href="<{:U('AdminUser/select',array('id'=>$_SESSION['admin_info']['id']))}>">
+										<i class="icon-user"></i>
+										个人信息
 									</a>
 								</li>
 
 								<li>
-									<a href="<{:U('AdminUser/select')}>">
-										<i class="icon-user"></i>
-										个人信息
+										<a href="<{:U('MyInfo/updatepwd',array('id'=>$_SESSION['admin_info']['id']))}>">
+										<i class="icon-cog"></i>
+										修改密码
 									</a>
 								</li>
 

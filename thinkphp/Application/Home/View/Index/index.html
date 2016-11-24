@@ -17,7 +17,7 @@
         </if>
             <dl>
                 <dt>
-                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                <a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
                 <strong>我的贴吧<span class="name-en">/BAR</span></strong>
                 </dt>
                 <div class = "bar_warp">
@@ -28,7 +28,7 @@
                      <div class = "bar_list">
                        <ul>
                            <li><div class = "crown"></div></li>
-                           <li><a href=""><{$Think.session.user.name}></a></li>
+                           <li><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><{$Think.session.user.name}></a></li>
                        </ul>  
                        <ul>
                            <li><div class = "dou"></div></li>

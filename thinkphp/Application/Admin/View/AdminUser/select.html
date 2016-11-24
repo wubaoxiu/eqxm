@@ -10,7 +10,7 @@
 
 <block name="content">
 <div class="table-header"><small><{$stitle}></small></div>
-
+  <!-- <{:dump($_SESSION['admin_info']['id'])}> -->
    <div class="col-xs-12 col-md-offset-1">
       <div class="hr dotted"></div>
        <div id="user-profile-1" class="user-profile row">
@@ -103,7 +103,7 @@
                 <div class="profile-info-name"> 注册时间</div>
 
                 <div class="profile-info-value">
-                    <span class="editable" id="createtime"><{$data.createtime|date='Y-m-d H:i:s',###}></span>
+                    <span class="editable" id="createtime"><{$data['createtime']|date='Y-m-d',###}></span>
                 </div>
             </div>
 

@@ -26,7 +26,7 @@ use Think\Controller;
 
             // 该用户的id
           $uid = I('get.uid/d');
-              var_dump($uid);
+              // var_dump($uid);
           // 查询该用户的所有信息
           $list = $this->_user->find($uid);
 
@@ -41,17 +41,22 @@ use Think\Controller;
            // 查询该用户关注的好友
           $atten = $this->_fans->field('f.fuser_id')->where("f.user_id=u.id and f.user_id='$uid'")->table('csw_user u,csw_fans f')->select();
           foreach ($atten as $v) {
-            $fname = $this->_user->field('u.hpic')->where('f.fuser_id = u.id')->table('csw_user u,csw_fans f')->select();
+            $fname = $this->_user->field('u.hpic,u.id')->where('f.fuser_id = u.id')->table('csw_user u,csw_fans f')->select();
           }
+
           // 统计该用户所关注的好友人数
           $count=$this->_user->field('u.hpic')->where('f.fuser_id = u.id')->table('csw_user u,csw_fans f')->count();
-          var_dump($count);
+          // var_dump($count);
 
            // 调用了受保护的内部方法 （关注与否）
           $follow = $this->is_follow($uid);
+
+
+
           // var_dump($list);
           $this->assign('list',$list);
           $this->assign('follow',$follow);
+          $this->assign('collect',$collect);
           $this->assign('love',$love_bar);
           $this->assign('hot',$hot);
           $this->assign('fname',$fname);
@@ -85,11 +90,32 @@ use Think\Controller;
               $data['user_id'] = $_SESSION['user']['id'];
               $data['fuser_id'] = $fuser_id;
               // var_dump($data);die;
-              if(M('fans')->data($data)->add()>0){
+              if($this->_fans->data($data)->add()>0){
                 $this->success('关注成功！');
               }else{
                 $this->error('关注失败.......');
               }
+        }
+
+        /**
+        * 方法名 cancel() 取消关注
+        * @param int uid 好友id
+        */ 
+        public function cancel(){
+          //接受你要取消关注的人的id
+          $fuser_id = I('get.uid');
+          if (empty($fuser_id)) {
+             $this->error('操作失误！');
+             exit;
+          }
+
+          $data['user_id']=$_SESSION['user']['id'];
+          $data['fuser_id'] = $fuser_id;
+          if ($this->_fans->where($data)->delete()>0) {
+             $this->success('取消关注成功！');
+          }else{
+            $this->error('取消关注失败');
+          }
         }
 
 
@@ -106,11 +132,15 @@ use Think\Controller;
           $arr = [];
           $arr['fuser_id']=$id;
           $arr['user_id']=$_SESSION['user']['id'];
-           $res = M('fans')->where($arr)->select();
+           $res = $this->_fans->where($arr)->select();
           if (empty($res)) {
             return 1;
           }else{
             return 2;
           }
         }
+
+
+     
+
     }

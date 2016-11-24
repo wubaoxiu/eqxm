@@ -1,0 +1,208 @@
+<extend name="Public/table" />
+
+
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+<block name="content">
+<div class="table-header"><small><{$stitle}></small></div>
+  <!-- <{:dump($_SESSION['admin_info']['id'])}> -->
+   <div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">修改密码</li>
+    <li class="layui-this">修改个人信息</li>
+  </ul>
+<!--   <{:dump($list)}> -->
+
+  <div class="layui-tab-content" style="height: 390px;">
+    <div class="layui-tab-item layui-show">
+      
+<form class="layui-form" action="<{:U('MyInfo/dopwd')}>" onsubmit = "return check()" method="POST">
+<input type="hidden" name="id" value="<{$_SESSION['admin_info']['id']}>">
+   <div style="margin-top:60px;margin-left:150px;"> 
+   <h1 style="margin-top:-30px;font-size:20px;margin-left:140px;">修改密码</h1>
+        <div class="layui-form-item" style="margin-top:20px;">
+        <label class="layui-form-label" style="width:90px">用户名</label>
+        <div class="layui-input-inline">
+          <input name="name" lay-verify="name" autocomplete="off" class="layui-input" type="tel" value="<{$Think.session.admin_info.name}>" disabled>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width:90px">新密码</label>
+        <div class="layui-input-inline">
+          <input name="newpwd" id="newpwd" lay-verify="newpwd" autocomplete="off" class="layui-input" type="password">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width:90px">确认密码</label>
+        <div class="layui-input-inline">
+          <input name="repwd" id="repwd" lay-verify="repwd" autocomplete="off" class="layui-input" type="password">
+        </div>
+      </div>
+       
+
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即修改</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+  </div>
+  </form>  
+  </div>
+
+    <div class="layui-tab-item" style="margin-left:190px;">
+      <form class="layui-form" action="<{:U('MyInfo/dodata')}>" method="POST">
+         <input type="hidden" name="id" value="<{$_SESSION['user']['id']}>">
+          <div class="layui-form-item">
+          <label class="layui-form-label">性别</label>
+          <div class="layui-input-block">
+            <input type="radio" name="sex" value="1" title="女" <if condition="$data['sex'] eq '1'">checked</if> >
+            <input type="radio" name="sex" value="2" title="男" <if condition="$data['sex'] eq '2'">checked</if> >
+            <input type="radio" name="sex" value="3" title="保密" <if condition="$data['sex'] eq '3'">checked</if> >
+          </div>
+        </div> 
+        <!-- <{:dump($list)}> -->
+          <div class="layui-form-item">
+          <label class="layui-form-label">邮箱</label>
+          <div class="layui-input-inline"  style="margin-left:30px;">
+            <input name="email" lay-verify="email" autocomplete="off" class="layui-input" type="text" value="<{$data['email']}>">
+          </div>
+        </div>
+ 
+        <!-- <{:dump($data)}> -->
+          <div class="layui-form-item">
+          <label class="layui-form-label">爱好</label>
+          <div class="layui-input-block">
+          <volist name="list" id="vo">
+            <input name="likename[]" title="<{$vo['likename']}>" type="checkbox" value="<{$vo['likename']}>" <if condition="in_array($vo['likename'],$arr['like']) eq true">checked</if>>
+            </volist>
+  <!-- <{:dump($vo)}> -->
+  </div>
+      
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">简介</label>
+          <div class="layui-input-block" style="width:200px;">
+
+            <textarea placeholder="请输入内容" name="introduction" class="layui-textarea" cols="40" rows="4" maxlength="30"><{$data['introduction']}></textarea>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+      </form>  
+      </div>
+  </div>
+</block>
+<block name="tablejs">
+<script src="__PUBLIC__/layui/layui.js"></script>
+   <script type="text/javascript">
+   // 对密码进行验证
+    var pwd_n,pwd_r;
+   window.onload = function checkinfo(){
+    //对新密码进行验证 
+     $('#newpwd').change(function(){
+      var newpwd = $('#newpwd').val();
+      // alert(newpwd);
+       // alert(newpwd.length);
+          if (newpwd.length>4 && newpwd.length<20) {
+               layer.tips('密码可以使用','#newpwd',{
+                tips:[2,'green'],
+                time:2000
+               });
+               pwd_n = true;
+            
+            }else{
+                layer.tips('新密码长度必须在4-20为之间','#newpwd',{
+                    tips:[2,'red']
+                });
+                  pwd_n = false;
+            }
+     });
+       // 验证确认密码与密码是否一致
+      $('#repwd').change(function(){
+              var repwd = $('#repwd').val();
+              if (repwd==$('#newpwd').val()) {
+                  layer.tips('确认密码正确','#repwd',{
+                    tips:[2,'green']
+                  });
+                  pwd_r = false;
+              }else{
+                  layer.tips('确认密码与密码不符合','#repwd',{
+                   tips:[2,'red']
+                  });
+                  pwd_r = true;
+              }
+
+         });
+
+   }
+   function check(){
+    if ((pwd_n == true) &&(pwd_r == true)) {
+      return true;
+    };
+   }
+
+
+     layui.use('element', function(){
+      var $ = layui.jquery
+      ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+      
+      //触发事件
+      var active = {
+        tabAdd: function(){
+          //新增一个Tab项
+          element.tabAdd('demo', {
+            title: '新选项'+ (Math.random()*1000|0)
+            ,content: '内容'+ (Math.random()*1000|0)
+          })
+        }
+        ,tabDelete: function(){
+          //删除指定Tab项
+          element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+        }
+        ,tabChange: function(){
+          //切换到指定Tab项
+          element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+        }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+});
+
+ </script>
+</block>

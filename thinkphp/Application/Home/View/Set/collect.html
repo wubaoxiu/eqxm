@@ -4,37 +4,39 @@
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 <div class="layui-tab layui-tab-card"> 
   <ul class="layui-tab-title">
-    <li class="layui-this">基本资料</li>
-    <li class="layui-this">签名档设置</li>
+    <li class="layui-this">我收藏的帖子</li>
   </ul>
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
-    <div class="photo"> 
- 
-        <span class="profile-picture">
-            <div style="width:150px;height:150px;border:1px solid #ccc;">
-              <img id="avator" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" />
-            </div>
-            </span>
-    </div> 
-    <!-- <{:dump($list)}> -->
-    <div class="set">
-    <ul>
-       
-        <li>姓　　名：<{$list['name']}></li>
-        <li>性　　别：
-          <if condition="$list['sex'] eq 1">女
-          <elseif condition="$list['sex'] eq 2" />男
-          <else />保密
-          </if>
-        </li>
-        <li>愛　　好：<{$list['like']}></li>
-        <li>邮　　箱：<{$list['email']}></li>
-        <li>生　　日：<{$list['brith']}></li>
-        <li>注册时间：<{$list['createtime']|date='Y-m-d',###}></li>
-        <li>简　　介:<br><{$list['introduction']}>
-    </ul>
-    </div>
+
+        <div class="note">
+          <div class = "note_content" style="border-bottom:1px solid #ccc">
+              <span><b>收藏的帖子</b></span>
+          </div>
+      </div>    
+      <!-- <{:dump($arr)}> -->
+       <div class="note" style="background:#F4F4F4;margin-top:10px;height:40px;line-height:30px;">
+          <div class = "note_content">
+              <span>标题</span>
+          </div>
+          <div class="note_time" style="margin-left:120px;">
+             作者
+          </div>
+          <div class="note_time" style="margin-left:160px;">
+             最后更新时间
+          </div>
+      </div>    
+       <div class="note">
+          <div class = "note_content">
+              <span><{$arr['title']}></span>
+          </div>
+          <div class="note_time" style="margin-left:120px;">
+             <{$arr['name']}>
+          </div>
+          <div class="note_time" style="margin-left:160px;">
+             <{$arr['time']|date='Y-m-d',###}>
+          </div>
+      </div>  
     </div>
      <div class="layui-tab-item">
       <b>我的签名档：</b> 

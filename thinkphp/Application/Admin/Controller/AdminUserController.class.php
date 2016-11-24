@@ -58,6 +58,7 @@ class AdminUserController extends AdminController
     public function select(){
       //获取id
       $id = I('get.id/d');
+      // var_dump($id);die;
 
       $data = $this->_admin->find($id);
       $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
@@ -68,6 +69,25 @@ class AdminUserController extends AdminController
       $this->assign('data',$data);
       $this->assign('adminrole',$adminrole);
       $this->display('AdminUser/select');
+    }
+
+    // 获取后台登录用户的个人信息
+
+    public function info(){
+      //获取id
+      $id = I('get.id/d');
+      var_dump($id);
+
+      $data = $this->_admin->find($id);
+      $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
+      $adminrole = $this->_role->where(array('id'=>$role_id[0]['role_id']))->select();
+     var_dump($data);
+
+      $this->assign('title','后台管理用户列表');
+      $this->assign('stitle','个人信息');
+      $this->assign('data',$data);
+      $this->assign('adminrole',$adminrole);
+      $this->display('AdminUser/info');
     }
 
     /**

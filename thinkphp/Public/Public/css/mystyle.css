@@ -351,6 +351,10 @@ font-size: 16px;
 
 /*我的主页*/
 /*=====================*/
+.userinfo_middle .lione{
+    margin-top:-40px;
+    margin-left: -100px;
+}
 .userinfo_middle .litwo{
     text-align: center;
     background: orange;
@@ -362,7 +366,7 @@ font-size: 16px;
     float: left;
     color: white;
     margin-top:-30px;
-    margin-left: 80px;
+    /*margin-left: 80px;*/
 }
 .userinfo_middle a:hover{
     background: lightgreen;
