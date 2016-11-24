@@ -17,11 +17,11 @@
                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>帖子名</th>          
-                            <th class="hidden-480">发布时间</th>
-                            <th class="hidden-480">作者</th>
-<!--                             <th class="hidden-480">本吧等级</th>
-                            <th class="hidden-480">最近登录</th> -->
+                            <th>关注人</th>          
+                            <th class="hidden-480">性别</th>
+                            <th class="hidden-480">本吧积分</th>
+                            <th class="hidden-480">本吧等级</th>
+                            <th class="hidden-480">最近登录</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -29,32 +29,27 @@
                     <tbody>
                         <foreach name="data" item="v">
                         <!-- <{:dump($v)}> -->
+                        <if condition="$v['status']==null">
                             <tr>
                                <td>
-                                     <{$v.title}>
+                                     <{$v.user.name}>
                                 </td>
-                                <td class="hidden-480"><{$v.createtime|date="Y-m-d H:i:s",###}></td>                               
-                                <td class="hidden-480"><{$v.louzhu.name}></td>
-<!--                                 <td class="hidden-480"></td>                              
-                                <td class="hidden-480"><{$v.user.logintime|date="Y-m-d H:i:s",###}></td> -->
-                               </td>
+                                <td class="hidden-480">
+                                  <if condition = "$v['user']['sex'] eq '2'">男
+                                  <elseif condition = "$v['user']['sex'] eq '1'" />女
+                                  <else />保密
+                                  </if>
+                                </td>
+                                <td class="hidden-480"><{$v.integral}></td>
+                                <td class="hidden-480"></td>                              
+                                <td class="hidden-480"><{$v.user.logintime|date="Y-m-d H:i:s",###}></td>
                                 <td>
-                                <!-- <{:dump($v['isfine'])}> -->
-                                <if condition="$v['isfine'] eq 1">
-                                  <a href="<{:U('Note/isfine',array('id'=>$v['id']))}>"><button id="isfine" class="btn-xs btn-success">加精</button></a>
-                                <else />
-                                  <a href="<{:U('Note/nofine',array('id'=>$v['id']))}>"><button id="nofine" class="btn-xs btn-warning">取消加精</button></a>
-                                </if>
-                                <if condition="$v['istop'] eq 0">
-                                  <a href="<{:U('Note/istop',array('id'=>$v['id']))}>"><button id="isfine" class="btn-xs btn-success">置顶</button></a>
-                                <else />
-                                  <a href="<{:U('Note/notop',array('id'=>$v['id']))}>"><button id="notop" class="btn-xs btn-warning">取消置顶</button></a>
-                                </if>
-                                  <a href="<{:U('Note/del',array('id'=>$v['id']))}>"><button id="del" class="btn-xs btn-danger">删除</button></a>
+                                    <a href="<{:U('Bar/add_admin',array('user_id'=>$v['user']['id'],'bar_id'=>$bar_id))}>"><button class="btn-xs btn-primary">升为管理</button></a>
+                                    <a href=""><button class="btn-xs btn-danger">禁言</button></a>
                                 </td>
                             </tr>
+                            </if>
                         </foreach>
-
                     </tbody>
                 </table>
             </div>
@@ -68,7 +63,7 @@
         jQuery(function($) {
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
-              null, null, null,
+              null, null, null, null, null,
               { "bSortable": false }
             ] } );
             

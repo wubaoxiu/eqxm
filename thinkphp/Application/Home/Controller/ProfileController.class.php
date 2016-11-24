@@ -26,7 +26,7 @@ class ProfileController extends Controller
     {
         $id = $_SESSION['user']['id'];
         $list = $this->_user->find($id);
-        $this->assign('list', $list);
+        $this->assign('list',$list);
         $this->display();
 
     }
