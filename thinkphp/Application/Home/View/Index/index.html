@@ -57,12 +57,8 @@
 
                     <div class = "bar_love_list">
                         <volist name="attenBars" id="att">
-                            <button><a href=""><{$att['name']}></a><div></div></button>
+                            <button><a href="<{:U('Bar/index',array('id'=>$att['id']))}>"><{$att['name']}></a><div></div></button>
                         </volist>
-                        <!-- <button><a href="">励志</a><div></div></button> -->
-                        <!-- <dt>
-                            <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
-                        </dt> -->
                     </div>
                    
                 </div>
@@ -200,7 +196,7 @@
                     <ul class="ul_pics">
                         <volist name="bars" id="bar">
                             <li>
-                                <a target="_blank"  href="js.html?/440.html">
+                                <a target="_blank"  href="<{:U('Bar/index',array('id'=>$bar['id']))}>">
                                     <img src="__UPLOAD__/<{$bar['hpic']}>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
                                 </a> 
                                 <div class= "ul_info">     
@@ -405,7 +401,7 @@
             
             $(document).on('click','.yiqian',function(){
                 $(this).attr('href',"javascript:;");
-                alert("已经签到过了");
+                alert("您今天已经签到过了");
             })
             
         })

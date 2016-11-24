@@ -46,7 +46,13 @@ class BarController extends Controller
         //关注的吧
         if($_SESSION['user']){           
             $attenbars = attentionBars();
+            $signstatus = $this->getSign($id);
         }
+
+        //贴吧管理员信息
+        $baradmin_info = $this->getBarAdmin($id);
+        // dump($baradmin_info);
+        // echo $signstatus;
         // dump($list);
         // dump($attenbars);
 
@@ -56,7 +62,15 @@ class BarController extends Controller
             U('index/index');exit;
         }
         // 查询所有该贴吧中帖子的楼主信息
-        $list = $this->_note->where(array('bar_id'=>array('eq',$id)))->order('id desc')->select();
+        $list = $this->_note->where(array('bar_id'=>array('eq',$id)))->order('id desc')->page($_GET['p'],5)->select();
+
+        $pagenum = $this->_note->where(array('bar_id'=>array('eq',$id)))->count();
+        // dump($pagenum);
+        $pagenow = $_GET['p'];
+        // echo $pagenow;
+        $page = new \Think\Page($pagenum,5);
+        $show = $page->show();
+
         foreach ($list as $k=>$v) {
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->find();
@@ -73,13 +87,19 @@ class BarController extends Controller
             $data['baradmin'] = $baradmin['status'];
         }
 
-        
+        $bazu = $this->_barinfo->field('u.name')->table('csw_user u,csw_barinfo b')->where("u.id=b.user_id and b.id=$id")->select();
+        // dump($bazu);
 
         $this->assign('list',$list);
         $this->assign('data',$data);
         $this->assign('attenbars',$attenbars);
         $this->assign('atten',$atten);
         $this->assign('bar_id',$id);
+        $this->assign('signstatus',$signstatus);
+        $this->assign('title','CSW贴吧');
+        $this->assign('show',$show);
+        $this->assign('baradmin_info',$baradmin_info);
+        $this->assign('bazu',$bazu);
 
         // dump($attenbars);
         $this->display();
@@ -235,8 +255,9 @@ class BarController extends Controller
 
         if($_SESSION['user']){           
             $attenbars = attentionBars();
+            $signstatus = $this->getSign($barid);
         }
-        // echo $atten;
+        // echo $signstatus;
 
         //贴子主要信息
         $count = M('note')->field(array('count(bar_id)'=>"count"))->where("bar_id=$barid")->select();
@@ -244,13 +265,13 @@ class BarController extends Controller
         // dump($data);
         // dump($count);
         //贴吧楼层
-        $reply = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->page($_GET['p'],2)->select();
+        $reply = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->page($_GET['p'],5)->select();
         // dump($reply);
         $pagenum = M('floor')->where("bar_id=$barid and note_id=$noteid")->count();
         // dump($pagenum);
         $pagenow = $_GET['p'];
         // echo $pagenow;
-        $page = new \Think\Page($pagenum,2);
+        $page = new \Think\Page($pagenum,5);
         $show = $page->show();
         foreach($reply as $v){
             $v['content'] = htmlspecialchars_decode($v['content']);
@@ -271,8 +292,32 @@ class BarController extends Controller
         $this->assign('show',$show);
         $this->assign('pagenow',$pagenow);
         $this->assign('bar_id',$barid);
+        $this->assign('signstatus',$signstatus);
+        $this->assign('title',"CSW贴吧");
 
         $this->display("Bar/note");
+    }
+
+    /**
+     * 方法名：getSign()  获取签到信息
+     * @return [boolean]  "0"为此吧还未签到 "1"为此吧已经签到
+    */
+    private function getSign($barid){
+        $map = [];
+        $map['bar_id'] = $barid;
+        $map['user_id'] = $_SESSION['user']['id'];
+
+        $data = M('bars')->where($map)->find();
+
+        $now = time();
+        $nowtime = date("ymd",$now);
+        $signtime = date("ymd",$data['signtime']);
+
+        if($nowtime !== $signtime){
+            return "0";
+        }else{
+            return "1";
+        }
     }
 
     /**
@@ -328,6 +373,7 @@ class BarController extends Controller
         $bars = M('bars');
 
         if($bars->data($data)->add()>0){
+            $this->_barinfo->where(array('id'=>array('eq',$data['bar_id'])))->setInc('attention');
             $this->success("关注成功！！！");
             exit;
         }else{
@@ -336,7 +382,10 @@ class BarController extends Controller
         }
     }
 
-    //
+    /**
+     * 方法名：cancelBars()  取消贴吧关注 一切经验等级都将归于0
+     * @return [void]
+    */
     public function cancelBars()
     {
         $bar_id = I("barid");
@@ -351,6 +400,7 @@ class BarController extends Controller
         $bars = M('bars');
 
         if($bars->where($data)->delete()>0){
+            $this->_barinfo->where(array('id'=>array('eq',$data['bar_id'])))->setDec('attention');
             $this->success("取消关注成功！！！");
             exit;
         }else{
@@ -378,6 +428,18 @@ class BarController extends Controller
         }
     }
 
+    /**
+     * 方法名：getBarAdmin()  获取贴吧管理员信息
+     * @return []
+    */
+    private function getBarAdmin($barid)
+    {
+        // $barid=4;
+        $baradmin = M('baradmin');
+        $data = $baradmin->field("u.hpic,u.name,b.grade,a.status")->table("csw_user u,csw_baradmin a,csw_bars b")->where("a.bar_id=$barid and a.user_id=u.id and a.user_id=b.user_id and b.bar_id=$barid")->select();
+        // dump($data);
+        return $data;
+    }
    
 }
 
