@@ -79,6 +79,7 @@ class BarController extends Controller
         $this->assign('data',$data);
         $this->assign('attenbars',$attenbars);
         $this->assign('atten',$atten);
+        $this->assign('bar_id',$id);
 
         // dump($attenbars);
         $this->display();
@@ -269,6 +270,7 @@ class BarController extends Controller
         $this->assign("attenbars",$attenbars);
         $this->assign('show',$show);
         $this->assign('pagenow',$pagenow);
+        $this->assign('bar_id',$barid);
 
         $this->display("Bar/note");
     }
@@ -322,7 +324,7 @@ class BarController extends Controller
 
         $data['bar_id'] = $bar_id;
         $data['user_id'] = $_SESSION['user']['id'];
-        dump($data);
+        // dump($data);
         $bars = M('bars');
 
         if($bars->data($data)->add()>0){
@@ -330,6 +332,29 @@ class BarController extends Controller
             exit;
         }else{
             $this->error("关注失败！！！");
+            exit;
+        }
+    }
+
+    //
+    public function cancelBars()
+    {
+        $bar_id = I("barid");
+        if(empty($bar_id)){
+            $this->error("操作失误！！！");
+            exit;
+        }
+
+        $data['bar_id'] = $bar_id;
+        $data['user_id'] = $_SESSION['user']['id'];
+        // dump($data);
+        $bars = M('bars');
+
+        if($bars->where($data)->delete()>0){
+            $this->success("取消关注成功！！！");
+            exit;
+        }else{
+            $this->error("取消关注失败！！！");
             exit;
         }
     }

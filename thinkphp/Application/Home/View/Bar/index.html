@@ -74,9 +74,9 @@
         <ul>
             <li class="lione fl"><b><{$data.name}></b></li>
             <if condition="$atten eq 0">
-            <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$data[0]['bar_id']))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+                <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />
-            <li class="lithree fl" style="color:orange;">已关注</li>
+                <li class="lione fl"><a href="<{:U('Bar/cancelBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
             </if>
             <li class="lithree fl">关注：<{$data.attention}></li>
             <li class="lithree fl">帖子：</li>
@@ -117,7 +117,7 @@
                         <!-- <i class="glyphicon glyphicon-file" style="margin-top:20px"></i> -->
                                                      
                         <div class="wendatitlecon">
-                        <a class="wendatitle"  href="<{:U('Bar/note',array('bar_id'=>$v['bar_id'],'note_id'=>$v['id']))}>"><{$v.title}></a>
+                        <a class="wendatitle" target="_blank"  href="<{:U('Bar/note',array('bar_id'=>$v['bar_id'],'note_id'=>$v['id']))}>"><{$v.title}></a>
                         </div>
                     </h2>
                    

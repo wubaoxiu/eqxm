@@ -8,9 +8,9 @@
         <ul>
             <li class="lione fl"><b><{$data[0]['bname']}></b></li>
             <if condition="$atten eq 0">
-            <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$data[0]['bar_id']))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+                <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />
-            <li class="lithree fl" style="color:orange;">已关注</li>
+                <li class="lione fl"><a href="<{:U('Bar/cancelBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
             </if>
             <li class="lithree fl">关注：<{$data[0]['attention']}></li>
             <li class="lithree fl">帖子：<{$count[0]['count']}></li>
@@ -19,22 +19,11 @@
 </div> <!--bar_head--> 
 <div class="page">
     <{$show}>
-    <!-- <ul> -->
-        <!-- <li style="width:60px"><a href="">首页</a></li>
-        <li style="width:60px"><a href="">上一页</a></li>
-        <li><a href="">1</a></li>
-        <li><a href="">2</a></li>
-        <li><a href="">3</a></li>
-        <li><a href="">4</a></li>
-        <li style="width:60px"><a href="">下一页</a></li>
-        <li style="width:60px"><a href="">尾页</a></li>
-        <li style="width:160px;"><span style="font-size:10px;">跳到 </span><input type="text" style="width:30px;height:20px;"><a style="width:30px;height:20px;"> 确定</a></li> -->
-    <!-- </ul> -->
 </div>
 </block>
 <block name="main_head">
 
-    <div class="note_title"><b><{$data[0]['title']}></b></div>
+    <div class="note_title"><b><{$data[0]['title']}></b><a href="" style="float:right;">收藏</a></div>
 </block>
 <block name="the_main">
     <!-- 一楼帖主楼 -->

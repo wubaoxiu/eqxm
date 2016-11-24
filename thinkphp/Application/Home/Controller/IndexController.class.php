@@ -39,7 +39,7 @@ class IndexController extends Controller {
         // dump($list);
 
         //热门帖子
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id bar_id,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
         // dump($note);
 
         //友情链接
@@ -54,16 +54,21 @@ class IndexController extends Controller {
         // dump($types);
         if($_SESSION['user']){
             $attenBars = attentionBars(2);
+            $mybars = attentionBars();
         }
         // dump($attenBars);
         $s = 0;
-        foreach ($attenBars as $v) {
-            if($v['signin']==0){
+        $nowtime = date("ymd",time());
+        foreach ($mybars as $v) {
+            $d = date("ymd",$v['signtime']);
+            // dump($d);
+            // echo $nowtime;
+            if($d !== $nowtime){
                 $s = 1;
                 break;
             }
         }
-        echo $s;
+        // echo $s;
 
         // $this->assign('suggest',$arr);
         $this->assign('bars',$list);
@@ -82,7 +87,7 @@ class IndexController extends Controller {
      * @return [ajax]
     */
     public function isfine(){
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.isfine=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id barid,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.isfine=1 and n.is_show=1 and n.bar_id=b.id')->select();
         if(!$note){
             $this->ajaxReturn(0);
         }else{
@@ -95,7 +100,7 @@ class IndexController extends Controller {
      * @return [ajax]
     */
     public function ishot(){
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id barid,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
         if(!$note){
             $this->ajaxReturn(0);
         }else{

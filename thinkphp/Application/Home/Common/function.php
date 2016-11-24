@@ -13,7 +13,7 @@ function attentionBars($limit=null)
 {
     $uid = $_SESSION['user']['id'];
     // echo $uid;
-    $atten = M('bars')->field('b.name,ba.signin,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id")->limit($limit)->select();
+    $atten = M('bars')->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id")->limit($limit)->select();
     return $atten;
 }
 

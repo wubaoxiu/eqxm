@@ -20,10 +20,15 @@ class SignController extends Controller
         $bars = M('bars');
         $data = attentionBars();
 
+        //获取现在的时间并格式化成对比时间格式(年月日)
+        $nowtime = date("ymd",time());
+        $now = time();
         foreach ($data as $v) {
-            if($v['signin']==0){               
+            $d = date("ymd",$v['signtime']);
+            //如果时间与今天不是同一天则认为没有签到，进行签到动作
+            if($d !== $nowtime){               
                 $bars->where("id={$v['barsid']}")->setInc('integral',8);
-                $bars->where("id={$v['barsid']}")->save(array("signin"=>1));
+                $bars->where("id={$v['barsid']}")->save(array("signtime"=>$now));
             }
         }
 
