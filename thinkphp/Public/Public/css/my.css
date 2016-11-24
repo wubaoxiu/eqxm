@@ -16,6 +16,14 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 .mt50{margin-top:50px;}
 .red{color:#f00;}
 
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
+.shenq a{
+    color:#FF5600;
+}
+.shenq a:hover{
+    text-decoration: underline;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
 .bar_head1{
     width: 1102px;
     height: 150px;

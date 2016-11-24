@@ -18,8 +18,11 @@ class SignController extends Controller
     public function allIn()
     {
         $bars = M('bars');
-        $data = attentionBars();
 
+        $uid = $_SESSION['user']['id'];
+        // echo $uid;
+        $data = $bars->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade=2")->select();
+        // dump($data);
         //获取现在的时间并格式化成对比时间格式(年月日)
         $nowtime = date("ymd",time());
         $now = time();
@@ -35,6 +38,40 @@ class SignController extends Controller
         $this->changeGrade();
         // $this->ajaxReturn(1);
         $this->redirect("Index/index");        
+    }
+
+    public function in()
+    {
+        $bars = M('bars');
+        $adr = I('adr');
+        if(empty($adr)){
+            $this->error("非法操作！！！");
+            exit;
+        }
+        $map = [];
+        $map['bar_id'] = I('barid');
+        $map['user_id'] = $_SESSION['user']['id'];
+        // dump($map);
+        $data = M('bars')->where($map)->find();
+        // echo $data['id'];
+        // dump($data);exit;
+        $now = time();
+        $nowtime = date("ymd",$now);
+        $signtime = date("ymd",$data['signtime']);
+
+        if($nowtime !== $signtime){
+            $bars->where("id={$data['id']}")->setInc('integral',8);
+            $bars->where("id={$data['id']}")->save(array("signtime"=>$now));
+        }
+
+        $this->changeGrade();
+        // $this->ajaxReturn(1);
+        if($adr == 'ind'){
+            $this->redirect("Bar/index?id={$map['bar_id']}");
+        }else{
+            $noteid = I('noteid');
+            $this->redirect("Bar/note?bar_id={$map['bar_id']}&note_id=$noteid");
+        }
     }
 
     /**

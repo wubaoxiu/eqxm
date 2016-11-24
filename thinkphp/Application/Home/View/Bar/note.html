@@ -16,6 +16,11 @@
             <li class="lithree fl">帖子：<{$count[0]['count']}></li>
         </ul>
     </div>
+    <if condition="$signstatus eq 0">
+        <div style="float:right;margin-top:20px;margin-right:30px;"><a href="<{:U('Sign/in',array('barid'=>$bar_id,'adr'=>'not','noteid'=>$data[0]['id']))}>"><span class="btn btn-primary">签到</span></a></div>
+    <else />
+        <div style="float:right;margin-top:20px;margin-right:30px;"><a href="<{:U('Sign/in',array('barid'=>$bar_id,'adr'=>'not','noteid'=>$data[0]['id']))}>"><span class="btn btn-default">已签到</span></a></div>
+    </if>
 </div> <!--bar_head--> 
 <div class="page">
     <{$show}>

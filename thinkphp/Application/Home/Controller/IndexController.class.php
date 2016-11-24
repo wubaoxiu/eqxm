@@ -54,7 +54,8 @@ class IndexController extends Controller {
         // dump($types);
         if($_SESSION['user']){
             $attenBars = attentionBars(2);
-            $mybars = attentionBars();
+            $uid = $_SESSION['user']['id'];
+            $mybars =M('bars')->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade=2")->select();
         }
         // dump($attenBars);
         $s = 0;
