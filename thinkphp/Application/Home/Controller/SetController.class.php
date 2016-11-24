@@ -117,7 +117,7 @@ class SetController extends Controller{
         $data['introduction'] = $_POST['introduction'];
         // var_dump($data);die;
         if ($this->_user->save($data) !==false) {
-            $this->success('恭喜您，修改資料成功',U('Set/index'));
+            $this->success('恭喜您，修改資料成功',U('Set/detail'));
         }else{
             $this->error('修改資料失敗....');
         }
@@ -134,7 +134,7 @@ class SetController extends Controller{
     public function mybar(){
         $id=$_SESSION['user']['id'];
         // var_dump($id); 
-       $list = $this->_bars->field('bi.name,b.integral')->where('b.bar_id=bi.id')->table('csw_barinfo bi,csw_bars b')->select();
+       $list = $this->_bars->field('bi.name,b.integral,b.grade')->where('b.bar_id=bi.id')->table('csw_barinfo bi,csw_bars b')->select();
         // var_dump($list);
         $this->assign('list',$list);
         $this->display('Set/mybar');
@@ -172,7 +172,7 @@ class SetController extends Controller{
        foreach($list as $v){
         // var_dump($v['fuser_id']);
         //根据好友的id 查找该好友拥有的积分以及该好友的用户名 
-        $data[]=$this->_bars->field('u.name,b.integral')->where(array('u.id'=>array('eq',$v['fuser_id']),'b.user_id'=>array('eq',$v['fuser_id'])))->table('csw_user u,csw_bars b')->find();
+        $data[]=$this->_bars->field('u.name,b.integral,b.grade')->where(array('u.id'=>array('eq',$v['fuser_id']),'b.user_id'=>array('eq',$v['fuser_id'])))->table('csw_user u,csw_bars b')->find();
        }
       $this->assign('data',$data);
       $this->display('Set/friend');
@@ -194,7 +194,29 @@ class SetController extends Controller{
          return $this->ajaxReturn($res);
         }
     } 
+   
 
+     /*
+     *  方法名 collect() 对帖子的收藏
+     *  
+     */
+
+     public function collect(){
+      // /定义一个空数组
+      $arr = [];
+      $list = M('note')->field('n.title,n.createtime,n.user_id')->where('c.note_id=n.id')->table('csw_note n,csw_collect c')->select();
+      // var_dump($list);
+      foreach($list as $v){
+        $author = $this->_user->field('name')->where(array('id'=>$v['user_id']))->select();
+      }
+    
+        $arr['title']=$v['title'];
+        $arr['time']=$v['createtime'];
+        $arr['name']=$author[0]['name'];
+        // var_dump($arr);
+        $this->assign('arr',$arr);
+        $this->display('Set/collect');
+     }
 
 
 }

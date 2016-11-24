@@ -7,7 +7,6 @@
           href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧">
     <link rel="stylesheet" href="__PUBLIC__/Public/css/bootstrap.min.css">
     <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen"/>
     <title>我的贴吧</title>
     <link rel="shortcut icon" href="http://tb1.bdstatic.com/tb/favicon.ico">
     <link rel="stylesheet" href="__PUBLIC__/Center/saved_resource">
@@ -126,7 +125,7 @@
             <if condition="$follow eq 1"><span class="glyphicon glyphicon-plus"></span>关注
         </a></li>
         <else/>
-        <li class="lithree fl" style="color:orange;">√已关注 | 取消</li>
+        <a href="<{:U('MyInfo/cancel',array('uid'=>$list['id']))}>"><li class="lithree fl" style="color:orange;font-size:16px;margin-top:-40px;">√已关注 | 取消</li></a>
         </if>
     </div>
     <div class="userinfo_right">
@@ -230,19 +229,19 @@
                 </div>
             </div>
 
-            <div class="ihome_hot_feed ihome_section">
+           <!--  <div class="ihome_hot_feed ihome_section">
                 <h1 class="threadList_title">
                     <span class="cut_line">|</span>热门动态
                 </h1>
-                <ul class="new_list clearfix">
-                    <volist name="hot" id="v">
+                <ul class="new_list clearfix"> -->
+                   <!-- <!--  <volist name="hot" id="v">
                         <div class="n_right n_right_first clearfix">
                             <div class="n_post_time"><{$v['createtime']|date='Y-m-d',###}></div>
                             <div class="n_avatar">
                                 <a href="#" target="_blank" title="头像">
                                     <img src="__UPLOAD__/<if condition="$v['hpic'] == null">dog.jpg<else/><{$v['hpic']}></if>">
                                     <!-- <img src="__UPLOAD__/<{$v['hpic']}>">   -->
-                                </a>
+                         <!--        </a>
                             </div>
                             <div class="n_contain">
                                 <div>
@@ -263,13 +262,13 @@
                                 </div>
                             </div>
                         </div>
-                    </volist>
-                    <!-- <{:dump($v)}> -->
+                    </volist> --> 
+                    <!-- <{:dump($v)}> --> 
 
-                </ul>
+             <!--    </ul>
                 <div class="data_loading">
                     <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="right_aside">
@@ -308,8 +307,8 @@
             <ul class="concern_wrap" id="concern_wrap_fans">
                 <li class="concern_item"><a
                         data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}"
-                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="#"><img
-                       src="__ROOT__/<if condition="$fname[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[0]['hpic']}></if>"></a>
+                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/index',array('uid'=>$fname[2]['id']))}>"><img
+                       src="__ROOT__/<if condition="$fname[2]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[2]['hpic']}></if>"></a>
                 </li>
             </ul>
         </div>

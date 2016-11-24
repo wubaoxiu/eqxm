@@ -13,10 +13,12 @@ class ProfileController extends Controller
 {
 
     private $_user = null;//用户表操作
+    private $_note = null;//用户表操作
 
     public function _initialize()
     {
         $this->_user = M('user');
+        $this->_note = M('note');
     }
 
     //个人中心首页显示 
@@ -75,4 +77,12 @@ class ProfileController extends Controller
     }
 
 
+    //我的帖子
+
+
+    // public function note(){
+    //     $id = $_SESSION['user']['id'];
+    //     $list = $this->_note->where()->find();
+    //     $this->display('Profile/mynote');
+    // } 
 }
