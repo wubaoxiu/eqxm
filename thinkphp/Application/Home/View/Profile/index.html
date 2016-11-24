@@ -12,7 +12,7 @@
             <ul>
                 <li><a href="<{:U('Index/index')}>">贴吧首页</a></li>
                 <li><a href="<{:U('Profile/mynote')}>" target="main">我的帖子</a></li>
-                <li><a href="<{:U('Profile/mybar')}>" target="main">我的贴吧</a></li>
+                <li><a href="<{:U('Profile/mybar')}>" target="main">我的i贴吧</a></li>
             </ul>
         </div>
     </div>
@@ -39,13 +39,13 @@
             </div>
             <div class = "center_bottom">
                 <ul>
-                   <li><a href="<{:U('MyInfo/index')}>">我的主页</a></li>
-                   <li><a href="<{:U('Set/mybar')}>" target="main">我的贴吧</a></li>
+                   <li><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>">我的主页</a></li>
+                   <li><a href="<{:U('Set/mybar')}>" target="main">我的i贴吧</a></li>
                    <li><a href="<{:U('Profile/mynote')}>" target="main">我的帖子</a></li>
                    <li><a href="<{:U('Set/dophoto',array('id'=>$list['id']))}>" target="main">基本资料</a></li>
-                   <li><a href="<{:U('Set/friend')}>" target="main">我的关注</a></li>
+                   <li><a href="<{:U('Set/friend')}>" target="main">我的好友</a></li>
                    <li><a href="<{:U('Profile/choose')}>" target="main">修改密码</a></li>
-                   <li><a href="<{:U('Profile/updatepwd')}>" target="main">好友申请</a></li>
+                   <li><a href="<{:U('Profile/updatepwd')}>" target="main">我的收藏</a></li>
                    <li><a href="#">我的网盘</a></li>
                 </ul>
 

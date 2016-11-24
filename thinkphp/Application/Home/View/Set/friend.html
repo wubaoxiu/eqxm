@@ -5,19 +5,19 @@
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 <div class="layui-tab layui-tab-card" style="margin-top:-10px;">
   <ul class="layui-tab-title">
-    <li class="layui-this">我关注的吧</li>
+    <li class="layui-this">我关注的好友</li>
   </ul>
   <div class="layui-tab-content" style="height: 390px;text-align:center">
     <div class="layui-tab-item layui-show">
     <table class = "table table-bordered table-hover table-striped">
       <tr>
-        <th>吧名</th>
+        <th>好友名</th>
         <th>经验值</th>
         <th>吧等级</th>
         <th>取消关注</th>
       </tr>
       <!-- <{:dump($list)}> -->
-      <volist name="list" id="vo">
+      <volist name="data" id="vo">
       <tr>
         <td><{$vo['name']}></td>
         <td><{$vo['integral']}></td>

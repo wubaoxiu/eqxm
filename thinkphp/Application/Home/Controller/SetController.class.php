@@ -15,14 +15,14 @@ class SetController extends Controller{
     private $_user = null;//用户表操作
     private $_like = null;//用户表操作
     private $_barinfo = null;//用户表操作
-    private $_score = null;//用户表操作
+    private $_bars = null;//用户表操作
     private $_fans = null;//用户表操作
 
     public function _initialize(){
       $this->_user=M('user');
       $this->_like=M('like');
       $this->_barinfo=M('barinfo');
-      $this->_score=M('score');
+      $this->_bars=M('bars');
       $this->_fans=M('fans');
     }
 
@@ -53,6 +53,8 @@ class SetController extends Controller{
         $this->assign('arr',$arr);
          $this->display('Set/dophoto');
     }
+
+
 
      //修改头像
 
@@ -121,21 +123,24 @@ class SetController extends Controller{
         }
     }
 
-     /**
-    * 方法名 mybar() 我的贴吧 个人中心 我的关注的吧的查询 
-    * 
-    *  @param 用户id
-    *
-    **/ 
+
+      /**
+        * 方法名 mybar() 我的贴吧 个人中心 我的关注的吧的查询 
+        * 
+        *  @param 用户id
+        *
+        */ 
 
     public function mybar(){
         $id=$_SESSION['user']['id'];
-        // var_dump($id);
-        $list = $this->_barinfo->field('b.name,b.id,s.integral,s.grade')->table('csw_score s,csw_barinfo b')->where('b.user_id=s.user_id and b.id=s.bar_id')->select();
+        // var_dump($id); 
+       $list = $this->_bars->field('bi.name,b.integral')->where('b.bar_id=bi.id')->table('csw_barinfo bi,csw_bars b')->select();
         // var_dump($list);
         $this->assign('list',$list);
         $this->display('Set/mybar');
     }
+
+
 
     /**
     * 对我关注的贴吧(取消关注)
@@ -162,9 +167,14 @@ class SetController extends Controller{
 
     public function friend(){
       $id = $_SESSION['user']['id'];
-      $list = $this->_fans->field('s.integral,s.grade,u.name')->where('f.fuser_id=s.user_id and u.id=f.user_id')->table('csw_fans f,csw_score s,csw_user u')->select();
-      // var_dump($list); 
-      $this->assign('list',$list);
+      // 查询该用户所关注的好友的id
+       $list = $this->_fans->field('fuser_id')->where("user_id=$id")->select();
+       foreach($list as $v){
+        // var_dump($v['fuser_id']);
+        //根据好友的id 查找该好友拥有的积分以及该好友的用户名 
+        $data[]=$this->_bars->field('u.name,b.integral')->where(array('u.id'=>array('eq',$v['fuser_id']),'b.user_id'=>array('eq',$v['fuser_id'])))->table('csw_user u,csw_bars b')->find();
+       }
+      $this->assign('data',$data);
       $this->display('Set/friend');
     }
 
