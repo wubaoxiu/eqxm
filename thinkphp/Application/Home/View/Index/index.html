@@ -18,7 +18,7 @@
                 <div class = "bar_warp">
                     <div class = "bar_warp_all">
                     <div class  = "bar_img">  
-                        <a href=""><img style="width:100px;height:100px;" src="__ROOT__/<{$Think.session.user.hpic}>" alt=""></a>
+                        <a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><img style="width:100px;height:100px;" src="__ROOT__/<{$Think.session.user.hpic}>" alt=""></a>
                     </div>
                      <div class = "bar_list">
                        <ul>

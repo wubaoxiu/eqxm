@@ -11,24 +11,51 @@ use Think\Controller;
     */ 
     class MyInfoController extends Controller{ 
 
+      private $_user = null; //用户表操作
+      private $_barinfo = null;//吧信息表操作
+      private $_fans = null;//关注用户表操作
+
+      public function _initialize(){
+        $this->_user = M('user');
+        $this->_barinfo = M('barinfo');
+        $this->_fans = M('fans');
+      }
+
         public function index()
         {
 
+            // 该用户的id
+          $uid = I('get.uid/d');
+              var_dump($uid);
+          // 查询该用户的所有信息
+          $list = $this->_user->find($uid);
 
-          $id = I('get.id/d');
-          $list = M('user')->find($id);
-          $love_bar = M('barinfo')->field('name')->where(array('user_id'=>$id))->select();
-          var_dump($love_bar);
-          $hot = M('barinfo')->select();
+          //查询该用户所关注的吧（爱逛的吧）
+          $love_bar = $this->_barinfo->field('name')->where(array('user_id'=>$uid))->select();
+    
+          //查询热门的吧
+          $hot = $this->_barinfo->select();
           // var_dump($hot);
+           
 
-          $follow = $this->is_follow($id);
-          // $data = $this->_barinfo->find($id);
+           // 查询该用户关注的好友
+          $atten = $this->_fans->field('f.fuser_id')->where("f.user_id=u.id and f.user_id='$uid'")->table('csw_user u,csw_fans f')->select();
+          foreach ($atten as $v) {
+            $fname = $this->_user->field('u.hpic')->where('f.fuser_id = u.id')->table('csw_user u,csw_fans f')->select();
+          }
+          // 统计该用户所关注的好友人数
+          $count=$this->_user->field('u.hpic')->where('f.fuser_id = u.id')->table('csw_user u,csw_fans f')->count();
+          var_dump($count);
+
+           // 调用了受保护的内部方法 （关注与否）
+          $follow = $this->is_follow($uid);
           // var_dump($list);
           $this->assign('list',$list);
           $this->assign('follow',$follow);
           $this->assign('love',$love_bar);
           $this->assign('hot',$hot);
+          $this->assign('fname',$fname);
+          $this->assign('count',$count);
            $this->display();
 
         }
@@ -48,7 +75,7 @@ use Think\Controller;
               }
 
               //获取好友要关注的好友的id
-               $fuser_id = I('get.id/d');
+               $fuser_id = I('get.uid/d');
 
                if (empty($fuser_id)) {
                  $this->error('操作失误！');

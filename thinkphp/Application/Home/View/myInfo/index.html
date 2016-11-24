@@ -1,27 +1,32 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="search" type="application/opensearchdescription+xml" href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧">
+    <link rel="search" type="application/opensearchdescription+xml"
+          href="http://tieba.baidu.com/tb/cms/content-search.xml" title="百度贴吧">
     <link rel="stylesheet" href="__PUBLIC__/Public/css/bootstrap.min.css">
-  <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="__PUBLIC__/Public/css/mystyle.css" type="text/css" media="screen"/>
     <title>我的贴吧</title>
-<link rel="shortcut icon" href="http://tb1.bdstatic.com/tb/favicon.ico">
-<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource">
-<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(1)">
-<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(2)">
-<link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(3)">
+    <link rel="shortcut icon" href="http://tb1.bdstatic.com/tb/favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Center/saved_resource">
+    <link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(1)">
+    <link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(2)">
+    <link rel="stylesheet" href="__PUBLIC__/Center/saved_resource(3)">
 
 </head>
 <body>
-<!-- 头部开始 -->
+<!--&lt;!&ndash; 头部开始 &ndash;&gt;-->
+
+
 <div id="header-top">
-        <div class="container">
-          <a href="#"><img src="" alt="" class="rss-icon" /></a>
-            <p class="left">
+
+    <div class="container">
+
+        <a href="#"><img src="" alt="" class="rss-icon"/></a>
+
+        <p class="left">
             <a href="#">新闻</a>
             <a href="#">网页</a>
             <a href="#">贴吧</a>
@@ -32,23 +37,54 @@
             <a href="#">地图</a>
             <a href="#">百科</a>
             <a href="#">文库</a>
-            </p>
-            <p class="right">
-            <a href="<{:U('Login/login')}>">登录</a>
+        </p>
+
+        <p class="right">
+            <if condition="$Think.session.user eq null">
+                <a href="<{:U('Login/login')}>">登录</a>
+                <else/>
+                <a href="<{:U('Login/logout')}>">退出</a>
+            </if>
             <a href="<{:U('Login/reg')}>">注册</a>
-            <a href="<{:U('MyInfo/index',array('id'=>$_SESSION['user']['id']))}>">我的主页</a>
-            <a href="#">百度首页</a>
-            </p>
-        </div><!-- end .container -->
+            <a href="#">会员官网</a>
+            <a href="www.baidu.com">百度首页</a>
+            <a href="<{:U('index')}>">贴吧首页</a>
+        </p>
+
+    </div><!-- end .container -->
 
 </div><!-- end #header-top -->
+<!--&lt;!&ndash; 头部结束 &ndash;&gt;-->
+<div id="header" style="margin-top:-10px;">
+    <div class="container">
+        <h1 id="head_logo">
+            <a href="<{:U('index')}>">
+                <img src="__PUBLIC__/public/image/logo.gif" alt="">
+            </a>
+        </h1>
+        <div style="margin-top:30px;" class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input style="height:40px;" type="text" class="form-control" aria-label="...">
+                    <div class="input-group-btn">
+                        <button style="height:40px;" type="button" class="btn btn-info dropdown-toggle"
+                                data-toggle="dropdown" aria-expanded="false">进入贴吧
+                        </button>
+                        <button style="height:40px;margin-left:20px;border-radius:10%;" type="button"
+                                class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            全吧搜索
+                        </button>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div><!--/.col-lg-6 -->
+        </div><!-- end row-->
+    </div><!-- end .container -->
+</div><!-- end #header -->
 
-<!-- 头部结束 -->
 
-
-<div id="headinfo_wrap" class="headinfo_wrap">    
-<img src="__PUBLIC__/Center/1.jpg" style = "width:980px;height:255px;"alt="">
-    <a class="btn_editbg" href="http://tieba.baidu.com/home/main?id=211759414e47c4bee4f4e95b&amp;fr=userbar#"></a>    
+<div id="headinfo_wrap" class="headinfo_wrap">
+    <img src="__PUBLIC__/Center/1.jpg" style="width:980px;height:255px;" alt="">
+    <a class="btn_editbg" href="http://tieba.baidu.com/home/main?id=211759414e47c4bee4f4e95b&amp;fr=userbar#"></a>
 </div>
 <div id="userinfo_wrap" class="userinfo_wrap clearfix">
     <div class="userinfo_left ">
@@ -63,142 +99,149 @@
             <div class="btn_grounps">
                 <a class="btn-sub btn-small" target="_blank" href="<{:U('Profile/index')}>">
                     <i class="icon-edit"></i>编辑资料</a>
-                </div>    
             </div>
-            <div class="userinfo_title">            
-                <span class="userinfo_username "><{$list['name']}></span>                        
+        </div>
+        <div class="userinfo_title">
+            <span class="userinfo_username "><{$list['name']}></span>
+        </div>
+        <div class="userinfo_num">
+            <div class="userinfo_userdata">
+                <span class="userinfo_sex userinfo_sex_female"></span>
+                <span>吧龄:#####年</span>
+                <span class="userinfo_split"></span>
+                <span>发贴:####</span>
             </div>
-            <div class="userinfo_num">
-                <div class="userinfo_userdata">
-                    <span class="userinfo_sex userinfo_sex_female"></span>
-                    <span>吧龄:#####年</span>
-                    <span class="userinfo_split"></span>
-                    <span>发贴:####</span>                
-                </div>
-            </div>        
-            <div class="userinfo_honor clearfix">           
+        </div>
+        <div class="userinfo_honor clearfix">
                 <span class="icon_wrap  icon_wrap_theme2  icon_slot_wrap j_book_icon">
-                    <a href="javascript:void(0)" data-slot="1" data-name="" title="点击添加印记" class="j_slot_null_icon j_icon_slot icon_slot_null_icon" style="top: 0px;left:0px">
+                    <a href="javascript:void(0)" data-slot="1" data-name="" title="点击添加印记"
+                       class="j_slot_null_icon j_icon_slot icon_slot_null_icon" style="top: 0px;left:0px">
                         <div class="j_icon_slot_refresh"></div>
                     </a>
-                    <a href="javascript:void(0)" title="开启插槽" class="j_icon_slot_buy icon_add_solt" style="top: 0px;left:28px"></a>
-                </span>            
-            </div>
-             <li class="lione fl"><a href="<{:U('MyInfo/follow',array('id'=>$list['id']))}>" class="litwo"><if condition="$follow eq 1"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
-             <else />
-             <li class="lithree fl" style="color:orange;">已关注</li>
-            </if>
+                    <a href="javascript:void(0)" title="开启插槽" class="j_icon_slot_buy icon_add_solt"
+                       style="top: 0px;left:28px"></a>
+                </span>
         </div>
-        <div class="userinfo_right">        
-            <div class="userinfo_scores clearfix">
-                <span class="scores-header-hr"></span>
-                <span>我的T豆:</span>
-                <a class="userinfo_scores_num j_userinfo_scores_num" href="#">
-                    <i class="icon-tbean"></i>0</a>
-                    <div>
-                        <a class="btn-sub btn-small j-ihome-get-tdou" href="javaScript:;">获取T豆</a>
-                        <a class="btn-sub btn-small userinfo_buy_props" href="#">道具商城</a>
-                    </div>
-                </div>
-                <div class="userinfo_scores userinfo_scores_border clearfix">                
-                    <span class="blue-header-hr"></span>
-                    <span>我的蓝钻：</span>
-                    <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
-                    <div>
-                        <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
-                        <a class="btn-sub btn-small" href="http://tieba.baidu.com/f?kw=%C0%B6%D7%EA&amp;fr=index" target="_blank">蓝钻换购</a>
-                    </div>
-                </div>                    
-                <div class="userinfo_shortcut">            
-                    <a href="#" target="_blank">服务中心</a>
-                    <span class="userinfo_split"></span>
-                    <a href="#" target="_blank">我在百度</a>
-                    <span class="userinfo_split"></span>
-                    <a href="#" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>            
-                </div>
+        <li class="lione fl"><a href="<{:U('MyInfo/follow',array('uid'=>$list['id']))}>" class="litwo">
+            <if condition="$follow eq 1"><span class="glyphicon glyphicon-plus"></span>关注
+        </a></li>
+        <else/>
+        <li class="lithree fl" style="color:orange;">√已关注 | 取消</li>
+        </if>
+    </div>
+    <div class="userinfo_right">
+        <div class="userinfo_scores clearfix">
+            <span class="scores-header-hr"></span>
+            <span>我的T豆:</span>
+            <a class="userinfo_scores_num j_userinfo_scores_num" href="#">
+                <i class="icon-tbean"></i>0</a>
+            <div>
+                <a class="btn-sub btn-small j-ihome-get-tdou" href="javaScript:;">获取T豆</a>
+                <a class="btn-sub btn-small userinfo_buy_props" href="#">道具商城</a>
             </div>
         </div>
-        <div id="container" class="container_wrap clearfix ihome_body">
-            <div class="left_aside ihome_left_aside">
-                <div class="content_wrap">        
-                    <div id="ihome_nav_wrap" class="ihome_nav_wrap">
-                        <ul class="ihome_nav_list">                    
-                            <li class="focus">      
-                                <div class="tbnav_tab_inner">                    
-                                    <p class="space">                    
-                                        <a class="nav_icon nav_main" href="#">我的主页</a>
-                                    </p>                    
-                                </div>
-                            </li>                    
-                            <li>        
-                                <div class="tbnav_tab_inner">                    
-                                    <p class="space">                    
-                                        <a class="nav_icon nav_msg" href="#">通知</a>
-                                    </p>                    
-                                    <span></span>                    
-                                </div>
-                            </li>                    
-                            <li>        
-                                <div class="tbnav_tab_inner">                    
-                                    <p class="space">                    
-                                        <a class="nav_icon nav_collect" href="#">收藏</a>
-                                    </p>                    
-                                    <span></span>                    
-                                </div>
-                            </li>                    
-                            <li>        
-                                <div class="tbnav_tab_inner">                    
-                                    <p class="space">                    
-                                        <a class="nav_icon nav_concern" href="#">关注的吧</a>
-                                    </p>                    
-                                </div>
-                            </li>                    
-                            <li>        
-                                <div class="tbnav_tab_inner">                    
-                                    <p class="space">                    
-                                        <a class="#" target="_blank">贴子</a>
-                                    </p>                    
-                                </div>
-                            </li>                    
-                            <li>        
-                                <div class="tbnav_tab_inner">                    
-                                    <p>                    
-                                        <a class="nav_icon nav_achieve" href="#">成就</a>
-                                    </p>                    
-                                </div>
-                            </li>    
-                        </ul>
-                    </div>
-                    <div class="ihome_forum_group ihome_section clearfix">    
-                        <div id="onekey_sign">
-                            <a class="onekey_btn" onclick="return false;" href="#">
-                                <i class="icon_signed"></i>
-                            </a>
+        <div class="userinfo_scores userinfo_scores_border clearfix">
+            <span class="blue-header-hr"></span>
+            <span>我的蓝钻：</span>
+            <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
+            <div>
+                <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
+                <a class="btn-sub btn-small" href="http://tieba.baidu.com/f?kw=%C0%B6%D7%EA&amp;fr=index"
+                   target="_blank">蓝钻换购</a>
+            </div>
+        </div>
+        <div class="userinfo_shortcut">
+            <a href="#" target="_blank">服务中心</a>
+            <span class="userinfo_split"></span>
+            <a href="#" target="_blank">我在百度</a>
+            <span class="userinfo_split"></span>
+            <a href="#" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>
+        </div>
+    </div>
+</div>
+<div id="container" class="container_wrap clearfix ihome_body">
+    <div class="left_aside ihome_left_aside">
+        <div class="content_wrap">
+            <div id="ihome_nav_wrap" class="ihome_nav_wrap">
+                <ul class="ihome_nav_list">
+                    <li class="focus">
+                        <div class="tbnav_tab_inner">
+                            <p class="space">
+                                <a class="nav_icon nav_main" href="#">我的主页</a>
+                            </p>
                         </div>
-                        <h1 class="ihome_title">
-                            <span class="cut_line">|</span>爱逛的吧
-                        </h1>
-                        <div class="clearfix u-f-wrap" id="forum_group_wrap">
-                        <volist name="love" id="vo">       
-                            <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="#" class="u-f-item unsign">
-                                <span><{$vo['name']}></span>
-                                <span class="forum_level lv1"></span>
-                            </a> 
-                            </volist>         
+                    </li>
+                    <li>
+                        <div class="tbnav_tab_inner">
+                            <p class="space">
+                                <a class="nav_icon nav_msg" href="#">通知</a>
+                            </p>
+                            <span></span>
                         </div>
-                    </div>
+                    </li>
+                    <li>
+                        <div class="tbnav_tab_inner">
+                            <p class="space">
+                                <a class="nav_icon nav_collect" href="#">收藏</a>
+                            </p>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tbnav_tab_inner">
+                            <p class="space">
+                                <a class="nav_icon nav_concern" href="#">关注的吧</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tbnav_tab_inner">
+                            <p class="space">
+                                <a class="#" target="_blank">贴子</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tbnav_tab_inner">
+                            <p>
+                                <a class="nav_icon nav_achieve" href="#">成就</a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ihome_forum_group ihome_section clearfix">
+                <div id="onekey_sign">
+                    <a class="onekey_btn" onclick="return false;" href="#">
+                        <i class="icon_signed"></i>
+                    </a>
+                </div>
+                <h1 class="ihome_title">
+                    <span class="cut_line">|</span>爱逛的吧
+                </h1>
+                <div class="clearfix u-f-wrap" id="forum_group_wrap">
+                    <volist name="love" id="vo">
+                        <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="#"
+                           class="u-f-item unsign">
+                            <span><{$vo['name']}></span>
+                            <span class="forum_level lv1"></span>
+                        </a>
+                    </volist>
+                </div>
+            </div>
 
-                    <div class="ihome_hot_feed ihome_section">
-                        <h1 class="threadList_title">
-                            <span class="cut_line">|</span>热门动态
-                        </h1>
-                        <ul class="new_list clearfix"> 
-                        <volist name="hot" id="v">       
-                            <div class="n_right n_right_first clearfix">
-                                <div class="n_post_time"><{$v['createtime']|date='Y-m-d',###}></div><div class="n_avatar">
+            <div class="ihome_hot_feed ihome_section">
+                <h1 class="threadList_title">
+                    <span class="cut_line">|</span>热门动态
+                </h1>
+                <ul class="new_list clearfix">
+                    <volist name="hot" id="v">
+                        <div class="n_right n_right_first clearfix">
+                            <div class="n_post_time"><{$v['createtime']|date='Y-m-d',###}></div>
+                            <div class="n_avatar">
                                 <a href="#" target="_blank" title="头像">
-                                    <img src="__UPLOAD__/<if condition="$v['hpic'] == null">dog.jpg<else /><{$v['hpic']}></if>"> 
-                                  <!-- <img src="__UPLOAD__/<{$v['hpic']}>">   -->
+                                    <img src="__UPLOAD__/<if condition="$v['hpic'] == null">dog.jpg<else/><{$v['hpic']}></if>">
+                                    <!-- <img src="__UPLOAD__/<{$v['hpic']}>">   -->
                                 </a>
                             </div>
                             <div class="n_contain">
@@ -207,11 +250,12 @@
                                         <a href="#" target="_blank" class="n_name" title="吧名"><{$v['name']}></a>
                                     </div>
                                     <div class="thread_name">
-                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1" title="标题"><{$v['title']}></a>
+                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1"
+                                           title="标题"><{$v['title']}></a>
                                     </div>
                                 </div>
                                 <div class="n_txt"><{$v['desc']}></div>
-                                
+
                                 <div class="n_reply">
                                     <a href="#" title="主题作者" target="_blank" class="post_author ">love影6</a>
                                     <span class="userinfo_split"></span>
@@ -219,76 +263,72 @@
                                 </div>
                             </div>
                         </div>
-                        </volist>
-                        <!-- <{:dump($v)}> -->
+                    </volist>
+                    <!-- <{:dump($v)}> -->
 
-                    </ul>
-                    <div class="data_loading">
-                        <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>    
-                    </div>
-                </div>
+                </ul>
+                <div class="data_loading">
+                    <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>
             </div>
-            <div class="right_aside">
-                <div class="ihome_aside_section ihome-aside-gift-center">
-                    <h1 class="ihome_aside_title">        我的礼物<span class="gift-num">(<i>0</i>)</span>        
-                        <a class="mygift-more" j-gift-more="" href="javascript:;" data-user-id="1542002465" style="display: inline;">查看全部 &gt;</a>        
-                    </h1>
-                    <div class="ihome-aside-gift-center-container" style="display: block;">        
-                        <ul class="ihome-aside-gift-center-container-list"></ul>                
-                        <p class="ihome-aside-gift-center-container-no-gift">你还没有收到任何礼物~</p>        
-                    </div>
-                </div>
-                <div class="ihome_aside_section ihome-aside-grab-treasure">
-                    <h1 class="ihome_aside_title">我的夺宝</h1>
-                    <div class="home-aside-grab-treasure-main">
-                        <span class="pull-left home-aside-grab-treasure-info">暂时没有参与夺宝</span>
-                        <a class="pull-right link" target="_blank" href="#">查看我的夺宝&gt;</a>
-                    </div>
-                </div>
-                <div class="ihome_aside_section ihome_visitor ">
-                    <h1 class="ihome_aside_title">最近来访</h1>
-                    <div class="card_wrap">
-                        <ul id="visitor_card_wrap">            
-                            <li class="visitor_card">
-                                <a href="#" target="_blank" class="j_user_card" locate="visitor#ihome_v1" data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}">
-                                    <img src="__PUBLIC__/Center/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a" alt="头像"></a>                    
-                                </li>            
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="ihome_aside_section">
-                        <h1 class="ihome_aside_title">我关注的人<span class="concern_num">(<a href="http://tieba.baidu.com/home/concern?id=211759414e47e69ca8e6bcaae95b?t=1479174124&amp;fr=home" target="_blank">1</a>)</span></h1>
-                        <ul class="concern_wrap" id="concern_wrap_concern">        
-                            <li class="concern_item">
-                                <a data-field="{&quot;un&quot;:&quot;\u77eb\u60c5\u4f60222&quot;}" class="j_user_card" target="_blank" locate="concern#ihome_v1" href="#">
-                                    <img src="__PUBLIC__/Center/0998e79fabe68385e4bda0323232de35">
-                                </a>                
-                            </li>        
-                        </ul>
-                    </div>
-                    <div class="ihome_aside_section ">
-                        <h1 class="ihome_aside_title">关注我的人<span class="concern_num">(<a href="#" target="_blank">1</a>)</span></h1>
-                        <ul class="concern_wrap" id="concern_wrap_fans">        
-                            <li class="concern_item"><a data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}" class="j_user_card" target="_blank" locate="fans#ihome_v1" href="#"><img src="./YANG木漪的贴吧_files/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a"></a>
-                            </li>        
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div id="footer" class="footer">                                                                                                      
-                <span>©2016 Baidu</span>
-                <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
-                <span>|</span>
-                <a pv_code="0" href="#" target="_blank">吧主制度</a>
-                <span>|</span>
-                <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
-                <span>|</span>
-                <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
-            </div> 
         </div>
-        <span class="fix-for-ie8"></span>
     </div>
- <!--<script type="text/javascript">alog&&alog("speed.set","drt",+new Date);</script>-->
+    <div class="right_aside">
+        <div class="ihome_aside_section ihome-aside-gift-center">
+            <h1 class="ihome_aside_title"> 我的礼物<span class="gift-num">(<i>0</i>)</span>
+                <a class="mygift-more" j-gift-more="" href="javascript:;" data-user-id="1542002465"
+                   style="display: inline;">查看全部 &gt;</a>
+            </h1>
+            <div class="ihome-aside-gift-center-container" style="display: block;">
+                <ul class="ihome-aside-gift-center-container-list"></ul>
+                <p class="ihome-aside-gift-center-container-no-gift">你还没有收到任何礼物~</p>
+            </div>
+        </div>
+        <div class="ihome_aside_section ihome-aside-grab-treasure">
+            <h1 class="ihome_aside_title">我的夺宝</h1>
+            <div class="home-aside-grab-treasure-main">
+                <span class="pull-left home-aside-grab-treasure-info">暂时没有参与夺宝</span>
+                <a class="pull-right link" target="_blank" href="#">查看我的夺宝&gt;</a>
+            </div>
+        </div>
+        <div class="ihome_aside_section ihome_visitor ">
+            <h1 class="ihome_aside_title">最近来访</h1>
+            <div class="card_wrap">
+                <ul id="visitor_card_wrap">
+                    <li class="visitor_card">
+                        <a href="#" target="_blank" class="j_user_card" locate="visitor#ihome_v1"
+                           data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}">
+                            <img src="__PUBLIC__/Center/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a" alt="头像"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+<!--        <{:dump($fname)}> -->
+        <div class="ihome_aside_section ">
+            <h1 class="ihome_aside_title">关注我的人<span class="concern_num">(<a href="#" target="_blank"><{$count}></a>)</span></h1>
+            <ul class="concern_wrap" id="concern_wrap_fans">
+                <li class="concern_item"><a
+                        data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}"
+                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="#"><img
+                       src="__ROOT__/<if condition="$fname[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[0]['hpic']}></if>"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer" class="footer">
+    <span>©2016 Baidu</span>
+    <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
+    <span>|</span>
+    <a pv_code="0" href="#" target="_blank">吧主制度</a>
+    <span>|</span>
+    <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
+    <span>|</span>
+    <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
+</div>
+</div>
+<span class="fix-for-ie8"></span>
+</div>
+<!--<script type="text/javascript">alog&&alog("speed.set","drt",+new Date);</script>-->
 
 <!-- <script src="__PUBLIC__/Center/saved_resource(4)"></script> -->
 
@@ -297,17 +337,20 @@
 <script src="__PUBLIC__/Center/saved_resource(8)"></script> -->
 
 <div id="lcsas-container" style="position: fixed; top: 0px;">
-    <object id="LCSAS" height="1" width="1" align="middle" type="application/x-shockwave-flash" data="__PUBLIC__/Center/LCSAS_b80db27.swf.下载">
+    <object id="LCSAS" height="1" width="1" align="middle" type="application/x-shockwave-flash"
+            data="__PUBLIC__/Center/LCSAS_b80db27.swf.下载">
         <param name="quality" value="high">
         <param name="allowScriptAccess" value="always">
         <param name="wMode" value="transparent">
         <param name="swLiveConnect" value="true">
         <param name="menu" value="false">
-        <param name="flashVars" value="host=220.181.111.16%3A8800&amp;Cuid=93F7FB6C07D04642A648DBB79D3BFC28%3AFG%3D1&amp;Appid=tieba&amp;Appkey=appkey&amp;DeviceType=21&amp;ExtensionVersion=2.2&amp;LCSHeaderVersion=1&amp;callTarget=STQ&amp;timeout=20000&amp;retry=1&amp;onopen=undefined&amp;onclose=undefined&amp;onerror=undefined&amp;tabInfo=1542002465">
+        <param name="flashVars"
+               value="host=220.181.111.16%3A8800&amp;Cuid=93F7FB6C07D04642A648DBB79D3BFC28%3AFG%3D1&amp;Appid=tieba&amp;Appkey=appkey&amp;DeviceType=21&amp;ExtensionVersion=2.2&amp;LCSHeaderVersion=1&amp;callTarget=STQ&amp;timeout=20000&amp;retry=1&amp;onopen=undefined&amp;onclose=undefined&amp;onerror=undefined&amp;tabInfo=1542002465">
     </object>
 </div>
 <div class="dialogJmodal" style="display: none; z-index: 50000; width: 1263px; height: 1929px;"></div>
-<div class="dialogJ dialogJfix dialogJshadow ui-draggable" style="z-index: 50001; display: none; width: 600px; left: 326.5px; top: 277px;">
+<div class="dialogJ dialogJfix dialogJshadow ui-draggable"
+     style="z-index: 50001; display: none; width: 600px; left: 326.5px; top: 277px;">
     <div class="uiDialogWrapper">
         <div class="dialogJtitle" style="cursor: move;">
             <span class="dialogJtxt"></span>

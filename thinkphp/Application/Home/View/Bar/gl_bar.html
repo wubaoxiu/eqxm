@@ -1,14 +1,14 @@
-
-<link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
-<link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css" />
-<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css"/>
+<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"/>
 <div class="gl_bar">
-<!-- <{:dump($data)}> -->
-  <span><{$title}>>><span style="color:#828282;font-size:12px"><{$stitle}></span></span>
-  <hr>
-  <div class="bgpic fl">
+    <!-- <{:dump($data)}> -->
+    <span><{$title}>>><span style="color:#828282;font-size:12px"><{$stitle}></span></span>
+    <hr>
+    <div class="bgpic fl">
     <span class="profile-picture">
-      <img id="bgpic" src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/default_bgpic.jpg<else />__ROOT__/<{$data['bgpic']}></if>" width="100%" height="100%">
+      <img id="bgpic" src="<if condition=" $data['bgpic']==null">__PUBLIC__/Barimg/default_bgpic.jpg<else/>__ROOT__/<{$data['bgpic']}></if>
+        " width="100%" height="100%">
       <div class="space-4"></div>
       <div class="site-demo-upload">
         <div class="site-demo-upbar" style="margin-top:-36px">
@@ -16,12 +16,13 @@
         </div>
       </div>
     </span>
-  </div>
-  <div class="gl_bar_main fl mt20">
-    <div class="hpic fl">
+    </div>
+    <div class="gl_bar_main fl mt20">
+        <div class="hpic fl">
       <span class="profile-picture">
         <div style="width:110px;height:110px;">
-        <img id="hpic" class="editable img-responsive" alt="请选择您的头像" src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" width="110px" height="110px">
+        <img id="hpic" class="editable img-responsive" alt="请选择您的头像" src="<if condition=" $data['hpic']==null">__PUBLIC__/Barimg/default_hpic.jpg<else/>__UPLOAD__/<{$data['hpic']}></if>
+            " width="110px" height="110px">
           </div>
           <div class="space-4"></div>
           <div class="site-demo-upload">
@@ -30,76 +31,77 @@
             </div>
           </div>
         </span>
+        </div>
+        <div class="bar_info fr">
+            <table class="table">
+                <tr>
+                    <th>贴吧名:</th>
+                    <td><{$data.name}></td>
+                </tr>
+                <tr>
+                    <th>关注:</th>
+                    <td><{$data.attention}></td>
+                </tr>
+                <tr>
+                    <th>帖子:</th>
+                    <td><{$data.notes}></td>
+                </tr>
+                <tr>
+                    <form action="<{:U('Bar/c_info')}>" method="post">
+                        <input type="hidden" name="id" value="<{$data.id}>">
+                        <th>帖吧宣言:</th>
+                        <td><textarea type="text" name="desc" id="desc" cols="50" rows="2" style="resize:none"><{$data.desc}></textarea>
+                        </td>
+                        <button type="submit" class="btn btn-success">修改信息</button>
+                    </form>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="bar_info fr">
-        <table class="table">
-            <tr>
-                <th>贴吧名:</th>
-                <td><{$data.name}></td>
-            </tr>
-            <tr>
-                <th>关注:</th>
-                <td><{$data.attention}></td>
-            </tr>
-            <tr>
-                <th>帖子:</th>
-                <td><{$data.notes}></td>
-            </tr>
-            <tr>
-              <form action="<{:U('Bar/c_info')}>" method="post">
-              <input type="hidden" name="id" value="<{$data.id}>">
-                <th>帖吧宣言:</th>
-                <td><textarea type="text" name="desc" id="desc" cols="50" rows="2" style="resize:none"><{$data.desc}></textarea></td>
-                <button type="submit" class="btn btn-success">修改信息</button>
-              </form>
-            </tr>
-        </table>
-    </div>
-  </div>
 </div>
 <script src="__PUBLIC__/layui/layui.js"></script>
 <script src="__PUBLIC__/Public/js/jquery.min.js"></script>
-<script type="text/javascript"> 
+<script type="text/javascript">
     // 上传文件
-    layui.use('upload', function(){
+    layui.use('upload', function () {
 
         layui.upload({
             url: "<{:U('Home/Bar/updateAvator1',array('id' => $data['id']))}>" //上传接口
-            ,elem: '#avator1'
-            ,method: 'post',
-            data:1
-            ,before: function(input){
+            , elem: '#avator1'
+            , method: 'post',
+            data: 1
+            , before: function (input) {
                 //返回的参数item，即为当前的input DOM对象
                 layer.msg('文件上传中.....', {
                     icon: 16
-                    ,shade: 0.01,
-                    time:0,
+                    , shade: 0.01,
+                    time: 0,
                 });
             }
-            ,success: function(res){ //上传成功后的回调
+            , success: function (res) { //上传成功后的回调
                 layer.closeAll();
-                $('#bgpic').attr('src','__ROOT__/'+res);
+                $('#bgpic').attr('src', '__ROOT__/' + res);
             }
         });
 
         layui.upload({
             url: "<{:U('Home/Bar/updateAvator2',array('id' => $data['id']))}>" //上传接口
-            ,elem: '#avator2'
-            ,method: 'post'
-            ,data: 1
-            ,before: function(input){
+            , elem: '#avator2'
+            , method: 'post'
+            , data: 1
+            , before: function (input) {
                 //返回的参数item，即为当前的input DOM对象
                 layer.msg('文件上传中.....', {
                     icon: 16
-                    ,shade: 0.01,
-                    time:0,
+                    , shade: 0.01,
+                    time: 0,
                 });
             }
-            ,success: function(res){ //上传成功后的回调
+            , success: function (res) { //上传成功后的回调
                 layer.closeAll();
                 console.log(res);
-                $('#hpic').attr('src','__UPLOAD__/' + res);
+                $('#hpic').attr('src', '__UPLOAD__/' + res);
             }
         });
-});  
+    });
 </script> 
