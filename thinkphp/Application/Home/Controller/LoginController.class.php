@@ -181,9 +181,18 @@ class LoginController extends Controller
         }
         // 判断是否封号
         if($data['freeze'] != 0){
-            // $this->ajaxReturn("对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");exit;
-            $list = array("val"=>false,"content"=>"对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");
-            $this->ajaxReturn($list);exit;
+            $time = time();
+            // 判断封号时间，小于则报封号，小于则报解封号提示
+            if($data['relieve']>$time){
+                $list = array("val"=>false,"content"=>"对不起，由于您的不良行为，你的账号已经被封，将于".date('Y-m-d H:i:s',$data['relieve'])."解封，希望您能改正不良行径~");
+                $this->ajaxReturn($list);exit;
+            }else{
+                $arr['id'] = $data['id'];
+                $arr['freeze'] = 0; 
+                $this->_user->data($arr)->save();
+                $list = array('val'=>false,"content"=>"尊敬的用户，您曾经的不良行径导致封号，现在已经解封，希望您以后可以CSW贴吧遵守规定！  点击确定即可登录！");
+                $this->ajaxReturn($list);
+            }            
         }
 
         $list = array("val"=>true);

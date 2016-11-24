@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
 <link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css" />
 <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<style type="text/css">
+    body{
+        background: #fbfbfb;
+    }
+</style>
 <div class="gl_bar">
 <!-- <{:dump($data)}> -->
   <span><{$title}>>><span style="color:#828282;font-size:12px"><{$stitle}></span></span>
@@ -49,7 +54,7 @@
               <form action="<{:U('Bar/c_info')}>" method="post">
               <input type="hidden" name="id" value="<{$data.id}>">
                 <th>帖吧宣言:</th>
-                <td><textarea type="text" name="desc" id="desc" cols="50" rows="2" style="resize:none"><{$data.desc}></textarea></td>
+                <td><textarea type="text" name="desc" id="desc" cols="30" rows="3" style="resize:none"><{$data.desc}></textarea></td>
                 <button type="submit" class="btn btn-success">修改信息</button>
               </form>
             </tr>

@@ -155,12 +155,12 @@
                     <ul class="ul_pics">
                         <volist name="bars" id="bar">
                             <li>
-                                <a target="_blank"  href="js.html?/440.html">
+                                <a target="_blank"  href="<{:U('Bar/index',array('id'=>$bar['id']))}>">
                                     <img src="__UPLOAD__/<{$bar['hpic']}>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
                                 </a> 
                                 <div class= "ul_info">     
-                                    <a href="<{:U('Bar/index',array('bar_id'=>$bar['id']))}>" target="_blank"><b style="font-size:20px;"><{$bar['name']}> </b></a><br>
-                                    <span style = "font-size:10px;margin-top:-10px;"><a href="<{:U('Bar/index',array('bar_id'=>$bar['id']))}>" target="_blank" title="<{$bar['title']}>"><{$bar['title']}></a><br>关注：<{$bar['attention']}>　帖子：<{$bar['count'][0]['count']}></span>
+                                    <a href="<{:U('Bar/index',array('id'=>$bar['id']))}>" target="_blank"><b style="font-size:20px;"><{$bar['name']}> </b></a><br>
+                                    <span style = "font-size:10px;margin-top:-10px;"><a href="<{:U('Bar/index',array('id'=>$bar['id']))}>" target="_blank" title="<{$bar['title']}>"><{$bar['title']}></a><br>关注：<{$bar['attention']}>　帖子：<{$bar['count'][0]['count']}></span>
                                 </div>
                             </li>
                         </volist>

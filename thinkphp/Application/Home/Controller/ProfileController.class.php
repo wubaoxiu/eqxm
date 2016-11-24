@@ -20,9 +20,9 @@ class ProfileController extends Controller{
     //个人中心首页显示 
     public function index(){
         $id = $_SESSION['user']['id'];
-          $list = $this->_user->find($id);
-          $this->assign('list',$list);
-           $this->display();
+        $list = $this->_user->find($id);
+        $this->assign('list',$list);
+        $this->display();
 
     }
     // 选择短信验证处理方法

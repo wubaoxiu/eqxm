@@ -18,6 +18,7 @@ class BarController extends Controller
     private $_barinfo = null;
     private $_note = null;
     private $_user = null;
+    private $_bars = null;
     private $_baradmin = null;
 
     // 初始化
@@ -26,6 +27,7 @@ class BarController extends Controller
         $this->_barinfo = M('barinfo');
         $this->_note = M('note');
         $this->_user = M('user');
+        $this->_bars = M('bars');
         $this->_baradmin = M('baradmin');
     }
 
@@ -86,6 +88,7 @@ class BarController extends Controller
 
     /**
      * 方法名：manage()  贴吧的管理界面主体
+     * @author yjx 11/23
     */
     public function manage()
     {
@@ -105,6 +108,7 @@ class BarController extends Controller
 
     /**
      * 方法名：gl_bar()  贴吧的信息管理界面
+     * @author yjx 11/23
     */
     public function gl_bar()
     {
@@ -123,6 +127,72 @@ class BarController extends Controller
         $this->assign('data',$data);
         $this->display();
     }
+
+    /**
+     * 方法名：gl_admin()  吧主管理贴吧页 对贴吧管理员的遍历
+     * @author yjx 11/24
+    */
+    public function gl_admin()
+    {
+        $id = I('id');
+        $admin = $this->_baradmin->field('user_id')->where(array('bar_id'=>array('eq',$id),'status'=>array('neq',1)))->select();
+        foreach ($admin as $v) {
+            $data[] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->order('id desc')->find();
+        }
+        // dump($data);die;
+        $this->assign('bar_id',$id);
+        $this->assign('title','帖吧管理');
+        $this->assign('stitle','贴吧管理员');
+        $this->assign('data',$data);
+        $this->display();
+    }
+    /**
+     * 方法名：gl_admin()  吧主管理贴吧页 对贴吧管理员的遍历
+     * @author yjx 11/24
+    */
+    public function gl_fans()
+    {
+        $id = I('id');
+        $fans = $this->_bars->where(array('bar_id'=>array('eq',$id)))->select();
+        foreach ($fans as $k=>$v) {
+            // 查询关注本贴吧的会员信息，过滤掉其中的管理员与吧主
+            $fans[$k] = $this->_baradmin->field('status')->where(array('user_id'=>array('eq',$v['user_id'])))->find();
+            $fans[$k]['user'] = $this->_user->field('id,name,sex,logintime')->where(array('id'=>array('eq',$v['user_id'])))->order('id desc')->find();
+        }
+        // dump($fans);die;
+        $this->assign('bar_id',$id);
+        $this->assign('title','帖吧管理');
+        $this->assign('stitle','本吧会员');
+        $this->assign('data',$fans);
+        $this->display();
+    }
+
+    // 添加管理员
+    public function add_admin()
+    {
+        $data['bar_id'] = I('bar_id');
+        $data['user_id'] = I('user_id');
+        $data['status'] = 2;
+        if($this->_baradmin->data($data)->add()>0){
+            $this->success('升级管理员成功！');
+        }else{
+            $this->error('升级管理员失败！');
+        }
+    }
+
+    // 撤销管理员
+    public function del_admin()
+    {
+        $data['bar_id'] = I('bar_id');
+        $data['user_id'] = I('user_id');
+        if($this->_baradmin->where($data)->delete()>0){
+            $this->success('撤销管理员成功！');
+        }else{
+            $this->error('撤销管理员失败！');
+        }
+    }
+
+
     public function c_info()
     {
         $data['id'] = $_POST['id'];
@@ -134,7 +204,7 @@ class BarController extends Controller
         }
         // echo $this->_barinfo->getLastSql();die;
     }
-    //处理背景
+    //处理背景  
     public function updateAvator1(){
         $bgpic = $this->upload1();
         // dump($bgpic);
