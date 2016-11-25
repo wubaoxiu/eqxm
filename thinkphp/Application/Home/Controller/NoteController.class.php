@@ -116,6 +116,18 @@ class NoteController extends Controller
         }
     }
 
+
+    // 删除帖子
+    public function del()
+    {
+        $data['id'] = I('get.id');
+        if($this->_note->data($data)->delete()>0){
+            $this->success('删除成功！');
+        }else{
+            $this->error('删除失败！');
+        }
+    }
+
 }
 
 

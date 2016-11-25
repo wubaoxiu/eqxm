@@ -225,7 +225,7 @@
                         <a href="<{:U('Profile/index')}>" class="user-img">
                             <img alt="<{$Think.session.user.name}>" src="__ROOT__/<{$Think.session.user.hpic}>">
                         </a>
-                        <p class="username"><{$Think.session.user.name}>　<span style="color:blue"><if condition="$data.baradmin eq '0'">吧主　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'status'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><elseif condition="$data.baradmin eq '1'" />管理员　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><else /></if></span></p>
+                        <p class="username"><{$Think.session.user.name}>　<span style="color:blue"><if condition="$data.baradmin eq '1'">吧主　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><elseif condition="$data.baradmin eq '2'" />管理员　　<a href="<{:U('Bar/manage',array('id'=>$data['id'],'baradmin'=>$data['baradmin']))}>"><button class="btn btn-primary" style="line-height:10px;padding-left:8px">管理本吧</button></a><else /></if></span></p>
                        
                     </div>
                     <hr>
