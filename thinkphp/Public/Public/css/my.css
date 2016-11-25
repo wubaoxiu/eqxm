@@ -1,42 +1,77 @@
-*{
-    padding:0px;
-    margin:0;
+* {
+    padding: 0px;
+    margin: 0;
 }
-ol,ul {list-style: none;}
-body{
+
+ol, ul {
+    list-style: none;
+}
+
+body {
     background: #dceffe;
 }
-.fl{float: left;}
-.fr{float:right;}
-a:link,a:visited,a:hover,a:active{text-decoration:none;}
-.mt10{margin-top:10px;}
-.mt20{margin-top:20px;}
-.mt30{margin-top:30px;}
-.mt40{margin-top:40px;}
-.mt50{margin-top:50px;}
-.red{color:#f00;}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.red {
+    color: #f00;
+}
 
 /*+++++++++++++++++++++++++++++++++++++++++++++*/
-.shenq a{
-    color:#FF5600;
+.shenq a {
+    color: #FF5600;
 }
-.shenq a:hover{
+
+.shenq a:hover {
     text-decoration: underline;
 }
+
 /*+++++++++++++++++++++++++++++++++++++++++++++*/
-.bar_head1{
+.bar_head1 {
     width: 1102px;
     height: 150px;
     background: #fdfdfd;
     /*margin-left:75px; */
 }
-.bar_head{
+
+.bar_head {
     width: 1102px;
     height: 100px;
     background: #fdfdfd;
     /*margin-left:75px; */
 }
-.bar_head .left{
+
+.bar_head .left {
     /*padding: 10px;*/
     width: 150px;
     height: 150px;
@@ -46,7 +81,8 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     border: 5px solid white;
     /*float: left;*/
 }
-.bar_head .n_left{
+
+.bar_head .n_left {
     /*padding: 10px;*/
     width: 90px;
     height: 90px;
@@ -56,34 +92,38 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     border: 5px solid white;
     /*float: left;*/
 }
-.note_title{
+
+.note_title {
     width: 759px;
     height: 60px;
-    border-bottom:3px solid #f7f7f7;
+    border-bottom: 3px solid #f7f7f7;
     background: white;
     line-height: 20px;
     font-size: 20px;
     padding: 20px;
 }
-.bar_head_center{
+
+.bar_head_center {
     /*border: 1px solid red;*/
     width: 500px;
     height: 40px;
     margin-left: 200px;
     /*padding: 10px;*/
-    margin-top:8px;
+    margin-top: 8px;
 }
-.bar_head_foot{
+
+.bar_head_foot {
     /*border: 1px solid red;*/
     width: 500px;
     height: 30px;
-    margin-left: 200px; 
+    margin-left: 200px;
     padding-left: 20px;
     padding-top: 5px;
     color: #7f7f7f;
     font-size: 13px;
 }
-.bar_head_center .lione{
+
+.bar_head_center .lione {
     /*width: 70px;*/
     height: 50px;
     font-size: 20px;
@@ -91,23 +131,26 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     line-height: 50px;
     float: left;
 }
-.bar_head_center .litwo{
+
+.bar_head_center .litwo {
     /*width: 70px;*/
     text-align: center;
     background: orange;
     height: 30px;
     margin-left: 10px;
     line-height: 30px;
-    margin-top:10px;
+    margin-top: 10px;
     font-size: 18px;
     /*border: 1px solid #abcdef;*/
     float: left;
     color: white;
 }
-.bar_head_center a:hover{
+
+.bar_head_center a:hover {
     background: lightgreen;
 }
-.bar_head_center .lithree{
+
+.bar_head_center .lithree {
     /*width: 60px;*/
     height: 50px;
     font-size: 12px;
@@ -116,38 +159,45 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     line-height: 50px;
     float: left;
 }
-.my_headslider{
+
+.my_headslider {
     width: 120px;
     height: 220px;
     padding: 10px;
     margin-right: 20px;
     background: #f7f7f7;
 }
-.my_headslider img{
+
+.my_headslider img {
     width: 100px;
     height: 100px;
     border: 5px solid white;
 }
-.my_headslider .user_name{
+
+.my_headslider .user_name {
     width: 100px;
-    text-align: center; 
+    text-align: center;
 }
-.my_headslider .louzhu{
+
+.my_headslider .louzhu {
     width: 100px;
     height: 40px;
     text-align: center;
-    line-height: 40px;   
+    line-height: 40px;
 }
-.my_headslider .user_name a{
+
+.my_headslider .user_name a {
     font-size: 16px;
 }
-.note_page{
+
+.note_page {
     width: 100%;
     height: 50px;
     border: 1px solid red;
     margin-top: 20px;
 }
-.fatie{
+
+.fatie {
     margin-top: 30px;
     width: 759px;
     height: 520px;
@@ -155,96 +205,101 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     padding: 30px;
     /*margin-left:75px; */
 }
-.fatie_head{
+
+.fatie_head {
     margin-top: 50px;
 }
-.input_title{
+
+.input_title {
     width: 300px;
     height: 30px;
     /*border: 1px solid blue;*/
 }
-.fatie_content{
+
+.fatie_content {
     width: 650px;
     margin-top: 20px;
     height: 250px;
 }
-.fatie_content2{
+
+.fatie_content2 {
     width: 650px;
     height: 250px;
 }
-.fatie_fabiao{
+
+.fatie_fabiao {
     /*width: 50px;*/
     height: 30px;
-    line-height: 10px; 
+    line-height: 10px;
     margin-top: 80px;
 }
-
-
 
 /*     贴吧结束      */
 
 /* 贴吧管理页面样式 start*/
 
- .manage_main{
+.manage_main {
     width: 980px;
     margin-left: 140px;
     padding: 20px;
     border: 1px solid #f7f7f7;
     background: #fbfbfb;
- }  
-.manage_main .iframe{
+}
+
+.manage_main .iframe {
     width: 958px;
     height: 400px;
     background: #fbfbfb;
- }
+}
 
-    /*贴吧信息管理*/
-.gl_bar{
+/*贴吧信息管理*/
+.gl_bar {
     width: 100%;
     height: 100%;
     background: #fbfbfb;
 }
-.bgpic{
+
+.bgpic {
     width: 900px;
     height: 130px;
 }
-.hpic{
+
+.hpic {
     width: 130px;
     height: 160px;
     border: 5px solid #fff;
 }
-.gl_bar_main{
+
+.gl_bar_main {
     width: 900px;
     background: #fbfbfb;
     /*border: 1px solid red;*/
 }
-.bar_info{
+
+.bar_info {
     width: 760px;
 }
-    /*贴吧信息管理 end*/
 
+/*贴吧信息管理 end*/
 
-    /*贴吧帖子管理 strat*/
-.gl_note{
+/*贴吧帖子管理 strat*/
+.gl_note {
     background: #fbfbfb;
 }
 
-    /*贴吧帖子管理 end*/
-
-
+/*贴吧帖子管理 end*/
 
 /* 贴吧管理页面样式 end */
 
-
-
-.note_main{
+.note_main {
     width: 100%;
     /*height: 200px;*/
     background: white;
     float: left;
     border-bottom: 3px solid #f1f1f1;
 }
-.note_main_left{
+
+.note_main_left {
     width: 130px;
     height: 200px;
     /* border: 1px solid red; */
@@ -252,34 +307,39 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     background: #fbfbfd;
     padding: 10px;
 }
-.note_main_left .user_tx{
+
+.note_main_left .user_tx {
     width: 110px;
     height: 110px;
     border: 5px solid white;
 }
-.note_main_left .user_name{
+
+.note_main_left .user_name {
     width: 110px;
     height: 25px;
     text-align: center;
-    margin-top:10px;
+    margin-top: 10px;
     /*color: blue;*/
     /*border: 5px solid white;*/
 }
-.note_main_left .user_grade{
+
+.note_main_left .user_grade {
     width: 110px;
     height: 30px;
     text-align: center;
     color: blue;
     /*border: 5px solid white;*/
 }
-.note_main_main{
+
+.note_main_main {
     float: right;
     width: 625px;
     padding: 10px;
-    word-break:break-all;
+    word-break: break-all;
     /*border: 1px solid red;*/
 }
-.note_main_right{
+
+.note_main_right {
     width: 625px;
     /*height: 20px;*/
     font-size: 12px;
@@ -289,105 +349,116 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
     margin-top: 160px;
     float: right;
 }
-.reply{
-    width:625px;
+
+.reply {
+    width: 625px;
     /*height:300px;*/
-    background:#F7F8FA;
+    background: #F7F8FA;
     margin-top: 16px;
-    display:none;
-}
-.reply .replybottom{
-    width:625px;
-    height:100px;
-}
-.reply .replybottom input{
-    width:80px;
-    height:30px;
-    float:right;
-    margin-right:25px;
-    margin-top:10px;
-}
-.note_main_right .huifu{
-     float: right;
-     /*background: #F7F8FA;*/
-}
-.note_main_right .createtime{
-     float: right;
-     margin-right: 10px;
-}
-.note_main_right .floor{
-     float: right;
-     margin-right: 10px;
+    display: none;
 }
 
+.reply .replybottom {
+    width: 625px;
+    height: 100px;
+}
+
+.reply .replybottom input {
+    width: 80px;
+    height: 30px;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.note_main_right .huifu {
+    float: right;
+    /*background: #F7F8FA;*/
+}
+
+.note_main_right .createtime {
+    float: right;
+    margin-right: 10px;
+}
+
+.note_main_right .floor {
+    float: right;
+    margin-right: 10px;
+}
 
 /* 角色表添加页面样式 */
 
-.role_add{
-    width:400px;
+.role_add {
+    width: 400px;
     height: 300px;
     border: 2px solid #f7f7f7;
     padding: 20px;
     margin-left: 200px;
     margin-top: 50px;
 }
-.role_role{
+
+.role_role {
     width: 100%;
     margin-left: 50px;
     height: 60px;
 }
-.node_add{
-    width:400px;
+
+.node_add {
+    width: 400px;
     height: 350px;
     border: 2px solid #f7f7f7;
     padding: 20px;
     margin-left: 200px;
     margin-top: 50px;
 }
-.node_node{
+
+.node_node {
     width: 100%;
     height: 60px;
     margin-left: 50px;
 }
 
-.nodelist{
-    width:500px;
-/*    height: 350px;*/
+.nodelist {
+    width: 500px;
+    /*    height: 350px;*/
     border: 2px solid #f7f7f7;
     padding: 20px;
     margin-left: 200px;
     margin-top: 20px;
 }
-.the_box{
+
+.the_box {
     width: 200px;
     margin-left: 25px;
 }
+
 /* wbx css */
-.page{
+.page {
     /*width:1100px;*/
-    height:50px;
-    background:#FDFDFD;
+    height: 50px;
+    background: #FDFDFD;
     /*margin-top: 10px;*/
     /*line-height: 45px;*/
     border-top: 1px solid #DCEFFE;
     padding-top: 10px;
 }
 
-.page a{
-    float:left;
+.page a {
+    float: left;
     background: #F4F4F4;
-    width:30px;
-    height:30px;
-    margin-left:5px;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
     text-align: center;
     line-height: 30px;
 }
-.page span{
-    float:left;
+
+.page span {
+    float: left;
     background: #F4F4F4;
-    width:30px;
-    height:30px;
-    margin-left:5px;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
     text-align: center;
     line-height: 30px;
 }

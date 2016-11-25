@@ -123,8 +123,8 @@ class AdminUserController extends AdminController
       $data['repassword']=md5($_POST['repassword']);
       $data['email']=$_POST['email'];
       $data['sex']=$_POST['sex'];
-      $hpic = $this->upload();
-      $data['hpic']=$hpic; 
+      // $hpic = $this->upload();
+      // $data['hpic']=$hpic; 
      //得到数据模型
       $admin = $this->_admin;
       //获取id
