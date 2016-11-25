@@ -11,6 +11,15 @@ namespace Admin\Controller;
 class CountController extends AdminController
 {
    public function index(){
+
+   	$adminCount = M('admin')->count();
+   	$homeCount = M('user')->count();
+   	$barCount = M('barinfo')->count();
+   	$noteCount = M('note')->count();
+   	$this->assign('adminCount',$adminCount);
+   	$this->assign('homeCount',$homeCount);
+   	$this->assign('barCount',$barCount);
+   	$this->assign('noteCount',$noteCount);
    	$this->display();
    }
 
