@@ -70,9 +70,8 @@
              <td><{$v.email}></td>
              <td>
                  <if condition="$v.freeze eq '0'">正常
-                 <elseif condition="$v.freeze eq '1'" />封号三天
-                 <elseif condition="$v.freeze eq '2'" />封号七天
-                 <else />封号一年
+                 <elseif condition="$v.freeze eq '1'" />封号1分钟
+                 <elseif condition="$v.freeze eq '2'" />封号1天
                  </if>
              </td>
              <td>

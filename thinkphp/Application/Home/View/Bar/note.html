@@ -2,11 +2,11 @@
 <block name="the_head">
 <div class="bar_head">
     <div class="n_left">
-        <img src="__UPLOAD__/<{$data[0]['bhpic']}>" alt="" width="100%" height="100%">
+        <a href="<{:U('Bar/index',array('id'=>$bar_id))}>"><img src="__UPLOAD__/<{$data[0]['bhpic']}>" alt="" width="100%" height="100%"></a>
     </div>
     <div class="bar_head_center fl">
         <ul>
-            <li class="lione fl"><b><{$data[0]['bname']}></b></li>
+            <a href="<{:U('Bar/index',array('id'=>$bar_id))}>"><li class="lione fl"><b><{$data[0]['bname']}></b></li></a>
             <if condition="$atten eq 0">
                 <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />

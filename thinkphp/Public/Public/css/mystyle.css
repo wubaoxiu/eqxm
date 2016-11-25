@@ -63,7 +63,8 @@ ul li {
 
 #header-top .right {
     float: right;
-    padding-right: 130px;
+    text-align: center;
+    padding-right: 50px
 }
 
 #header-top .left a {

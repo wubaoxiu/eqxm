@@ -23,20 +23,22 @@ class NoteController extends Controller
     // 帖子添加
     public function add()
     {
-        date_default_timezone_set("PRC");
         if(empty($_SESSION['user'])){
             $this->error('您还没有登录，请先登录！',U('Login/index'));
         }
         $title = $_POST['title'];
         if(empty($title)){
-            $this->error('标题不能为空');
+            $list = array('val'=>false,"content"=>"标题不能为空！");
+            $this->ajaxReturn($list);
         }elseif(strlen($title)>90){
-            $this->error('标题不能超过30字');
+            $list = array('val'=>false,"content"=>"标题不能超过30字！");
+            $this->ajaxReturn($list);
         }elseif(strlen($title)<30){
-            $this->error('标题不能小于10个字');
+            $list = array('val'=>false,"content"=>"标题不能少于十个字！");
+            $this->ajaxReturn($list);
         }
         if(empty($_POST['content'])){
-            $this->error('内容不能为空');
+            $this->error('内容不能为空！');
         }
         // dump($_POST['content']);
         $data['user_id'] = $_SESSION['user']['id'];
@@ -118,10 +120,11 @@ class NoteController extends Controller
 
 
     // 删除帖子
-    public function del()
+    public function noshow()
     {
         $data['id'] = I('get.id');
-        if($this->_note->data($data)->delete()>0){
+        $data['is_show'] = 2;
+        if($this->_note->data($data)->save()>0){
             $this->success('删除成功！');
         }else{
             $this->error('删除失败！');

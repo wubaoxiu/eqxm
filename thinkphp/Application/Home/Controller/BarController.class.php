@@ -34,16 +34,11 @@ class BarController extends Controller
     public function index()
     {
         // 获取传过来的贴吧id
-
-        // $id = I('bar_id');
-        // $id = 1;
-
-        // dump($_SESSION['user']);
         $id = I('id');
-        // $id = 1;
-
+        $isfine = I('isfine');
+        $istop = I('istop');
         $atten = $this->is_attentionBar($id);
-
+        // dump($id,$isfine,$istop);die;
         
         //关注的吧
         if ($_SESSION['user']) {
@@ -53,10 +48,6 @@ class BarController extends Controller
 
         //贴吧管理员信息
         $baradmin_info = $this->getBarAdmin($id);
-        // dump($baradmin_info);
-        // echo $signstatus;
-        // dump($list);
-        // dump($attenbars);
 
         $data = $this->_barinfo->where(array('id' => array('eq', $id)))->find();
         // dump($data);
@@ -64,16 +55,30 @@ class BarController extends Controller
             U('index/index');
             exit;
         }
-        // 查询所有该贴吧中帖子的楼主信息
-        $list = $this->_note->where(array('bar_id'=>array('eq',$id)))->order('id desc')->page($_GET['p'],5)->select();
-
-        $pagenum = $this->_note->where(array('bar_id'=>array('eq',$id)))->count();
+        // 查询所有该贴吧中帖子的信息
+        if(empty($isfine)&&empty($istop)){
+            $map['bar_id'] = $id;
+        }elseif($isfine){
+            $map['bar_id'] = $id;
+            $map['isfine'] = $isfine;            
+        }elseif($istop){
+            $map['bar_id'] = $id;
+            $map['istop'] = $istop;
+        }
+        // dump($map);die;
+        $list = $this->_note->where($map)->order('id desc')->page($_GET['p'],5)->select();
+        $pagenum = $this->_note->where($map)->count();
+            // dump($pagenum);die;
+        $pagenow = $_GET['p'];
+        $page = new \Think\Page($pagenum,5);
+        $show = $page->show();
+        $pagenum = $this->_note->where($map)->count();
         // dump($pagenum);
         $pagenow = $_GET['p'];
         // echo $pagenow;
-        $page = new \Think\Page($pagenum,5);
+        // $page = new \Think\Page($pagenum,5);
         $show = $page->show();
-
+        // 查询所有该贴吧中帖子的楼主信息
         foreach ($list as $k=>$v) {
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id' => array('eq', $v['user_id'])))->find();
@@ -85,7 +90,7 @@ class BarController extends Controller
         // dump($list);die;
         // dump($is_baradmin);die;
         if (empty($baradmin)) {
-            $data['baradmin'] = 2;
+            $data['baradmin'] = 3;
         } else {
             $data['baradmin'] = $baradmin['status'];
         }
@@ -611,6 +616,11 @@ class BarController extends Controller
         $data = $baradmin->field("u.hpic,u.name,b.grade,a.status")->table("csw_user u,csw_baradmin a,csw_bars b")->where("a.bar_id=$barid and a.user_id=u.id and a.user_id=b.user_id and b.bar_id=$barid")->select();
         // dump($data);
         return $data;
+    }
+
+    public function baidu()
+    {
+        $this->display();
     }
    
 

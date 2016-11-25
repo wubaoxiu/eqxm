@@ -191,6 +191,16 @@ class UserController extends AdminController
          $data['email']=$_POST['email'];
          $data['status']=$_POST['status'];
          $data['sex']=$_POST['sex'];
+         $data['freeze']=$_POST['freeze'];
+         if($data['freeze']==0){
+            $data['relieve']=0;
+         }elseif($data['freeze']==1){
+            $time = time()+60;
+            $data['relieve']=$time;
+         }elseif($data['freeze']==2){
+            $time = time()+14400;
+            $data['relieve']=$time;
+         }
         //执行修改
          if ($user->save($data) !==false) {
                 $this->success('恭喜您，修改成功',U('User/index'));

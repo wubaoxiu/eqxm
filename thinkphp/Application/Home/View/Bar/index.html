@@ -32,10 +32,11 @@
             </p>
 
             <p class="right">
-            <a href="<{:U('Login/index')}>">登录</a>
-            <a href="#">注册</a>
+            <if condition="$Think.session.user eq null"><a href="<{:U('Login/login')}>">登录</a><a href="<{:U('Login/reg')}>">注册</a>
+            <else /><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><{$Think.session.user.name}></a> | <a href="<{:U('Login/logout')}>">退出</a>
+            </if>
             <a href="#">会员官网</a>
-            <a href="#">百度首页</a>
+            <a href="<{:U('Index/index')}>">CSW首页</a>
             </p>
 
         </div><!-- end .container -->
@@ -65,14 +66,14 @@
 
 <div class="wenda clearfix">
 <block name="the_head">
-<div class="bar_head1"><img src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/bgpic/default_bgpic.jpg<else />__ROOT__/<{$data['bgpic']}></if>" width="100%" height="100%"></div> 
+<div class="bar_head1"><img src="<if condition="$data['bgpic']==null">__PUBLIC__/Barimg/default_bgpic.jpg<else />__ROOT__/<{$data['bgpic']}></if>" width="100%" height="100%"></div> 
 <div class="bar_head">
     <div class="left">
-        <img src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/hpic/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" width="100%" height="100%">
+        <a href=""><img src="<if condition="$data['hpic']==null">__PUBLIC__/Barimg/default_hpic.jpg<else />__UPLOAD__/<{$data['hpic']}></if>" width="100%" height="100%"></a>
     </div>
     <div class="bar_head_center fl">
         <ul>
-            <li class="lione fl"><b><{$data.name}></b></li>
+            <a href=""><li class="lione fl"><b><{$data.name}></b></li></a>
             <if condition="$atten eq 0">
                 <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />
@@ -93,18 +94,21 @@
     <div class="wenda-main" style="border: 3px solid #f7f7f7;padding: 10px;">
     <block name="main_head">
         <div class="newpost clearfix" style="margin-top:0px">
-            <a class="quealltab onactive" href="#">最新</a>
-            <a class="quealltab " href="#">热门</a>
-            <a class="quealltab " href="#">加精</a>
-            <a class="quealltab " href="#">置顶</a>
+            <a class="quealltab onactive" href="<{:U('Bar/index',array('id'=>$bar_id))}>">最新</a>
+            <a class="quealltab " href="<{:U('Bar/index',array('id'=>$bar_id,'isfine'=>2))}>">加精</a>
+            <a class="quealltab " href="<{:U('Bar/index',array('id'=>$bar_id,'istop'=>1))}>">置顶</a>
         </div>
     </block>
+    <!-- 分享接口 -->
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","renren","tqq","tqf","douban","thx","fbook","twi","linkedin"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"100"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
                     <!--左侧列表内容-->
         <block name="the_main">
         <div class="wenda-list">
         <!-- 开始遍历 -->
         <foreach name="list" item="v">
         <!-- <{:dump($v)}> -->
+        <if condition="$v['is_show'] eq 1">
             <div class="wenda-listcon clearfix" style="border-bottom:4px solid #f7f7f7;">
                 <div class="my_headslider fl">
                     <a title="<{$v.louzhu.name}>" href="<{:U('MyInfo/personal',array('uid'=>$v['louzhu']['id']))}>">
@@ -148,26 +152,27 @@
                     <a class="replynumber hasanswernum" target="_blank" href="#">
                         <div class="ys">
                             <div class="number">
-                                <span><{$v.scan}></span>
+                                <span><{$v.reply}></span>
                             </div>
                             <div>评论</div>
                         </div>
                         <div class="browsenum">
                             <div class="number">
-                                <span><{$v.reply}></span>
+                                <span><{$v.scan}></span>
                             </div>
                             <div>浏览</div>
                         </div>
                     </a>
                 </div>
             </div><!--wenda-listcon clearfix-->
+            </if>
         </foreach>
         <div class="page">
             <{$show}>
         </div>
             <hr>
         <div class="fatie fl">
-            <form action="<{:U('Note/add')}>" method="post" enctype="multipart/form-data">
+            <form action="<{:U('Note/add')}>" method="post" enctype="multipart/form-data" onsubmit="return checkAll();">
                 <input type="hidden" name="id" value="<{$data.id}>">
                 <div class="fatei_head">
                     <b>标题：</b><br><input class="input_title" type="text" name="title" placeholder="请填写标题"> 
@@ -203,8 +208,45 @@
                         </script>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt10 fatie_fabiao" >发　表</button>
+                <button id="tijiao" type="submit" class="btn btn-primary mt10 fatie_fabiao" >发　表</button>
             </form>
+            <script type="text/javascript" src="__PUBLIC__/Public/js/jquery.min.js"></script>
+            <script src="__PUBLIC__/layer/layer.js" charset="utf-8"></script>
+            <script type="text/javascript">
+                var is_ok;
+                function check(){
+                    var title = $("input[name='title']").val();
+                    // alert("name="+name+"&password="+password);
+                    $.ajaxSetup({   
+                        async : false  
+                    });
+                    $.post("<{:U('Note/add')}>",{'title':title},function(data){
+                        // console.log(data);
+                        if(data.val == false){
+                            layer.msg(data.content, {
+                            time: 20000, //20s后自动关闭
+                            btn: ['确定', '取消']
+                            });
+                            is_ok = false;
+                            // return false;
+                        }else{
+                            // return true;
+                            is_ok = true;
+                        }
+                    });
+                };
+                // $('form').submit(function(){
+                //     alert(return check());
+                // })
+                function checkAll(){
+                    check();
+                    if(is_ok == true){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            </script>
         </div><!--fatie-->
     </div><!--wenda list-->
     </block>

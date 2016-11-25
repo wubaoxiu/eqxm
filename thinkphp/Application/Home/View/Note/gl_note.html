@@ -38,6 +38,7 @@
 <!--                                 <td class="hidden-480"></td>                              
                                 <td class="hidden-480"><{$v.user.logintime|date="Y-m-d H:i:s",###}></td> -->
                                </td>
+                                <if condition="$v['is_show'] eq 1">
                                 <td>
                                 <!-- <{:dump($v['isfine'])}> -->
                                 <if condition="$v['isfine'] eq 1">
@@ -50,8 +51,9 @@
                                 <else />
                                   <a href="<{:U('Note/notop',array('id'=>$v['id']))}>"><button id="notop" class="btn-xs btn-warning">取消置顶</button></a>
                                 </if>
-                                  <a href="<{:U('Note/del',array('id'=>$v['id']))}>"><button id="del" class="btn-xs btn-danger">删除</button></a>
+                                  <a href="<{:U('Note/noshow',array('id'=>$v['id']))}>"><button id="del" class="btn-xs btn-danger">删除</button></a>
                                 </td>
+                                </if>
                             </tr>
                         </foreach>
 
