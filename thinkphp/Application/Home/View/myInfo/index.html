@@ -56,7 +56,7 @@
 <div id="header" style="margin-top:-10px;">
     <div class="container">
         <h1 style="margin-top: 30px;margin-left: 200px;">
-            <a href="<{:U('index')}>">
+            <a href="<{:U('Index/index')}>">
                 <img src="__PUBLIC__/public/image/logo.gif" alt="">
             </a>
         </h1>
@@ -137,15 +137,15 @@
             <span>我的蓝钻：</span>
             <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
             <div>
-                <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
+                <a class="btn-sub btn-small blue-exchange" href="javaScript:;" >蓝钻交易</a>
                 <a class="btn-sub btn-small" href="javascript:void(0)"
-                   target="_blank">蓝钻换购</a>
+                >蓝钻换购</a>
             </div>
         </div>
         <div class="userinfo_shortcut">
-            <a href="#" target="_blank">服务中心</a>
+            <a href="#">服务中心</a>
             <span class="userinfo_split"></span>
-            <a href="#" target="_blank">我在百度</a>
+            <a href="#">我在百度</a>
             <span class="userinfo_split"></span>
             <a href="<{:U('Profile/index',array('uid'=>$_SESSION['user']['id']))}>" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>
         </div>
@@ -166,7 +166,7 @@
                     <li>
                         <div class="tbnav_tab_inner">
                             <p class="space">
-                                <a class="nav_icon nav_msg" href="#">通知</a>
+                                <a class="nav_icon nav_msg" href="javascript:void(0)">通知</a>
                             </p>
                             <span></span>
                         </div>
@@ -174,7 +174,7 @@
                     <li>
                         <div class="tbnav_tab_inner">
                             <p class="space">
-                                <a class="nav_icon nav_collect" href="#">收藏</a>
+                                <a class="nav_icon nav_collect" href="javascript:void(0)">收藏</a>
                             </p>
                             <span></span>
                         </div>
@@ -182,21 +182,21 @@
                     <li>
                         <div class="tbnav_tab_inner">
                             <p class="space">
-                                <a class="nav_icon nav_concern" href="#">关注的吧</a>
+                                <a class="nav_icon nav_concern" href="javascript:void(0)">关注的吧</a>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="tbnav_tab_inner">
                             <p class="space">
-                                <a class="#" target="_blank">贴子</a>
+                                <a class="javascript:void(0)">贴子</a>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="tbnav_tab_inner">
                             <p>
-                                <a class="nav_icon nav_achieve" href="#">成就</a>
+                                <a class="nav_icon nav_achieve" href="javascript:void(0)">成就</a>
                             </p>
                         </div>
                     </li>
@@ -234,7 +234,7 @@
             <h1 class="ihome_aside_title">我的夺宝</h1>
             <div class="home-aside-grab-treasure-main">
                 <span class="pull-left home-aside-grab-treasure-info">暂时没有参与夺宝</span>
-                <a class="pull-right link" target="_blank" href="#">查看我的夺宝&gt;</a>
+                <a class="pull-right link" href="javascript:void(0)">查看我的夺宝&gt;</a>
             </div>
         </div>
         <div class="ihome_aside_section ihome_visitor ">
@@ -242,7 +242,7 @@
             <div class="card_wrap">
                 <ul id="visitor_card_wrap">
                     <li class="visitor_card">
-                        <a href="#" target="_blank" class="j_user_card" locate="visitor#ihome_v1"
+                        <a href="javascript:void(0)" class="j_user_card" locate="visitor#ihome_v1"
                            data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}">
                             <img src="__PUBLIC__/Center/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a" alt="头像"></a>
                     </li>
@@ -256,7 +256,7 @@
                 <li class="concern_item"><a
                         data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}"
                         class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/personal',array('uid'=>$fname[0]['id']))}>"><img
-                       src="__ROOT__/<if condition="$fname[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[0]['hpic']}></if>"></a>
+                       src="__ROOT__/<{$fname[0]['hpic']}>"></a>
                 </li>
             </ul>
         </div>
