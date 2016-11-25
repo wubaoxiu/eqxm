@@ -34,14 +34,14 @@ class UpdatepwdController extends Controller{
         // var_dump($to);die;
 
         //主帐号,对应开官网发者主账号下的 ACCOUNT SID
-        $accountSid= '8aaf0708582eefe9015847f6b3231231';
+        $accountSid= '8aaf0708588b1d2301589aa1a3a30b6a';
 
         //主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
-        $accountToken= '25da071ee43b4e3684baed8194ec0978';
+        $accountToken= '06f5c7beeffb44338d9d76eb776d9cd9';
 
         //应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
         //在开发调试的时候，可以使用官网自动为您分配的测试Demo的APP ID
-        $appId='8aaf0708582eefe9015847f6b3651235';
+        $appId='8aaf0708588b1d2301589aa1a5050b71';
 
         //请求地址
         //沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com

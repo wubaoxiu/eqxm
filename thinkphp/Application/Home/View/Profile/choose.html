@@ -5,32 +5,29 @@
   <ul class="layui-tab-title">
     <li class="layui-this">选择修改方式</li>
   </ul>
-  <!-- <{:dump($list)}> -->
-
-  <div class="layui-tab-content" style="height: 390px;">
-    <div class="layui-tab-item layui-show">
-     <div class ="pwd_warp">
-         <span>修改密码关系到您的帐号安全，请先选择安全验证方式：</span>
-         <div class = "pwd_choose">
-             <div class="pwd_choose_one">
-                  <div class = "pwd_radius">
-                      <div class="pwd_m"></div>
-                  </div>
-             </div>  
-             <div class="pwd_choose_one">
-                  <div class = "pwd_radius">
-              <div class="pwd_phone"> </div>
-                        
-                  </div>
-             </div>          
-         </div>
+<div class="layui-tab-content" style="height: 390px;">
+  <div class="layui-tab-item layui-show">
+   <div class ="pwd_warp">
+     <span>修改密码关系到您的帐号安全，请先选择安全验证方式：</span>
+       <div class = "pwd_choose">
+           <div class="pwd_choose_one">
+                <div class = "pwd_radius">
+                    <div class="pwd_m"></div>
+                </div>
+          </div>  
+         <div class="pwd_choose_one">
+              <div class = "pwd_radius">
+             <div class="pwd_phone"> </div>
+          </div> 
+         </div>          
      </div>
-  </div>
-</div>
-  
-  <script src="__PUBLIC__/public/js/jquery.min.js"></script>
- <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
- <script type="text/javascript">
+   </div>
+ </div>
+</div> 
+<{$list['phone']}>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
  var timer = null;
  var m = 60;
    $('.pwd_phone').click(function(){
@@ -43,15 +40,13 @@
             $.post("<{:U('Profile/newyzm')}>",{'sms':$('#smsinput').val()},function(res){
                   if (res == true) {
                     location.href="<{:U('Profile/updatepwd')}>";
-                    // layer.closeAll();
-                    // changepwd();
                   }else{
                     layer.tips('验证码不正确','#smsinput');
                   }
             })
           },
           content: 
-          "<button style='background:#4B97E4;margin-top:30px;' onclick='sendsms()' id = 'send' class='btn btn-info btn-sm'>发送</button><p>验证码：<input type='text' style='margin-top:30px;' id = 'smsinput'></p>"
+          "<button style='background:#4B97E4;margin-top:20px;' onclick='sendsms()' id = 'send' class='btn btn-info btn-sm'>发送</button><p>验证码：<input type='text' style='margin-top:10px;' id = 'smsinput'></p>"
         });
    })
 function sendsms(){

@@ -7,60 +7,23 @@
 <div class="layui-tab layui-tab-card">
   <ul class="layui-tab-title">
     <li class="layui-this">我的帖子</li>
-    <li class="layui-this">我的回复</li>
-    <li class="layui-this">我的精品</li>
+    <li>我的精品</li>
   </ul>
   <div class="layui-tab-content" style="height: 330px;">
     <div class="layui-tab-item layui-show">
+    <volist name="list" id="vo">
       <div class="note">
           <div class = "note_content">
-              <span>在<b>鹿晗吧</b>发表了<b>88888</b> 回复[0]</span>
+              <span>在<b style="color:red"><{$vo['name']}></b>发表了<b style="color:orange"><{$vo['title']}></b></span>
           </div>
           <div class="note_time">
-             2016-11-21 
+             <{$vo['createtime']|date='Y-m-d',###}>
           </div>
-      </div>   
-      <div class="note">
-          <div class = "note_content">
-              <span>在<b>鹿晗吧</b>发表了<b>88888</b> 回复[0]</span>
-          </div>
-          <div class="note_time">
-             2016-11-21 
-          </div>
-      </div>
+      </div> 
+      </volist>
     </div>
-     <div class="layui-tab-item">
-        <div class="note_reply">
-              <div class = "note_content">
-                  <span> 回复</span>
-              </div>
-              <div class="note_time">
-                 2016-11-21 
-              </div>
-              <div class = "note_warp">
-                  "没发过贴"<a href="">回复</a>
-              </div>
-              <div class = "note_topic">
-                   <span><b>xx</b>回复(6)来自于<b>ffff</b></span>
-              </div>
-        </div> 
-       <div class="note_reply">
-              <div class = "note_content">
-                  <span> 回复</span>
-              </div>
-              <div class="note_time">
-                 2016-11-21 
-              </div>
-              <div class = "note_warp">
-                  "没发过贴"<a href="">回复</a>
-              </div>
-              <div class = "note_topic">
-                   <span><b>xx</b>回复(6)来自于<b>ffff</b></span>
-              </div>
-       </div>
-     </div>
     <div class="layui-tab-item">
-    你暂时还没有添加精品哦！
+    你的帖子暂时还没有被添加精品哦！
     </div>
   </div>
 </div>

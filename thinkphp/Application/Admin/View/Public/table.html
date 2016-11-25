@@ -55,7 +55,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							CSW Admin
+							CSW 后台管理系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
@@ -63,7 +63,7 @@
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
 						<!-- 头部下载信息 -->
-						<li class="grey">
+						<!-- <li class="grey">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-tasks"></i>
 								<span class="badge badge-grey">4</span>
@@ -135,9 +135,9 @@
 								</li>
 							</ul>
 						</li>
-
+ -->
 						<!-- 头部信息提示 -->
-						<li class="purple">
+						<!-- <li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
 								<span class="badge badge-important">8</span>
@@ -199,10 +199,10 @@
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 
 						<!-- 头部私信 -->
-						<li class="green">
+						<!-- <li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
 								<span class="badge badge-success">5</span>
@@ -230,8 +230,8 @@
 										</span>
 									</a>
 								</li>
-
-								<li>
+ -->
+							<!-- 	<li>
 									<a href="#">
 										<img src="__PUBLIC__/Admin/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
@@ -246,8 +246,8 @@
 											</span>
 										</span>
 									</a>
-								</li>
-
+								</li> -->
+<!-- 
 								<li>
 									<a href="#">
 										<img src="__PUBLIC__/Admin/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
@@ -264,20 +264,19 @@
 										</span>
 									</a>
 								</li>
-
-								<li>
+ -->
+							<!-- 	<li>
 									<a href="inbox.html">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
-								</li>
-							</ul>
-						</li>
+								</li> -->
+						<!-- 	</ul>
+						</li> -->
 	
 						<!-- 头部登录信息 -->
 						<li class="light-blue">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="__ROOT__/<{$data['hpic']}>" alt="Jason's Photo" />
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle" style="width:150px;font-size: 20px;">
 								<span class="user-info">
 										<small>欢迎回来,</small>
 										<{$Think.session.admin_info.name}>
@@ -371,7 +370,7 @@
 							</a>
 						</li>
 
-						<block name="two">
+						<!-- <block name="two">
 						<li>
 						</block>
 							<a href="typography.html">
@@ -379,7 +378,7 @@
 								<span class="menu-text"> 文字排版 </span>
 							</a>
 						</li>
-
+ -->
 						<block name="user">
 						<li>
 						</block>
@@ -580,7 +579,7 @@
 						<block name="Note"><li></block>
 
 							<a href="#" class="dropdown-toggle">
-								<i class="icon-list"></i>
+								<i class="icon-text-width"></i>
 								<span class="menu-text"> 贴子管理 </span>
 
 								<b class="arrow icon-angle-down"></b>
@@ -651,9 +650,26 @@
 									</a>
 								</li>
 							</ul>
+						</li>		
+						<block name="count"><li></block>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> 统计管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<block name="countlist"><li></block>
+									<a href="<{:U('Count/index')}>">
+										<i class="icon-double-angle-right"></i>
+										饼图统计
+									</a>
+								</li>
+							</ul>
 						</li>
 
-						<li>
+				<!-- 		<li>
 							<a href="calendar.html">
 								<i class="icon-calendar"></i>
 
@@ -664,15 +680,15 @@
 									</span>
 								</span>
 							</a>
-						</li>
+						</li> -->
 
-						<li>
+					<!-- 	<li>
 							<a href="gallery.html">
 								<i class="icon-picture"></i>
 								<span class="menu-text"> 相册 </span>
 							</a>
-						</li>
-
+						</li> -->
+<!-- 
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-tag"></i>
@@ -724,9 +740,9 @@
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 
-						<li>
+						<!-- <li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-file-alt"></i>
 
@@ -774,7 +790,7 @@
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 					</ul><!-- /.nav-list -->
 
 					<div class="sidebar-collapse" id="sidebar-collapse">

@@ -1,29 +1,24 @@
-<!-- <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" /> -->
  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
-   <!-- <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" /> -->
  <div class="layui-tab layui-tab-card">
   <ul class="layui-tab-title">
     <li class="layui-this">修改头像</li>
-    <li class="layui-this">修改个人信息</li>
+    <li>修改个人信息</li>
   </ul>
-<!--   <{:dump($list)}> -->
-
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
-        <span class="profile-picture">
-            <div style="width:150px;height:150px;border:1px solid #ccc;margin-left:50px;margin-top:30px;">
-              <img id="img" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" /> 
-            </div>
-                   <div class="space-4"></div>
-                <div class="site-demo-upload" style="margin-top:20px;margin-left:50px;font-size:20px;">
-                    <div class="site-demo-upbar">
-                        <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">              
-                    </div>
-                </div>
-            </span>
+    <span class="profile-picture">
+      <div style="width:150px;height:150px;border:1px solid #ccc;margin-left:50px;margin-top:30px;">
+        <img id="img" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" /> 
+      </div>
+      <div class="space-4"></div>
+        <div class="site-demo-upload" style="margin-top:20px;margin-left:50px;font-size:20px;">
+          <div class="site-demo-upbar">
+            <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">              
+          </div>
+        </div>
+      </span>
   </div>
-    <div class="layui-tab-item">
- 
+<div class="layui-tab-item">
 <form class="layui-form" action="<{:U('Set/dodata')}>" method="POST">
    <input type="hidden" name="id" value="<{$list['id']}>">
     <div class="layui-form-item">
@@ -43,24 +38,18 @@
     </div>
   <div class="layui-form-item">
     <label class="layui-form-label">爱好</label>
-  <!--   <{:dump($arr['like'])}> -->
-   
-    <div class="layui-input-block"> 
+  <div class="layui-input-block"> 
     <volist name="data" id="vo">
       <input type="checkbox" name="likename[]" title="<{$vo['likename']}>"  value="<{$vo.likename}>" <if condition="in_array($vo['likename'],$arr['like']) eq true">checked</if>>
       </volist>
     </div> 
   </div>
- 
- 
   <div class="layui-form-item layui-form-text">
     <label class="layui-form-label">简介</label>
     <div class="layui-input-block">
-
       <textarea placeholder="请输入内容" name="introduction" class="layui-textarea" cols="40" rows="4" maxlength="30"><{$list['introduction']}></textarea>
     </div>
   </div>
-
   <div class="layui-form-item">
     <div class="layui-input-block">
       <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
@@ -69,8 +58,7 @@
   </div>
 </form>  
 </div>
-</div>
-  
+</div> 
   <script src="__PUBLIC__/public/js/jquery.min.js"></script>
  <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
  <script type="text/javascript">
@@ -93,40 +81,37 @@
                 $('#img').attr('src','__ROOT__/' + res);
             }
         });
-});  
+    });  
 
 
- layui.use('element', function(){
-  var $ = layui.jquery
-  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-  
-  //触发事件
-  var active = {
-    tabAdd: function(){
-      //新增一个Tab项
-      element.tabAdd('demo', {
-        title: '新选项'+ (Math.random()*1000|0)
-        ,content: '内容'+ (Math.random()*1000|0)
-      })
-    }
-    ,tabDelete: function(){
-      //删除指定Tab项
-      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
-    }
-    ,tabChange: function(){
-      //切换到指定Tab项
-      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
-    }
-  };
-  
-  $('.site-demo-active').on('click', function(){
-    var type = $(this).data('type');
-    active[type] ? active[type].call(this) : '';
-  });
-});
+    layui.use('element', function(){
+      var $ = layui.jquery
+      ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
 
+      //触发事件
+      var active = {
+        tabAdd: function(){
+          //新增一个Tab项
+          element.tabAdd('demo', {
+            title: '新选项'+ (Math.random()*1000|0)
+            ,content: '内容'+ (Math.random()*1000|0)
+          })
+        }
+        ,tabDelete: function(){
+          //删除指定Tab项
+          element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+        }
+        ,tabChange: function(){
+          //切换到指定Tab项
+          element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+        }
+      };
 
- /**/ 
+      $('.site-demo-active').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+      });
+    });
 
     layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form()
@@ -149,18 +134,6 @@
       layedit.sync(editIndex);
     }
   });
-  
-  
-  
-  //监听提交
-  // form.on('submit(demo1)', function(data){
-  //   layer.alert(JSON.stringify(data.field), {
-  //     title: '最终的提交信息'
-  //   })
-  //   // return false;
-  // });
-  
-  
 });
 
  </script>

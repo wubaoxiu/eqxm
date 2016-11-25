@@ -44,6 +44,7 @@ class ProfileController extends Controller
     // 获取最新的验证码
     public function newyzm()
     {
+        
         $sms = I('post.sms');
         if ($sms == session('sms')) {
             $this->ajaxReturn(true);
@@ -61,6 +62,18 @@ class ProfileController extends Controller
         $this->display();
     }
 
+    // 判断原密码是否与原密码一致
+    public function oldpwd(){
+        $pwd = I('post.oldpwd/d');
+        $oldpass = md5($pwd);
+        $password = $_SESSION['user']['password'];
+        if ($oldpass == $password) {
+           $this->ajaxReturn(true);
+        }else{
+            $this->ajaxReturn(false);
+        }
+    }
+
 
     // 执行密码修改
     public function dopwd()
@@ -76,13 +89,11 @@ class ProfileController extends Controller
         }
     }
 
-
     //我的帖子
-
-
-    // public function note(){
-    //     $id = $_SESSION['user']['id'];
-    //     $list = $this->_note->where()->find();
-    //     $this->display('Profile/mynote');
-    // } 
+    public function mynote(){
+        $id = $_SESSION['user']['id'];
+        $list = $this->_note->field('bi.name,bi.id bid,n.title,n.createtime,n.id')->where("n.user_id='$id' and n.bar_id=bi.id")->table('csw_barinfo bi,csw_note n')->select();
+        $this->assign('list',$list);
+        $this->display('Profile/mynote');
+    } 
 }

@@ -12,20 +12,14 @@
     <table class = "table table-bordered table-hover table-striped">
       <tr>
         <th>好友名</th>
-        <th>经验值</th>
-        <th>吧等级</th>
         <th>取消关注</th>
       </tr>
-      <!-- <{:dump($list)}> -->
-      <volist name="data" id="vo">
+      <volist name="arr" id="vo">
       <tr>
-        <td><{$vo['name']}></td>
-        <td><{$vo['integral']}></td>
-        <td><{$vo['grade']}></td>
+        <td><{$vo['name']['name']}></td>
         <td><button class="layui-btn site-demo-layer" data-type="confirmTrans" onclick="active(this,'<{$vo['id']}>')">×</button></td>
       </tr>
       </volist>
-       <!-- <{:dump($vo)}> -->
     </table>
     </div>
   </div>

@@ -30,23 +30,23 @@
                                     <span class="lbl"></span>
                                 </label>
                             </th>
-                            <th>ID</th>
-                            <th>帖子名</th>
+                            <th class="center">ID</th>
+                            <th class="center">帖子名</th>
                             <th class="hidden-480">所属贴吧</th>
-                            <th class="hidden-480">作者</th>
-                            <th class="hidden-480">置顶</th>
-                             <th>
-                                <i class="icon-time bigger-110 hidden-480"></i>
+                            <th class="hidden-480 center">作者</th>
+                            <th class="hidden-480 center" style="width:100px;">置顶</th>
+                             <th class="center" style="width:80px">
+                                <i class="bigger-110 hidden-480"></i>
                                 加精
                             </th>
-                            <th>显示</th>
+                            <th style="width:80px;" class="center">显示</th>
 
                             <th class="center">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <foreach name="list" item="v">
-                            <tr>
+                            <tr class="center">
                                 <td class="center">
                                     <label>
                                         <input type="checkbox" class="ace" />
@@ -80,10 +80,6 @@
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons center">
                                          <a href="<{:U('select',array('id'=>$v['id']))}>" class="btn btn-default">查询</a>
                                     <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改</a>
-                                 
-                                    <!--     <a class="red" href="<{:U('Note/del',array('id'=>$v['id']))}>">
-                                            <i class="icon-trash bigger-130"></i>
-                                        </a> -->
                                     </div>
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">

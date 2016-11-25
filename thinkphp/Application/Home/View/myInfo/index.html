@@ -56,20 +56,20 @@
 <!--&lt;!&ndash; 头部结束 &ndash;&gt;-->
 <div id="header" style="margin-top:-10px;">
     <div class="container">
-        <h1 id="head_logo">
+        <h1 style="margin-top: 30px;margin-left: 200px;">
             <a href="<{:U('index')}>">
                 <img src="__PUBLIC__/public/image/logo.gif" alt="">
             </a>
         </h1>
-        <div style="margin-top:30px;" class="row">
+        <div style="margin-top:-30px;margin-left: 370px;" class="row">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input style="height:40px;" type="text" class="form-control" aria-label="...">
+                    <input style="height:42px;width:300px" type="text" class="form-control" aria-label="...">
                     <div class="input-group-btn">
-                        <button style="height:40px;" type="button" class="btn btn-info dropdown-toggle"
+                        <button style="height:30px;" type="button" class="btn btn-info dropdown-toggle"
                                 data-toggle="dropdown" aria-expanded="false">进入贴吧
                         </button>
-                        <button style="height:40px;margin-left:20px;border-radius:10%;" type="button"
+                        <button style="height:30px;margin-left:20px;border-radius:10%;" type="button"
                                 class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             全吧搜索
                         </button>
@@ -96,7 +96,7 @@
     <div class="userinfo_middle">
         <div class="userinfo_relation">
             <div class="btn_grounps">
-                <a class="btn-sub btn-small" target="_blank" href="<{:U('Profile/index')}>">
+                <a class="btn-sub btn-small" target="_blank" href="<{:U('Profile/index',array('uid'=>$_SESSION['user']['id']))}>">
                     <i class="icon-edit"></i>编辑资料</a>
             </div>
         </div>
@@ -121,12 +121,6 @@
                        style="top: 0px;left:28px"></a>
                 </span>
         </div>
-        <li class="lione fl"><a href="<{:U('MyInfo/follow',array('uid'=>$list['id']))}>" class="litwo">
-            <if condition="$follow eq 1"><span class="glyphicon glyphicon-plus"></span>关注
-        </a></li>
-        <else/>
-        <a href="<{:U('MyInfo/cancel',array('uid'=>$list['id']))}>"><li class="lithree fl" style="color:orange;font-size:16px;margin-top:-40px;">√已关注 | 取消</li></a>
-        </if>
     </div>
     <div class="userinfo_right">
         <div class="userinfo_scores clearfix">
@@ -145,7 +139,7 @@
             <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
             <div>
                 <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
-                <a class="btn-sub btn-small" href="http://tieba.baidu.com/f?kw=%C0%B6%D7%EA&amp;fr=index"
+                <a class="btn-sub btn-small" href="javascript:void(0)"
                    target="_blank">蓝钻换购</a>
             </div>
         </div>
@@ -154,7 +148,7 @@
             <span class="userinfo_split"></span>
             <a href="#" target="_blank">我在百度</a>
             <span class="userinfo_split"></span>
-            <a href="#" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>
+            <a href="<{:U('Profile/index',array('uid'=>$_SESSION['user']['id']))}>" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>
         </div>
     </div>
 </div>
@@ -210,17 +204,13 @@
                 </ul>
             </div>
             <div class="ihome_forum_group ihome_section clearfix">
-                <div id="onekey_sign">
-                    <a class="onekey_btn" onclick="return false;" href="#">
-                        <i class="icon_signed"></i>
-                    </a>
-                </div>
                 <h1 class="ihome_title">
                     <span class="cut_line">|</span>爱逛的吧
                 </h1>
+                <!-- <{:dump($love)}> -->
                 <div class="clearfix u-f-wrap" id="forum_group_wrap">
                     <volist name="love" id="vo">
-                        <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="#"
+                        <a data-fid="59099" target="_blank" locate="like_forums#ihome_v1" href="<{:U('Bar/index',array('id'=>$vo['id']))}>"
                            class="u-f-item unsign">
                             <span><{$vo['name']}></span>
                             <span class="forum_level lv1"></span>
@@ -228,47 +218,6 @@
                     </volist>
                 </div>
             </div>
-
-           <!--  <div class="ihome_hot_feed ihome_section">
-                <h1 class="threadList_title">
-                    <span class="cut_line">|</span>热门动态
-                </h1>
-                <ul class="new_list clearfix"> -->
-                   <!-- <!--  <volist name="hot" id="v">
-                        <div class="n_right n_right_first clearfix">
-                            <div class="n_post_time"><{$v['createtime']|date='Y-m-d',###}></div>
-                            <div class="n_avatar">
-                                <a href="#" target="_blank" title="头像">
-                                    <img src="__UPLOAD__/<if condition="$v['hpic'] == null">dog.jpg<else/><{$v['hpic']}></if>">
-                                    <!-- <img src="__UPLOAD__/<{$v['hpic']}>">   -->
-                         <!--        </a>
-                            </div>
-                            <div class="n_contain">
-                                <div>
-                                    <div class="title_wraper">
-                                        <a href="#" target="_blank" class="n_name" title="吧名"><{$v['name']}></a>
-                                    </div>
-                                    <div class="thread_name">
-                                        <a href="#" target="_blank" class="title" locate="feed_title#ihome_v1"
-                                           title="标题"><{$v['title']}></a>
-                                    </div>
-                                </div>
-                                <div class="n_txt"><{$v['desc']}></div>
-
-                                <div class="n_reply">
-                                    <a href="#" title="主题作者" target="_blank" class="post_author ">love影6</a>
-                                    <span class="userinfo_split"></span>
-                                    <span class="post_num">98</span>
-                                </div>
-                            </div>
-                        </div>
-                    </volist> --> 
-                    <!-- <{:dump($v)}> --> 
-
-             <!--    </ul>
-                <div class="data_loading">
-                    <img src="__PUBLIC__/Center/loading.gif" width="22" height="22"></div>
-            </div> -->
         </div>
     </div>
     <div class="right_aside">
@@ -307,8 +256,8 @@
             <ul class="concern_wrap" id="concern_wrap_fans">
                 <li class="concern_item"><a
                         data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}"
-                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/index',array('uid'=>$fname[2]['id']))}>"><img
-                       src="__ROOT__/<if condition="$fname[2]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[2]['hpic']}></if>"></a>
+                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/personal',array('uid'=>$fname[0]['id']))}>"><img
+                       src="__ROOT__/<if condition="$fname[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[0]['hpic']}></if>"></a>
                 </li>
             </ul>
         </div>
@@ -327,14 +276,6 @@
 </div>
 <span class="fix-for-ie8"></span>
 </div>
-<!--<script type="text/javascript">alog&&alog("speed.set","drt",+new Date);</script>-->
-
-<!-- <script src="__PUBLIC__/Center/saved_resource(4)"></script> -->
-
-<!-- <script src="__PUBLIC__/Center/saved_resource(6)"></script>
-<script src="__PUBLIC__/Center/saved_resource(7)"></script>
-<script src="__PUBLIC__/Center/saved_resource(8)"></script> -->
-
 <div id="lcsas-container" style="position: fixed; top: 0px;">
     <object id="LCSAS" height="1" width="1" align="middle" type="application/x-shockwave-flash"
             data="__PUBLIC__/Center/LCSAS_b80db27.swf.下载">

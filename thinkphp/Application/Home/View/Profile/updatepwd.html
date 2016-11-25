@@ -1,17 +1,11 @@
-<!-- <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" /> -->
  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
-   <!-- <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" /> -->
  <div class="layui-tab layui-tab-card">
   <ul class="layui-tab-title">
     <li class="layui-this">修改密码</li>
-    <li class="layui-this">修改个人信息</li>
   </ul>
-<!--   <{:dump($list)}> -->
-
   <div class="layui-tab-content" style="height: 390px;">
-    <div class="layui-tab-item layui-show">
-      
-<form class="layui-form" action="<{:U('Profile/dopwd')}>" onsubmit = "return check()" method="POST">
+  <div class="layui-tab-item layui-show">    
+  <form class="layui-form" action="<{:U('Profile/dopwd')}>" onsubmit = "return check()" method="POST">
    <div style="margin-top:60px;margin-left:150px;"> 
    <h1 style="margin-top:-30px;font-size:20px;margin-left:140px;">修改密码</h1>
        <input type="hidden" name="id" value="<{$list['id']}>">
@@ -21,6 +15,12 @@
           <input name="name" lay-verify="name" autocomplete="off" class="layui-input" type="tel" value="<{$list['name']}>" disabled>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">原密码</label>
+        <div class="layui-input-inline">
+          <input name="password" id="password" lay-verify="password" autocomplete="off" class="layui-input" type="password">
+        </div>
+      </div>    
       <div class="layui-form-item">
         <label class="layui-form-label">新密码</label>
         <div class="layui-input-inline">
@@ -33,8 +33,6 @@
           <input name="repwd" id="repwd" lay-verify="repwd" autocomplete="off" class="layui-input" type="password">
         </div>
       </div>
-     
-
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit="" lay-filter="demo1">立即修改</button>
@@ -44,20 +42,35 @@
   </div>
   </form>  
   </div>
-</div>
-  
-  <script src="__PUBLIC__/public/js/jquery.min.js"></script>
- <script src = "__PUBLIC__/layer/layer.js"></script>
- <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
- <script type="text/javascript">
+</div> 
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src = "__PUBLIC__/layer/layer.js"></script>
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
    // 对密码进行验证
-    var pwd_n,pwd_r;
+    var pwd_p,pwd_n,pwd_r;
    window.onload = function checkinfo(){
-    //对新密码进行验证 
+    //对原密码进行验证 
+     $('#password').change(function(){
+      var password = $('#password').val();
+      $.post("<{:U('Profile/oldpwd')}>",{'oldpwd':password},function(res){
+          if (res == true) {
+               layer.tips('原密码正确','#password',{
+                tips:[2,'green'],
+                time:2000
+               });
+               pwd_p = true;
+            }else if(res == false){
+                layer.tips('原密码不正确','#password',{
+                    tips:[2,'red']
+                });
+                  pwd_p = false;
+            }
+         })
+     });   
+      //对新密码进行验证 
      $('#newpwd').change(function(){
       var newpwd = $('#newpwd').val();
-      // alert(newpwd);
-       // alert(newpwd.length);
           if (newpwd.length>4 && newpwd.length<20) {
                layer.tips('密码可以使用','#newpwd',{
                 tips:[2,'green'],
@@ -88,16 +101,15 @@
               }
 
          });
+    }
+     function check(){
+      if ((pwd_p == true) && (pwd_n == true) && (pwd_r == true)) {
+        return true;
+      };
+     }
 
-   }
-   function check(){
-    if ((pwd_n == true) &&(pwd_r == true)) {
-      return true;
-    };
-   }
 
-
-     layui.use('element', function(){
+    layui.use('element', function(){
       var $ = layui.jquery
       ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
       
@@ -118,15 +130,15 @@
           //切换到指定Tab项
           element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
         }
-  };
+   };
   
-  $('.site-demo-active').on('click', function(){
-    var type = $(this).data('type');
-    active[type] ? active[type].call(this) : '';
+    $('.site-demo-active').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
   });
-});
 
-    layui.use(['form', 'layedit', 'laydate'], function(){
+  layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form()
   ,layer = layui.layer
   ,layedit = layui.layedit

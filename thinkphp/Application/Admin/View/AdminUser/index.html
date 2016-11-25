@@ -74,7 +74,9 @@
                                   <else />保密
                                   </if>
                                 </td> 
-                                <td><img src="__ROOT__/<{$v['hpic']}>" width="50" alt=""></td>
+                                <td>
+                                 <img width="50" src="__ROOT__/<if condition="$v['hpic'] == null">Public/Public/image/dog.jpg<else /><{$v['hpic']}></if>" />
+                                </td>
                                  <td><{$v.email}></td>
                             <td>
                                 <div class="visible-md visible-md hidden-sm hidden-xs action-buttons center">

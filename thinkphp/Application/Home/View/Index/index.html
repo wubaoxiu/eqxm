@@ -32,12 +32,12 @@
                        </ul>  
                        <ul>
                            <li><div class = "dou"></div></li>
-                           <li><a href="">0[获取]</a></li>
+                           <li><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>">0[获取]</a></li>
                        </ul>
                     </div>
                     </div>
                     <div class = "bar_love">
-                        <span><a href=""><b>爱逛的吧</b></a></span>
+                        <span><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><b>爱逛的吧</b></a></span>
                         <if condition="$signin eq 0">
                             <a href="<{:U('Sign/allIn')}>" class="yiqian">
                                 <div>                               

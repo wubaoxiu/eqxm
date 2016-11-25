@@ -1,11 +1,11 @@
 <?php 
 
-
 namespace Home\Controller;
 use Think\Controller;
 
    /**
-   *  修改个人资料
+   *  修改个人资料  修改个人头像 查看所关注的吧信息 
+   *   关注的好友 以及收藏的帖子
    *   @author xiao
    *  date 2016-11-22
    */ 
@@ -13,10 +13,10 @@ use Think\Controller;
 class SetController extends Controller{
 
     private $_user = null;//用户表操作
-    private $_like = null;//用户表操作
-    private $_barinfo = null;//用户表操作
-    private $_bars = null;//用户表操作
-    private $_fans = null;//用户表操作
+    private $_like = null;//爱好表操作
+    private $_barinfo = null;//吧信息表操作
+    private $_bars = null;//用户关注吧表操作
+    private $_fans = null;//粉丝表操作
 
     public function _initialize(){
       $this->_user=M('user');
@@ -54,8 +54,6 @@ class SetController extends Controller{
          $this->display('Set/dophoto');
     }
 
-
-
      //修改头像
 
     public function action(){
@@ -64,14 +62,10 @@ class SetController extends Controller{
         $data['id'] = I('get.id/d');
        $this->_user->save($data);
        return $this->ajaxReturn($hpic);
-
     }
 
-
-        /**
-        *  头像上传
-        */ 
-
+    
+       // 头像上传
    public function upload(){
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize = 3145728 ;// 设置附件上传大小
@@ -132,15 +126,12 @@ class SetController extends Controller{
         */ 
 
     public function mybar(){
-        $id=$_SESSION['user']['id'];
-        // var_dump($id); 
-       $list = $this->_bars->field('bi.name,b.integral,b.grade')->where('b.bar_id=bi.id')->table('csw_barinfo bi,csw_bars b')->select();
-        // var_dump($list);
+
+        $id=$_SESSION['user']['id']; 
+        $list = $this->_bars->field('bi.name,b.id,b.integral,b.grade')->where("b.bar_id=bi.id and b.user_id='$id'")->table('csw_bars b,csw_barinfo bi')->select();
         $this->assign('list',$list);
         $this->display('Set/mybar');
     }
-
-
 
     /**
     * 对我关注的贴吧(取消关注)
@@ -151,10 +142,9 @@ class SetController extends Controller{
     public function delfollowbar(){
         //接受吧id
         $id = I('post.id/d');
-        // var_dump($id);
-        $res = $this->_barinfo->where(array('id'=>array('eq',$id)))->delete();
+        var_dump($id);
+        $res = $this->_bars->where(array('id'=>array('eq',$id)))->delete();
         if ($res) {
-         $this->_score->where(array('id'=>array('eq',$id)))->delete();
         return $this->ajaxReturn($res);
         }
     } 
@@ -169,16 +159,13 @@ class SetController extends Controller{
       $id = $_SESSION['user']['id'];
       // 查询该用户所关注的好友的id
        $list = $this->_fans->field('fuser_id')->where("user_id=$id")->select();
-       foreach($list as $v){
-        // var_dump($v['fuser_id']);
-        //根据好友的id 查找该好友拥有的积分以及该好友的用户名 
-        $data[]=$this->_bars->field('u.name,b.integral,b.grade')->where(array('u.id'=>array('eq',$v['fuser_id']),'b.user_id'=>array('eq',$v['fuser_id'])))->table('csw_user u,csw_bars b')->find();
+       foreach($list as $k=>$v){
+        //根据好友的id 查找该好友的用户名 
+          $arr[$k]['name'] =$this->_user->field('name')->where(array('id'=>$v['fuser_id']))->find(); 
        }
-      $this->assign('data',$data);
+      $this->assign('arr',$arr);
       $this->display('Set/friend');
     }
-
-
       /**
        * 对我关注的好友(取消关注)
        * 方法名 delfriend()
