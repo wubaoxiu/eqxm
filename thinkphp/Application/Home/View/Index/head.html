@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>CSW贴吧</title>
 
    <!--  <block name="headstyle"> -->
     <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
@@ -60,14 +60,16 @@
             </a>
         </h1>        
         <div  style = "margin-top:30px;"class="row">
-         <div class="col-lg-6">
-            <div class="input-group">
-              <input style = "height:40px;"type="text" class="form-control" aria-label="...">
-              <div class="input-group-btn">
-                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">进入贴吧</button><button style = "height:40px;margin-left:20px;border-radius:10%;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
-              </div><!-- /btn-group -->
-            </div><!-- /input-group -->
-          </div><!--/.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input style = "height:40px;"type="text" class="form-control" id="barss" aria-label="...">
+                    <div class="input-group-btn">
+                        <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="searchbar">进入贴吧</button>
+
+                        <button style = "height:40px;margin-left:20px;border-radius:10%;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div><!--/.col-lg-6 -->
         </div><!-- end row-->
     </div><!-- end .container -->
 </div><!-- end #header -->
@@ -110,3 +112,23 @@
 <!-- </block> -->
 <block name="myjs"></block>
 <!-- end scripts -->
+
+<script>
+    $(function(){
+        $(document).on('click',"#searchbar",function(){
+            $.ajax({
+                type:'post',
+                data: 'bars='+$("#barss").val(),
+                url:"<{:U('Search/search')}>",
+                success:function(results){
+                    if(results === 0) {
+                        alert("没有该吧，马上去申请建吧");window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                    } else {
+                        location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
+                    }
+                },
+            })
+        })
+
+    })
+</script>

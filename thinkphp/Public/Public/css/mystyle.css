@@ -108,7 +108,9 @@ ul li{
 .content_d{
     width:800px;
     /*height:450px;*/
-    /*border:1px solid #ccc;*/
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
     float:left;
 }
 .content_d .content_nav{

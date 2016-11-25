@@ -1,0 +1,202 @@
+<extend name="Index/head" />
+
+<block name="main">
+  <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/my.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+<!--     <{:dump($data)}> -->
+  <title>创建贴吧</title>
+  <div class = "center">
+        <div class = "center_nav">    
+            <div class = "center_header">
+                <ul>
+                    <li><a href="<{:U('Index/index')}>">返回首页</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="manage_main fl mt30">
+            <div class="page-header">
+                <h1>
+                    新建贴吧
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        Bar Add
+                    </small>
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="<{:U('CreateBar/doCreate')}>" method='post' enctype="multipart/form-data" class="form-horizontal" onsubmit='return checkForm();'>
+
+                        <div class="form-group" style="">
+                            <label for="" class="col-sm-2 control-label">贴吧名：</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="barname" name="name" value="<{$barname}>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">分  类 ：</label>
+                            <div class="col-sm-4">
+                                <select id="bartype" name="type_id" class="col-sm-4">
+                                    <option value="0" selected></option>
+                                    <volist name="list" id="v">
+                                        <option value="<{$v['id']}>"><{$v['newname']}></option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="">
+                            <label for="" class="col-sm-2 control-label">手机：</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="telnumber" name="phone" class="form-control">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group" style="">
+                            <label for="" class="col-sm-2 control-label">验证码：</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="yzm" name="yzm" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="btn btn-primary" id="sendphone">发送手机验证</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">宣言 ：</label>
+                            <div class="col-sm-4">
+                            <textarea name="title" id="xuanyan" class="form-control limited" id="form-field-9" maxlength="50"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">公  告：</label>
+                            <div class="col-sm-4">
+                                <textarea name="desc" id="gonggao" class="autosize-transition form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-4">
+                              <button type="submit" class="btn btn-primary">确认添加</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                              <button type="reset" class="btn btn-default">重新填写</button>
+                            </div>
+                        </div>       
+                    </form>
+                </div>
+            </div>  
+        </div>
+    </div><!--center 最外层的div-->
+<!--   <hr> -->
+    
+</block>
+
+<block name="myjs">
+    <script src="__PUBLIC__/layer/layer.js" charset="utf-8"></script>
+    <script>
+        var n1,n2,n3,n4,n5;
+        $(function(){
+            $("#barname").blur(function(){
+                // console.log($(this).val().length);
+                barname();
+            })
+
+            function barname(){
+               if($("#barname").val() == ""){
+                    layer.tips('贴吧名不能为空！！', '#barname');
+                }else if($("#barname").val().length>10){
+                    layer.tips('不能多于十个字！', '#barname');
+                } else {
+                    n1 = 'y';
+                }
+            }
+
+            $("#bartype").blur(function(){
+                // console.log($(this).val());
+                bartype();
+            })
+
+            function bartype(){
+               if($("#bartype").val() == 0){
+                    layer.tips('请认真选择分类', '#bartype');
+                } else {
+                    var n2 = 'y';
+                }
+            }
+
+            $("#telnumber").blur(function(){
+                // console.log($(this).val());
+                telnumber();
+            })
+
+            function telnumber(){
+                if(!(/^1[34578]\d{9}$/.test($("#telnumber").val()))){
+                    layer.tips('手机号错误！', '#telnumber');
+                } else {
+                    n3 = 'y';
+                }
+            }
+
+            $("#xuanyan").blur(function(){
+                // console.log($(this).val());
+                xuanyan();
+            })
+
+            function xuanyan(){
+                if($("#xuanyan").val() == ""){
+                    layer.tips('宣言不能为空！', '#xuanyan');
+                } else {
+                    n5 = 'y';
+                }
+            }
+
+            $("#gonggao").blur(function(){
+                // console.log($(this).val());
+                gonggao();
+            })
+
+            function gonggao(){
+                if($("#gonggao").val() == ""){
+                    layer.tips('宣言不能为空！', '#gonggao');
+                } else {
+                    n6 = 'y';
+                }
+            }
+
+            $(document).on('click','#sendphone',function(){
+                // alert('yes');
+                console.log($('#telnumber').val());
+                $.post("<{:U('Updatepwd/sendSms')}>",{'val':$('#telnumber').val()},function(res){
+                    console.log(res);
+                    if (res == 'true'){
+                         $('#sendphone').html('已发送,60秒后重新输入');
+                         $('#sendphone').attr('disabled','disabled');
+                         timer = setInterval(demo,1000);
+                    }else{
+                        layer.tips('发送失败','#telnumber');
+                    }
+               })
+            })
+
+            function demo(){ 
+                if (m<=0) {
+                     $('#sendphone').html('发送');
+                     $('#sendphone').removeAttr('disabled');
+                     clearInterval(timer);
+                }else{
+                    $('#sendphone').html('已发送,'+m+'秒后重新输入');
+                    m--;
+                }
+            }
+
+            
+        })
+            //总体验证
+            function checkForm(){
+                if(n1 !== 'y' && n2 !== 'y' && n3 !== 'y' && n4 !== "y" && n5 !== "y"){
+                    alert("您的信息有误，请认真修改后提交！");
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+    </script>
+</block>

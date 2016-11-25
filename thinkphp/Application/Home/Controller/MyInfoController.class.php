@@ -23,8 +23,7 @@ use Think\Controller;
 
         public function index()
         {
-
-            // 该用户的id
+          // 该用户的id
           $uid = I('get.uid/d');
               // var_dump($uid);
           // 查询该用户的所有信息

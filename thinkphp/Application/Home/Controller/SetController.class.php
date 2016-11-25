@@ -59,8 +59,8 @@ class SetController extends Controller{
      //修改头像
 
     public function action(){
-         $hpic = $this->upload();
-        $data['hpic'] = $hpic;
+      $hpic = $this->upload();
+      $data['hpic'] = $hpic;
         $data['id'] = I('get.id/d');
        $this->_user->save($data);
        return $this->ajaxReturn($hpic);

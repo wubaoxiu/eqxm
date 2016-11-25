@@ -76,34 +76,38 @@
                 <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
                 <strong>天气<span class="name-en">/WEATHER</span></strong>
                 </dt>
-                <dd class="sidebar_articles">
-                    <span>487</span>
-                    <a target="_blank"  href="js.html?/712.html">美国大选川普逆袭</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-04</span>
-                    <a target="_blank"  href="js.html?/442.html">1111总攻节</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-04</span>
-                    <a target="_blank"  href="js.html?/441.html">基于ace的CRM项目管理系统后台</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/437.html">投票任务服务平台bootstrap响应式微信模板</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/440.html">联途旅游网全套bootstrap网站模板</a>
-                </dd><dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/439.html">eteams协同办公OA管理系统模板</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/438.html">投票任务平台手机版</a>
-                </dd>
             </dl>
+            <div class = "bar_rec">
+                    <!-- <div class = "rec_list"> -->
+                        <!-- <form action="<{:U('Bar/index')}>" method="post">
+                        <input type="text" name="city" value="" placeholder="请输入城市名拼音:">
+                        <button>查询</button>
+                    </form> -->
+                    <if condition="$weather eq null">
+                       查无数据!
+                    <else/>
+                    <!-- <table width="280" style="text-align:center;margin-top: 15px">  -->
+                        <ul style="margin-top:20px;">
+                            <li><strong style="color:#337AB7;margin-left:20px;">城市：厦门</strong></li>
+                            <volist name="weather" id="t">
+                            <ul  class="type_one" style="margin-top:25px;">
+                                <li><{$t->date}></li>
+                                <ul>
+                                    <li><{$t->text_day}> 转 
+                                        <{$t->text_night}><img style="float:right;margin-right:14px;margin-top:-10px;" width="30" height="30" src="__UPLOAD__/2016-11-25_134125.png"></li>
+                                    <li><{$t->low}>℃ ~
+                                         <{$t->high}>℃</li>
+                                    
+                                </ul>
+                            </ul>
+                        </ul>
+
+                        </volist>
+                    </table>
+                    </if>
+
+                    <!-- </div> -->
+            </div>
         </div>
        <!-- 轮播图 -->
         <div class="index_left clearfix">
@@ -197,7 +201,7 @@
                         <volist name="bars" id="bar">
                             <li>
                                 <a target="_blank"  href="<{:U('Bar/index',array('id'=>$bar['id']))}>">
-                                    <img src="__UPLOAD__/<{$bar['hpic']}>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
+                                    <img src="<if condition="$bar['hpic']==null">__PUBLIC__/Barimg/default_hpic.jpg<else />__UPLOAD__/<{$bar['hpic']}></if>" style = "height:150px;"alt="<{$bar['name']}>" class="lazy"  />
                                 </a> 
                                 <div class= "ul_info">     
                                     <a href="<{:U('Bar/index',array('id'=>$bar['id']))}>" target="_blank"><b style="font-size:20px;"><{$bar['name']}> </b></a><br>
@@ -365,8 +369,8 @@
                     type:'post',
                     url:"<{:U('Index/isfine')}>",
                     success:function(results){
-                        console.log(results);
-                        console.log(results.length);
+                        // console.log(results);
+                        // console.log(results.length);
                         for(var i=0;i<results.length;i++){
                             $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
                             // $(".content_d").append("<a href=''>"+results[i].name+"</a>");
@@ -386,8 +390,8 @@
                     type:'post',
                     url:"<{:U('Index/ishot')}>",
                     success:function(results){
-                        console.log(results);
-                        console.log(results.length);
+                        // console.log(results);
+                        // console.log(results.length);
                         for(var i=0;i<results.length;i++){
                             $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
                             // $(".content_d").append("<a href=''>"+results[i].name+"</a>");

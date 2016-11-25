@@ -15,17 +15,6 @@ class IndexController extends Controller {
      * @return [void]
     */
     public function index(){
-        //推荐贴吧信息
-        // dump($_SESSION['user']);
-        // $suggest = M('barinfo')->where(array('status'=>array('eq','1')))->order('attention desc')->limit(3)->select();
-
-        // $arr = array();
-        // foreach($suggest as $v){
-        //     $v['count'] = M('note')->field(array("count(bar_id)"=>"count"))->where(array('bar_id'=>array('eq',$v['id'])))->select();
-
-        //     $arr[] = $v;
-        // }
-        // dump($arr);
 
         //全部贴吧推荐
         $bars = M('barinfo')->where(array('status'=>array('eq','1')))->order('attention desc')->limit(8)->select();
@@ -69,7 +58,9 @@ class IndexController extends Controller {
                 break;
             }
         }
-        // echo $s;
+
+        $weather = $this->weather();
+        // dump($weather);
 
         // $this->assign('suggest',$arr);
         $this->assign('bars',$list);
@@ -79,6 +70,7 @@ class IndexController extends Controller {
         $this->assign('links',$links);
         $this->assign('attenBars',$attenBars);
         $this->assign('signin',$s);
+        $this->assign('weather',$weather);
 
         $this->display();
     }
@@ -125,5 +117,30 @@ class IndexController extends Controller {
 
         $res = json_decode($res);
         var_dump($res->newslist);
+    }
+
+    public function weather()
+    {
+        $ch = curl_init();
+        $location = 'xiamen';
+        $url = 'http://apis.baidu.com/thinkpage/weather_api/suggestion?location='.$location.'&language=zh-Hans&unit=c&start=0&days=3';
+        $header = array(
+            'apikey: b848d17197e4ead6adc43f2af62b4ac8',
+        );
+        // 添加apikey到header
+        curl_setopt($ch, CURLOPT_HTTPHEADER  , $header);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // 执行HTTP请求
+        curl_setopt($ch , CURLOPT_URL , $url);
+        $res = curl_exec($ch);
+
+        $res = json_decode($res);
+        // dump($res);
+        // exit;
+        $data = $res->results;
+
+        return($data[0]->daily);
+        // $this->assign('data',$data[0]->daily);
+        // $this->display('public/index');
     }
 }

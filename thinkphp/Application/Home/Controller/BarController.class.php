@@ -109,6 +109,81 @@ class BarController extends Controller
         $this->display();
     }
 
+
+    /**
+     * 方法名：note()  显示贴子内容页面
+     * @return [void]
+     */
+    public function note()
+    {
+        $barid = I('bar_id');
+        // $barid = 3;
+        $noteid = I('note_id');
+        // $noteid = 1;
+
+        $atten = $this->is_attentionBar($barid);
+        $collect = $this->is_collect($noteid);
+
+        //贴吧管理员信息
+        $baradmin_info = $this->getBarAdmin($barid);
+
+        if ($_SESSION['user']) {
+            $attenbars = attentionBars();
+            $signstatus = $this->getSign($barid);
+        }
+        // echo $signstatus;
+
+        //贴子主要信息
+        $count = M('note')->field(array('count(bar_id)' => "count"))->where("bar_id=$barid")->select();
+        $data = M('note')->field(array("b.name bname", "n.bar_id", "n.id", "b.attention", "b.hpic bhpic", "u.hpic uhpic", "u.name uname", "n.content", "n.createtime", "n.title"))->table("csw_barinfo b,csw_note n,csw_user u")->where("b.id=$barid and n.user_id=u.id and n.id=$noteid")->select();
+        // dump($data);
+        // dump($count);
+        //贴吧楼层
+
+        $reply = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->page($_GET['p'],5)->select();
+
+        // dump($reply);
+        $pagenum = M('floor')->where("bar_id=$barid and note_id=$noteid")->count();
+        // dump($pagenum);
+        $pagenow = $_GET['p'];
+        // echo $pagenow;
+
+        $page = new \Think\Page($pagenum,5);
+
+        $show = $page->show();
+        foreach ($reply as $v) {
+            $v['content'] = htmlspecialchars_decode($v['content']);
+            // dump($v);
+            $replys[] = $v;
+        }
+        //楼层评论
+        $comments = M('comments')->field("u.name uname,c.content,c.createtime,u.hpic,c.floor cfloor")->table("csw_user u,csw_comments c")->where("c.note_id=$noteid and c.user_id=u.id and c.status=1")->select();
+        // dump($comments);
+        // dump($replys);
+
+         $bazu = $this->_barinfo->field('u.name')->table('csw_user u,csw_barinfo b')->where("u.id=b.user_id and b.id=$barid")->select();
+        // dump($bazu);
+
+
+        $this->assign('count',$count);
+        $this->assign('data',$data);
+        $this->assign('comments',$comments);
+        $this->assign("replys",$replys);
+        $this->assign("atten",$atten);
+        $this->assign("attenbars",$attenbars);
+        $this->assign('show',$show);
+        $this->assign('pagenow',$pagenow);
+        $this->assign('bar_id',$barid);
+        $this->assign('signstatus',$signstatus);
+        $this->assign('title',"CSW贴吧");
+        $this->assign('collect',$collect);
+        $this->assign('baradmin_info',$baradmin_info);
+        $this->assign('bazu',$bazu);
+
+
+        $this->display("Bar/note");
+    }
+
     /**
      * 方法名：manage()  贴吧的管理界面主体
      * @author yjx 11/23
@@ -322,71 +397,6 @@ class BarController extends Controller
         }
     }
 
-    /**
-     * 方法名：note()  显示贴子内容页面
-     * @return [void]
-     */
-    public function note()
-    {
-        $barid = I('bar_id');
-        // $barid = 3;
-        $noteid = I('note_id');
-        // $noteid = 1;
-
-        $atten = $this->is_attentionBar($barid);
-        $collect = $this->is_collect($noteid);
-
-        if ($_SESSION['user']) {
-            $attenbars = attentionBars();
-            $signstatus = $this->getSign($barid);
-        }
-        // echo $signstatus;
-
-        //贴子主要信息
-        $count = M('note')->field(array('count(bar_id)' => "count"))->where("bar_id=$barid")->select();
-        $data = M('note')->field(array("b.name bname", "n.bar_id", "n.id", "b.attention", "b.hpic bhpic", "u.hpic uhpic", "u.name uname", "n.content", "n.createtime", "n.title"))->table("csw_barinfo b,csw_note n,csw_user u")->where("b.id=$barid and n.user_id=u.id and n.id=$noteid")->select();
-        // dump($data);
-        // dump($count);
-        //贴吧楼层
-
-        $reply = M('floor')->field(array("f.content","f.note_id","u.name uname","u.hpic uhpic","u.id uid","f.createtime","f.floor"))->table("csw_user u,csw_floor f")->where("f.note_id=$noteid and f.user_id=u.id")->page($_GET['p'],5)->select();
-
-        // dump($reply);
-        $pagenum = M('floor')->where("bar_id=$barid and note_id=$noteid")->count();
-        // dump($pagenum);
-        $pagenow = $_GET['p'];
-        // echo $pagenow;
-
-        $page = new \Think\Page($pagenum,5);
-
-        $show = $page->show();
-        foreach ($reply as $v) {
-            $v['content'] = htmlspecialchars_decode($v['content']);
-            // dump($v);
-            $replys[] = $v;
-        }
-        //楼层评论
-        $comments = M('comments')->field("u.name uname,c.content,c.createtime,u.hpic,c.floor cfloor")->table("csw_user u,csw_comments c")->where("c.note_id=$noteid and c.user_id=u.id and c.status=1")->select();
-        // dump($comments);
-        // dump($replys);
-
-
-        $this->assign('count',$count);
-        $this->assign('data',$data);
-        $this->assign('comments',$comments);
-        $this->assign("replys",$replys);
-        $this->assign("atten",$atten);
-        $this->assign("attenbars",$attenbars);
-        $this->assign('show',$show);
-        $this->assign('pagenow',$pagenow);
-        $this->assign('bar_id',$barid);
-        $this->assign('signstatus',$signstatus);
-        $this->assign('title',"CSW贴吧");
-        $this->assign('collect',$collect);
-
-
-        $this->display("Bar/note");
-    }
 
     /**
      * 方法名：getSign()  获取签到信息
@@ -424,7 +434,7 @@ class BarController extends Controller
 
         $data = array();
         $data['note_id'] = I("post.note_id");
-        $data['user_id'] = I("post.user_id");
+        $data['user_id'] = $_SESSION['user']['id'];
         $data['createtime'] = time();
         $data['floor'] = I("post.floor");
         $data['content'] = I("post.content");
@@ -526,68 +536,68 @@ class BarController extends Controller
         *   @author xiao
         */
 
-        public function collect(){
+    public function collect(){
 
-          //判断有无登录
-          if (empty($_SESSION['user']['name'])) {
-             $this->error('您还没有登录，请先登录');
-             exit;
-          }
-          //接受帖子的id
-          $note_id = I('get.noteid/d');
-          $data['user_id'] = $_SESSION['user']['id'];
-          $data['note_id'] = $note_id;
-         if (M('collect')->data($data)->add()>0) {
+        //判断有无登录
+        if (empty($_SESSION['user']['name'])) {
+            $this->error('您还没有登录，请先登录');
+            exit;
+        }
+        //接受帖子的id
+        $note_id = I('get.noteid/d');
+        $data['user_id'] = $_SESSION['user']['id'];
+        $data['note_id'] = $note_id;
+        if (M('collect')->data($data)->add()>0) {
             $this->success('收藏成功！');
-         }else{
-          $this->error('收藏失败....');
-         }
+        }else{
+            $this->error('收藏失败....');
+        }
+    }
+
+
+    /**
+    * 方法名 delcollect() 取消关注
+    * @param int noteid 好友id
+    */ 
+
+    public function delcollect(){
+       //接受你要取消收藏的帖子的id
+        $note_id = I('get.noteid/d');
+        if (empty($note_id)) {
+            $this->error('操作失误！');
+            exit;
         }
 
-
-        /**
-        * 方法名 delcollect() 取消关注
-        * @param int noteid 好友id
-        */ 
-
-        public function delcollect(){
-           //接受你要取消收藏的帖子的id
-          $note_id = I('get.noteid/d');
-          if (empty($note_id)) {
-             $this->error('操作失误！');
-             exit;
-          }
-
-          $data['user_id']=$_SESSION['user']['id'];
-          $data['note_id'] = $note_id;
-          // var_dump($data);die;
-          if (M('collect')->where($data)->delete()>0) {
-             $this->success('取消收藏成功！');
-          }else{
+        $data['user_id']=$_SESSION['user']['id'];
+        $data['note_id'] = $note_id;
+        // var_dump($data);die;
+        if (M('collect')->where($data)->delete()>0) {
+            $this->success('取消收藏成功！');
+        }else{
             $this->error('取消收藏失败........');
-          }
         }
+    }
 
       
-        /**
-        *  定义一个私有方法
-        *  方法名 is_collect()  判断是否关收藏了此贴吧
-        *  @param int id  好友id
-        *   @return string 1 表示收藏 2 表示已收藏
-        */ 
-        private function is_collect($noteid){
-            //定义一个空数组
-          $arr = [];
-          $arr['user_id'] =$_SESSION['user']['id'];
-          $arr['note_id'] = $noteid;
-          $res = M('collect')->where($arr)->select();
-          if (empty($res)) {
+    /**
+    *  定义一个私有方法
+    *  方法名 is_collect()  判断是否关收藏了此贴吧
+    *  @param int id  好友id
+    *   @return string 1 表示收藏 2 表示已收藏
+    */ 
+    private function is_collect($noteid){
+        //定义一个空数组
+        $arr = [];
+        $arr['user_id'] =$_SESSION['user']['id'];
+        $arr['note_id'] = $noteid;
+        $res = M('collect')->where($arr)->select();
+        if (empty($res)) {
             return 1;
-          }else{
+        }else{
             return 2;
-          }
-
         }
+
+    }
     
 
     /**

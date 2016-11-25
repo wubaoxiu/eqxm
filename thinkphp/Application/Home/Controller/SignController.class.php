@@ -42,6 +42,10 @@ class SignController extends Controller
 
     public function in()
     {
+        if(empty($_SESSION['user'])){
+            $this->error("对不起，你还没有登录请登录后再来！");
+            exit;
+        }
         $bars = M('bars');
         $adr = I('adr');
         if(empty($adr)){
@@ -51,7 +55,7 @@ class SignController extends Controller
         $map = [];
         $map['bar_id'] = I('barid');
         $map['user_id'] = $_SESSION['user']['id'];
-        // dump($map);
+        // dump($map);exit;
         $data = M('bars')->where($map)->find();
         // echo $data['id'];
         // dump($data);exit;
