@@ -45,8 +45,11 @@
         var name = $("input[name='name']").val();
         var password = $("input[name='password']").val();
         // alert("name="+name+"&password="+password);
-        $.post("<{:U('Login/checkLogin')}>",{'name':name,'password':password},async:false,function(data){
-            // console.log(data.val == false);
+        $.ajaxSetup({   
+            async : false  
+        });
+        $.post("<{:U('Login/checkLogin')}>",{'name':name,'password':password},function(data){
+            // console.log(data);
             if(data.val == false){
                 layer.msg(data.content, {
                 time: 20000, //20s后自动关闭

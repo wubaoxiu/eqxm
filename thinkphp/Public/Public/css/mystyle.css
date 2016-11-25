@@ -46,7 +46,8 @@ ul li{
 
 #header-top .right {
     float: right;
-    padding-right: 130px;
+    text-align: center;
+    padding-right: 50px
 }
 #header-top .left a { text-decoration: none; font-size:18px;margin-left: 15px;color:black;}
 #header-top .right a { text-decoration: none; font-size:14px;margin-left: 15px;color:#2D64B3;}

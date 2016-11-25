@@ -259,7 +259,7 @@ a:link,a:visited,a:hover,a:active{text-decoration:none;}
 }
 .note_main_left .user_name{
     width: 110px;
-    height: 25px;
+    /*height: 25px;*/
     text-align: center;
     margin-top:10px;
     /*color: blue;*/

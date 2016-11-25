@@ -190,9 +190,14 @@ class LoginController extends Controller
                 $arr['id'] = $data['id'];
                 $arr['freeze'] = 0; 
                 $this->_user->data($arr)->save();
-                $list = array('val'=>false,"content"=>"尊敬的用户，您曾经的不良行径导致封号，现在已经解封，希望您以后可以CSW贴吧遵守规定！  点击确定即可登录！");
+                $list = array('val'=>false,"content"=>"尊敬的用户，您曾经的不良行径导致封号，现在已经解封，希望您以后可以遵守CSW贴吧规定！  点击确定即可登录！");
                 $this->ajaxReturn($list);
             }            
+        }
+        if($data['email_status'] != 0){
+            $this->_user->where(array('email_status'=>array('neq',0)))->delete();
+            $list = array('val'=>false,"content"=>"您还没有注册成功，请重新注册！");
+            $this->ajaxReturn($list);
         }
 
         $list = array("val"=>true);
