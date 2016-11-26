@@ -40,20 +40,21 @@
 
         <p class="right">
             <if condition="$Think.session.user eq null">
-                <a href="<{:U('Login/login')}>">登录</a>
-                <else/>
-                <a href="<{:U('Login/logout')}>">退出</a>
-            </if>
-            <a href="<{:U('Login/reg')}>">注册</a>
+                <a href="<{:U('Login/login')}>">登录</a><a href="<{:U('Login/reg')}>">注册</a>
+            <else />
+            　　<a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><{$Think.session.user.name}></a> | <a href="<{:U('Login/logout')}>">退出</a>
+            </if>            
             <a href="#">会员官网</a>
             <a href="www.baidu.com">百度首页</a>
-            <a href="<{:U('index')}>">贴吧首页</a>
+            <a href="<{:U('Index/index')}>">CSW首页</a>
         </p>
+
 
     </div><!-- end .container -->
 
 </div><!-- end #header-top -->
 <!--&lt;!&ndash; 头部结束 &ndash;&gt;-->
+
 <div id="header" style="margin-top:-10px;">
     <div class="container">
         <h1 style="margin-top: 30px;margin-left: 200px;">
@@ -80,7 +81,7 @@
     </div><!-- end .container -->
 </div><!-- end #header -->
 
-
+<div style="background: #abcdef;">
 <div id="headinfo_wrap" class="headinfo_wrap">
     <img src="__PUBLIC__/Center/1.jpg" style="width:980px;height:255px;" alt="">
     <a class="btn_editbg" href="http://tieba.baidu.com/home/main?id=211759414e47c4bee4f4e95b&amp;fr=userbar#"></a>
@@ -122,35 +123,6 @@
         <a href="<{:U('MyInfo/cancel',array('uid'=>$list['id']))}>"><li class="lithree fl" style="color:orange;font-size:16px;margin-top:-40px;">√已关注 | 取消</li></a>
         </if>
     </div>
-    <div class="userinfo_right">
-        <div class="userinfo_scores clearfix">
-            <span class="scores-header-hr"></span>
-            <span>我的T豆:</span>
-            <a class="userinfo_scores_num j_userinfo_scores_num" href="#">
-                <i class="icon-tbean"></i>0</a>
-            <div>
-                <a class="btn-sub btn-small j-ihome-get-tdou" href="javaScript:;">获取T豆</a>
-                <a class="btn-sub btn-small userinfo_buy_props" href="#">道具商城</a>
-            </div>
-        </div>
-        <div class="userinfo_scores userinfo_scores_border clearfix">
-            <span class="blue-header-hr"></span>
-            <span>我的蓝钻：</span>
-            <a class="userinfo_diamond_num j_userinfo_diamond_num" href="javascript:;">0</a>
-            <div>
-                <a class="btn-sub btn-small blue-exchange" href="http://www.dui1dui.com/" target="_blank">蓝钻交易</a>
-                <a class="btn-sub btn-small" href="http://tieba.baidu.com/f?kw=%C0%B6%D7%EA&amp;fr=index"
-                   target="_blank">蓝钻换购</a>
-            </div>
-        </div>
-        <div class="userinfo_shortcut">
-            <a href="#" target="_blank">服务中心</a>
-            <span class="userinfo_split"></span>
-            <a href="#" target="_blank">我在百度</a>
-            <span class="userinfo_split"></span>
-            <a href="#" target="_blank">我的<span class="ihome_i_small">i</span>贴吧</a>
-        </div>
-    </div>
 </div>
 <div id="container" class="container_wrap clearfix ihome_body">
     <div class="left_aside ihome_left_aside">
@@ -160,20 +132,20 @@
                     <li class="focus">
                         <div class="tbnav_tab_inner">
                             <p class="space">
-                                <a class="nav_icon nav_main" href="#">他的主页</a>
+                                <a class="nav_icon nav_main" href="javascript:void(0)">他的主页</a>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="tbnav_tab_inner">
                             <p>
-                                <a class="nav_icon nav_achieve" href="#">成就</a>
+                                <a class="nav_icon nav_achieve" href="javascript:void(0)">成就</a>
                             </p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="ihome_forum_group ihome_section clearfix">
+            <div class="ihome_forum_group ihome_section clearfix" style="height:320px;">
                 <h1 class="ihome_title">
                     <span class="cut_line">|</span>爱逛的吧
                 </h1>
@@ -190,28 +162,17 @@
         </div>
     </div>
     <div class="right_aside" style="height:400px;">
-        <div class="ihome_aside_section ihome_visitor ">
-            <h1 class="ihome_aside_title">最近来访</h1>
-            <div class="card_wrap">
-                <ul id="visitor_card_wrap">
-                    <li class="visitor_card">
-                        <a href="#" target="_blank" class="j_user_card" locate="visitor#ihome_v1"
-                           data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}">
-                            <img src="__PUBLIC__/Center/407fe4bda0e697a0e68980e8b09335e4b880e6a0b73b3a" alt="头像"></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-<!--        <{:dump($fname)}> -->
         <div class="ihome_aside_section " style="margin-top: 40px;">
             <h1 class="ihome_aside_title">他关注的人<span class="concern_num">(<a href="#" target="_blank"><{$count}></a>)</span></h1>
+            <volist name="fname" id="v">
             <ul class="concern_wrap" id="concern_wrap_fans">
                 <li class="concern_item"><a
                         data-field="{&quot;un&quot;:&quot;\u4f60\u65e0\u6240\u8c135\u4e00\u6837&quot;}"
-                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/personal',array('uid'=>$fname[0]['id']))}>"><img
-                       src="__ROOT__/<if condition="$fname[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$fname[0]['hpic']}></if>"></a>
+                        class="j_user_card" target="_blank" locate="fans#ihome_v1" href="<{:U('MyInfo/personal',array('uid'=>$v[0]['id']))}>"><img
+                       src="__ROOT__/<{$v[0]['hpic']}>"></a>
                 </li>
             </ul>
+            </volist>
         </div>
     </div>
 </div>
@@ -228,69 +189,6 @@
 </div>
 <span class="fix-for-ie8"></span>
 </div>
-<!--<script type="text/javascript">alog&&alog("speed.set","drt",+new Date);</script>-->
-
-<!-- <script src="__PUBLIC__/Center/saved_resource(4)"></script> -->
-
-<!-- <script src="__PUBLIC__/Center/saved_resource(6)"></script>
-<script src="__PUBLIC__/Center/saved_resource(7)"></script>
-<script src="__PUBLIC__/Center/saved_resource(8)"></script> -->
-
-<div id="lcsas-container" style="position: fixed; top: 0px;">
-    <object id="LCSAS" height="1" width="1" align="middle" type="application/x-shockwave-flash"
-            data="__PUBLIC__/Center/LCSAS_b80db27.swf.下载">
-        <param name="quality" value="high">
-        <param name="allowScriptAccess" value="always">
-        <param name="wMode" value="transparent">
-        <param name="swLiveConnect" value="true">
-        <param name="menu" value="false">
-        <param name="flashVars"
-               value="host=220.181.111.16%3A8800&amp;Cuid=93F7FB6C07D04642A648DBB79D3BFC28%3AFG%3D1&amp;Appid=tieba&amp;Appkey=appkey&amp;DeviceType=21&amp;ExtensionVersion=2.2&amp;LCSHeaderVersion=1&amp;callTarget=STQ&amp;timeout=20000&amp;retry=1&amp;onopen=undefined&amp;onclose=undefined&amp;onerror=undefined&amp;tabInfo=1542002465">
-    </object>
 </div>
-<div class="dialogJmodal" style="display: none; z-index: 50000; width: 1263px; height: 1929px;"></div>
-<div class="dialogJ dialogJfix dialogJshadow ui-draggable"
-     style="z-index: 50001; display: none; width: 600px; left: 326.5px; top: 277px;">
-    <div class="uiDialogWrapper">
-        <div class="dialogJtitle" style="cursor: move;">
-            <span class="dialogJtxt"></span>
-            <a href="#" class="dialogJclose" title="关闭本窗口">&nbsp;</a>
-        </div>
-        <div class="dialogJcontent">
-            <div class="dialogJbody" id="dialogJbody">
-                <div class="j_sign_dialog_content_wrapper"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<ul class="tbui_aside_float_bar">
-    <li class="tbui_aside_fbar_button tbui_fbar_props">
-        <a href="#"></a>
-        <ul class="tbui_aside_props_list clearfix" id="tbui_aside_props_list" style="display: none;">
-            <li class="props_item props_item_1070001">
-                <a class="props_item_btn" target="_blank" href="#" data-id="1070001">
-                    <img src="__PUBLIC__/Center/worship.png">
-                    <span class="props_buy_icon"></span>
-                </a>
-                <p class="props_item_title">
-                    <span>魔拜</span>
-                </p>
-            </li>
-            <li class="props_item props_item_1070002">
-                <a class="props_item_btn" target="_blank" href="#" data-id="1070002">
-                    <img src="__PUBLIC__/Center/egg.png">
-                    <span class="props_buy_icon"></span>
-                </a>
-                <p class="props_item_title">
-                    <span>魔蛋</span>
-                </p>
-            </li>
-        </ul>
-    </li>
-    <li class="tbui_aside_fbar_button tbui_fbar_top" style="visibility: hidden;">
-        <a href="#"></a>
-    </li>
-</ul>
-
 </body>
 </html>

@@ -51,7 +51,6 @@
    })
 function sendsms(){
    $.post("<{:U('Updatepwd/sendSms')}>",{'val':"<{$list['phone']}>"},function(res){
-        console.log(res);
         if (res == 'true'){
              $('#send').html('已发送,60秒后重新输入');
              $('#send').attr('disabled','disabled');

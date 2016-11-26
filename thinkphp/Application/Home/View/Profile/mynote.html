@@ -12,11 +12,11 @@
   <div class="layui-tab-content" style="height: 330px;">
     <div class="layui-tab-item layui-show">
     <volist name="list" id="vo">
-      <div class="note">
-          <div class = "note_content">
-              <span>在<b style="color:red"><{$vo['name']}></b>发表了<b style="color:orange"><{$vo['title']}></b></span>
+      <div class="mynote">
+          <div class = "mynote_content">
+              <span>在<b style="color:red"><{$vo['name']}></b>发表了<b style="color:black"><{$vo['title']}></b></span>
           </div>
-          <div class="note_time">
+          <div class="mynote_time">
              <{$vo['createtime']|date='Y-m-d',###}>
           </div>
       </div> 

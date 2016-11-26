@@ -8,12 +8,6 @@
   </ul>
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
-
-        <div class="note">
-          <div class = "note_content" style="border-bottom:1px solid #ccc">
-              <span><b>收藏的帖子</b></span>
-          </div>
-      </div>    
       <!-- <{:dump($arr)}> -->
        <div class="note" style="background:#F4F4F4;margin-top:10px;height:40px;line-height:30px;">
           <div class = "note_content">
@@ -25,18 +19,20 @@
           <div class="note_time" style="margin-left:160px;">
              最后更新时间
           </div>
-      </div>    
-       <div class="note">
-          <div class = "note_content">
-              <span><{$arr['title']}></span>
+      </div> 
+      <volist name="arr" id="vo">   
+       <div class="note_warp">
+          <div class = "note_title">
+              <span><{$vo['title']}></span>
           </div>
-          <div class="note_time" style="margin-left:120px;">
-             <{$arr['name']}>
+          <div class="note_name" style="margin-left:120px;">
+             <{$vo['name']}>
           </div>
           <div class="note_time" style="margin-left:160px;">
-             <{$arr['time']|date='Y-m-d',###}>
+             <{$vo['createtime']|date='Y-m-d',###}>
           </div>
-      </div>  
+      </div>
+      </volist>  
     </div>
      <div class="layui-tab-item">
       <b>我的签名档：</b> 

@@ -60,7 +60,9 @@ class IndexController extends Controller {
         }
 
         $weather = $this->weather();
-        // dump($weather);
+
+        // 轮播图
+         $pic = M('picture')->field('picname')->where(array('is_show'=>array('eq','1')))->select();
 
         // $this->assign('suggest',$arr);
         $this->assign('bars',$list);
@@ -71,7 +73,7 @@ class IndexController extends Controller {
         $this->assign('attenBars',$attenBars);
         $this->assign('signin',$s);
         $this->assign('weather',$weather);
-
+        $this->assign('pic',$pic);
         $this->display();
     }
 

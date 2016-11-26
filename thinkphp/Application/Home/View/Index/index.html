@@ -6,9 +6,12 @@
 <link rel="stylesheet" href="__PUBLIC__/public/css/mystyle.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
 
+<div class="index_bj">
 <div class="container">
+
+
     <!-- 第一部分 轮播图和登录后的个人信息 -->
-    <div class="index_per index_first clearfix">
+    <div class="index_per index_first clearfix"> 
         <!-- 登录后显示的个人信息 -->
         <if condition="$Think.session.user eq null">
             <div class="sidebar_per sidebar_first" style="display:none">
@@ -111,7 +114,7 @@
         </div>
        <!-- 轮播图 -->
         <div class="index_left clearfix">
-            <img style = "width:180px;height:250px" src="__PUBLIC__/Public/image/1_left.jpg" alt="" />
+            <img style = "width:180px;height:250px" src="__PUBLIC__/Public/image/h48.jpg" alt="" />
             <div class="banner" id="banner">
                 <div class="row">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -130,12 +133,14 @@
                                 ...
                                 </div>
                             </div>
+                           <volist name="pic" id="vo">
                             <div class="item">
-                                <img src="__PUBLIC__/Public/image/2.jpg" alt="...">
+                                <img src="__ROOT__/<{$vo['picname']}>" alt="...">
                                 <div class="carousel-caption">
                                 ...
                                 </div>
                             </div>
+                            </volist>
                             ...
                         </div>
 
@@ -354,7 +359,18 @@
             </div> -->
 
         </div><!-- 左边完 -->
-    </div>
+    </div><!-- index_bj -->
+    </div><!-- container -->
+     <div id="footer" class="footer" style="margin-left:400px;">                                                                                                      
+                <span>©2016 Baidu</span>
+                <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">吧主制度</a>
+                <span>|</span>
+                <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="<{:U('feedback/index',array('uid'=>$_SESSION['user']['id']))}>" target="_blank" style="color:red">意见反馈</a>
+                <span>|</span>
+                <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
+            </div> 
  
     </block>
 

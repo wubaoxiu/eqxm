@@ -12,7 +12,12 @@ class MyInfoController extends AdminController
 { 
 	private $_admin = null;//后台管理员表操作
 	private $_like = null;//爱好表操作
-
+    
+   /**
+    * 方法名：_initalize()
+    *
+    * @return[void]  初始化操作
+    */
 	public function _initialize(){
 		parent::_initialize();
 		$this->_admin = M('admin');
