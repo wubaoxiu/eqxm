@@ -8,9 +8,9 @@
         <ul>
             <a href="<{:U('Bar/index',array('id'=>$bar_id))}>"><li class="lione fl"><b><{$data[0]['bname']}></b></li></a>
             <if condition="$atten eq 0">
-                <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+                <li class="lione fl"><a id="tgzb" href="javascript:;" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />
-                <li class="lione fl"><a href="<{:U('Bar/cancelBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
+                <li class="lione fl"><a id="tqxgz" href="javascript:;" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
             </if>
             <li class="lithree fl">关注：<{$data[0]['attention']}></li>
             <li class="lithree fl">帖子：<{$count[0]['count']}></li>
@@ -141,6 +141,58 @@
 <block name="myjs">
     <script>
         $(function(){
+            $(document).on('click','#tqxgz',function(){
+            var r = confirm("你确定要取消关注吗？取消后在此贴吧的一切成就都将清空，包括（经验，等级，吧主，吧管理），请谨慎选择！！！");
+            if(r==true){
+                $.ajax({
+                    type:'get',
+                    url:"<{:U('AttentionBars/cancelBars',array('barid'=>$bar_id))}>",
+                    success:function(results){
+                        // alert(results);
+                        // console.log(results);
+                        if(results==1){
+                            $('#tqxgz').html("<span class='glyphicon glyphicon-plus'></span>关注");
+                            $('#tqxgz').attr('id','gzb');
+                            // alert('111');
+                        }else if(results==0){
+                            alert('取消关注失败！！！');
+                        }else{
+                            alert('您还没有登录，登录后再来吧！！！');
+                        }
+                    },
+                    error:function(results){
+                        // console.log(results);
+                        alert("您还没有登录，登录后再来吧！！！");
+                    }
+                });
+            }else if(r==false){
+                // alert('2222');
+            }
+        })
+        $(document).on('click','#tgzb',function(){
+            $.ajax({
+                type:'get',
+                url:"<{:U('AttentionBars/attentionBars',array('barid'=>$bar_id))}>",
+                success:function(results){
+                    // alert(results);
+                    // console.log(results);
+                    if(results==1){
+                        $('#tgzb').html("<span class='glyphicon glyphicon-minus'></span>已关注|取消");
+                        $('#tgzb').attr('id','qxgz');
+                        // alert('111');
+                    }else if(results==0){
+                        alert('关注失败！！！');
+                    }else{
+                        alert('您还没有登录，登录后再来吧！！！');
+                    }
+                },
+                error:function(results){
+                    // console.log(results);
+                    alert("您还没有登录，登录后再来吧！！！");
+                }
+            });
+        })
+
             $(document).on('click','.huifu',function(){
                     if($(this).text()=='收起回复'){
                         $(this).text('查看回复');

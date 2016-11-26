@@ -63,10 +63,10 @@
         <div style="margin-top:-35px;margin-left: 300px;" class="row">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input style="height:40px;width:400px" type="text" class="form-control" aria-label="...">
+                    <input id="barss" style="height:42px;width:300px" type="text" class="form-control" aria-label="...">
                     <div class="input-group-btn">
-                        <button style="height:28px;" type="button" class="btn btn-info dropdown-toggle"
-                                data-toggle="dropdown" aria-expanded="false">进入贴吧
+                        <button  style="height:30px;" type="button" class="btn btn-info dropdown-toggle"
+                                data-toggle="dropdown" aria-expanded="false"  id="searchbar">进入贴吧
                         </button>
                         <button style="height:28px;margin-left:20px;border-radius:10%;" type="button"
                                 class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -248,3 +248,25 @@
 </div>
 </body>
 </html>
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>
+
+<script>
+    $(function(){
+        $(document).on('click',"#searchbar",function(){
+            $.ajax({
+                type:'post',
+                data: 'bars='+$("#barss").val(),
+                url:"<{:U('Search/search')}>",
+                success:function(results){
+                    if(results === 0) {
+                        alert("没有该吧，马上去申请建吧");window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                    } else {
+                        location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
+                    }
+                },
+            })
+        })
+
+    })
+</script>

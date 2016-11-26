@@ -21,7 +21,7 @@ class SignController extends ConmonController
 
         $uid = $_SESSION['user']['id'];
         // echo $uid;
-        $data = $bars->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade=2")->select();
+        $data = $bars->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade>=2")->select();
         // dump($data);
         //获取现在的时间并格式化成对比时间格式(年月日)
         $nowtime = date("ymd",time());
@@ -59,6 +59,10 @@ class SignController extends ConmonController
         $data = M('bars')->where($map)->find();
         // echo $data['id'];
         // dump($data);exit;
+        if(!$data){
+            $this->error("请先关注再签到");
+            exit;
+        }
         $now = time();
         $nowtime = date("ymd",$now);
         $signtime = date("ymd",$data['signtime']);

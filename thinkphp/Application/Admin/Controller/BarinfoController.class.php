@@ -75,7 +75,7 @@ class BarinfoController extends AdminController
     }
 
     /**
-    * 方法名：checkStatus() 改变状态  （可用ajax，有bug未解决）
+    * 方法名：checkStatus() 改变状态
     *
     * @return[void] 
     */
@@ -270,6 +270,24 @@ class BarinfoController extends AdminController
         }
     }
 
+    //
+    public function hulue()
+    {
+        $id = I('id');
+        if(empty($id)){
+            $this->error("操作失误！！！");
+        }
+        $r = M('request');
+
+        if($r->where(array('id'=>$id))->delete()>0){
+            $this->redirect("Barinfo/request");
+            exit;
+        }else{
+            $this->redirect("Barinfo/request");
+            exit;           
+        }
+    }
+
     /**
     * 方法名：revoke()  撤销吧主
     *
@@ -317,6 +335,67 @@ class BarinfoController extends AdminController
         }else{
             $this->error("撤销职位失败！");
             exit;
+        }
+    }
+
+    /**
+     * 方法名：createBarList()  获取申请创建吧页面 
+     * @return [void]
+    */
+    public function createBarList()
+    {
+        $data = M('requestcreatebar')->select();
+        // echo "111";
+        // dump($data);
+
+        $this->assign('list',$data);
+        $this->display("Barinfo/createBarList");
+    }
+
+    /**
+     * 方法名：agreeCreate()  同意请求并创建
+     * @return [void]
+    */
+    public function agreeCreate()
+    {
+        $id = I('id');
+        $m = M('requestcreatebar');
+        if(empty($id)){
+            $this->redirect("Barinfo/createBarList");
+            exit;
+        }
+
+        $data = $m->field("barname name,time createtime,title,desc,type_id")->find($id);
+        // dump($data);
+        if($data && $this->_barinfo->data($data)->add()>0){
+            $m->delete($id);
+            $this->redirect("Barinfo/createBarList");
+            exit;
+        }else{
+            $this->redirect("Barinfo/createBarList");
+            exit;
+        }
+    }
+
+    /**
+     * 方法名：ignore()  忽略请求
+     * @return [void]
+    */
+    public function ignore()
+    {
+        $id = I('id');
+        $m = M('requestcreatebar');
+        if(empty($id)){
+            $this->redirect("Barinfo/createBarList");
+            exit;
+        }
+
+        if($m->delete($id)>0){
+            $this->redirect("Barinfo/createBarList");
+            exit;
+        }else{
+            $this->redirect("Barinfo/createBarList");
+            exit;           
         }
     }
 }

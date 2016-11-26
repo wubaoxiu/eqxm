@@ -48,6 +48,8 @@ class BarController extends CommonController
 
         //贴吧管理员信息
         $baradmin_info = $this->getBarAdmin($id);
+        // echo $id;
+        // dump($baradmin_info);
 
         $data = $this->_barinfo->where(array('id' => array('eq', $id)))->find();
         // dump($data);
@@ -99,6 +101,10 @@ class BarController extends CommonController
         $bazu = $this->_barinfo->field('u.name')->table('csw_user u,csw_barinfo b')->where("u.id=b.user_id and b.id=$id")->select();
         // dump($bazu);
 
+        //热门帖子
+        $hotnote = $this->_note->where(array("bar_id"=>array('eq',$id)))->limit(5)->order('reply desc')->select();
+        // dump($hotnote);
+
         $this->assign('list',$list);
         $this->assign('data',$data);
         $this->assign('attenbars',$attenbars);
@@ -109,6 +115,7 @@ class BarController extends CommonController
         $this->assign('show',$show);
         $this->assign('baradmin_info',$baradmin_info);
         $this->assign('bazu',$bazu);
+        $this->assign('hotnote',$hotnote);
 
         // dump($attenbars);
         $this->display();
@@ -169,6 +176,9 @@ class BarController extends CommonController
          $bazu = $this->_barinfo->field('u.name')->table('csw_user u,csw_barinfo b')->where("u.id=b.user_id and b.id=$barid")->select();
         // dump($bazu);
 
+         //热门话题
+         $hotnote = $this->_note->where(array("bar_id"=>array('eq',$barid)))->limit(5)->order('reply desc')->select();
+
 
         $this->assign('count',$count);
         $this->assign('data',$data);
@@ -184,6 +194,7 @@ class BarController extends CommonController
         $this->assign('collect',$collect);
         $this->assign('baradmin_info',$baradmin_info);
         $this->assign('bazu',$bazu);
+        $this->assign('hotnote',$hotnote);
 
 
         $this->display("Bar/note");
@@ -453,67 +464,6 @@ class BarController extends CommonController
             $cid = $comment->data($data)->add();
 
             $this->ajaxReturn($cid);
-        }
-    }
-
-    /**
-     * 方法名：attentionBars()  关注贴吧
-     * @return [void]
-     */
-    public function attentionBars()
-    {
-        if (empty($_SESSION['user'])) {
-            $this->error("你还未登录，请先登录！");
-            exit;
-        }
-
-        $bar_id = I("barid");
-        if (empty($bar_id)) {
-            $this->error("操作失误！！！");
-            exit;
-        }
-
-        $data['bar_id'] = $bar_id;
-        $data['user_id'] = $_SESSION['user']['id'];
-        // dump($data);
-        $bars = M('bars');
-
-
-        if($bars->data($data)->add()>0){
-            $this->_barinfo->where(array('id'=>array('eq',$data['bar_id'])))->setInc('attention');
-
-            $this->success("关注成功！！！");
-            exit;
-        } else {
-            $this->error("关注失败！！！");
-            exit;
-        }
-    }
-
-    /**
-     * 方法名：cancelBars()  取消贴吧关注 一切经验等级都将归于0
-     * @return [void]
-    */
-    public function cancelBars()
-    {
-        $bar_id = I("barid");
-        if(empty($bar_id)){
-            $this->error("操作失误！！！");
-            exit;
-        }
-
-        $data['bar_id'] = $bar_id;
-        $data['user_id'] = $_SESSION['user']['id'];
-        // dump($data);
-        $bars = M('bars');
-
-        if($bars->where($data)->delete()>0){
-            $this->_barinfo->where(array('id'=>array('eq',$data['bar_id'])))->setDec('attention');
-            $this->success("取消关注成功！！！");
-            exit;
-        }else{
-            $this->error("取消关注失败！！！");
-            exit;
         }
     }
 

@@ -53,9 +53,10 @@
         <div  style = "margin-top:-45px;"class="row">
          <div class="col-lg-6 col-md-offset-3">
             <div class="input-group">
-              <input style = "height:40px;"type="text" class="form-control" aria-label="...">
+              <input id="barss" style = "height:40px;"type="text" class="form-control" aria-label="...">
               <div class="input-group-btn">
-                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">进入贴吧</button>　<button style = "height:40px;margin-left:6px;border-radius:5px" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
+                <button style = "height:40px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="searchbar">进入贴吧</button>　
+                <button style = "height:40px;margin-left:6px;border-radius:5px" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全吧搜索</button>
               </div><!-- /btn-group -->
             </div><!-- /input-group -->
           </div><!--/.col-lg-6 -->
@@ -73,10 +74,11 @@
     <div class="bar_head_center fl">
         <ul>
             <a href=""><li class="lione fl"><b><{$data.name}></b></li></a>
+            <!-- <{:U('Bar/attentionBars',array('barid'=>$bar_id))}> -->
             <if condition="$atten eq 0">
-                <li class="lione fl"><a href="<{:U('Bar/attentionBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
+                <li class="lione fl"><a id="gzb" href="javacript:;" class="litwo"><span class="glyphicon glyphicon-plus"></span>关注</a></li>
             <else />
-                <li class="lione fl"><a href="<{:U('Bar/cancelBars',array('barid'=>$bar_id))}>" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
+                <li class="lione fl"><a id="qxgz" href="javascript:;" class="litwo"><span class="glyphicon glyphicon-minus"></span>已关注|取消</a></li>
             </if>
             <li class="lithree fl">关注：<{$data.attention}></li>
             <li class="lithree fl">帖子：</li>
@@ -327,16 +329,32 @@
 
         <div class="panel hot">
             <div class="panel-heading">
-                <h2 class="panel-title">一周热门话题</h2>
+                <h2 class="panel-title">热门话题</h2>
             </div>
             <div class="panel-body clearfix">
                 <ul class="weekly-hot">
-                    <li class="padtop"><em class="hoticon hot1">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/37.html">真的很不错</a><i class="rankingnum">9<br>回答</i></li><li ><em class="hoticon hot2">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/17.html">分享一款免费翻墙国外软件</a><i class="rankingnum">7<br>回答</i></li><li ><em class="hoticon hot3">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/34.html">这个网站程序，都是站长一个人开发的吗？</a><i class="rankingnum">7<br>回答</i></li><li ><em class="hoticon hot4">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/13.html">发布一个原生PHP+原生JS头像截图神器，秒杀富头像和jcrop，互联网上最好头像截图插件</a><i class="rankingnum">6<br>回答</i></li><li class="bordbottom"><em class="hoticon hot5">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/3.html">个人网站源码</a><i class="rankingnum">5<br>回答</i></li>               </ul>
+                    <volist name="hotnote" id="hnote">
+                        <li class="padtop">
+                            <if condition="$hnote['reply'] gt 10"><em class="hoticon hot1">热</em>
+                            <elseif condition="$hnote['reply'] gt 5" /><em class="hoticon hot2">热</em>
+                            <elseif condition="$hnote['reply'] gt 0" /><em class="hoticon hot3">热</em>
+                            <!-- <elseif condition="$hnote['reply'] eq 1"><em class="hoticon hot4">热</em> -->
+                            <else /><em class="hoticon hot5">热</em>
+                            </if>
+                            <a class="hottalk" target="_blank" href="<{:U('Bar/note',array('bar_id'=>$hnote['bar_id'],'note_id'=>$hnote['id']))}>"><{$hnote['title']}></a><i class="rankingnum"><{$hnote['reply']}><br>回答</i>
+                        </li>
+                    </volist>
+                    <!-- <li ><em class="hoticon hot2">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/17.html">分享一款免费翻墙国外软件</a><i class="rankingnum">7<br>回答</i></li> -->
+                    <!-- <li ><em class="hoticon hot3">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/34.html">这个网站程序，都是站长一个人开发的吗？</a><i class="rankingnum">7<br>回答</i></li> -->
+                    <!-- <li ><em class="hoticon hot4">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/13.html">发布一个原生PHP+原生JS头像截图神器，秒杀富头像和jcrop，互联网上最好头像截图插件</a><i class="rankingnum">6<br>回答</i></li> -->
+                    <!-- <li class="bordbottom"><em class="hoticon hot5">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/3.html">个人网站源码</a><i class="rankingnum">5<br>回答</i></li> -->
+                </ul>
             </div>
         </div><!--panel hot-->
         </div><!--wenda lisder-->
     
     </div><!--wenda clearfix-->
+
 
    <div id="footer" class="footer" style="margin-left:400px;">
     <span>©2016 Baidu</span>
@@ -349,6 +367,7 @@
     <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
 </div>
 
+
 <!-- <script src="__PUBLIC__/Public/Public/js/jquery.js" type="text/javascript"></script> -->
 <!-- <script src="__PUBLIC__/Public/Public/js/common.js" type="text/javascript"></script> -->
 <script type="text/javascript" src="__PUBLIC__/Public/js/jquery.min.js"></script>
@@ -359,6 +378,73 @@
 
 <script>
     $(function(){
+        $(document).on('click',"#searchbar",function(){
+            $.ajax({
+                type:'post',
+                data: 'bars='+$("#barss").val(),
+                url:"<{:U('Search/search')}>",
+                success:function(results){
+                    if(results === 0) {
+                        alert("没有该吧，马上去申请建吧");window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                    } else {
+                        location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
+                    }
+                },
+            })
+        })
+        
+        $(document).on('click','#qxgz',function(){
+            var r = confirm("你确定要取消关注吗？取消后在此贴吧的一切成就都将清空，包括（经验，等级，吧主，吧管理），请谨慎选择！！！");
+            if(r==true){
+                $.ajax({
+                    type:'get',
+                    url:"<{:U('AttentionBars/cancelBars',array('barid'=>$data['id']))}>",
+                    success:function(results){
+                        // alert(results);
+                        // console.log(results);
+                        if(results==1){
+                            $('#qxgz').html("<span class='glyphicon glyphicon-plus'></span>关注");
+                            $('#qxgz').attr('id','gzb');
+                            // alert('111');
+                        }else if(results==0){
+                            alert('取消关注失败！！！');
+                        }else{
+                            alert('您还没有登录，登录后再来吧！！！');
+                        }
+                    },
+                    error:function(results){
+                        // console.log(results);
+                        alert("您还没有登录，登录后再来吧！！！");
+                    }
+                });
+            }else if(r==false){
+                // alert('2222');
+            }
+        })
+        $(document).on('click','#gzb',function(){
+            $.ajax({
+                type:'get',
+                url:"<{:U('AttentionBars/attentionBars',array('barid'=>$data['id']))}>",
+                success:function(results){
+                    // alert(results);
+                    // console.log(results);
+                    if(results==1){
+                        $('#gzb').html("<span class='glyphicon glyphicon-minus'></span>已关注|取消");
+                        $('#gzb').attr('id','qxgz');
+                        // alert('111');
+                    }else if(results==0){
+                        alert('关注失败！！！');
+                    }else{
+                        alert('您还没有登录，登录后再来吧！！！');
+                    }
+                },
+                error:function(results){
+                    // console.log(results);
+                    alert("您还没有登录，登录后再来吧！！！");
+                }
+            });
+        })
+
         $(document).on('click','#appbazu',function(){
             // alert('yes');
             $.ajax({
@@ -370,13 +456,15 @@
                         alert("等级不够，快去发帖升级吧！");
                     }else if(results==2){
                         alert("请求吧主已发送，我们将在五天内给你回复，请耐心等待");
+                    }else if(results==3){
+                        alert("您已经是一个吧的吧主了，不能再申请成为吧主！！！");
                     }else{
-                        alert("请求失败！！！");
+                        alert("您还没有登录，登录后再来吧！！！");
                     }
                 },
                 error:function(results){
                     // console.log(results);
-                    alert("回复失败！！！");
+                    alert("您还没有登录，登录后再来吧！！！");
                 }
             });
         })
@@ -392,13 +480,17 @@
                         alert("等级不够，快去发帖升级吧！");
                     }else if(results==2){
                         alert("请求吧主已发送，我们将在五天内给你回复，请耐心等待");
+                    }else if(results==3){
+                        alert("您已经是这个吧的吧主了！！！");
+                    }else if(results==4){
+                        alert("您已经是这个吧的管理员了！！！");
                     }else{
-                        alert("请求失败！！！");
+                        alert("您还没有登录，登录后再来吧！！！");
                     }
                 },
                 error:function(results){
                     // console.log(results);
-                    alert("回复失败！！！");
+                    alert("申请失败！！！");
                 }
             });
         })

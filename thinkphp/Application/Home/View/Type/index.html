@@ -1,0 +1,80 @@
+<extend name="Index/head" />
+
+<block name="main">
+  <!-- <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" /> -->
+
+  <title>个人中心</title>
+  <style>
+    body{
+      height:800px;
+    }
+    .center_center {
+      height:auto;
+      width:1000px;
+    }
+    #footer{
+        margin-left:450px;
+        margin-top: 40px;
+    }
+    .typecontent ul li{
+        float:left;
+    }
+  </style>
+  <div class = "center">
+        <div class = "center_warp">
+            <div class = "center_center">
+                <div class = "center_left fl" style="height:1000px;">
+                    <div class="center_bottom">
+                        <ul>
+                            <div style="width:228px;height:50px;margin-left:-10px;background:#3F95E5;color:white;font-size:20px;text-align:center;line-height:50px;font-weight:bold;">贴吧的全部分类</div>
+                            <volist name="typehead" id="tph">
+                                <li><a href=""><{$tph['name']}></a></li>
+                            </volist>
+                            <!-- <li><a href="">我的i贴吧</a></li> -->
+                            <!-- <li><a href="">我的帖子</a></li> -->
+                            <!-- <li><a href="">基本资料</a></li> -->
+                            <!-- <li><a href="">我的好友</a></li>
+                            <li><a href="">修改密码</a></li>
+                            <li><a href="">我的收藏</a></li>
+                            <li><a href="">我的收藏</a></li> -->
+                        </ul>
+
+                    </div><!-- center_bottom -->
+                </div>
+            <div class = "center_right">
+
+                <div class="row" style="margin-top:50px;">
+                    <volist name="typehead" id="tyh">
+                        <div class="col-md-4 typecontent" style="height:150px;margin-left:30px;">
+                            <h4 style="color:#3F95E5;"><{$tyh['name']}></h4>
+                            <ul>
+                                <volist name="types" id="tys">
+                                    <!-- <{:dump($tys)}> -->
+                                    <if condition="$tys['pid'] eq $tyh['id']">
+                                        <li style="font-size:14px;"> <{$tys['name']}> <span style="color:#999;">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></li>
+                                    </if>
+                                </volist>
+                                <!-- <li>二次元 <span> | </span></li> -->
+                                <!-- <li>二次元<span>|</span></li>
+                                <li>二次元<span>|</span></li>
+                                <li>二次元<span>|</span></li> -->
+                            </ul>
+                        </div>
+                    </volist>
+                    <!-- <div class="col-md-4" style="height:130px;background:yellow;"></div> -->
+                    <!-- <div class="col-md-4" style="height:130px;background:blue;"></div> -->
+                    <!-- <div class="col-md-4" style="height:130px;background:green;"></div> -->
+                </div> 
+            </div>            
+        </div>
+    </div>       
+</div><!--center 最外层的div-->
+<div class="row" style="hight:50px;"></div> 
+
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+</block>
+

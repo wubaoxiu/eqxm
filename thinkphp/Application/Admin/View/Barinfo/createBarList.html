@@ -4,7 +4,7 @@
     <li class="active open">
 </block>
 
-<block name="requestlist">
+<block name="createbarlist">
     <li class="active">
 </block>
 
@@ -37,14 +37,14 @@
                             </th> -->
                             <th>申请编号</th>
                             <th>申请人</th>
-                            <th class="hidden-480">申请人ID</th>
-                            <th class="hidden-480">申请类别</th>
-                            <th>申请吧名</th>
-                            <th>email</th>              
-                            <!-- <th>
+                            <th class="hidden-480">吧名</th>
+                            <th class="hidden-480">宣言</th>
+                            <th>贴吧描述</th>
+                            <th>类别</th>              
+                            <th>
                                 <i class="icon-time bigger-110 hidden-480"></i>
-                                创建时间
-                            </th> -->
+                                申请时间
+                            </th>
 
                             <th>操作</th>
                         </tr>
@@ -63,49 +63,30 @@
                                 <td>
                                     <a href="#"> <{$v['id']}> </a>
                                 </td>
-                               <td> <{$v['uname']}> </td>
+                               <td> <{$v['username']}> </td>
                                 <td class="hidden-480">
-                                    <{$v['userid']}>
+                                    <{$v['barname']}>
                                 </td>
                                 <td class="hidden-480">
-                                    <if condition="$v['status'] eq 1">吧主<else />吧管理员</if> 
+                                     <{$v['title']}>
                                 </td>
+                                <td><{$v['desc']}></td>
                                 <!-- <td>
                                     <a href="<{:U('Barinfo/checkStatus',array('id'=>$v['id']))}>">
                                     <if condition="$v['status'] eq 1">启用<else />禁用</if>
                                     </a>
                                 </td> -->
-                                <td> <{$v['bname']}> </td>
-                                <td> <{$v['uemail']}> </td>
+                                <td> <{$v['type_id']}> </td>
+                                <td> <{$v['time']}> </td>
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="btn btn-primary" href="<{:U('Barinfo/agree',array('id'=>$v['id']))}>">
-                                            同意请求
+                                        <a class="btn btn-primary" href="<{:U('Barinfo/agreeCreate',array('id'=>$v['id']))}>">
+                                            同意创建
                                         </a>
-                                        <a class="btn btn-default" href="<{:U('Barinfo/hulue',array('id'=>$v['id']))}>">
+                                        <a class="btn btn-default" href="<{:U('Barinfo/ignore',array('id'=>$v['id']))}>">
                                             忽略请求
                                         </a>
                                     </div>
-                                    <div class="modal fade" id="myModal">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title">修改头像</h4>
-                                          </div>
-                                          <form action="<{:U('Barinfo/upload')}>" method="post" enctype="multipart/form-data">
-                                          <div class="modal-body">
-                                                <input type="file" name="hpic">
-                                                <input type="hidden" name="id" value="<{$v['id']}>">
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="reset" class="btn btn-default" data-dismiss="modal">重置</button>
-                                            <button type="submit" class="btn btn-primary">修改</button>
-                                          </div>
-                                          </form>
-                                        </div><!-- /.modal-content -->
-                                      </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
                                         <div class="inline position-relative">
@@ -200,7 +181,7 @@
             var oTable1 = $('#sample-table-2').dataTable( {
             "aoColumns": [
               { "bSortable": false },
-              null, null,null, null, null,
+              null, null,null, null, null,null,
               { "bSortable": false }
             ] } );
             

@@ -16,7 +16,7 @@
         <if condition="$Think.session.user eq null">
             <div class="sidebar_per sidebar_first" style="display:none">
         <else />
-            <div class="sidebar_per sidebar_first">
+            <div class="sidebar_per sidebar_first"   style="background:#FCFCFC;">
         </if>
             <dl>
                 <dt>
@@ -70,7 +70,7 @@
         </div>
         <!-- 没有登录时显示天气预报 -->
         <if condition="$Think.session.user eq null">
-            <div class="sidebar_per sidebar_first">
+            <div class="sidebar_per sidebar_first"  style="background:#FCFCFC;">
         <else />
             <div class="sidebar_per sidebar_first" style="display:none">
         </if>
@@ -97,7 +97,7 @@
                                 <li><{$t->date}></li>
                                 <ul>
                                     <li><{$t->text_day}> 转 
-                                        <{$t->text_night}><img style="float:right;margin-right:14px;margin-top:-10px;" width="30" height="30" src="__UPLOAD__/2016-11-25_134125.png"></li>
+                                        <{$t->text_night}></li>
                                     <li><{$t->low}>℃ ~
                                          <{$t->high}>℃</li>
                                     
@@ -162,10 +162,10 @@
     <!-- 第二部分 贴吧推荐 和 贴吧分类 -->
     <div class="index_per clearfix">
         <!-- 右边 -->
-        <div class="sidebar_per sidebar_second">
+        <div class="sidebar_per sidebar_second"  style="background:#FCFCFC;">
             <dl>
                 <dt>
-                    <a href="js.html?/0-0-0-6-0-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                    <a href="<{:U('Type/index')}>" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
                     <strong>贴吧分类 <span class="name-en">/Recommend</span></strong>
                 </dt>
             </dl>
@@ -174,12 +174,12 @@
                     <!-- <div class = "rec_img"><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><img style = "width:100px;height:100px;"src="__UPLOAD__/<{$sug['hpic']}>" alt="" /></a></div> -->
                     <div class = "rec_list">
                         <ul>
-                            <li><a href="" target="_blank"><strong>☆<{$tp['name']}></strong></a></li>
+                            <li><a href="#" target="_blank"><strong>☆<{$tp['name']}></strong></a></li>
                                 <ul class="type_one">
                                     <volist name="types" id="typ">
                                         <!-- <{:dump($typ['pid'])}> -->
                                         <if condition="$typ['pid'] eq $tp['id']">
-                                            <li><a href=""><{$typ['name']}></a></li>
+                                            <li style="margin-right:10px;"><a href="#"><{$typ['name']}></a></li>
                                             <!-- <li><a>yyyy</a></li> -->
                                         </if>
                                     </volist>
@@ -195,7 +195,7 @@
         </div>
 
         <!-- 左边 -->
-        <div class="index_recommend" id='index_recommend_0'>
+        <div class="index_recommend" id='index_recommend_0'  style="background:#FCFCFC;">
             <div class="head clearfix">
                 <strong>贴吧推荐</strong>
             </div>
@@ -233,10 +233,9 @@
     <div class="index_per clearfix">
         <!-- 右边 -->
         <div class="contentl clearfix">   
-            <div class="sidebar_per sidebar_second clearfix">
+            <div class="sidebar_per sidebar_second clearfix" style="background:#FCFCFC;">
                 <dl>
                     <dt>
-                        <a href="js.html?/0-0-6-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
                         <strong>友情链接<span class="name-en">/Link</span></strong>
                     </dt>
                     <volist name="links" id="link">
@@ -251,39 +250,17 @@
                 </dl>
             </div>
 
-            <div class="sidebar_per sidebar_first">
+            <div class="sidebar_per sidebar_first" style="background:#FCFCFC;">
             <dl>
                 <dt>
-                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
                 <strong>热门话题<span class="name-en">/HOT</span></strong>
                 </dt>
-                <dd class="sidebar_articles">
-                    <span>487</span>
-                    <a target="_blank"  href="js.html?/712.html">美国大选川普逆袭</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-04</span>
-                    <a target="_blank"  href="js.html?/442.html">1111总攻节</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-04</span>
-                    <a target="_blank"  href="js.html?/441.html">基于ace的CRM项目管理系统后台</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/437.html">投票任务服务平台bootstrap响应式微信模板</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/440.html">联途旅游网全套bootstrap网站模板</a>
-                </dd><dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/439.html">eteams协同办公OA管理系统模板</a>
-                </dd>
-                <dd class="sidebar_articles">
-                    <span>02-03</span>
-                    <a target="_blank"  href="js.html?/438.html">投票任务平台手机版</a>
-                </dd>
+                <volist name="hotnote" id="hnote">
+                    <dd class="sidebar_articles">
+                        <span><{$hnote['reply']}></span>
+                        <a target="_blank"  href="<{:U('Bar/note',array('bar_id'=>$hnote['bar_id'],'note_id'=>$hnote['id']))}>"><{$hnote['title']}></a>
+                    </dd>
+                </volist>
             </dl>
         </div>
         </div><!-- 右边完 -->
@@ -316,47 +293,24 @@
                     <div class = "content_con">
                         <div class = "content_dt">
                             <div class = "content_top">
-                                <span><a target="_blank" href="<{:U('Bar/index',array('id'=>$note['bar_id']))}>"><{$note['name']}></a></span>
+                                <a href="<{:U('Bar/index',array('id'=>$note['bar_id']))}>"><img src="__UPLOAD__/<{$note['bhpic']}>" alt="<{$note['name']}>" width="60" height="60"></a>
+                                <span><a target="_blank" href="<{:U('Bar/index',array('id'=>$note['bar_id']))}>" style="font-size:25px;"><{$note['name']}></a></span>
                             </div>
                             <div class="content_cen">
-                                <a target="_blank" href="<{:U('Bar/note',array('bar_id'=>$note['bar_id'],'note_id'=>$note['id']))}>"><{$note['title']}></a>
+                                <a target="_blank" href="<{:U('Bar/note',array('bar_id'=>$note['bar_id'],'note_id'=>$note['id']))}>" style="font-size:23px;"><{$note['title']}></a>
                             </div>
                             <div class = "content_cen">
-                                <span style="color:#999;"><{$note['content']}> </span>
+                                <span style="color:#999;font-size:20px;"><{$note['content']}> </span>
                             </div>
                             <div class="content_footer">
-                                <span class="glyphicon glyphicon-user"> <{$note['user_id']}></span><span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span>
+                                <span class="glyphicon glyphicon-user"> <{$note['uname']}></span>
+                                <span class="glyphicon glyphicon-edit" style="float:right">回复： <{$note['reply']}></span>
+                                <!-- <span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span> -->
                             </div>
                         </div>
                     </div>
                 </volist>
             </div>
-            <!--以下热门贴非遍历，可删除-->  
-            <!-- <div class = "content_con">
-                <div class = "content_dt">
-                    <div class = "content_top">
-                        <span><a href="">赵丽颖吧</a></span>
-                    </div>
-                    <div class="content_cen">
-                        <a href=""></a>
-                    </div>
-                    <div class = "content_cen">
-                        <a href="">【如颖随行】20161108赵丽颖最火热十部剧 第六最惊艳 赵丽颖最火热十部剧 第六最惊艳 </a>
-                    </div>
-                    <div class = "content_img">
-                        <img src="__PUBLIC__/public/image/liying1.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying2.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" />
-                        <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                        <!-- <img src="__PUBLIC__/public/image/liying3.jpg" style = "width:120px;height:150px;" alt="" /> -->
-                    <!-- </div>
-                    <div class="content_footer">
-                        <span class="glyphicon glyphicon-user">帖主</span><span class="glyphicon glyphicon-time">时间</span>
-                    </div>
-                </div>
-            </div> -->
 
         </div><!-- 左边完 -->
     </div><!-- index_bj -->
@@ -385,10 +339,10 @@
                     type:'post',
                     url:"<{:U('Index/isfine')}>",
                     success:function(results){
-                        // console.log(results);
+                        console.log(results);
                         // console.log(results.length);
                         for(var i=0;i<results.length;i++){
-                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
+                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><a target='_blank' href=<{:U('Bar/index')}>?id="+results[i].barid+"'><img src='__UPLOAD__/"+results[i].bhpic+"' alt='"+results[i].name+"' width='60' height='60'></a><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"' style='font-size:25px;'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"' style='font-size:23px;'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;' style='font-size:20px;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].uname+"</span><span class='glyphicon glyphicon-edit' style='float:right'>回复："+results[i].reply+"</span></div></div></div>");
                             // $(".content_d").append("<a href=''>"+results[i].name+"</a>");
                         }
                     },
@@ -409,7 +363,7 @@
                         // console.log(results);
                         // console.log(results.length);
                         for(var i=0;i<results.length;i++){
-                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span></div></div></div>");
+                            $("#hothot").append("<div class = 'content_con'><div class = 'content_dt'><div class = 'content_top'><a target='_blank' href=<{:U('Bar/index')}>?id="+results[i].barid+"'><img src='__UPLOAD__/"+results[i].bhpic+"' alt='"+results[i].name+"' width='60' height='60'></a><span><a target='_blank' href='<{:U('Bar/index')}>?id="+results[i].barid+"' style='font-size:25px;'>"+results[i].name+"</a></span></div><div class='content_cen'><a target='_blank' href='<{:U('Bar/note')}>?bar_id="+results[i].barid+"&note_id="+results[i].id+"' style='font-size:23px;'>"+results[i].title+"</a></div><div class = 'content_cen'><span style='color:#999;' style='font-size:20px;'>"+results[i].content+"</span></div><div class='content_footer'><span class='glyphicon glyphicon-user'>"+results[i].user_id+"</span><span class='glyphicon glyphicon-edit' style='float:right'回复：>"+results[i].reply+"</span></div></div></div>");
                             // $(".content_d").append("<a href=''>"+results[i].name+"</a>");
                         }
                     },

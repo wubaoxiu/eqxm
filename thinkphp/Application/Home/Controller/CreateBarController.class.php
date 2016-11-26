@@ -29,26 +29,30 @@ class CreateBarController extends CommonController
     //
     public function doCreate()
     {
-        dump($_POST);
+        if($_POST['yzm'] != session('sms')){
+            $this->error("手机验证码错误！！！");
+            exit;
+        }
 
         $map = [];
         $map['type_id'] = $_POST['type_id'];
-        $map['name'] = $_POST['name'];
+        $map['barname'] = $_POST['name'];
         $map['title'] = $_POST['title'];
         $map['desc'] = $_POST['desc'];
-        $map['createtime'] = time();
+        $map['time'] = time();
+        $map['username'] = $_SESSION['user']['name'];
         // dump($map);exit;
 
         $result = M('barinfo')->where(array('name'=>array('eq',$map['name'])))->find();
 
         if(!$result){
-            $res = M('barinfo')->data($map)->add();
+            $res = M('requestcreatebar')->data($map)->add();
 
             if($res>0){
-                $this->success("创建成功,去创建的吧看看吧",U("Bar/index",array('id'=>$res)));
+                $this->success("请求创建已发送，我们会尽快响应您的请求，在此之前先去别的吧看看吧",U("Index/index"));
                 exit;
             }else{
-                $this->error("创建失败！！！");
+                $this->error("请求创建未发送成功！！！");
                 exit;
             }
         }
