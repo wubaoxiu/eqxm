@@ -14,24 +14,24 @@
     </li>
 </block>
 <block name="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="table-header">
-               <{$stitle}>
-            </div>
-
+ <div class="page-header">
+        <h1>
+            统计管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                饼图统计
+            </small>
+        </h1>
+  </div>
 <title>jquery html5图表动画圆形饼图</title>
-<link href="__PUBLIC__/jiaoben/css/style.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="__PUBLIC__/jiaoben/js/jquery.js"></script>
-</head>
-<body>
+
 <style type="text/css">
 *{margin:0;padding:0;list-style-type:none;}
 body{background:#fff;color:#333;font-family:"Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;font-size:0.9em;}
 #container{width:900px;margin:50px auto;}
-#chart, #chartData{border:1px solid #333;background:#ebedf2 url("__PUBLIC__/jiaoben/images/gradient.png") repeat-x 0 0;}
+#chart, #chartData{background:#ebedf2 url("__PUBLIC__/jiaoben/images/gradient.png") repeat-x 0 0;}
 #chart{display:block;margin:0 0 50px 0;float:left;cursor:pointer;}
-#chartData{width:200px;margin:0 40px 0 0;float:right;border-collapse:collapse;box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-moz-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-webkit-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);background-position:0 -100px;}
+#chartData{width:260px;margin:0 40px 0 0;float:right;border-collapse:collapse;box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-moz-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-webkit-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);background-position:0 -100px;}
 #chartData th, #chartData td{padding:0.5em;border:1px dotted #666;text-align:left;}
 #chartData th{border-bottom:2px solid #333;text-transform:uppercase;}
 #chartData td{cursor:pointer;}
@@ -39,42 +39,36 @@ body{background:#fff;color:#333;font-family:"Trebuchet MS", Verdana, Arial, Helv
 #chartData tr:hover td{background:#f0f0f0;}
 </style>
 
-<script src="__PUBLIC__/jiaoben/js/jquery.min.js"></script>
+<br><p align="center"></p>
+<div id="container">
+	
+		<canvas id="chart" width="600" height="400" style="margin-top:-40px;"></canvas>
+		<table id="chartData">
+			<tr>
+				<th>类型</th><th>总数</th>
+			</tr>
+			<tr style="color:#0DA068">
+				<td>后台管理员</td><td><{$adminCount}></td>
+			</tr>
+			<tr style="color:#194E9C">
+				<td>前台用户</td><td><{$homeCount}></td>
+			</tr>
+			<tr style="color:#ED9C13">
+				<td>贴吧</td><td><{$barCount}></td>
+			</tr>
+			<tr style="color:#ED5713">
+				<td>帖子</td><td><{$noteCount}></td>
+			</tr>
+		</table>
+	</div>
+
+</block>
+
+<block name="tablejs">
+<!-- <script src="__PUBLIC__/jiaoben/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/jiaoben/js/pieChart.js"></script>
 <!--[if IE]>
 <script src="js/excanvas.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="__PUBLIC__/jiaoben/js/pieChart.js"></script>
-<br><p align="center"></p>
-<div id="container">
-	
-		<canvas id="chart" width="600" height="500"></canvas>
-<p align="center">来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
-		<table id="chartData">
-			<tr>
-				<th>站长脚本素材</th><th>下载量</th>
-			</tr>
-			<tr style="color:#0DA068">
-				<td>jquery图片特效</td><td>1862.12</td>
-			</tr>
-			<tr style="color:#194E9C">
-				<td>jquery导航菜单</td><td>1316.00</td>
-			</tr>
-			<tr style="color:#ED9C13">
-				<td>jquery选项卡特效</td><td>712.49</td>
-			</tr>
-			<tr style="color:#ED5713">
-				<td>jquery文字特效</td><td>3236.27</td>
-			</tr>
-			<tr style="color:#057249">
-				<td>jquery表单特效</td><td>6122.06</td>
-			</tr>
-			<tr style="color:#5F91DC">
-				<td>html5特效</td><td>128.11</td>
-			</tr>
-			<tr style="color:#F88E5D">
-				<td>html5 图表</td><td>245.55</td>
-			</tr>
-		</table>
-	</div>
 </block>
