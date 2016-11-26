@@ -22,7 +22,8 @@ a {
 .center {
     width: 1263px;
     height: 531px;
-    margin-top: -20px;
+    margin-top: 10px;
+    background: #DCEFFE;
 }
 
 .center_nav {
@@ -166,7 +167,7 @@ a {
     margin-left: 30px;
 }
 
-/*帖子*/
+/*收藏的帖子*/
 /*===============*/
 .note {
     width: 700px;
@@ -175,10 +176,11 @@ a {
 }
 
 .note .note_content {
-    width: 600px;
+    width: 200px;
     height: 50px;
     float: left;
     line-height: 50px;
+    margin-left: 10px;
 }
 
 .note .note_time {
@@ -186,49 +188,49 @@ a {
     height: 50px;
     float: left;
     line-height: 50px;
+    margin-left: -10px;
 }
-
-.note_reply .note_content {
-    width: 200px;
-    height: 50px;
-    float: left;
-    line-height: 50px;
-}
-
-.note_reply .note_time {
-    width: 100px;
-    height: 50px;
-    float: left;
-    margin-left: 350px;
-    line-height: 50px;
-}
-
-.note_reply {
-    width: 800px;
-    /*height:150px;*/
-    border-top: 1px dotted #ccc;
-}
-
-.note_reply .note_warp {
-    width: 400px;
-    height: 30px;
-    /*border:1px solid #ccc;*/
-    float: left;
-}
-
-.note_reply .note_warp a {
-    font-size: 16px;
-    color: #abcdef;
-}
-
-.note_reply .note_topic {
+.note_warp{
     width: 700px;
-    height: 50px;
-    background: #F2F2F2;
+    border-bottom:1px solid #ccc;
+    margin-top: 10px;
     float: left;
-    margin-top: 5px;
-    line-height: 50px;
 }
+.note_warp .note_title{
+    width:220px;
+    float:left;
+}
+.note_warp .note_name{
+     width:150px;
+    float: left;
+}
+.note_warp .note_time{
+    float: right;
+    width:112px;
+    margin-top: -10px;
+}
+
+/*我的帖子*/
+/*=======================*/
+.mynote {
+    width: 700px;
+    border-bottom: 1px solid #ccc;
+    float:left;
+}
+
+.mynote .mynote_content {
+    width: 600px;
+    float: left;
+
+}
+
+.mynote .mynote_time {
+    width: 100px;
+    float: left;
+    margin-left: 600px;
+
+}
+
 
 /*基本资料设置*/
 /*================================*/

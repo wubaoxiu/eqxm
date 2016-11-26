@@ -1,0 +1,169 @@
+<extend name="Public/table" />
+
+<block name="picture">
+    <li class="active open">
+</block>
+
+<block name="picturelist">
+    <li class="active">
+</block>
+ 
+<block name="where">
+    <li>
+    <li><a href="#"><{$title}></a></li>
+    <li><{$stitle}></li>
+    </li>
+</block>
+
+<block name="content">
+<div class="row">
+<div class="col-xs-12">
+<div class="table-header">
+<{$title}>
+</div>
+<div class="table-responsive">
+<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th class="center">
+                <label>
+                    <input type="checkbox" class="ace" />
+                    <span class="lbl"></span>
+                </label>
+            </th>
+            <th>编号</th>
+            <th class="hidden-480 center">图片名称</th>
+            <th class="hidden-480 center">显示</th>
+             <th class="center">
+                <i class="icon-time bigger-110 hidden-480"></i>
+              操作
+            </th>
+        </tr>
+        </thead>
+        <!-- <{:dump($list)}> -->
+        <tbody>
+        <foreach name="list" item="v">
+            <tr class="center">
+                <td>
+                    <label>
+                        <input type="checkbox" class="ace" />
+                        <span class="lbl"></span>
+                    </label>
+                </td>
+                  
+                <td>
+                    <a href="#"> <{$v.id}> </a>
+                </td>
+                <td class="hidden-480"><{$v['picname']}></td>
+                  <td class="hidden-480" style="color:green;width:80px;"> 
+                     <a href="<{:U('Picture/doshow',array('id'=>$v['id']))}>" class="show" onclick=" return false"><if condition="($v.is_show eq 1)">显示<else />不显示</if></a>
+                  </td>                
+                  <td>
+                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                    <a href="<{:U('edit',array('id'=>$v['id']))}>" class="btn btn-primary">修改图片</a>
+                    <a href="<{:U('del',array('id'=>$v['id']))}>" class="btn btn-danger">删除</a>
+                    </div>
+
+                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                        <span class="blue">
+                                            <i class="icon-zoom-in bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                        <span class="green">
+                                            <i class="icon-edit bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                        <span class="red">
+                                            <i class="icon-trash bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </foreach>
+
+        </tbody>
+</table>
+</div>
+</div>
+</div>
+</block>
+
+<block name="tablejs">
+    <script type="text/javascript">
+
+        jQuery(function($) {
+            var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+              { "bSortable": false },
+              null, null,null,
+              { "bSortable": false }
+            ] } );
+            
+            
+            $('table th input:checkbox').on('click' , function(){
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+                    
+            });
+        
+        
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+        
+                var off2 = $source.offset();
+                var w2 = $source.width();
+        
+                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                return 'left';
+            }
+        })
+
+   //显示与不显示
+
+   $("td .show").click(function () { 
+        var url = $(this).attr("href");
+        var $_this = $(this);
+        $.ajax({
+        type:'get',
+            data:"",
+            url:url,
+            success:function(data){
+               if(data == 1){
+                $_this.html('显示');
+               }else if(data == 2){
+                $_this.html('不显示');
+               }
+            },
+        })
+                                  
+    });
+    </script>
+</block>

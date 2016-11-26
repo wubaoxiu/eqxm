@@ -26,15 +26,15 @@ class SetController extends ConmonController{
       $this->_fans=M('fans');
     }
 
-      public function detail(){
-        //获取id
-        $id = $_SESSION['user']['id'];
-        //查找该用户的信息
-        $list = $this->_user->find($id);
-        // var_dump($id);
-        //分配数据
-        $this->assign('list',$list);
-        $this->display();
+    public function detail(){
+      //获取id
+      $id = $_SESSION['user']['id'];
+      //查找该用户的信息
+      $list = $this->_user->find($id);
+      // var_dump($id);
+      //分配数据
+      $this->assign('list',$list);
+      $this->display();
     }
 
    //处理头像 
@@ -45,13 +45,13 @@ class SetController extends ConmonController{
         //查询该用户下的所有信息
         $list = $this->_user->find($id);
         $data = $this->_like->select();
-         $li = $this->_user->field('like')->find($id);
+        $li = $this->_user->field('like')->find($id);
         $arr['like']= explode(',',$li['like']); 
         //分配数据
         $this->assign('list',$list);
         $this->assign('data',$data);
         $this->assign('arr',$arr);
-         $this->display('Set/dophoto');
+        $this->display('Set/dophoto');
     }
 
      //修改头像
@@ -59,9 +59,9 @@ class SetController extends ConmonController{
     public function action(){
       $hpic = $this->upload();
       $data['hpic'] = $hpic;
-        $data['id'] = I('get.id/d');
-       $this->_user->save($data);
-       return $this->ajaxReturn($hpic);
+      $data['id'] = I('get.id/d');
+      $this->_user->save($data);
+      return $this->ajaxReturn($hpic);
     }
 
     
@@ -103,13 +103,11 @@ class SetController extends ConmonController{
           $array=$_POST['likename'];
           $str = implode(',', $array);
         }
-
-         $data['like']=$str;
+        $data['like']=$str;
         $data['id'] = $_POST['id'];
         $data['sex'] = $_POST['sex'];
         $data['brith'] = $_POST['brith'];
         $data['introduction'] = $_POST['introduction'];
-        // var_dump($data);die;
         if ($this->_user->save($data) !==false) {
             $this->success('恭喜您，修改資料成功',U('Set/detail'));
         }else{
@@ -189,19 +187,13 @@ class SetController extends ConmonController{
      */
 
      public function collect(){
-      // /定义一个空数组
-      $arr = [];
-      $list = M('note')->field('n.title,n.createtime,n.user_id')->where('c.note_id=n.id')->table('csw_note n,csw_collect c')->select();
-      // var_dump($list);
-      foreach($list as $v){
-        $author = $this->_user->field('name')->where(array('id'=>$v['user_id']))->select();
-      }
-    
-        $arr['title']=$v['title'];
-        $arr['time']=$v['createtime'];
-        $arr['name']=$author[0]['name'];
-        // var_dump($arr);
-        $this->assign('arr',$arr);
+        $id = $_SESSION['user']['id'];
+        $noteid = M('collect')->field('note_id')->where(array('user_id'=>array('eq',$id)))->select();
+       foreach ($noteid as $v) {
+           $list[] = M('note')->field('u.name,n.title,n.createtime')->where("n.user_id = u.id and n.id=".$v['note_id'])->table('csw_user u,csw_note n')->find();
+        }
+
+        $this->assign('arr',$list);
         $this->display('Set/collect');
      }
 

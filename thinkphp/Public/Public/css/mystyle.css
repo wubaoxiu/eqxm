@@ -85,9 +85,9 @@ ul li {
     text-decoration: underline;
 }
 
-#header {
+#header_img {
     border-top: 1px solid #fff;
-    height: 110px;
+    height: 90px;
     overflow: hidden;
 }
 
@@ -135,14 +135,11 @@ ul li {
 .type_one li a:hover {
     color: blue;
 }
-
-/*.bar_rec li a{
-    color:#999;
-    text-decoration: none;
+/*首页背景*/
+.index_bj{
+    width:100%;
+    background: #DCEFFE;
 }
-.bar_rec li a:hover{
-    color:#FF6600;
-}*/
 /*++++++++++++++++++++++++ end ++++++++++++++++++++++++++*/
 .content_d {
     width: 800px;
@@ -151,6 +148,7 @@ ul li {
     border-right:1px solid #ccc;
     border-bottom:1px solid #ccc;
     float:left;
+    background: #FCFCFC;
 }
 
 .content_d .content_nav {
@@ -460,4 +458,7 @@ ul li {
     margin-left: 40px;
     line-height: 50px;
     float: left;
+}
+.myinfo_bj{
+    background: #abcdef;
 }

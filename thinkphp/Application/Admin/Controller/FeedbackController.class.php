@@ -25,7 +25,7 @@ class FeedbackController extends AdminController{
     } 
 
     public  function index(){
-        $list = $this->_feedback->field('u.name,f.id,f.content,f.add_time')->table('csw_user u,csw_feedback f')->where('f.user_id=u.id')->select();
+        $list = $this->_feedback->select();
         $this->assign('title','用户意见与反馈');
         $this->assign('stitle','意见与反馈列表');
         $this->assign('list',$list);
@@ -35,19 +35,18 @@ class FeedbackController extends AdminController{
     //查看回复页面
     public function reply(){
         $id = I('get.id/d');
-         $list = $this->_feedback->field('u.name,f.id,f.content,f.add_time')->table('csw_user u,csw_feedback f')->where("f.user_id=u.id and f.id = '$id'")->select();
-         foreach ($list as  $v) {
-             $arr=$v;
-         }
+         $list = $this->_feedback->where("id = '$id'")->select();
         $this->assign('title','用户意见反馈');
         $this->assign('stitle','查询并回复用户');
-        $this->assign('list',$arr);
+        $this->assign('list',$list);
         $this->display('Feedback/feedback_reply');
     }
 
     public function doReply(){
+        // var_dump($_POST);die;
        $post = $_POST;
        $post['reply_time']=time();
+       // var_dump($post);die;
         if ($this->_feedback_reply->data($post)->add()>0) {
             $this->success('回复成功！',U('Feedback/index'));
         }else{

@@ -1,0 +1,120 @@
+<extend name="Index/head" />
+
+<block name="main">
+  <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
+
+  <title>个人中心</title>
+  <div class = "center">
+    <div class = "center_warp">
+      <div class = "center_center"  style="background: #FCFCFC">
+        <div class = "center_left fl">
+            <div class = "center_left_top">
+                <div class = "center_left_top_two">
+                    <a href="<{:U('Set/index')}>" target="main"><div class = "center_img"><img style = "width:100px;height:100px;" src="__ROOT__/<if condition="$list[0]['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list[0]['hpic']}></if>" /></div></a>
+                   <div class = "center_fans fr">
+                       <ul>
+                       <h1 style="font-size: 16px;font-weight: bold;margin-top:10px;">欢迎您！</h1>
+                           <li><b><{$list[0]['name']}></b></li>
+                            
+                       </ul>
+                    </div>
+                </div>   
+            </div>
+            <div class = "center_bottom">
+             <volist name="feedback" id="vo">
+                  <div style="width:300px;height:60px;">
+                   问题： <p style="width:200px;"><{$vo['fcontent']}></p>
+                  </div>   
+                  <div style="width:300px;height:60px;">                
+                    方法：<p style="width:200px;"><{$vo['content']}></p>
+                  </div>
+                </volist>     
+
+            </div><!--center_bottom-->
+        </div>
+        <h1 style="font-size: 20px;font-weight: bold;margin-top:20px;padding-left:470px;">意见反馈</h1>
+        <div class = "center_right" style="float:left;background:#fff;margin-left:100px;margin-top:30px;width:400px;height:300px;">   
+        <div style="margin-top: 20px;">
+        <form class="layui-form" action="<{:U('Feedback/dofeedback')}>" method="POST">
+        <input type="hidden" name="id" value="<{$_SESSION['user']['id']}>">
+	         <div class="layui-form-item">
+			    <label class="layui-form-label">用户名</label>
+			    <div class="layui-input-inline" style="margin-left: 28px;">
+			      <input type="text" name="name" lay-verify="name" class="layui-input">
+			    </div>
+			  </div>
+		  <div class="layui-form-item layui-form-text">
+		    <label class="layui-form-label">简介</label>
+		    <div class="layui-input-block">
+		      <textarea placeholder="请输入内容" name="content" class="layui-textarea" cols="40" rows="4" maxlength="30"><{$list['introduction']}></textarea>
+		    </div>
+		  </div>
+		   <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		  </div>
+		
+		 </div>  
+		 </form>
+          </div>  
+        </div>
+    </div>       
+  </div><!--center 最外层的div-->
+  <div id="footer" class="footer" style="margin-left:400px;margin-top: 20px;">
+    <span>©2016 Baidu</span>
+    <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
+    <span>|</span>
+    <a pv_code="0" href="#" target="_blank">吧主制度</a>
+    <span>|</span>
+    <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
+    <span>|</span>
+    <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
+</div>
+
+
+<script src="__PUBLIC__/public/js/jquery.min.js"></script>
+<script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  
+  
+  // //监听提交
+  // form.on('submit(demo1)', function(data){
+  //   layer.alert(JSON.stringify(data.field), {
+  //     title: '最终的提交信息'
+  //   })
+  //   return false;
+  // });
+  
+  
+});
+</script>
+
+
+</block>

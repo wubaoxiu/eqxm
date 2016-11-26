@@ -14,19 +14,32 @@ class ProfileController extends ConmonController
 
     private $_user = null;//用户表操作
     private $_note = null;//用户表操作
+    private $_fans = null;//用户表操作
 
     public function _initialize()
     {
         $this->_user = M('user');
         $this->_note = M('note');
+        $this->_fans = M('fans');
     }
 
     //个人中心首页显示 
     public function index()
     {
+        //判断有无登录
+        if (empty($_SESSION['user'])) {
+            $this->error('您还没有登录，请先登录！');
+            exit;
+        }
         $id = $_SESSION['user']['id'];
+        //根据id查找该用户的信息
         $list = $this->_user->find($id);
+        //查询粉丝、关注数量
+        $fan = $this->_fans->field('user_id')->where(array('fuser_id'=>array('eq',$id)))->count();
+        $follow = $this->_fans->field('fuser_id')->where(array('user_id'=>array('eq',$id)))->count();
         $this->assign('list',$list);
+        $this->assign('fan',$fan);
+        $this->assign('follow',$follow);
         $this->display();
 
     }
