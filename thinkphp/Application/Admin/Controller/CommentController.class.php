@@ -31,7 +31,7 @@ class CommentController extends AdminController
     * @return[void]
     */
     public function index(){
-        $data = $this->_comment->field('c.id,u.name uname,c.note_id,c.floor,c.status,b.name bname,c.createtime')->table("csw_user u,csw_barinfo b,csw_comments c")->where('c.user_id=u.id and c.bar_id=b.id')->select();
+        $data = $this->_comment->field('c.id,u.name uname,c.note_id,c.floor,c.status,b.name bname,c.createtime')->table("csw_user u,csw_barinfo b,csw_comments c,csw_note n")->where('c.user_id=u.id and c.note_id=n.id and n.bar_id=b.id')->select();
         // dump($data);
 
         $this->assign('title',"评论列表");
