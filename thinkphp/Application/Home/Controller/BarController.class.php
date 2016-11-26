@@ -11,7 +11,7 @@ use Think\Controller;
  * @date 2016-11-21
 */
 
-class BarController extends Controller
+class BarController extends CommonController
 {
     // 定义数据库操作类
     private $_barinfo = null;
@@ -264,6 +264,7 @@ class BarController extends Controller
         foreach ($fans as $k=>$v) {
             // 查询关注本贴吧的会员信息，过滤掉其中的管理员与吧主
             $fans[$k] = $this->_baradmin->field('status')->where(array('user_id'=>array('eq',$v['user_id'])))->find();
+            $fans[$k]['bars'] = $this->_bars->field('integral,grade')->where(array('user_id'=>array('eq',$v['user_id'])))->find();
             $fans[$k]['user'] = $this->_user->field('id,name,sex,logintime')->where(array('id'=>array('eq',$v['user_id'])))->order('id desc')->find();
         }
         // dump($fans);die;

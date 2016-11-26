@@ -216,11 +216,12 @@
                 var is_ok;
                 function check(){
                     var title = $("input[name='title']").val();
+                    var bar_id = "<{$data.id}>";
                     // alert("name="+name+"&password="+password);
                     $.ajaxSetup({   
                         async : false  
                     });
-                    $.post("<{:U('Note/add')}>",{'title':title},function(data){
+                    $.post("<{:U('Note/add')}>",{'title':title,'bar_id':bar_id},function(data){
                         // console.log(data);
                         if(data.val == false){
                             layer.msg(data.content, {

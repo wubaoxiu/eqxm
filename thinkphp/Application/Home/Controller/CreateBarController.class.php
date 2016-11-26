@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-25
 */
-class CreateBarController extends Controller
+class CreateBarController extends CommonController
 {
     /**
      * 方法名：index()  获取创建贴吧页面

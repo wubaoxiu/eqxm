@@ -50,9 +50,9 @@ class ShutupController extends AdminController
         }
         // echo $id;
         if($this->_fre->where(array('id'=>array('eq',$id)))->delete()>0){
-            $this->success('删除成功！',U('Shutup/index'));
+            $this->success('取消禁言成功！',U('Shutup/index'));
         } else {
-            $this->error('删除失败！');
+            $this->error('取消禁言失败！');
         }
     }
 }

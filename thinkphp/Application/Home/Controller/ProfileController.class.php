@@ -9,7 +9,7 @@ use Think\Controller;
  * @author xiao
  * date 2016-11-20
  *****/
-class ProfileController extends Controller
+class ProfileController extends ConmonController
 {
 
     private $_user = null;//用户表操作

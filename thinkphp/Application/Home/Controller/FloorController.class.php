@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-18
 */
-class FloorController extends Controller
+class FloorController extends CommonController
 {
     public function floorAdd()
     {

@@ -40,15 +40,28 @@
                                   <else />保密
                                   </if>
                                 </td>
-                                <td class="hidden-480"><{$v.integral}></td>
-                                <td class="hidden-480"></td>                              
+                                <td class="hidden-480"><{$v.bars.integral}></td>
+                                <td class="hidden-480"><{$v.bars.grade}></td>                              
                                 <td class="hidden-480"><{$v.user.logintime|date="Y-m-d H:i:s",###}></td>
                                 <td>
-                                    <a href="<{:U('Bar/add_admin',array('user_id'=>$v['user']['id'],'bar_id'=>$bar_id))}>"><button class="btn-xs btn-primary">升为管理</button></a>
-                                    <a href=""><button class="btn-xs btn-danger">禁言</button></a>
+                                    <if condition="$v['status'] eq 1"><a href="<{:U('Bar/add_admin',array('user_id'=>$v['user']['id'],'bar_id'=>$bar_id))}>"><button class="btn-xs btn-primary">升为管理</button></a></if>
+                                    <button class="btn-xs btn-danger" id="<{$v['user']['name']}>">禁言</button>
                                 </td>
                             </tr>
                             </if>
+                            <script src="__PUBLIC__/layer/layer.js" charset="utf-8"></script>
+                            <script type="text/javascript" src="__PUBLIC__/Public/js/jquery.min.js"></script>
+
+                            <script type="text/javascript">
+                                $("#<{$v['user']['name']}>").click(function(){
+                                    layer.open({
+                                      type: 1,
+                                      skin: 'layui-layer-rim', //加上边框
+                                      area: ['420px', '240px'], //宽高
+                                      content: "<p style='margin-left:140px'>请选择禁言时间</p><form action='<{:U(\'Shutup/add\')}>' method='POST'><input type='hidden' name='bar_id' value='<{$bar_id}>' /><input type='hidden' name='user_id' value='<{$v[\'user\'][\'id\']}>' /><p><input type='radio' style='margin-top:10px;margin-left:170px' name = 'stime' value='1' checked>1分钟</p><p><input type='radio' style='margin-top:10px;margin-left:170px' name = 'stime' value='2'>2分钟</p><p><input type='radio' style='margin-top:10px;margin-left:170px' name = 'stime' value='3'>3分钟</p><button class='btn btn-primary' type='submit' style='margin-left:170px'>确认</button></form>"                                      
+                                    });
+                                })
+                            </script>
                         </foreach>
                     </tbody>
                 </table>
@@ -59,6 +72,7 @@
 </block>
 
 <block name="tablejs">
+    
     <script type="text/javascript">
         jQuery(function($) {
             var oTable1 = $('#sample-table-2').dataTable( {

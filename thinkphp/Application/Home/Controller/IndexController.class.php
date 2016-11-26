@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-18
 */
-class IndexController extends Controller {
+class IndexController extends CommonController {
     /**
      * 方法名 index()  遍历首页
      * @return [void]

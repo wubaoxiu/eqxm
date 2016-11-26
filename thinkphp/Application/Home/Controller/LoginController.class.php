@@ -9,7 +9,7 @@ use Think\Controller;
     *@date    2016/11/17
 */
 
-class LoginController extends Controller
+class LoginController extends CommonController
 {
     // 定义数据库操作类
     private $_user = null;

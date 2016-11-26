@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-23
 */
-class SignController extends Controller
+class SignController extends ConmonController
 {
     /**
      * 方法名：allIn()  一键签到  签到所有已关注的吧

@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class UserController extends Controller
+class UserController extends ConmonController
 {
 
     public function index()

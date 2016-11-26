@@ -7,17 +7,21 @@ use Think\Controller;
     *@作者    yjx
     *@date    2016/11/21
 */
-class NoteController extends Controller
+class NoteController extends ConmonController
 {
     // 定义数据库操作类
     private $_note = null;
     private $_user = null;
+    private $_bars = null;
+    private $_shutup = null;
 
     // 初始化
     public function _initialize()
     {
         $this->_note = M('note');
         $this->_user = M('user');
+        $this->_bars = M('bars');
+        $this->_shutup = M('shutup');
     }
 
     // 帖子添加
@@ -40,6 +44,22 @@ class NoteController extends Controller
         if(empty($_POST['content'])){
             $this->error('内容不能为空！');
         }
+        $map['user_id'] = $_SESSION['user']['id'];
+        $map['bar_id'] = $_POST['id'];
+        $arr = $this->_bars->where($map)->find();
+        if(empty($arr)){
+            $this->error("必须关注本贴吧，才能发帖哦！");
+            // $list = array('val'=>false,"content"=>"必须关注本贴吧，才能发帖哦！");
+            // $this->ajaxReturn($list);exit;
+        }
+        $arr2 = $this->_shutup->where($map)->find();
+        if($arr2['relieve']>time()){
+            $a = date('Y-m-d H:i:s',$arr2['relieve']);
+            $this->error("您现在还处于禁言期间，解除时间为$a");
+        }else{
+            $this->_shutup->where($map)->delete();
+        }
+        
         // dump($_POST['content']);
         $data['user_id'] = $_SESSION['user']['id'];
         $data['bar_id'] = $_POST['id'];
