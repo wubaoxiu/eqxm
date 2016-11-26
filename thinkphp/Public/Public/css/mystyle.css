@@ -112,7 +112,7 @@ ul li {
 }
 
 .rec_list {
-    width: 160px;
+    /*width: 160px;*/
     /*height:100px;*/
     float: left;
     margin-left: 10px;

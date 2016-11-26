@@ -92,7 +92,7 @@
             </div>
         </div>
     </div> -->
-       <div id="footer" class="footer">                                                                                                      
+       <div id="footer" class="footer fl">                                                                                                      
                 <span>©2016 Baidu</span>
                 <a pv_code="0" href="http://tieba.baidu.com/tb/eula.html" target="_blank">贴吧协议</a>
                 <span>|</span>
@@ -101,7 +101,7 @@
                 <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
                 <span>|</span>
                 <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
-            </div> 
+        </div> 
 </body>
 </html>
 <!-- start scripts -->
@@ -121,7 +121,10 @@
                 url:"<{:U('Search/search')}>",
                 success:function(results){
                     if(results === 0) {
-                        alert("没有该吧，马上去申请建吧");window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                        var r = confirm("没有该吧，马上去申请建吧");
+                        if(r==true){
+                            window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                        }
                     } else {
                         location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
                     }

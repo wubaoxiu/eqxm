@@ -160,7 +160,8 @@
                     n6 = 'y';
                 }
             }
-
+            
+            var m=60;
             $(document).on('click','#sendphone',function(){
                 // alert('yes');
                 console.log($('#telnumber').val());
@@ -189,14 +190,14 @@
 
             
         })
-            //总体验证
-            function checkForm(){
-                if(n1 !== 'y' && n2 !== 'y' && n3 !== 'y' && n4 !== "y" && n5 !== "y"){
-                    alert("您的信息有误，请认真修改后提交！");
-                    return false;
-                }else{
-                    return true;
-                }
+        //总体验证
+        function checkForm(){
+            if(n1 !== 'y' && n2 !== 'y' && n3 !== 'y' && n4 !== "y" && n5 !== "y"){
+                alert("您的信息有误，请认真修改后提交！");
+                return false;
+            }else{
+                return true;
             }
+        }
     </script>
 </block>

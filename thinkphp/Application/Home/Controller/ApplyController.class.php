@@ -14,11 +14,17 @@ class ApplyController extends Controller
     public function applyBazu()
     {
         $bid = I('bid');
-        // echo $bid;
         $uid = $_SESSION['user']['id'];
-        // echo $uid;
+        
         $grade = M('bars')->field("grade")->where("user_id=$uid and bar_id=$bid")->find();
-        // dump($grade);
+
+        $result = M('barinfo')->where(array('user_id'=>array('eq',$uid)))->find();
+
+        if($result){
+            $this->ajaxReturn(3);
+            exit;
+        }
+
         if($grade['grade'] < 5){
             $this->ajaxReturn(1);
             exit;
@@ -40,11 +46,29 @@ class ApplyController extends Controller
     public function applyAdmin()
     {
         $bid = I('bid');
-        // echo $bid;
         $uid = $_SESSION['user']['id'];
-        // echo $uid;
+        
+        //查询等级
         $grade = M('bars')->field("grade")->where("user_id=$uid and bar_id=$bid")->find();
-        // dump($grade);
+        
+        //查询是否是本吧吧主
+        $result = M('barinfo')->where(array('user_id'=>array('eq',$uid)))->find();
+
+        //查询是否是本吧管理员
+        $admin = M('baradmin')->where("user_id=$uid and bar_id=$bid")->find();
+        
+        if($result){
+            if($result['id'] == $bid){
+                $this->ajaxReturn(3);
+                exit;
+            }
+        }
+
+        if($admin){
+            $this->ajaxReturn(4);
+            exit;
+        }
+
         if($grade['grade'] < 5){
             $this->ajaxReturn(1);
             exit;

@@ -28,7 +28,7 @@ class IndexController extends Controller {
         // dump($list);
 
         //热门帖子
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id bar_id,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.reply,n.user_id,u.name uname,n.content,n.isfine,b.id bar_id,b.hpic bhpic,b.name,n.createtime")->table('csw_note n,csw_barinfo b,csw_user u')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id and n.user_id=u.id')->select();
         // dump($note);
 
         //友情链接
@@ -36,7 +36,7 @@ class IndexController extends Controller {
         // dump($links);
 
         //贴吧分类
-        $typehead = M('type')->where(array('pid'=>array('eq',0)))->limit(8)->select();
+        $typehead = M('type')->where(array('pid'=>array('eq',0)))->limit(7)->select();
 
         $types = M('type')->select();
         // dump($typehead);
@@ -44,7 +44,7 @@ class IndexController extends Controller {
         if($_SESSION['user']){
             $attenBars = attentionBars(2);
             $uid = $_SESSION['user']['id'];
-            $mybars =M('bars')->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade=2")->select();
+            $mybars =M('bars')->field('b.name,ba.signtime,b.id,ba.integral,ba.grade,ba.id barsid')->table("csw_bars ba,csw_barinfo b")->where("ba.user_id=$uid and ba.bar_id=b.id and grade>=2")->select();
         }
         // dump($attenBars);
         $s = 0;
@@ -62,6 +62,10 @@ class IndexController extends Controller {
         $weather = $this->weather();
         // dump($weather);
 
+        //全吧热门话题
+        $hotnote = M('note')->limit(10)->order('reply desc')->select();
+        // dump($hotnote);
+
         // $this->assign('suggest',$arr);
         $this->assign('bars',$list);
         $this->assign('notes',$note);
@@ -71,6 +75,7 @@ class IndexController extends Controller {
         $this->assign('attenBars',$attenBars);
         $this->assign('signin',$s);
         $this->assign('weather',$weather);
+        $this->assign('hotnote',$hotnote);
 
         $this->display();
     }
@@ -80,7 +85,7 @@ class IndexController extends Controller {
      * @return [ajax]
     */
     public function isfine(){
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id barid,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.isfine=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.user_id,u.name uname,n.reply,n.content,n.isfine,b.id barid,b.hpic bhpic,b.name,n.createtime")->table('csw_note n,csw_barinfo b,csw_user u')->where('n.isfine=1 and n.is_show=1 and n.bar_id=b.id and n.user_id=u.id')->select();
         if(!$note){
             $this->ajaxReturn(0);
         }else{
@@ -93,7 +98,7 @@ class IndexController extends Controller {
      * @return [ajax]
     */
     public function ishot(){
-        $note = M('note')->field("n.id,n.title,n.user_id,n.content,n.isfine,b.id barid,b.name,n.createtime")->table('csw_note n,csw_barinfo b')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id')->select();
+        $note = M('note')->field("n.id,n.title,n.user_id,n.reply,u.name uname,n.content,n.isfine,b.id barid,b.hpic bhpic,b.name,n.createtime")->table('csw_note n,csw_barinfo b,csw_user u')->where('n.istop=1 and n.is_show=1 and n.bar_id=b.id and n.user_id=u.id')->select();
         if(!$note){
             $this->ajaxReturn(0);
         }else{
