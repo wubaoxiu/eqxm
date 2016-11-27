@@ -45,13 +45,11 @@
                             <a href="<{:U('Sign/allIn')}>" class="yiqian">
                                 <div>                               
                                     <span style="color:red;font-size:18px;font-weight:bold">√</span>                                
-                                    <!-- <span style="color:red;font-size:18px;font-weight:bold"></span>                                 -->
                                 </div>
                             </a>
                         <else />
                             <a href="<{:U('Sign/allIn')}>" class="weiqian">
                                 <div>                               
-                                    <!-- <span class="yiqian" style="color:red;font-size:18px;font-weight:bold">√</span>                                 -->
                                     <span style="color:red;font-size:18px;font-weight:bold"></span>                                
                                 </div>
                             </a>
@@ -76,7 +74,6 @@
         </if>
             <dl>
                 <dt>
-                <a href="js.html?/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
                 <strong>天气<span class="name-en">/WEATHER</span></strong>
                 </dt>
             </dl>
@@ -215,14 +212,6 @@
                                 </div>
                             </li>
                         </volist>
-                        <!-- <li><a target="_blank"  href="js.html?/440.html">
-                            <img src="__PUBLIC__/Public/image/qi.jpg" style = "height:150px" alt="鹿晗吧" class="lazy"  />
-                             </a>
-                             <div class= "ul_info">     
-                                 <b style="font-size:20px;">邓紫棋吧 </b><br>
-                                 <span style = "font-size:12px;margin-top:-10px;"><a href="">百度鹿晗吧，专注鹿晗事业动态</a><br>关注：1111　帖子：1111</span>
-                             </div>
-                        </li>  --> 
                     </ul>
                 </div>
             </div>
@@ -272,7 +261,6 @@
                 <ul class="nav nav-tabs"> 
                     <li role="presentation" id="hotstatus" class="active"><a href="javascript:;" id="ishot" style="font-size:20px;font-weight:bold">热门动态</a></li> 
                     <li role="presentation"><a href="javascript:;" id="isfine" style="font-size:20px;">加精帖子</a></li> 
-                    <!-- <li role="presentation"><a href="#" style="font-size:20px;">Messages</a></li>  -->
                 </ul>
             </div>
             <script>
@@ -305,7 +293,6 @@
                             <div class="content_footer">
                                 <span class="glyphicon glyphicon-user"> <{$note['uname']}></span>
                                 <span class="glyphicon glyphicon-edit" style="float:right">回复： <{$note['reply']}></span>
-                                <!-- <span class="glyphicon glyphicon-time"> <{$note['createtime']|date="Y-m-d H:i:s",###}></span> -->
                             </div>
                         </div>
                     </div>

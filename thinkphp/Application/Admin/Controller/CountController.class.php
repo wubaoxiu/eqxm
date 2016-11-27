@@ -15,11 +15,13 @@ class CountController extends AdminController
    	$adminCount = M('admin')->count();
    	$homeCount = M('user')->count();
    	$barCount = M('barinfo')->count();
-   	$noteCount = M('note')->count();
+      $noteCount = M('note')->count();
+   	$typeCount = M('type')->field('name')->where('pid=0')->count();
    	$this->assign('adminCount',$adminCount);
    	$this->assign('homeCount',$homeCount);
    	$this->assign('barCount',$barCount);
-   	$this->assign('noteCount',$noteCount);
+      $this->assign('noteCount',$noteCount);
+   	$this->assign('typeCount',$typeCount);
    	$this->display();
    }
 
