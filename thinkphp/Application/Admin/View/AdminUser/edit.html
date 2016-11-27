@@ -48,7 +48,10 @@
            
             <select name = "role_id" class="form-control" id="form-field-select-1" style="width:420px;margin-left:260px;margin-top:-25px;"> 
             <foreach name='rolelist' item='v'> 
-              <option value="<{$v['id']}>"<if condition = "$list[0]['id'] eq $v['id']">selected</if> ><{$v.role}></option>      
+            <if condition="$v['role'] eq 'root'">
+            <else/>
+              <option value="<{$v['id']}>"<if condition = "$list[0]['id'] eq $v['id']">selected</if> ><{$v.role}></option> 
+              </if>     
             </foreach> 
             </select>
         </div>  
