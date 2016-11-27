@@ -60,15 +60,18 @@ class BarController extends CommonController
             U('index/index');
             exit;
         }
-        // 查询所有该贴吧中帖子的信息
+        // 查询所有该贴吧中帖子的信息,查询帖子的要求
         if(empty($isfine)&&empty($istop)){
             $map['bar_id'] = $id;
+            $status = 1;
         }elseif($isfine){
             $map['bar_id'] = $id;
-            $map['isfine'] = $isfine;            
+            $map['isfine'] = $isfine;
+            $status = 2;            
         }elseif($istop){
             $map['bar_id'] = $id;
             $map['istop'] = $istop;
+            $status = 3;
         }
         // dump($map);die;
         $list = $this->_note->where($map)->order('id desc')->page($_GET['p'],5)->select();
@@ -110,6 +113,7 @@ class BarController extends CommonController
         $hotnote = $this->_note->where(array("bar_id"=>array('eq',$id)))->limit(5)->order('reply desc')->select();
         // dump($hotnote);
 
+        $this->assign('status',$status);
         $this->assign('list',$list);
         $this->assign('data',$data);
         $this->assign('attenbars',$attenbars);
