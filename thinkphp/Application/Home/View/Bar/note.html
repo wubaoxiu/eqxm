@@ -31,8 +31,8 @@
 <!-- <{:dump($data)}> -->
     <div class="note_title"><b><{$data[0]['title']}></b>
    <if condition="$collect eq 1">
-    <a href="<{:U('Bar/collect',array('noteid'=>$data[0]['id']))}>" style="float:right;">收藏</a>
-    <else/> <a href="<{:U('Bar/delcollect',array('noteid'=>$data[0]['id']))}>" style="float:right;color:orange">已收藏</a>
+    <a href="<{:U('Follownote/collect',array('noteid'=>$data[0]['id']))}>" style="float:right;">收藏</a>
+    <else/> <a href="<{:U('Follownote/delcollect',array('noteid'=>$data[0]['id']))}>" style="float:right;color:orange">已收藏</a>
     </if>
     </div>
 </block>

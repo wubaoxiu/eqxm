@@ -8,7 +8,7 @@
 <div class="layui-tab-content" style="height: 390px;">
   <div class="layui-tab-item layui-show">
    <div class ="pwd_warp">
-     <span>修改密码关系到您的帐号安全，请先选择安全验证方式：</span>
+     <span>修改密码关系到您的帐号安全，请先选择安全验证方式：<p style="font-size: 14px;color:lightgreen;">如果没有绑定手机号，请先去完善资料绑定手机号<p></span>
        <div class = "pwd_choose">
            <div class="pwd_choose_one">
                 <div class = "pwd_radius">
@@ -73,29 +73,27 @@ function demo(){
     }
 
 }
-
-
-     layui.use('element', function(){
-      var $ = layui.jquery
-      ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-      
-      //触发事件
-      var active = {
-        tabAdd: function(){
-          //新增一个Tab项
-          element.tabAdd('demo', {
-            title: '新选项'+ (Math.random()*1000|0)
-            ,content: '内容'+ (Math.random()*1000|0)
-          })
-        }
-        ,tabDelete: function(){
-          //删除指定Tab项
-          element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
-        }
-        ,tabChange: function(){
-          //切换到指定Tab项
-          element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
-        }
+ layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0)
+        ,content: '内容'+ (Math.random()*1000|0)
+      })
+    }
+    ,tabDelete: function(){
+      //删除指定Tab项
+      element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
+    }
   };
   
   $('.site-demo-active').on('click', function(){
@@ -103,11 +101,7 @@ function demo(){
     active[type] ? active[type].call(this) : '';
   });
 });
-
-
- /**/ 
-
-    layui.use(['form', 'layedit', 'laydate'], function(){
+  layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form()
   ,layer = layui.layer
   ,layedit = layui.layedit
@@ -130,7 +124,4 @@ function demo(){
   });
   
 });
-
-
-
  </script>

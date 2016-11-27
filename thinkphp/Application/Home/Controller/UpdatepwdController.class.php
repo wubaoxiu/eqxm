@@ -86,7 +86,7 @@ class UpdatepwdController extends CommonController{
     public function sendSms()
     {
         if (!IS_AJAX) {
-            $this->error('滚吧',U('Index/index'));
+            $this->error('操作有误！',U('Index/index'));
             exit;
         }
 

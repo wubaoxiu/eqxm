@@ -1,6 +1,5 @@
 <?php 
 
-
 namespace Home\Controller;
 use Think\Controller;
 
@@ -23,7 +22,7 @@ use Think\Controller;
         $this->_barinfo = M('barinfo');
       }
 
-        public function index()
+    public function index()
         {
           //判断有无登录
           if (empty($_SESSION['user']['name'])) {
@@ -48,7 +47,6 @@ use Think\Controller;
             $fname[] = $this->_user->field('hpic,id')->where(array('id'=>$v['fuser_id']))->select();
         
           }
-          // var_dump($fname);
           // 统计该用户所关注的好友人数
            $count = $this->_fans->field('fuser_id')->where(array('user_id'=>array('eq',$uid)))->count(); 
 
@@ -56,17 +54,11 @@ use Think\Controller;
            // 查询关注我的人
           $atten1 = $this->_fans->field('user_id')->where(array('fuser_id'=>array('eq',$uid)))->select();
           foreach ($atten1 as $value) {
-            // var_dump($value);
             $fname1[] = $this->_user->field('hpic,id')->where(array('id'=>$value['user_id']))->select();
         
           }
-          // var_dump($fname1);
           // 统计关注我的好友人数
            $count1 = $this->_fans->field('uuser_id')->where(array('fuser_id'=>array('eq',$uid)))->count();
-           // var_dump($count1);
-    
-
-
            // 调用了受保护的内部方法 （关注与否）
           $follow = $this->is_follow($uid);
           $this->assign('list',$list);
@@ -139,13 +131,12 @@ use Think\Controller;
        }
       $data['user_id'] = $_SESSION['user']['id'];
       $data['fuser_id'] = $fuser_id;
-      // var_dump($data);die;
       if($this->_fans->data($data)->add()>0){
         $this->success('关注成功！');
       }else{
         $this->error('关注失败.......');
       }
-    }
+     }
 
         /**
         * 方法名 cancel() 取消关注
@@ -166,15 +157,15 @@ use Think\Controller;
         }else{
           $this->error('取消关注失败');
         }
-    }
+     }
 
 
-        /**
-        *  定义一个私有方法
-        *  方法名 is_follow()  判断是否关注了好友
-        *  @param int id  好友id
-        *   @return string 1 表示关注 2 表示未关注
-        */ 
+      /**
+      *  定义一个私有方法
+      *  方法名 is_follow()  判断是否关注了好友
+      *  @param int id  好友id
+      *   @return string 1 表示关注 2 表示未关注
+      */ 
 
     private function is_follow($id){
      // 定义一个空数组

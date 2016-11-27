@@ -7,7 +7,7 @@ use Think\Controller;
     *@作者    yjx
     *@date    2016/11/21
 */
-class NoteController extends ConmonController
+class NoteController extends CommonController
 {
     // 定义数据库操作类
     private $_note = null;
