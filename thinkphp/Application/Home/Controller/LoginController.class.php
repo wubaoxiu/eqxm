@@ -235,7 +235,7 @@ class LoginController extends CommonController
     public function logout()
     {
         unset($_SESSION['user']);
-        $this->redirect('Login/login');
+        $this->redirect('Login/index');
     }
 
 

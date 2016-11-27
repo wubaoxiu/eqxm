@@ -30,6 +30,7 @@
                         <foreach name="data" item="v">
                         <!-- <{:dump($v)}> -->
                         <if condition="$v['status']==null">
+                                <!-- <{:dump($v)}> -->
                             <tr>
                                <td>
                                      <{$v.user.name}>
@@ -44,7 +45,7 @@
                                 <td class="hidden-480"><{$v.bars.grade}></td>                              
                                 <td class="hidden-480"><{$v.user.logintime|date="Y-m-d H:i:s",###}></td>
                                 <td>
-                                    <if condition="$v['status'] eq 1"><a href="<{:U('Bar/add_admin',array('user_id'=>$v['user']['id'],'bar_id'=>$bar_id))}>"><button class="btn-xs btn-primary">升为管理</button></a></if>
+                                    <if condition="$Think.session.admin.bar_id eq $bar_id"><if condition="$Think.session.admin.status eq 1"><a href="<{:U('Bar/add_admin',array('user_id'=>$v['user']['id'],'bar_id'=>$bar_id))}>"><button class="btn-xs btn-primary">升为管理</button></a></if></if>
                                     <button class="btn-xs btn-danger" id="<{$v['user']['name']}>">禁言</button>
                                 </td>
                             </tr>
