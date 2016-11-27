@@ -98,6 +98,8 @@ class BarController extends CommonController
             $data['baradmin'] = 3;
         } else {
             $data['baradmin'] = $baradmin['status'];
+            $_SESSION['admin']['bar_id'] = $id;
+            $_SESSION['admin']['status'] = $baradmin['status'];
         }
 
 
