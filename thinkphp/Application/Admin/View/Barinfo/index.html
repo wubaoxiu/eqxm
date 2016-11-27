@@ -97,35 +97,15 @@
                                         <i class="icon-pencil bigger-130" title="修改信息"></i>
                                     </a>
 
-                                    <a class="lightgreen" href="#" role="button" data-toggle="modal" data-target="#myModal">
+                                    <!-- <a class="lightgreen" href="#" role="button" data-toggle="modal" data-target="#myModal">
                                         <i class=" icon-cloud-upload bigger-130" title="上传头像"></i>
-                                    </a>
+                                    </a> -->
                                     <a class="red" href="<{:U('Barinfo/revoke',array('id'=>$v['id']))}>">
                                         <i class="icon-reply bigger-130"></i>
                                     </a>
                                     <!-- <button class="btn btn-grey btn-lg">
                                                 <i class="icon-trash icon-2x icon-only"></i>
                                             </button> -->
-                                    <div class="modal fade" id="myModal">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title">修改头像</h4>
-                                          </div>
-                                          <form action="<{:U('Barinfo/upload')}>" method="post" enctype="multipart/form-data">
-                                          <div class="modal-body">
-                                                <input type="file" name="hpic">
-                                                <input type="hidden" name="id" value="<{$v['id']}>">
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="reset" class="btn btn-default" data-dismiss="modal">重置</button>
-                                            <button type="submit" class="btn btn-primary">修改</button>
-                                          </div>
-                                          </form>
-                                        </div><!-- /.modal-content -->
-                                      </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
 
                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
                                         <div class="inline position-relative">

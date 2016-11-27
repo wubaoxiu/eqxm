@@ -166,17 +166,18 @@
                     <strong>贴吧分类 <span class="name-en">/Recommend</span></strong>
                 </dt>
             </dl>
-            <volist name="typehead" id="tp">
-                <div class = "bar_rec">
+            <div class = "bar_rec">
+                <volist name="typehead" id="tp">
+                
                     <!-- <div class = "rec_img"><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><img style = "width:100px;height:100px;"src="__UPLOAD__/<{$sug['hpic']}>" alt="" /></a></div> -->
                     <div class = "rec_list">
                         <ul>
-                            <li><a href="#" target="_blank"><strong>☆<{$tp['name']}></strong></a></li>
+                            <li><a href="<{:U('Type/index')}>" target="_blank">★<strong style="color:#666;"><{$tp['name']}></strong></a></li>
                                 <ul class="type_one">
                                     <volist name="types" id="typ">
                                         <!-- <{:dump($typ['pid'])}> -->
                                         <if condition="$typ['pid'] eq $tp['id']">
-                                            <li style="margin-right:10px;"><a href="#"><{$typ['name']}></a></li>
+                                            <li style="margin-right:10px;"><a href="#" style="color:#999;"><{$typ['name']}></a><span style="color:#f4f4f4;">&nbsp;&nbsp;&nbsp;|</span></li>
                                             <!-- <li><a>yyyy</a></li> -->
                                         </if>
                                     </volist>
@@ -187,8 +188,8 @@
                             <!-- <li><a href="<{:U('Bar/index',array('bar_id'=>$sug['id']))}>" target="_blank"><{$sug['title']}></a></li> -->
                         </ul>
                     </div>
-                </div>
-            </volist>
+                </volist>
+            </div>
         </div>
 
         <!-- 左边 -->
@@ -230,9 +231,9 @@
                     <volist name="links" id="link">
                         <!-- <{:dump($link)}> -->
                         <div class = "bar_link">
-                            <b><a href="<{$link['linkurl']}>"><{$link['linktitle']}></a></b> 
+                            <b><a href="<{$link['linkurl']}>" style="color:#666;font-size:15px;"><{$link['linktitle']}></a></b> 
                             <ul>                              
-                                <li><a href="<{$link['linkurl']}>" target="_blank"><{$link['desc']}></a></li>
+                                <li><a href="<{$link['linkurl']}>" target="_blank" style="color:#777;font-size:13px;"><{$link['desc']}></a></li>
                             </ul>
                         </div>
                     </volist>
@@ -247,7 +248,7 @@
                 <volist name="hotnote" id="hnote">
                     <dd class="sidebar_articles">
                         <span><{$hnote['reply']}></span>
-                        <a target="_blank"  href="<{:U('Bar/note',array('bar_id'=>$hnote['bar_id'],'note_id'=>$hnote['id']))}>"><{$hnote['title']}></a>
+                        <span>♔</span><a target="_blank"  href="<{:U('Bar/note',array('bar_id'=>$hnote['bar_id'],'note_id'=>$hnote['id']))}>" style="color:#777;"><{$hnote['title']}></a>
                     </dd>
                 </volist>
             </dl>
