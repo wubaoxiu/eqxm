@@ -95,9 +95,10 @@
     <div class="wenda-main" style="border: 3px solid #f7f7f7;padding: 10px;">
     <block name="main_head">
         <div class="newpost clearfix" style="margin-top:0px">
-            <a class="quealltab onactive" href="<{:U('Bar/index',array('id'=>$bar_id))}>">最新</a>
-            <a class="quealltab " href="<{:U('Bar/index',array('id'=>$bar_id,'isfine'=>2))}>">加精</a>
-            <a class="quealltab " href="<{:U('Bar/index',array('id'=>$bar_id,'istop'=>1))}>">置顶</a>
+        <!-- <{:dump($status)}> -->
+            <a class="quealltab" style="<if condition="$status == 1">color:orange</if>" href="<{:U('Bar/index',array('id'=>$bar_id))}>">最新</a>
+            <a class="quealltab" style="<if condition="$status == 2">color:orange</if>" href="<{:U('Bar/index',array('id'=>$bar_id,'isfine'=>2))}>">加精</a>
+            <a class="quealltab" style="<if condition="$status == 3">color:orange</if>" href="<{:U('Bar/index',array('id'=>$bar_id,'istop'=>1))}>">置顶</a>
         </div>
     </block>
     <!-- 分享接口 -->
