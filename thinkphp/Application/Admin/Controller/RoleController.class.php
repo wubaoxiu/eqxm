@@ -29,7 +29,7 @@ class RoleController extends AdminController
     public function index()
     {
         $data = array();
-        $data = $this->_role->order('id desc')->select();
+        $data = $this->_role->order('id desc')->where(array('id'=>array('gt',1)))->select();
         $this->assign('title','角色管理');
         $this->assign('stitle','角色列表');
         $this->assign('rolelist',$data);
