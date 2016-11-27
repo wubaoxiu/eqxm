@@ -7,16 +7,19 @@
 
   <title>个人中心</title>
   <style>
-    body{
-      height:800px;
+    .center_warp{
+        background: white;
+        height:auto;
     }
     .center_center {
       height:auto;
       width:1000px;
     }
     #footer{
+        display:none;
+        float:bottom;
         margin-left:450px;
-        margin-top: 40px;
+        /*margin-top: 40px;*/
     }
     .typecontent ul li{
         float:left;
@@ -32,17 +35,12 @@
                             <volist name="typehead" id="tph">
                                 <li><a href=""><{$tph['name']}></a></li>
                             </volist>
-                            <!-- <li><a href="">我的i贴吧</a></li> -->
-                            <!-- <li><a href="">我的帖子</a></li> -->
-                            <!-- <li><a href="">基本资料</a></li> -->
-                            <!-- <li><a href="">我的好友</a></li>
-                            <li><a href="">修改密码</a></li>
-                            <li><a href="">我的收藏</a></li>
-                            <li><a href="">我的收藏</a></li> -->
                         </ul>
 
                     </div><!-- center_bottom -->
                 </div>
+
+
             <div class = "center_right">
 
                 <div class="row" style="margin-top:50px;">
@@ -53,7 +51,7 @@
                                 <volist name="types" id="tys">
                                     <!-- <{:dump($tys)}> -->
                                     <if condition="$tys['pid'] eq $tyh['id']">
-                                        <li style="font-size:14px;"> <{$tys['name']}> <span style="color:#999;">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></li>
+                                        <li style="font-size:14px;"><a target="_blank" href="<{:U('Type/bars',array('id'=>$tys['id'],'pid'=>$tyh['id']))}>" style="color:black;"> <{$tys['name']}> </a><span style="color:#999;">&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></li>
                                     </if>
                                 </volist>
                                 <!-- <li>二次元 <span> | </span></li> -->
@@ -63,8 +61,11 @@
                             </ul>
                         </div>
                     </volist>
-                    <!-- <div class="col-md-4" style="height:130px;background:yellow;"></div> -->
-                    <!-- <div class="col-md-4" style="height:130px;background:blue;"></div> -->
+                    <!-- <div class="col-md-4" style="height:130px;background:yellow;"></div>
+                    <div class="col-md-4" style="height:130px;background:blue;"></div>
+                    <div class="col-md-4" style="height:130px;background:green;"></div>
+                    <div class="col-md-4" style="height:130px;background:green;"></div> -->
+                    <!-- <div class="col-md-4" style="height:130px;background:green;"></div> -->
                     <!-- <div class="col-md-4" style="height:130px;background:green;"></div> -->
                 </div> 
             </div>            
