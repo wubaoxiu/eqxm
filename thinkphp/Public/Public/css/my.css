@@ -251,10 +251,7 @@ a:link, a:visited, a:hover, a:active {
     height: 400px;
     background: #fbfbfb;
 }
-.center_header .onchoose{
-    width: 100px;height:50px;
-    background-color: black;
-}
+
 
 /*贴吧信息管理*/
 .gl_bar {

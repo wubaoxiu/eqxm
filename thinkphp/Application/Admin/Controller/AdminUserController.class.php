@@ -124,7 +124,7 @@ class AdminUserController extends AdminController
       $data['email']=$_POST['email'];
       $data['sex']=$_POST['sex'];
       // $hpic = $this->upload();
-      // $data['hpic']=$hpic; 
+      // $data['hpic']=''; 
      //得到数据模型
       $admin = $this->_admin;
       //获取id

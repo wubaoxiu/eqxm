@@ -8,7 +8,7 @@ namespace Admin\Controller;
     *date 2016-11-15
     */ 
 
-class Linkcontroller extends AdminController
+class LinkController extends AdminController
 {
    private $_link = null;//友情链接表操作s
 
