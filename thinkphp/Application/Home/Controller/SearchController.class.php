@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-24
 */
-class SearchController extends ConmonController
+class SearchController extends CommonController
 {
     public function search()
     {

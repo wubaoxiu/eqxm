@@ -9,7 +9,7 @@ use Think\Controller;
     * @author xiao
     * date 2016-11-19
     */ 
-  class MyInfoController extends Controller{ 
+  class MyInfoController extends CommonController{ 
 
       private $_user = null; //用户表操作
       private $_bars = null;//吧信息表操作

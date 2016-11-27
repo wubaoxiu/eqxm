@@ -7,7 +7,7 @@ use Think\Controller;
     *@date 11/26
     *前台把管理禁言用户模块
 */
-class ShutupController extends ConmonController
+class ShutupController extends CommonController
 {
     private $_shutup = null;
 

@@ -10,7 +10,7 @@ use Think\Controller;
  *  @author xiao
  *  @date 2016-11-26
 */
-class FeedbackController extends Controller
+class FeedbackController extends CommonController
 {
 	private $_user = null;//用户表操作
 	private $_feedback = null;//意见反馈表操作

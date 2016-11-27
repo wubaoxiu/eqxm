@@ -32,7 +32,7 @@
             </p>
 
             <p class="right">
-            <if condition="$Think.session.user eq null"><a href="<{:U('Login/login')}>">登录</a><a href="<{:U('Login/reg')}>">注册</a>
+            <if condition="$Think.session.user eq null"><a href="<{:U('Login/index')}>">登录</a><a href="<{:U('Login/reg')}>">注册</a>
             <else /><a href="<{:U('MyInfo/index',array('uid'=>$_SESSION['user']['id']))}>"><{$Think.session.user.name}></a> | <a href="<{:U('Login/logout')}>">退出</a>
             </if>
             <a href="#">会员官网</a>

@@ -9,7 +9,7 @@ use Think\Controller;
     * date 2016-11-20
     *****/ 
 
-class UpdatepwdController extends ConmonController{
+class UpdatepwdController extends CommonController{
 
 
    protected function shortMessage($tel)

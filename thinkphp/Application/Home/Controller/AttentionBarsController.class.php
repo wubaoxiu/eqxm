@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-24
 */
-class AttentionBarsController extends Controller
+class AttentionBarsController extends CommonController
 {
     /**
      * 方法名：attentionBars()  关注贴吧

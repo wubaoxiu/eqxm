@@ -10,7 +10,7 @@ use Think\Controller;
    *  date 2016-11-22
    */ 
 
-class SetController extends ConmonController{
+class SetController extends CommonController{
 
     private $_user = null;//用户表操作
     private $_like = null;//爱好表操作

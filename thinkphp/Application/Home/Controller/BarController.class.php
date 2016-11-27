@@ -35,6 +35,9 @@ class BarController extends CommonController
     {
         // 获取传过来的贴吧id
         $id = I('id');
+        if(empty($id)){
+            $this->error('您老迷路了吧，快去选择想进入的贴吧！');
+        }
         $isfine = I('isfine');
         $istop = I('istop');
         $atten = $this->is_attentionBar($id);

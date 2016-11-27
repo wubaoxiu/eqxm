@@ -9,7 +9,7 @@ use Think\Controller;
  *  @author wbx
  *  @date 2016-11-26
 */
-class TypeController extends Controller
+class TypeController extends CommonController
 {
     public function index(){
         //贴吧分类
