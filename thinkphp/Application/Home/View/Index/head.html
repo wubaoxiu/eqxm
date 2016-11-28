@@ -89,21 +89,25 @@
 <script>
     $(function(){
         $(document).on('click',"#searchbar",function(){
-            $.ajax({
-                type:'post',
-                data: 'bars='+$("#barss").val(),
-                url:"<{:U('Search/search')}>",
-                success:function(results){
-                    if(results === 0) {
-                        var r = confirm("没有该吧，马上去申请建吧");
-                        if(r==true){
-                            window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+            if($("#barss").val()==""){
+                alert("请输入要搜索的吧");
+            }else{
+                $.ajax({
+                    type:'post',
+                    data: 'bars='+$("#barss").val(),
+                    url:"<{:U('Search/search')}>",
+                    success:function(results){
+                        if(results === 0) {
+                            var r = confirm("没有该吧，马上去申请建吧");
+                            if(r==true){
+                                window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                            }
+                        } else {
+                            location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
                         }
-                    } else {
-                        location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
-                    }
-                },
-            })
+                    },
+                })
+            }
         })
 
     })

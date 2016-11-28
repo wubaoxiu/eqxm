@@ -13,6 +13,7 @@ class SearchController extends CommonController
 {
     public function search()
     {
+        
         $bars = I('post.bars');
         // echo $bars;
         $data = M('barinfo')->where(array('name'=>array('eq',$bars)))->find();

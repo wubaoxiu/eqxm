@@ -283,10 +283,6 @@
                     <volist name="attenbars" id="att">
                     <a class="hot-label"   href="<{:U('Bar/index',array('id'=>$att['id']))}>" style="margin:0 6px 10px 0"><{$att['name']}></a>
                     </volist>
-                    <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">周杰伦吧</a> -->
-                    <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">林俊杰吧</a>                    -->
-                    <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">林俊杰吧</a>                    -->
-                    <!-- <a class="hot-label"   href="" style="margin:0 6px 10px 0">林俊杰吧</a>                    -->
                 </div>
             </div>
 
@@ -345,10 +341,6 @@
                             <a class="hottalk" target="_blank" href="<{:U('Bar/note',array('bar_id'=>$hnote['bar_id'],'note_id'=>$hnote['id']))}>"><{$hnote['title']}></a><i class="rankingnum"><{$hnote['reply']}><br>回答</i>
                         </li>
                     </volist>
-                    <!-- <li ><em class="hoticon hot2">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/17.html">分享一款免费翻墙国外软件</a><i class="rankingnum">7<br>回答</i></li> -->
-                    <!-- <li ><em class="hoticon hot3">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/34.html">这个网站程序，都是站长一个人开发的吗？</a><i class="rankingnum">7<br>回答</i></li> -->
-                    <!-- <li ><em class="hoticon hot4">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/13.html">发布一个原生PHP+原生JS头像截图神器，秒杀富头像和jcrop，互联网上最好头像截图插件</a><i class="rankingnum">6<br>回答</i></li> -->
-                    <!-- <li class="bordbottom"><em class="hoticon hot5">热</em><a class="hottalk" target="_blank" href="http://www.sucaihuo.com/topic/3.html">个人网站源码</a><i class="rankingnum">5<br>回答</i></li> -->
                 </ul>
             </div>
         </div><!--panel hot-->
@@ -491,7 +483,7 @@
                 },
                 error:function(results){
                     // console.log(results);
-                    alert("申请失败！！！");
+                    alert("您还没有登录，登录后再来吧！！！");
                 }
             });
         })

@@ -33,7 +33,7 @@ class FloorController extends CommonController
         $rep = $reply['reply']+1;
         $re['id'] = $noteid;
         $re['reply'] = $rep;
-        dump($re);
+        // dump($re);
 
         if($f->add()>0 && M('note')->data($re)->save()>0){
             $this->success("评论成功！！！");
