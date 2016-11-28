@@ -29,7 +29,7 @@
                         <foreach name="data" item="v">
                             <tr>
                                <td>
-                                     <{$v.name}>
+                                    <a href="<{:U('MyInfo/personal',array('uid'=>$v['id']))}>"><{$v.name}></a>
                                 </td>
                                 <td class="hidden-480">
                                   <if condition = "$v.sex eq '2'">男

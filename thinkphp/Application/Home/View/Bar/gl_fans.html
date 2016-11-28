@@ -33,7 +33,7 @@
                                 <!-- <{:dump($v)}> -->
                             <tr>
                                <td>
-                                     <{$v.user.name}>
+                                    <a href="<{:U('MyInfo/personal',array('uid'=>$v['user']['id']))}>"><{$v.user.name}></a>
                                 </td>
                                 <td class="hidden-480">
                                   <if condition = "$v['user']['sex'] eq '2'">男

@@ -87,6 +87,7 @@ class NoteController extends CommonController
             // dump($v);
             $list[$k]['louzhu'] = $this->_user->where(array('id'=>array('eq',$v['user_id'])))->find();
         }
+        $this->assign('bar_id',$id);
         $this->assign('title','帖吧管理');
         $this->assign('stitle','帖子管理 ');
         $this->assign('data',$list);

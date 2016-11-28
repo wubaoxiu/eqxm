@@ -31,7 +31,7 @@
                         <!-- <{:dump($v)}> -->
                             <tr>
                                <td>
-                                     <{$v.title}>
+                                    <a href="<{:U('Bar/note',array('bar_id'=>$bar_id,'note_id'=>$v['id']))}>"><{$v.title}></a>
                                 </td>
                                 <td class="hidden-480"><{$v.createtime|date="Y-m-d H:i:s",###}></td>                               
                                 <td class="hidden-480"><{$v.louzhu.name}></td>

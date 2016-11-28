@@ -25,4 +25,10 @@ class SearchController extends CommonController
             $this->ajaxReturn($data['id']);
         }
     }
+
+    public function searchnote()
+    {
+        $bars = I('post.bars');
+        echo $bars;
+    }
 }
