@@ -24,6 +24,11 @@
     .typecontent ul li{
         float:left;
     }
+    .btitle span a{
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
   </style>
   <div class = "center">
         <div class = "center_warp">
@@ -50,13 +55,13 @@
                     <volist name="bars" id="b">
                         <div class="col-md-4" style="height:150px;border:1px solid #F4F4F4;margin-left:20px;margin-top:20px;">
                             <div class="fl"><a href="<{:U('Bar/index',array('id'=>$b['id']))}>" target="_blank"><img style="margin-top:20px;" src="<if condition='$b.hpic eq null'>__PUBLIC__/Barimg/default_hpic.jpg<else />__UPLOAD__/<{$b['hpic']}></if>" alt="" width="100" height="100"></a></div>
-                            <div class='fl'>
+                            <div class='fl' style="width:200px;overflow:hidden;">
                                 <h3 style="margin-left:10px;"><a style="color:black;" href="<{:U('Bar/index',array('id'=>$b['id']))}>" target="_blank"><{$b['name']}></a></h3>
                                 <p>
                                     <span class="glyphicon glyphicon-user" style="margin-left:10px;">&nbsp;<{$b['attention']}> </span>
                                     <span class="glyphicon glyphicon-edit" style="margin-left:10px;">&nbsp;<{$b['count'][0]['count']}></span>
                                 </p>
-                                <p><span style="margin-left:10px;"><a href="<{:U('Bar/index',array('id'=>$b['id']))}>" style="color:#333;" target="_blank"><{$b['title']}></span></a></p>
+                                <p class="btitle"><span style="margin-left:10px;"><a href="<{:U('Bar/index',array('id'=>$b['id']))}>" style="color:#333;" target="_blank" title="<{$b['title']}>"><{$b['title']}></a></span></p>
                             </div>
                         </div>
                     </volist>

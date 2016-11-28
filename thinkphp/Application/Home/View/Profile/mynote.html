@@ -2,8 +2,7 @@
   <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 <div class = "nav">
-    <img src="__PUBLIC__/Public/image/timg.jpg" alt="">
-
+<img src="__PUBLIC__/Public/image/timg.jpg" alt="">
 <div class="layui-tab layui-tab-card">
   <ul class="layui-tab-title">
     <li class="layui-this">我的帖子</li>
@@ -34,8 +33,7 @@
 <script>
 layui.use('element', function(){
   var $ = layui.jquery
-  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-  
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块  
   //触发事件
   var active = {
     tabAdd: function(){
@@ -53,16 +51,12 @@ layui.use('element', function(){
       //切换到指定Tab项
       element.tabChange('demo', 1); //切换到第2项（注意序号是从0开始计算）
     }
-  };
-  
+  }; 
   $('.site-demo-active').on('click', function(){
     var type = $(this).data('type');
     active[type] ? active[type].call(this) : '';
   });
 });
-
-
-
 </script>
 
 

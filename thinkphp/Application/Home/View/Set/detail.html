@@ -10,7 +10,6 @@
   <div class="layui-tab-content" style="height: 390px;">
     <div class="layui-tab-item layui-show">
     <div class="photo"> 
- 
         <span class="profile-picture">
             <div style="width:150px;height:150px;border:1px solid #ccc;">
               <img id="avator" class="editable img-responsive" style = "width:150px;height:150px;" alt="头像" src="__ROOT__/<if condition="$list['hpic'] == null">Public/Public/image/dog.jpg<else /><{$list['hpic']}></if>" />
@@ -20,7 +19,6 @@
     <!-- <{:dump($list)}> -->
     <div class="set">
     <ul>
-       
         <li>姓　　名：<{$list['name']}></li>
         <li>性　　别：
           <if condition="$list['sex'] eq 1">女

@@ -5,7 +5,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 /**
- * 个人中心
+ * 个人中心  我的帖子 短信验证 修改新密码
  * @author xiao
  * date 2016-11-20
  *****/
@@ -46,34 +46,32 @@ class ProfileController extends CommonController
 
     // 选择短信验证处理方法
     public function choose()
-    {
+     {
         $id = $_SESSION['user']['id'];
         $list = $this->_user->where(array('id' => array('eq', $id)))->find();
         $this->assign('list', $list);
         $this->display();
 
-    }
+     }
 
     // 获取最新的验证码
     public function newyzm()
-    {
-        
+     {  
         $sms = I('post.sms');
         if ($sms == session('sms')) {
             $this->ajaxReturn(true);
         } else {
             $this->ajaxReturn(false);
         }
-
-    }
+     }
 
     // 修改新密码页面
     public function updatepwd()
-    {
+     {
         $list = $this->_user->find();
         $this->assign('list', $list);
         $this->display();
-    }
+     }
 
     // 判断原密码是否与原密码一致
     public function oldpwd(){
@@ -90,7 +88,7 @@ class ProfileController extends CommonController
 
     // 执行密码修改
     public function dopwd()
-    {
+     {
         // var_dump($_POST);
         $id = I('post.id/d');
         $data['password'] = md5($_POST['newpwd']);
@@ -100,7 +98,7 @@ class ProfileController extends CommonController
         } else {
             $this->error('修改密码失败......');
         }
-    }
+     }
 
     //我的帖子
     public function mynote(){
@@ -109,4 +107,5 @@ class ProfileController extends CommonController
         $this->assign('list',$list);
         $this->display('Profile/mynote');
     } 
+
 }

@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" />
 
   <title>个人中心</title>
-  <div class = "center">
+  <div class = "center" style="height:460px;background: #fff;">
     <div class = "center_warp">
-      <div class = "center_center"  style="background: #FCFCFC">
+      <div class = "center_center"  style="background: #FCFCFC;">
         <div class = "center_left fl">
             <div class = "center_left_top">
                 <div class = "center_left_top_two">
@@ -17,7 +17,6 @@
                        <ul>
                        <h1 style="font-size: 16px;font-weight: bold;margin-top:10px;">欢迎您！</h1>
                            <li><b><{$list[0]['name']}></b></li>
-                            
                        </ul>
                     </div>
                 </div>   
@@ -31,7 +30,6 @@
                     方法：<p style="width:200px;"><{$vo['content']}></p>
                   </div>
                 </volist>     
-
             </div><!--center_bottom-->
         </div>
         <h1 style="font-size: 20px;font-weight: bold;margin-top:20px;padding-left:470px;">意见反馈</h1>
@@ -57,7 +55,6 @@
 		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
 		    </div>
 		  </div>
-		
 		 </div>  
 		 </form>
           </div>  
@@ -74,8 +71,6 @@
     <span>|</span>
     <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
 </div>
-
-
 <script src="__PUBLIC__/public/js/jquery.min.js"></script>
 <script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
 <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
@@ -101,18 +96,6 @@ layui.use(['form', 'layedit', 'laydate'], function(){
       layedit.sync(editIndex);
     }
   });
-  
-  
-  
-  // //监听提交
-  // form.on('submit(demo1)', function(data){
-  //   layer.alert(JSON.stringify(data.field), {
-  //     title: '最终的提交信息'
-  //   })
-  //   return false;
-  // });
-  
-  
 });
 </script>
 

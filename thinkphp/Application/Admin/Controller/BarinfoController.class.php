@@ -211,7 +211,7 @@ class BarinfoController extends AdminController
     *
     * @return['void']  返回吧管理请求列表
     */
-    public function Request()
+    public function request()
     {
         $r = M('request');
         $data = $r->field('u.name uname,u.email uemail,b.name bname,r.id,r.status,r.user_id userid')->table('csw_barinfo b,csw_user u,csw_request r')->where('r.user_id=u.id and r.bar_id=b.id')->select();

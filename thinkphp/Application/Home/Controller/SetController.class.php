@@ -4,8 +4,8 @@ namespace Home\Controller;
 use Think\Controller;
 
    /**
-   *  修改个人资料  修改个人头像 查看所关注的吧信息 
-   *   关注的好友 以及收藏的帖子
+   *  修改个人资料  修改个人头像 查看所关注的吧信息  
+   *   关注的好友 查看收藏的帖子
    *   @author xiao
    *  date 2016-11-22
    */ 
@@ -31,15 +31,14 @@ class SetController extends CommonController{
       $id = $_SESSION['user']['id'];
       //查找该用户的信息
       $list = $this->_user->find($id);
-      // var_dump($id);
       //分配数据
       $this->assign('list',$list);
       $this->display();
     }
 
    //处理头像 
-    public function dophoto(){
-
+    public function dophoto()
+     {
         //获取用户id
         $id=$_SESSION['user']['id'];
         //查询该用户下的所有信息
@@ -52,7 +51,7 @@ class SetController extends CommonController{
         $this->assign('data',$data);
         $this->assign('arr',$arr);
         $this->display('Set/dophoto');
-    }
+     }
 
      //修改头像
 
@@ -66,7 +65,8 @@ class SetController extends CommonController{
 
     
        // 头像上传
-   public function upload(){
+    public function upload()
+     {
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize = 3145728 ;// 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
@@ -94,11 +94,12 @@ class SetController extends CommonController{
             return $small;
 
         }
-    }
+     }
 
 
     //修改資料
-    public function dodata(){ 
+    public function dodata()
+     { 
         if (!empty($_POST)) {
           $array=$_POST['likename'];
           $str = implode(',', $array);
@@ -107,13 +108,14 @@ class SetController extends CommonController{
         $data['id'] = $_POST['id'];
         $data['sex'] = $_POST['sex'];
         $data['brith'] = $_POST['brith'];
+        $data['phone'] = $_POST['phone'];
         $data['introduction'] = $_POST['introduction'];
         if ($this->_user->save($data) !==false) {
             $this->success('恭喜您，修改資料成功',U('Set/detail'));
         }else{
             $this->error('修改資料失敗....');
         }
-    }
+     }
 
 
       /**

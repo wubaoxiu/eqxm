@@ -60,15 +60,18 @@ class BarController extends CommonController
             U('index/index');
             exit;
         }
-        // 查询所有该贴吧中帖子的信息
+        // 查询所有该贴吧中帖子的信息,查询帖子的要求
         if(empty($isfine)&&empty($istop)){
             $map['bar_id'] = $id;
+            $status = 1;
         }elseif($isfine){
             $map['bar_id'] = $id;
-            $map['isfine'] = $isfine;            
+            $map['isfine'] = $isfine;
+            $status = 2;            
         }elseif($istop){
             $map['bar_id'] = $id;
             $map['istop'] = $istop;
+            $status = 3;
         }
         // dump($map);die;
         $list = $this->_note->where($map)->order('id desc')->page($_GET['p'],5)->select();
@@ -110,6 +113,7 @@ class BarController extends CommonController
         $hotnote = $this->_note->where(array("bar_id"=>array('eq',$id)))->limit(5)->order('reply desc')->select();
         // dump($hotnote);
 
+        $this->assign('status',$status);
         $this->assign('list',$list);
         $this->assign('data',$data);
         $this->assign('attenbars',$attenbars);
@@ -490,55 +494,6 @@ class BarController extends CommonController
             return 1;
         }
     }
-
-       /**
-        *   方法名 collect() 收藏帖子
-        *  
-        *   @author xiao
-        */
-
-    public function collect(){
-
-        //判断有无登录
-        if (empty($_SESSION['user']['name'])) {
-            $this->error('您还没有登录，请先登录');
-            exit;
-        }
-        //接受帖子的id
-        $note_id = I('get.noteid/d');
-        $data['user_id'] = $_SESSION['user']['id'];
-        $data['note_id'] = $note_id;
-        if (M('collect')->data($data)->add()>0) {
-            $this->success('收藏成功！');
-        }else{
-            $this->error('收藏失败....');
-        }
-    }
-
-
-    /**
-    * 方法名 delcollect() 取消关注
-    * @param int noteid 好友id
-    */ 
-
-    public function delcollect(){
-       //接受你要取消收藏的帖子的id
-        $note_id = I('get.noteid/d');
-        if (empty($note_id)) {
-            $this->error('操作失误！');
-            exit;
-        }
-
-        $data['user_id']=$_SESSION['user']['id'];
-        $data['note_id'] = $note_id;
-        // var_dump($data);die;
-        if (M('collect')->where($data)->delete()>0) {
-            $this->success('取消收藏成功！');
-        }else{
-            $this->error('取消收藏失败........');
-        }
-    }
-
       
     /**
     *  定义一个私有方法

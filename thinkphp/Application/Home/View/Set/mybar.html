@@ -1,4 +1,3 @@
-  
 
    <link rel="stylesheet" href="__PUBLIC__/public/css/bootstrap.min.css" />
   <link rel="stylesheet" href="__PUBLIC__/Public/css/profile.css" type="text/css" />
@@ -16,7 +15,6 @@
         <th>吧等级</th>
         <th>取消关注</th>
       </tr>
-      <!-- <{:dump($list)}> -->
       <volist name="list" id="vo">
       <tr>
         <td><{$vo['name']}></td>
@@ -25,7 +23,6 @@
         <td><button class="layui-btn site-demo-layer" data-type="confirmTrans" onclick="active(this,'<{$vo['id']}>')">×</button></td>
       </tr>
       </volist>
-       <!-- <{:dump($vo)}> -->
     </table>
     </div>
   </div>
@@ -41,7 +38,6 @@ function active(obj, data) {
             time: 20000, //20s后自动关闭
             btn: ['确定', '取消']
             ,yes: function(index, layero){
-
             //按钮【按钮一】的回调 
             $.post("<{:U('Set/delfollowbar')}>",{'id':data},function(res) {
                  if (res) {
@@ -50,7 +46,7 @@ function active(obj, data) {
                  }
             });
           }
-          });
+        });
     });
 }
 

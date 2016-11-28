@@ -67,21 +67,17 @@
     <span>|</span>
     <a pv_code="0" href="#" target="_blank">吧主制度</a>
     <span>|</span>
-    <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="#" target="_blank">意见反馈</a>
+    <a class="ueg_feedback-link" data-site="feedbackLink" pv_code="0" href="<{:U('feedback/index',array('uid'=>$_SESSION['user']['id']))}>" target="_blank" style="color:red">意见反馈</a>
     <span>|</span>
     <a pv_code="0" href="#" target="_blank">网络谣言警示</a>
 </div>
-
-
 <script src="__PUBLIC__/public/js/jquery.min.js"></script>
 <script src="__PUBLIC__/public/js/bootstrap.min.js"></script>     
 <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
-
 <script>
 layui.use('element', function(){
   var $ = layui.jquery
   ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-  
   //触发事件
   var active = {
     tabAdd: function(){
@@ -106,10 +102,5 @@ layui.use('element', function(){
     active[type] ? active[type].call(this) : '';
   });
 });
-
-
-
 </script>
-
-
 </block>
