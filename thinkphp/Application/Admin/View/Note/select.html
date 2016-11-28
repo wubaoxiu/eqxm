@@ -66,8 +66,8 @@
 
                     <div class="profile-info-value">
                         <span class="editable" id="istop">
-                            <if condition="$data['istop'] eq '1'">置顶
-                            <else />不置顶
+                            <if condition="$data['istop'] eq '0'">不置顶
+                            <else />置顶
                             </if>
                         </span>
                     </div>
@@ -77,26 +77,24 @@
 
                     <div class="profile-info-value">
                         <span class="editable" id="isfine">
-                             <if condition="$data['isfine'] eq '1'">加精
-                            <else />不加精
+                             <if condition="$data['isfine'] eq '0'">不加精
+                            <else />加精
+                            </if>
+                        </span>
+                    </div>
+                </div>   
+                <div class="profile-info-row" style = "height:30px;">
+                    <div class="profile-info-name"> 显示 </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable" id="isfine">
+                             <if condition="$data['isfine'] eq '0'">不显示
+                            <else />显示
                             </if>
                         </span>
                     </div>
                 </div> 
-            <!--      <div class="profile-info-row" style = "height:30px;">
-                    <div class="profile-info-name"> 回复 </div>
 
-                    <div class="profile-info-value">
-                        <span class="editable" id="replay"><{$data['reply']}></span>
-                    </div>
-                </div>  --> 
-             <!--     <div class="profile-info-row" style = "height:30px;">
-                    <div class="profile-info-name"> 关注 </div>
-
-                    <div class="profile-info-value">
-                        <span class="editable" id="scan"><{$data['scan']}></span>
-                    </div>
-                </div>  -->
                       <div class="profile-info-row" style = "height:30px;">
                     <div class="profile-info-name"> 创建时间 </div>
 
