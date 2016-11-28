@@ -518,7 +518,7 @@ class BarController extends CommonController
 
     /**
      * 方法名：getBarAdmin()  获取贴吧管理员信息
-     * @return []
+     * @return [array]
     */
     private function getBarAdmin($barid)
     {

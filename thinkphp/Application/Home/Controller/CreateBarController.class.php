@@ -17,6 +17,10 @@ class CreateBarController extends CommonController
     */
     public function index()
     {
+        if(empty($_SESSION['user'])){
+            $this->error("您还未登录，请先登录！！");
+            exit;
+        }
         $name = I('name');
         $arr = $this->getOption();
         // dump($arr);

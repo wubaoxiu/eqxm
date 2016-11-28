@@ -92,7 +92,7 @@ class SignController extends CommonController
         $list = attentionBars();
         $bars = M('bars');
         // $list = $arr;
-        dump($list);
+        // dump($list);
         foreach ($list as $v){
             if($v['integral']>=pow($v['grade'],2)*8){
                 $bars->where("id={$v['barsid']}")->setInc('grade',1);
