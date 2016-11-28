@@ -16,7 +16,7 @@
 
 <block name="content">
  <div class="table-header"><small><{$stitle}></small></div>
-    <form class="form-horizontal" role="form" action="<{:U('AdminUser/doAdd')}>" method="post" onsubmit = "return check()">
+    <form class="form-horizontal" role="form" action="<{:U('AdminUser/doAdd')}>" method="post" onsubmit = "return check();">
     <input type="hidden" name = "id">
    <div class="form-group" style="height:50px;margin-top:20px;">
             <label for="" class="col-xs-12 col-sm-3 control-label no-padding-right"> 用户名 :</label>
@@ -149,6 +149,7 @@
                 });
             }else{
                 layer.tips('用户名长度必须在3-10位之间','#aname');
+                // admin_t = false;
             }
         });
 
@@ -178,12 +179,12 @@
                 layer.tips('确认密码正确','#repwd',{
                   tips:[2,'green']
                 });
-                admin_r = false;
+                admin_r = true;
             }else{
                 layer.tips('确认密码与密码不符合','#repwd',{
                  tips:[2,'red']
                 });
-                admin_r = true;
+                admin_r = false;
             }
 
        });
@@ -213,8 +214,15 @@
  //判断信息是否填写正确 正确就可以
 
    function check(){
+    // console.log(admin_n);
+    // console.log(admin_p);
+    // console.log(admin_r);
+    // console.log(admin_e);
      if ((admin_n == true) && (admin_p == true) && (admin_r == true) && (admin_e == true)){
       return true;
+     }else{
+        alert('信息填写有误');
+        return false;
      }
      
 

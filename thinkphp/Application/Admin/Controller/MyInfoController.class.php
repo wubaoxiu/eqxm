@@ -56,6 +56,18 @@ class MyInfoController extends AdminController
 			$this->error('修改密码失败.....');
 		}
 	}
+	  // 判断原密码是否与原密码一致
+      public function oldpwd(){
+        $pwd = I('post.oldpwd/d');
+        $oldpass = md5($pwd);
+        $password = $_SESSION['user']['password'];
+        if ($oldpass == $password) {
+           $this->ajaxReturn(true);
+        }else{
+            $this->ajaxReturn(false);
+        }
+    }
+
 
 	// 执行修改个人信息
 

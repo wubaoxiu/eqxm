@@ -32,15 +32,21 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label" style="width:90px">原密码</label>
+        <div class="layui-input-inline">
+          <input name="password" id="password" lay-verify="password" autocomplete="off" placeholder="请输入原始密码" class="layui-input" type="password">
+        </div>
+      </div>    
+      <div class="layui-form-item">
         <label class="layui-form-label" style="width:90px">新密码</label>
         <div class="layui-input-inline">
-          <input name="newpwd" id="newpwd" lay-verify="newpwd" autocomplete="off" class="layui-input" type="password">
+          <input name="newpwd" id="newpwd" lay-verify="newpwd" autocomplete="off" placeholder="请输入新密码" class="layui-input" type="password">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label" style="width:90px">确认密码</label>
         <div class="layui-input-inline">
-          <input name="repwd" id="repwd" lay-verify="repwd" autocomplete="off" class="layui-input" type="password">
+          <input name="repwd" id="repwd" lay-verify="repwd" autocomplete="off" placeholder="请输入确认密码" class="layui-input" type="password">
         </div>
       </div>
        
@@ -106,13 +112,28 @@
 <script src="__PUBLIC__/layui/layui.js"></script>
    <script type="text/javascript">
    // 对密码进行验证
-    var pwd_n,pwd_r;
+    var pwd_p,pwd_n,pwd_r;
    window.onload = function checkinfo(){
     //对新密码进行验证 
+      $('#password').change(function(){
+      var password = $('#password').val();
+      $.post("<{:U('MyInfo/oldpwd')}>",{'oldpwd':password},function(res){
+          if (res == true) {
+               layer.tips('原密码正确','#password',{
+                tips:[2,'green'],
+                time:2000
+               });
+               pwd_p = true;
+            }else if(res == false){
+                layer.tips('原密码不正确','#password',{
+                    tips:[2,'red']
+                });
+                  pwd_p = false;
+            }
+         })
+     });   
      $('#newpwd').change(function(){
       var newpwd = $('#newpwd').val();
-      // alert(newpwd);
-       // alert(newpwd.length);
           if (newpwd.length>4 && newpwd.length<20) {
                layer.tips('密码可以使用','#newpwd',{
                 tips:[2,'green'],
