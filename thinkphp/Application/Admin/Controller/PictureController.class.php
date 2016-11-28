@@ -25,7 +25,6 @@ class PictureController extends AdminController
 
 	public function index(){
 		$list = $this->_picture->select();
-		// var_dump($list);
 		$this->assign('title','轮播图管理');
 		$this->assign('stitle','轮播图显示列表');
 		$this->assign('list',$list);
@@ -33,11 +32,28 @@ class PictureController extends AdminController
 
 	}
 
+    // 获得添加图片的页面
+    public function add(){
+        $this->display('Picture/add');
+    }
+
+    //执行添加
+    public function doadd(){
+        $pic = $this->upload();
+        $arr['picname']=$pic;
+        $res = $this->_picture->data($arr)->add();
+        if ($res) {
+            $this->success('恭喜您,添加成功',U('Picture/index'));
+        }else{
+            $this->error('添加失败.......');
+        }
+
+    }
+
 	//获得修改图片的页面
 	public function edit(){
 		$id = I('get.id/d');
-		$data = $this->_picture->find($id);
-		
+		$data = $this->_picture->find($id);		
 		$this->assign('title','轮播图显示列表');
 		$this->assign('stitle','修改图片');
 		$this->assign('data',$data);
@@ -45,11 +61,9 @@ class PictureController extends AdminController
 	}
 	//修改图片
 	public function dopic(){
-
 		$pic = $this->upload();
 		$arr['id']=$_POST['id'];
 		$arr['picname']=$pic;
-		// var_dump($arr);die;
 		$res = $this->_picture->save($arr);
 		if ($res) {
 			$this->success('恭喜您,修改成功',U('Picture/index'));

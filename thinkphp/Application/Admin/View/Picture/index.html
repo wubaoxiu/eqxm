@@ -32,10 +32,10 @@
                 </label>
             </th>
             <th>编号</th>
-            <th class="hidden-480 center">图片名称</th>
+            <th class="hidden-480 center">图片</th>
             <th class="hidden-480 center">显示</th>
              <th class="center">
-                <i class="icon-time bigger-110 hidden-480"></i>
+                <i class="bigger-110 hidden-480"></i>
               操作
             </th>
         </tr>
@@ -55,6 +55,7 @@
                     <a href="#"> <{$v.id}> </a>
                 </td>
                 <td class="hidden-480"><img src="__ROOT__/<{$v['picname']}>" alt="" width="100"></td>
+
                   <td class="hidden-480" style="color:green;width:80px;"> 
                      <a href="<{:U('Picture/doshow',array('id'=>$v['id']))}>" class="show" onclick=" return false"><if condition="($v.is_show eq 1)">显示<else />不显示</if></a>
                   </td>                

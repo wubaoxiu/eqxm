@@ -45,6 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <!-- <{:dump($list)}> -->
                         <foreach name="list" item="v">
                             <tr class="center">
                                 <td class="center">
@@ -62,18 +63,18 @@
                                 <td class="hidden-480"><{$v['bname']}></td>
                                 <td class="hidden-480"><{$v['uname']}></td>
                                   <td class="hidden-480">
-                                 <if condition="$v.istop eq '1'">置顶
-                                 <else />不置顶
+                                 <if condition="$v.istop eq '0'">不置顶
+                                 <else />置顶
                                  </if>
                                 </td>   
                                 <td class="hidden-480">
-                                 <if condition="$v.isfine eq '1'">加精
-                                 <else />不加精
+                                 <if condition="$v.isfine eq '0'">不加精
+                                 <else />加精
                                  </if>
                                 </td>
                                 <td>
-                                     <if condition="$v.is_show eq '1'">显示
-                                     <else />不显示
+                                     <if condition="$v.is_show eq '0'">不显示
+                                     <else />显示
                                     </if>
                                 </td>
                                 <td>
