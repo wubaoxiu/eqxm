@@ -58,8 +58,6 @@ class AdminUserController extends AdminController
     public function select(){
       //获取id
       $id = I('get.id/d');
-      // var_dump($id);die;
-
       $data = $this->_admin->find($id);
       $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
       $adminrole = $this->_role->where(array('id'=>$role_id[0]['role_id']))->select();
@@ -76,19 +74,27 @@ class AdminUserController extends AdminController
     public function info(){
       //获取id
       $id = I('get.id/d');
-      var_dump($id);
-
       $data = $this->_admin->find($id);
       $role_id = $this->_user_role->field('role_id')->where(array('user_id'=>array('eq',$id)))->select();
       $adminrole = $this->_role->where(array('id'=>$role_id[0]['role_id']))->select();
-     var_dump($data);
-
       $this->assign('title','后台管理用户列表');
       $this->assign('stitle','个人信息');
       $this->assign('data',$data);
       $this->assign('adminrole',$adminrole);
       $this->display('AdminUser/info');
     }
+      // 判断原密码是否与原密码一致
+    public function oldpwd(){
+        $pwd = I('post.oldpwd/d');
+        $oldpass = md5($pwd);
+        $password = $_SESSION['user']['password'];
+        if ($oldpass == $password) {
+           $this->ajaxReturn(true);
+        }else{
+            $this->ajaxReturn(false);
+        }
+    }
+
 
     /**
     *  获取添加后台管理员页面
@@ -105,15 +111,12 @@ class AdminUserController extends AdminController
     public function action(){
        $name = $this->_admin->field('name')->select();
        $pn = $_POST['aname'];
-       // dump($pn);
-       // dump($name[0]['name']);
        if ($pn == $name[0]['name']) {
        return $this->ajaxReturn(1);
        }else{
        return $this->ajaxReturn(2);
        }
-      
-      
+        
     }
     
     // 执行添加
@@ -123,12 +126,11 @@ class AdminUserController extends AdminController
       $data['repassword']=md5($_POST['repassword']);
       $data['email']=$_POST['email'];
       $data['sex']=$_POST['sex'];
-      // $hpic = $this->upload();
-      // $data['hpic']=$hpic; 
      //得到数据模型
       $admin = $this->_admin;
       //获取id
       $id = I('post.id/d'); 
+      // var_dump($data);die;
 
      $admin_id = $admin->add($data);
        if ($admin_id>0) {
@@ -144,13 +146,11 @@ class AdminUserController extends AdminController
 
      //处理头像
     public function updateAvator(){
-         $hpic = $this->upload();
-         // dump($hpic);
-        $data['hpic'] = $hpic;
-        $data['id'] = I('get.id/d');
+       $hpic = $this->upload();
+       $data['hpic'] = $hpic;
+       $data['id'] = I('get.id/d');
        $this->_admin->save($data);
        return $this->ajaxReturn($hpic);
-
     } 
 
     /**
@@ -244,10 +244,9 @@ class AdminUserController extends AdminController
             $data['name']=$_POST['name'];
             $data['email']=$_POST['email'];
             $data['sex']=$_POST['sex'];
-            // var_dump($data);
-                $new_role_id = $_POST['role_id'];
-                $list['role_id']=$new_role_id;
-                $this->_user_role->where(array('user_id'=>array('eq',$_POST['id'])))->save($list);
+            $new_role_id = $_POST['role_id'];
+            $list['role_id']=$new_role_id;
+            $this->_user_role->where(array('user_id'=>array('eq',$_POST['id'])))->save($list);
           if ($this->_admin->save($data) !== false) {
               $this->success('恭喜您，修改成功！',U('index'));
           }else{

@@ -48,17 +48,17 @@
 <div id="header" style="margin-top:-10px;">
     <div class="container">
         <h1 style="margin-top: 30px;margin-left: 200px;">
-            <a href="<{:U('index')}>">
+          <!--   <a href="<{:U('index')}>">
                 <img src="__PUBLIC__/public/image/logo.gif" alt="">
-            </a>
+            </a> -->
         </h1>
-        <div style="margin-top:-30px;margin-left: 370px;" class="row">
+        <div style="margin-top:30px;margin-left: 370px;" class="row">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input style="height:42px;width:300px" type="text" class="form-control" aria-label="...">
+                    <input style="height:42px;width:300px" id="barss" type="text" class="form-control" aria-label="...">
                     <div class="input-group-btn">
                         <button style="height:30px;" type="button" class="btn btn-info dropdown-toggle"
-                                data-toggle="dropdown" aria-expanded="false">进入贴吧
+                                data-toggle="dropdown" aria-expanded="false"  id="searchbar">进入贴吧
                         </button>
                         <button style="height:30px;margin-left:20px;border-radius:10%;" type="button"
                                 class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -181,3 +181,22 @@
 </div>
 </body>
 </html>
+<script>
+    $(function(){
+        $(document).on('click',"#searchbar",function(){
+            $.ajax({
+                type:'post',
+                data: 'bars='+$("#barss").val(),
+                url:"<{:U('Search/search')}>",
+                success:function(results){
+                    if(results === 0) {
+                        alert("没有该吧，马上去申请建吧");window.location.href="<{:U("CreateBar/index")}>?name="+$('#barss').val();
+                    } else {
+                        location.assign('<{:U("bar/index", "","",true)}>?id=' + results);
+                    }
+                },
+            })
+        })
+
+    })
+</script>

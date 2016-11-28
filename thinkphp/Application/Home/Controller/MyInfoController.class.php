@@ -108,7 +108,6 @@ use Think\Controller;
         $this->assign('fname',$fname);
         $this->assign('count',$count);
         $this->display('MyInfo/personal');
-
       }
 
         /**
@@ -132,7 +131,7 @@ use Think\Controller;
       $data['user_id'] = $_SESSION['user']['id'];
       $data['fuser_id'] = $fuser_id;
       if($this->_fans->data($data)->add()>0){
-        $this->success('关注成功！');
+        $this->success('关注成功！',U('Profile/index'));
       }else{
         $this->error('关注失败.......');
       }
