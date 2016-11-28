@@ -31,10 +31,11 @@ class NoteController extends AdminController
     public function index(){
 
     //查询数据
-      $list = $this->_note->field('n.id,n.title,u.name uname,n.istop,n.isfine,b.name bname')->table('csw_user u,csw_note n,csw_barinfo b')->where('n.bar_id=b.id and n.user_id = u.id')->select();
+      $list = $this->_note->field('n.id,n.title,u.name uname,n.istop,n.isfine,n.is_show,b.name bname')->table('csw_user u,csw_note n,csw_barinfo b')->where('n.bar_id=b.id and n.user_id = u.id')->select();
         $this->assign('title','帖子管理');
         $this->assign('stitle','帖子列表');
         //分配数据
+        // var_dump($list);
         $this->assign('list',$list);
         $this->display('Note/index');
     }
@@ -57,26 +58,6 @@ class NoteController extends AdminController
         $this->assign('data',$arr);
         $this->display('Note/select');
     }
-
-    // //帖子删除
-    // public function del(){
-
-    //     //判断有无ID
-    //     if (empty($_GET['id'])) {
-    //         $this->redirect('Admin/Note/index');
-    //         exit;
-    //     }
-
-    //     //过滤 也就是数据验证
-    //     $id = I('get.id/d');
-    //     if ($this->_note->delete($id)>0) {
-    //         $this->success('恭喜您，删除成功',U('Note/index'));
-    //     }else{
-    //         $this->error('删除失败......');
-    //     }
-
-    // }
-
     /**
     *  获取修改是否置顶 是否加精页面
     */ 
